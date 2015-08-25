@@ -13,4 +13,8 @@ app.controller('PostCtrl', [
       });
       $scope.body = '';
     };
+
+    $scope.incrementUpvotes = function(comment) {
+      postService.upvoteComment(post, comment);
+    };
 }]);

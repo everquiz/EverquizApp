@@ -29,5 +29,13 @@ app.service('postService', function ($http) {
 
   this.addComment = function(id, comment) {
     return $http.post('/posts/' + id + '/comments/', comment);
-  }
+  };
+
+  this.upvoteComment = function(post, comment) {
+    return $http.put('/posts/' + post._id + '/comments/' + comment._id + '/upvote')
+      .success(function(data) {
+        comment.upvotes += 1;
+        // angular.copy(data, comment);
+      })
+  };
 });
