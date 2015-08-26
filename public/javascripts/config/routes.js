@@ -13,6 +13,17 @@ app.config([
             return userService.getAll();
           }]
         }
+      })
+      .state('dashboard', {
+        url: '/dashboard/{id}',
+        templateUrl: '/dashboard.html',
+        controller: 'UserCtrl',
+        resolve: {
+          user: ['$stateParams', 'userService', 
+          function($stateParams, userService) {
+            return userService.get($stateParams.id);
+          }]
+        }
       });
       // .state('posts', {
       //   url: '/posts/{id}',

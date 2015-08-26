@@ -8,6 +8,12 @@ app.service('userService', function ($http) {
     });
   };
 
+  this.get = function(id) {
+    return $http.get('/api/v1/Users/' + id).then(function(res) {
+      return res.data;
+    });
+  };
+
   this.create = function(user) {
     return $http.post('/api/v1/Users', user).success(function(data) {
       _users.push(data);
@@ -18,5 +24,9 @@ app.service('userService', function ($http) {
     return $http.delete('/api/v1/Users/' + user._id, user).success(function(data) {
       _users.splice(_users.indexOf(user), 1);
     })
+  };
+
+  this.addNote= function(user, note) {
+    return $http.post('/api/v1/Users/' + user._id + '/Notes/', note);
   };
 });
