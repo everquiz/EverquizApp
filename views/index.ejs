@@ -11,29 +11,31 @@
   <h1>EverQuiz</h1>
   <ui-view></ui-view>
 
-  <script type="text/ng-template" id="/home.html">
+  <script type="text/ng-template" id="/users.html">
     <div>
       {{test}}
     </div>
-    <div ng-repeat="post in posts | orderBy:'-upvotes'">
-      <i ng-click="incrementUpvotes(post)" class="fa fa-thumbs-o-up"></i>
-      <a ng-show="post.link" href="{{post.link}}">
-        {{post.title}}
+    <div ng-repeat="user in users">
+      <i class="fa fa-trash-o" ng-click='removeUser(user)'></i>
+      <a href="#/users/{{user._id}}">
+        {{user.name}}
       </a>
-      <span ng-hide="post.link">
-        {{post.title}}
-      </span>
+      - {{user.email}} 
+      <small>createAt</small> {{user.createAt}}
       <span>
-        <a href="#/posts/{{post._id}}">Comments</a>
+        <a href="#/users/{{user._id}}/notes/">Notes</a>
       </span>
-      - upvotes: {{post.upvotes}}
     </div>
-    <form ng-submit="addPost()">
-      <input type="text" placeholder="Title" ng-model="title"></input>
+    <form ng-submit="addUser()">
+      <input type="text" placeholder="Name" ng-model="name"></input>
       <br>
-      <input type="text" placeholder="Link" ng-model="link"></input>
+      <input type="email" placeholder="Email" ng-model="email"></input>
       <br>
-      <button type="submit">Post</button>
+      <input type="password" placeholder="Password" ng-model="password"></input>
+      <br>
+      <input type="password" placeholder="Repeat password" ng-model="passwordRepeat"></input>
+      <br>
+      <button type="submit">Add User</button>
     </form>
   </script>
 
@@ -76,6 +78,7 @@
   <!-- Own JS files -->
   <script src="javascripts/angularApp.js"></script>
   <script src="javascripts/services/postService.js"></script>
+  <script src="javascripts/services/userService.js"></script>
   <script src="javascripts/controllers/mainController.js"></script>
   <script src="javascripts/controllers/postController.js"></script>
   <script src="javascripts/config/routes.js"></script>

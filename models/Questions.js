@@ -6,4 +6,4 @@ var QuestionSchema = new mongoose.Schema({
   createAt: Date,
 });
 
-mongoose.model('Question', QuestionSchema);
+module.exports = mongoose.model('Question', QuestionSchema);

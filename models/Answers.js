@@ -8,4 +8,4 @@ var AnswerSchema = new mongoose.Schema({
   successCount: Number
 });
 
-mongoose.model('Answer', AnswerSchema);
+module.exports = mongoose.model('Answer', AnswerSchema);

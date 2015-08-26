@@ -4,27 +4,27 @@ app.config([
   function($stateProvider, $urlRouterProvider) {
 
     $stateProvider
-      .state('home', {
-        url: '/home',
-        templateUrl: '/home.html',
+      .state('users', {
+        url: '/users',
+        templateUrl: '/users.html',
         controller: 'MainCtrl',
         resolve: {
-          postPromise: ['postService', function(postService){
-            return postService.getAll();
-          }]
-        }
-      })
-      .state('posts', {
-        url: '/posts/{id}',
-        templateUrl: '/posts.html',
-        controller: 'PostCtrl',
-        resolve: {
-          post: ['$stateParams', 'postService', 
-          function($stateParams, postService) {
-            return postService.get($stateParams.id);
+          userPromise: ['userService', function(userService){
+            return userService.getAll();
           }]
         }
       });
+      // .state('posts', {
+      //   url: '/posts/{id}',
+      //   templateUrl: '/posts.html',
+      //   controller: 'PostCtrl',
+      //   resolve: {
+      //     post: ['$stateParams', 'postService', 
+      //     function($stateParams, postService) {
+      //       return postService.get($stateParams.id);
+      //     }]
+      //   }
+      // });
 
-    $urlRouterProvider.otherwise('home');
+    $urlRouterProvider.otherwise('users');
 }]);

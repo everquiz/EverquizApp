@@ -8,4 +8,4 @@ var QuizSchema = new mongoose.Schema({
   status: Number
 });
 
-mongoose.model('Quiz', QuizSchema);
+module.exports = mongoose.model('Quiz', QuizSchema);

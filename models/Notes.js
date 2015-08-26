@@ -7,4 +7,4 @@ var NoteSchema = new mongoose.Schema({
   editedAt: Date
 });
 
-mongoose.model('Note', NoteSchema);
+module.exports = mongoose.model('Note', NoteSchema);

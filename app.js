@@ -1,23 +1,28 @@
 var express = require('express');
 var path = require('path');
-var bodyParser    = require('body-parser');
-
+var bodyParser = require('body-parser');
+var methodOverride = require('method-override');
+var restify = require('express-restify-mongoose');
 
 
 /*
   Connect to db
  */
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/news');
+mongoose.connect('mongodb://localhost/everquizdb');
 
-var post = require('./models/Posts');
-require('./models/Comments');
+var UserModel = require('./models/Users');
+var NoteModel = require('./models/Notes');
+var QuizModel = require('./models/Quizzes');
+var HistoryModel = require('./models/Histories');
+var QuestionModel = require('./models/Questions');
+var AnswerModel = require('./models/Answers');
 
 /*
   Routes
  */
 var routes = require('./routes/index');
-var users = require('./routes/users');
+// var users = require('./routes/users');
 
 var app = express();
 // view engine setup
@@ -26,10 +31,20 @@ app.set('view engine', 'ejs');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(methodOverride());
 app.use(express.static(path.join(__dirname, 'public')));
 
+var router = express.Router();
+restify.serve(router, UserModel);
+restify.serve(router, NoteModel);
+restify.serve(router, QuizModel);
+restify.serve(router, HistoryModel);
+restify.serve(router, QuestionModel);
+restify.serve(router, AnswerModel);
+app.use(router);
+
 app.use('/', routes);
-app.use('/users', users);
+// app.use('/users', users);
 
 
 // catch 404 and forward to error handler

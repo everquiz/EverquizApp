@@ -7,7 +7,7 @@ var UserSchema = new mongoose.Schema({
   status: {type: String, default: 'active' },
   notes: [ { type: mongoose.Schema.Types.ObjectId, ref: 'Note'  } ],
   history: [ { type: mongoose.Schema.Types.ObjectId, ref: 'Hystory'  } ],
-  createAt: Date
+  createAt: {type: Date, default: new Date } 
 });
 
-mongoose.model('User', UserSchema);
+module.exports = mongoose.model('User', UserSchema);
