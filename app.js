@@ -11,6 +11,8 @@ var restify = require('express-restify-mongoose');
 var mongoose = require('mongoose');
 mongoose.connect('mongodb://localhost/everquizdb');
 
+var passport = require('passport');
+
 var UserModel = require('./models/Users');
 var NoteModel = require('./models/Notes');
 var QuizModel = require('./models/Quizzes');
@@ -18,6 +20,7 @@ var HistoryModel = require('./models/Histories');
 var QuestionModel = require('./models/Questions');
 var AnswerModel = require('./models/Answers');
 
+require('./config/passport');
 /*
   Routes
  */
@@ -33,6 +36,8 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(methodOverride());
 app.use(express.static(path.join(__dirname, 'public')));
+
+app.use(passport.initialize());
 
 var router = express.Router();
 restify.serve(router, UserModel);
