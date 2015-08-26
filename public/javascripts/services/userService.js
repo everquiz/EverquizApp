@@ -15,8 +15,8 @@ app.service('userService', function ($http) {
   };
 
   this.remove = function(user) {
-    return $http.delete('/api/v1/Users', user).success(function(data) {
-      _users.splice(data);
+    return $http.delete('/api/v1/Users/' + user._id, user).success(function(data) {
+      _users.splice(_users.indexOf(user), 1);
     })
   };
 });
