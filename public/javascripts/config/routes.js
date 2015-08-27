@@ -4,6 +4,9 @@ app.config([
   function($stateProvider, $urlRouterProvider) {
 
     $stateProvider
+      .state('home', {
+        url: '/'
+      })
       .state('users', {
         url: '/users',
         templateUrl: '/users.html',
@@ -38,5 +41,5 @@ app.config([
       //   }
       // });
 
-    $urlRouterProvider.otherwise('users');
+    $urlRouterProvider.otherwise('home');
 }]);

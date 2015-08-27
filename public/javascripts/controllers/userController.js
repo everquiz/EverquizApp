@@ -27,7 +27,8 @@ app.controller('UserCtrl', [
       if (!$scope.id || $scope.id === '') {
         noteService.create({
           title: $scope.title,
-          text: $scope.text
+          text: $scope.text,
+          user: user
         });
       } else {
         noteService.get($scope.id).then(function(note) {

@@ -9,6 +9,10 @@
 </head>
 <body ng-app="everquizApp">
   <h1>EverQuiz</h1>
+  <ul class="top-menu">
+    <li><a href="#/users">Users</a></li>
+    <li><a href="#/quizzes">Quizzes</a></li>
+  </ul>
   <ui-view></ui-view>
 
   <script type="text/ng-template" id="/users.html">
@@ -24,7 +28,7 @@
       - {{user.email}} 
       <small>createAt</small> {{user.createAt}}
       <span>
-        <a href="#/users/{{user._id}}/notes/">Notes</a>
+        <a href="#/dashboard/{{user._id}}">Notes</a>
       </span>
     </div>
     <form ng-submit="addUser()">
