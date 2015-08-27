@@ -3,7 +3,6 @@ app.controller('UserCtrl', [
   function($scope,  userService,   user,   noteService){
     $scope.notes = noteService.getAllByUser(user);
     $scope.user = user;
-    console.log($scope.notes);
     $scope.addNote = function(){
       if((!$scope.title || $scope.title === '')
         || (!$scope.text || $scope.text === '')) { return; }
@@ -26,25 +25,24 @@ app.controller('UserCtrl', [
       if((!$scope.title || $scope.title === '')
         || (!$scope.text || $scope.text === '')) { return; }
       if (!$scope.id || $scope.id === '') {
-        // noteService.create({
-        //   name: $scope.name,
-        //   email: $scope.email,
-        //   password: $scope.password
-        // });
+        noteService.create({
+          title: $scope.title,
+          text: $scope.text
+        });
       } else {
         noteService.get($scope.id).then(function(note) {
           note.title = $scope.title;
           note.text = $scope.text;
-          console.log('title');
-          console.log($scope.title);
-          console.log('note');
-          console.log(note);
           noteService.update(note, user);
           $scope.title = '';
           $scope.text = '';
         });
       }
-      
-      
+    };
+
+    $scope.removeNote = function(note, user) {
+      if (confirm('Do you want to delete ' + note.title + ' ?')) {
+        noteService.remove(note, user);
+      };
     };
 }]);

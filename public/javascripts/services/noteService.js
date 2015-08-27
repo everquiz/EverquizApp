@@ -15,33 +15,25 @@ app.service('noteService', function ($http) {
     });
   };
 
-  this.create = function(note, user) {
+  this.create = function(note) {
     return $http.post('/api/v1/Notes', note).success(function(data) {
       _notes.push(data);
     });
   };
 
   this.update = function(note, user) {
-    if (user.id === note.user) {
-      console.log(user.id === note.user);
+    if (user.id !== note.user) {
+      return false;
     };
-    console.log(note);
-    console.log(user);
     return $http.put('/api/v1/Notes/' + note._id, note);
   };
 
-  // this.remove = function(user) {
-  //   return $http.delete('/api/v1/Users/' + user._id, user).success(function(data) {
-  //     _users.splice(_users.indexOf(user), 1);
-  //   })
-  // };
-
-  // this.update = function(user) {
-  //   console.log(user)
-  //   return $http.put('/api/v1/Users/' + user._id, user);
-  // }
-
-  // this.addNote= function(user, note) {
-  //   return $http.post('/api/v1/Users/' + user._id + '/Notes/', note);
-  // };
+  this.remove = function(note, user) {
+    if (user._id !== note.user) {
+      return false;
+    };
+    return $http.delete('/api/v1/Notes/' + note._id, note).success(function(data) {
+      _notes.splice(_notes.indexOf(note), 1);
+    })
+  };
 });
