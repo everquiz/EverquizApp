@@ -28,6 +28,17 @@ app.config([
             return userService.get($stateParams.id);
           }]
         }
+      })
+      .state('quizzes', {
+        url: '/quizzes',
+        templateUrl: '/quizzes.html',
+        controller: 'QuizCtrl',
+        resolve: {
+          userPromise: ['quizService', 
+          function(quizService){
+            return quizService.getAll();
+          }]
+        }
       });
       // .state('posts', {
       //   url: '/posts/{id}',

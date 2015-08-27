@@ -72,7 +72,29 @@
       <textarea ng-model="text"></textarea><br/>
       <button type="submit">New note</button>
     </form>
+  </script>
 
+  <script type="text/ng-template" id="/quizzes.html">
+    <div ng-repeat="quiz in quizzes">
+      <a href="#/quiz/{{quiz._id}}">
+        {{quiz.title}}
+      </a>
+      - {{quiz.description}} 
+      <small>createAt</small> {{quiz.createAt}}
+    </div>
+
+    <!-- post template -->
+
+    <form ng-submit="addQuiz()"
+      style="margin-top:30px;">
+      <h3>Add new quiz</h3>
+
+      <input type="text"
+      placeholder="Title"
+      ng-model="title"></input><br/>
+      <textarea ng-model="description" placeholder="Description"></textarea><br/>
+      <button type="submit">New note</button>
+    </form>
   </script>
   
   <!-- External dependencies -->
@@ -81,11 +103,11 @@
 
   <!-- Own JS files -->
   <script src="javascripts/angularApp.js"></script>
-  <script src="javascripts/services/postService.js"></script>
+  <script src="javascripts/services/quizService.js"></script>
   <script src="javascripts/services/userService.js"></script>
   <script src="javascripts/services/noteService.js"></script>
   <script src="javascripts/controllers/mainController.js"></script>
-  <script src="javascripts/controllers/postController.js"></script>
+  <script src="javascripts/controllers/quizController.js"></script>
   <script src="javascripts/controllers/userController.js"></script>
   <script src="javascripts/config/routes.js"></script>
 </body>
