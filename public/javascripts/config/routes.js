@@ -32,11 +32,22 @@ app.config([
       .state('quizzes', {
         url: '/quizzes',
         templateUrl: '/quizzes.html',
-        controller: 'QuizCtrl',
+        controller: 'QuizzesCtrl',
         resolve: {
           userPromise: ['quizService', 
           function(quizService){
             return quizService.getAll();
+          }]
+        }
+      })
+      .state('quiz', {
+        url: '/quiz/{id}',
+        templateUrl: '/quiz.html',
+        controller: 'QuizCtrl',
+        resolve: {
+          quiz: ['$stateParams', 'quizService', 
+          function($stateParams,  quizService) {
+            return quizService.get($stateParams.id);
           }]
         }
       });

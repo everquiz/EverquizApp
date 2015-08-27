@@ -8,11 +8,11 @@ app.service('quizService', function ($http) {
     });
   };
 
-  // this.get = function(id) {
-  //   return $http.get('/api/v1/Users/' + id).then(function(res) {
-  //     return res.data;
-  //   });
-  // };
+  this.get = function(id) {
+    return $http.get('/api/v1/Quizzes/' + id).then(function(res) {
+      return res.data;
+    });
+  };
 
   this.create = function(quiz) {
     return $http.post('/api/v1/Quizzes', quiz).success(function(data) {
@@ -28,8 +28,4 @@ app.service('quizService', function ($http) {
   this.update = function(quiz) {
     return $http.put('/api/v1/Quizzes/' + quiz._id, quiz);
   };
-
-  // this.addNote= function(user, note) {
-  //   return $http.post('/api/v1/Users/' + user._id + '/Notes/', note);
-  // };
 });
