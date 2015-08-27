@@ -17,6 +17,7 @@
     </div>
     <div ng-repeat="user in users">
       <i class="fa fa-trash-o" ng-click='removeUser(user)'></i>
+      <i class="fa fa-wrench" ng-click='editUser(user)'></i>
       <a href="#/dashboard/{{user._id}}">
         {{user.name}}
       </a>

@@ -10,11 +10,21 @@ app.controller('MainCtrl', [
         || (!$scope.email || $scope.email === '') 
         || (!$scope.password || $scope.password === '')
         || (!$scope.passwordRepeat || $scope.passwordRepeat === '')) { return; }
-      userService.create({
-        name: $scope.name,
-        email: $scope.email,
-        password: $scope.password
-      });
+      if (!$scope.id || $scope.id === '') {
+        userService.create({
+          name: $scope.name,
+          email: $scope.email,
+          password: $scope.password
+        });
+      } else {
+        userService.update({
+          id: $scope.id,
+          name: $scope.name,
+          email: $scope.email,
+          password: $scope.password
+        });
+      }
+      
       $scope.name = '';
       $scope.email = '';
       $scope.password = '';
@@ -25,6 +35,13 @@ app.controller('MainCtrl', [
       if (confirm('Do you want to delete ' + user.name + ' ?')) {
         userService.remove(user);
       };
+    }
+
+    $scope.editUser = function(user) {
+      console.log(user);
+      $scope.name = user.name;
+      $scope.email = user.email;
+      $scope.id = user._id;
     }
 
     // $scope.addPost = function(){
