@@ -50,6 +50,17 @@ app.config([
             return quizService.get($stateParams.id);
           }]
         }
+      })
+      .state('question', {
+        url: '/quiz/{quizId}/question/{id}',
+        templateUrl: '/question.html',
+        controller: 'QuestionCtrl',
+        resolve: {
+          question: ['$stateParams', 'questionService', 
+          function($stateParams,  questionService) {
+            return questionService.get($stateParams.id);
+          }]
+        }
       });
       // .state('posts', {
       //   url: '/posts/{id}',

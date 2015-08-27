@@ -4,13 +4,6 @@ app.controller('QuizCtrl', [
     $scope.questions = questionService.getAllByQuiz(quiz);
     $scope.quiz = quiz;
 
-    // $scope.status = 0;
-
-    // $scope.getStatus = function(status) {
-    //   var statusTypes = ['Unactive', 'Active'];
-    //   return statusTypes[status];
-    // }
-
     $scope.addQuestion = function() {
       if((!$scope.text || $scope.text === '')) { return; }
       if (!$scope.id || $scope.id === '') {
@@ -28,12 +21,6 @@ app.controller('QuizCtrl', [
       $scope.id = '';
       $scope.text = '';
     };
-
-    // $scope.deactivateQuiz = function(quiz) {
-    //   if (confirm('Do you want to make unactive ' + quiz.title + ' ?')) {
-    //     quizService.unactive(quiz);
-    //   };
-    // };
 
     $scope.editQuestion = function(question) {
       $scope.text = question.text;

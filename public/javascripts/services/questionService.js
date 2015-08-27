@@ -9,11 +9,11 @@ app.service('questionService', function ($http) {
     return _questions;
   };
 
-  // this.get = function(id) {
-  //   return $http.get('/api/v1/Questions/' + id).then(function(res) {
-  //     return res.data;
-  //   });
-  // };
+  this.get = function(id) {
+    return $http.get('/api/v1/Questions/' + id).then(function(res) {
+      return res.data;
+    });
+  };
 
   this.create = function(question) {
     return $http.post('/api/v1/Questions', question).success(function(data) {
