@@ -28,7 +28,7 @@ app.service('userService', function ($http) {
 
   this.update = function(user) {
     console.log(user)
-    return $http.put('/api/v1/Users/' + user.id, user);
+    return $http.put('/api/v1/Users/' + user._id, user);
   }
 
   this.addNote= function(user, note) {

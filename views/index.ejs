@@ -47,7 +47,7 @@
     <h3>
       Notes:
     </h3>
-    <div ng-repeat="note in user.notes | orderBy:'-createAt'">
+    <div ng-repeat="note in notes | orderBy:'-createAt'">
       {{note.title}} - createAt {{note.createAt}}
       <span style="font-size:20px; margin-left:10px;">
         {{note.text}}
@@ -77,6 +77,7 @@
   <script src="javascripts/angularApp.js"></script>
   <script src="javascripts/services/postService.js"></script>
   <script src="javascripts/services/userService.js"></script>
+  <script src="javascripts/services/noteService.js"></script>
   <script src="javascripts/controllers/mainController.js"></script>
   <script src="javascripts/controllers/postController.js"></script>
   <script src="javascripts/controllers/userController.js"></script>

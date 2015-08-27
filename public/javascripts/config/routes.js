@@ -9,7 +9,8 @@ app.config([
         templateUrl: '/users.html',
         controller: 'MainCtrl',
         resolve: {
-          userPromise: ['userService', function(userService){
+          userPromise: ['userService', 
+          function(userService){
             return userService.getAll();
           }]
         }
@@ -20,7 +21,7 @@ app.config([
         controller: 'UserCtrl',
         resolve: {
           user: ['$stateParams', 'userService', 
-          function($stateParams, userService) {
+          function($stateParams,  userService) {
             return userService.get($stateParams.id);
           }]
         }

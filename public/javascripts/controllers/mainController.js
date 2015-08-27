@@ -18,7 +18,7 @@ app.controller('MainCtrl', [
         });
       } else {
         userService.update({
-          id: $scope.id,
+          _id: $scope.id,
           name: $scope.name,
           email: $scope.email,
           password: $scope.password
@@ -46,14 +46,25 @@ app.controller('MainCtrl', [
 
     // $scope.addPost = function(){
     //   if(!$scope.title || $scope.title === '') { return; }
-    //   postService.create({
-    //     title: $scope.title,
-    //     link: $scope.link,
-    //   });
+    //   var note = {};
+    //   note.title = $scope.title;
+    //   note.text = $scope.text;
+    //   user.notes.push(note);
+    //   // userService.update({
+    //   //   id: $scope.id,
+    //   //   name: $scope.name,
+    //   //   email: $scope.email,
+    //   //   password: $scope.password
+    //   // });
+
+    //   // postService.create({
+    //   //   title: $scope.title,
+    //   //   link: $scope.link,
+    //   // });
     //   $scope.title = '';
     //   $scope.link = '';
     // };
-    // $scope.incrementUpvotes = function(post) {
-    //   postService.upvote(post);
-    // };
+    $scope.incrementUpvotes = function(post) {
+      postService.upvote(post);
+    };
 }]);

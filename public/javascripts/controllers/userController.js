@@ -1,20 +1,18 @@
 app.controller('UserCtrl', [
-          '$scope', 'userService', 'user',
-  function($scope,   userService,   user){
+          '$scope','userService', 'user', 'noteService',
+  function($scope,  userService,   user,   noteService){
+    $scope.notes = noteService.getAllByUser(user);
     $scope.user = user;
-
+    console.log($scope.notes);
     $scope.addNote = function(){
       if((!$scope.title || $scope.title === '')
         || (!$scope.text || $scope.text === '')) { return; }
-      userService.addNote(user, {
-        title: $scope.title,
-        text: $scope.text,
-        user: user
-      }).success(function(note) {
-        $scope.user.notes.push(note);
-      });
+      var note = {};
+      note.title = $scope.title;
+      note.text = $scope.text;
+      note.user = $scope.user;
+      noteService.create(note);
       $scope.title = '';
       $scope.text = '';
     };
-
 }]);
