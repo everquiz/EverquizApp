@@ -35,14 +35,14 @@ app.controller('MainCtrl', [
       if (confirm('Do you want to delete ' + user.name + ' ?')) {
         userService.remove(user);
       };
-    }
+    };
 
     $scope.editUser = function(user) {
       console.log(user);
       $scope.name = user.name;
       $scope.email = user.email;
       $scope.id = user._id;
-    }
+    };
 
     // $scope.addPost = function(){
     //   if(!$scope.title || $scope.title === '') { return; }

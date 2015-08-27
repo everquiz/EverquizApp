@@ -48,6 +48,8 @@
       Notes:
     </h3>
     <div ng-repeat="note in notes | orderBy:'-createAt'">
+      <i class="fa fa-trash-o" ng-click='removeNote(note)'></i>
+      <i class="fa fa-wrench" ng-click='editNote(note, user)'></i>
       {{note.title}} - createAt {{note.createAt}}
       <span style="font-size:20px; margin-left:10px;">
         {{note.text}}

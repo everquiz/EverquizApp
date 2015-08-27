@@ -9,16 +9,25 @@ app.service('noteService', function ($http) {
     return _notes;
   };
 
-  // this.get = function(id) {
-  //   return $http.get('/api/v1/Users/' + id).then(function(res) {
-  //     return res.data;
-  //   });
-  // };
+  this.get = function(id) {
+    return $http.get('/api/v1/Notes/' + id).then(function(res) {
+      return res.data;
+    });
+  };
 
-  this.create = function(note) {
+  this.create = function(note, user) {
     return $http.post('/api/v1/Notes', note).success(function(data) {
       _notes.push(data);
     });
+  };
+
+  this.update = function(note, user) {
+    if (user.id === note.user) {
+      console.log(user.id === note.user);
+    };
+    console.log(note);
+    console.log(user);
+    return $http.put('/api/v1/Notes/' + note._id, note);
   };
 
   // this.remove = function(user) {
