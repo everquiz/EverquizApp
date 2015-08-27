@@ -19,12 +19,12 @@ app.controller('QuizCtrl', [
           quiz: quiz
         });
       } 
-      // else {
-      //   questionService.update({
-      //     _id: $scope.id,
-      //     text: $scope.text,
-      //   });
-      // }
+      else {
+        questionService.update({
+          _id: $scope.id,
+          text: $scope.text,
+        });
+      }
       $scope.id = '';
       $scope.text = '';
     };
@@ -35,11 +35,8 @@ app.controller('QuizCtrl', [
     //   };
     // };
 
-    // $scope.editQuiz = function(quiz) {
-    //   console.log(quiz);
-    //   $scope.title = quiz.title;
-    //   $scope.description = quiz.description;
-    //   $scope.id = quiz._id;
-    //   $scope.status = quiz.status;
-    // };
+    $scope.editQuestion = function(question) {
+      $scope.text = question.text;
+      $scope.id = question._id;
+    };
 }]);

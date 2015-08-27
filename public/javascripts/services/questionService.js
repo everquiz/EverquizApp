@@ -26,7 +26,7 @@ app.service('questionService', function ($http) {
   //   return $http.put('/api/v1/Questions/' + question._id, question);
   // };
 
-  // this.update = function(question) {
-  //   return $http.put('/api/v1/Questions/' + question._id, question);
-  // };
+  this.update = function(question) {
+    return $http.put('/api/v1/Questions/' + question._id, question);
+  };
 });
