@@ -20,16 +20,14 @@ app.service('quizService', function ($http) {
     })
   };
 
-  // this.remove = function(user) {
-  //   return $http.delete('/api/v1/Users/' + user._id, user).success(function(data) {
-  //     _users.splice(_users.indexOf(user), 1);
-  //   })
-  // };
+  this.unactive = function(quiz) {
+    quiz.status = 0;
+    return $http.put('/api/v1/Quizzes/' + quiz._id, quiz);
+  };
 
-  // this.update = function(user) {
-  //   console.log(user)
-  //   return $http.put('/api/v1/Users/' + user._id, user);
-  // };
+  this.update = function(quiz) {
+    return $http.put('/api/v1/Quizzes/' + quiz._id, quiz);
+  };
 
   // this.addNote= function(user, note) {
   //   return $http.post('/api/v1/Users/' + user._id + '/Notes/', note);

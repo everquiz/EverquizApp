@@ -76,11 +76,15 @@
 
   <script type="text/ng-template" id="/quizzes.html">
     <div ng-repeat="quiz in quizzes">
+      <i class="fa fa-trash-o" ng-click='deactivateQuiz(quiz)'></i>
+      <i class="fa fa-wrench" ng-click='editQuiz(quiz)'></i>
       <a href="#/quiz/{{quiz._id}}">
         {{quiz.title}}
       </a>
       - {{quiz.description}} 
       <small>createAt</small> {{quiz.createAt}}
+      Status: {{getStatus(quiz.status)}}
+
     </div>
 
     <!-- post template -->
@@ -93,6 +97,14 @@
       placeholder="Title"
       ng-model="title"></input><br/>
       <textarea ng-model="description" placeholder="Description"></textarea><br/>
+      <div ng-show="id">
+        <label for="status"> Single select: </label><br>
+        <select name="status" ng-model="status">
+          <option value="0" >Unactive</option>
+          <option value="1">Active</option>
+        </select><br>
+      </div>
+      
       <button type="submit">New note</button>
     </form>
   </script>

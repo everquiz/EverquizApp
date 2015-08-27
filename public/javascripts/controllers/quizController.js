@@ -5,6 +5,13 @@ app.controller('QuizCtrl', [
 
     $scope.quizzes = quizService.quizzes;
 
+    $scope.status = 0;
+
+    $scope.getStatus = function(status) {
+      var statusTypes = ['Unactive', 'Active'];
+      return statusTypes[status];
+    }
+
     $scope.addQuiz = function() {
       if((!$scope.title || $scope.title === '')
         || (!$scope.description || $scope.description === '')) { return; }
@@ -14,31 +21,32 @@ app.controller('QuizCtrl', [
           description: $scope.description
         });
       } 
-      // else {
-      //   userService.update({
-      //     _id: $scope.id,
-      //     title: $scope.title,
-      //     description: $scope.description,
-      //     password: $scope.password
-      //   });
-      // }
-      
+      else {
+        quizService.update({
+          _id: $scope.id,
+          title: $scope.title,
+          description: $scope.description,
+          status: $scope.status
+        });
+      }
+      $scope.id = '';
       $scope.title = '';
       $scope.description = '';
     };
 
-    // $scope.removeUser = function(user) {
-    //   if (confirm('Do you want to delete ' + user.title + ' ?')) {
-    //     userService.remove(user);
-    //   };
-    // };
+    $scope.deactivateQuiz = function(quiz) {
+      if (confirm('Do you want to make unactive ' + quiz.title + ' ?')) {
+        quizService.unactive(quiz);
+      };
+    };
 
-    // $scope.editUser = function(user) {
-    //   console.log(user);
-    //   $scope.title = user.title;
-    //   $scope.description = user.description;
-    //   $scope.id = user._id;
-    // };
+    $scope.editQuiz = function(quiz) {
+      console.log(quiz);
+      $scope.title = quiz.title;
+      $scope.description = quiz.description;
+      $scope.id = quiz._id;
+      $scope.status = quiz.status;
+    };
 
     // $scope.incrementUpvotes = function(post) {
     //   postService.upvote(post);

@@ -44,26 +44,6 @@ app.controller('MainCtrl', [
       $scope.id = user._id;
     };
 
-    // $scope.addPost = function(){
-    //   if(!$scope.title || $scope.title === '') { return; }
-    //   var note = {};
-    //   note.title = $scope.title;
-    //   note.text = $scope.text;
-    //   user.notes.push(note);
-    //   // userService.update({
-    //   //   id: $scope.id,
-    //   //   name: $scope.name,
-    //   //   email: $scope.email,
-    //   //   password: $scope.password
-    //   // });
-
-    //   // postService.create({
-    //   //   title: $scope.title,
-    //   //   link: $scope.link,
-    //   // });
-    //   $scope.title = '';
-    //   $scope.link = '';
-    // };
     $scope.incrementUpvotes = function(post) {
       postService.upvote(post);
     };
