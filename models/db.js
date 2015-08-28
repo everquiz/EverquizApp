@@ -1,4 +1,6 @@
 var mongoose = require('mongoose');
+var crypto = require('crypto');
+var jwt = require('jsonwebtoken');
 
 var NoteSchema = new mongoose.Schema({
   title: String,
@@ -10,9 +12,6 @@ var NoteSchema = new mongoose.Schema({
 
 mongoose.model('Note', NoteSchema);
 var NoteModel = mongoose.model('Note');
-
-var crypto = require('crypto');
-var jwt = require('jsonwebtoken');
 
 var UserSchema = new mongoose.Schema({
   name: String,

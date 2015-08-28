@@ -1,6 +1,7 @@
 var mongoose = require('mongoose');
 var crypto = require('crypto');
 var jwt = require('jsonwebtoken');
+var NoteSchema = require('./Notes').NoteSchema;
 
 var UserSchema = new mongoose.Schema({
   name: String,
@@ -9,7 +10,7 @@ var UserSchema = new mongoose.Schema({
   salt: String,
   password: String,
   status: {type: String, default: 'active' },
-  // notes: [ { type: mongoose.Schema.Types.ObjectId, ref: 'Note'  } ],
+  notes: [NoteSchema],
   history: [ { type: mongoose.Schema.Types.ObjectId, ref: 'Hystory'  } ],
   createAt: {type: Date, default: new Date } 
 });

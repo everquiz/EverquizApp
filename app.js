@@ -15,17 +15,16 @@ var passport = require('passport');
 
 
 
-// var UserModel = require('./models/Users');
-// var NoteModel = require('./models/Notes');
+var UserModel = require('./models/Users');
+var NoteModel = require('./models/Notes');
 var QuizModel = require('./models/Quizzes');
 var HistoryModel = require('./models/Histories');
 var QuestionModel = require('./models/Questions');
 var AnswerModel = require('./models/Answers');
 
 require('./config/passport')
-
-var NoteModel = require('./models/db.js').NoteModel;
-var UserModel = require('./models/db.js').UserModel;
+// var NoteModel = require('./models/db.js').NoteModel;
+// var UserModel = require('./models/db.js').UserModel;
 
 /*
   Routes
