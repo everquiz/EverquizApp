@@ -8,10 +8,9 @@ var NoteSchema = new mongoose.Schema({
   user: { type: mongoose.Schema.Types.ObjectId, ref: 'User' }
 });
 
-var NoteModel = mongoose.model('Note', NoteSchema);
+mongoose.model('Note', NoteSchema);
+var NoteModel = mongoose.model('Note');
 
-
-var mongoose = require('mongoose');
 var crypto = require('crypto');
 var jwt = require('jsonwebtoken');
 
@@ -28,9 +27,8 @@ var UserSchema = new mongoose.Schema({
 });
 
 UserSchema.methods.addNote = function(title, text) {
-    this.NoteModel.push(new NoteModel({ title: title, text: text }));
+    this.notes.push(new NoteModel({ title: title, text: text }));
 };
-
 
 UserSchema.methods.setPassword = function(password){
   this.salt = crypto.randomBytes(16).toString('hex');
@@ -58,7 +56,8 @@ UserSchema.methods.generateJWT = function() {
   }, 'SECRET');
 };
 
-var UserModel = mongoose.model('User', UserSchema);
+mongoose.model('User', UserSchema);
+var UserModel = mongoose.model('User');
 
-module.exports.UserModel = UserModel;
 module.exports.NoteModel = NoteModel;
+module.exports.UserModel = UserModel;

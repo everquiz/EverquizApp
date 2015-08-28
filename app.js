@@ -24,8 +24,9 @@ var AnswerModel = require('./models/Answers');
 
 require('./config/passport')
 
-var UserModel = require('./models/db.js').UserModel;
 var NoteModel = require('./models/db.js').NoteModel;
+var UserModel = require('./models/db.js').UserModel;
+
 /*
   Routes
  */
