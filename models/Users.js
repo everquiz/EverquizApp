@@ -15,6 +15,10 @@ var UserSchema = new mongoose.Schema({
   createAt: {type: Date, default: new Date } 
 });
 
+UserSchema.methods.addNote = function(title, text) {
+    this.notes.push(new NoteModel({ title: title, text: text }));
+};
+
 UserSchema.methods.setPassword = function(password){
   this.salt = crypto.randomBytes(16).toString('hex');
 
