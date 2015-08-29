@@ -4,7 +4,7 @@ app.controller('AuthCtrl', [
 			$scope.user = {};
 
 			$scope.register = function(){
-			authFactory.register($scope.user).error(function(error){
+				authFactory.register($scope.user).error(function(error){
 					$scope.error = error;
 				}).then(function(){
 					$state.go('home');
