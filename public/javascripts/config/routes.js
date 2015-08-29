@@ -61,6 +61,26 @@ app.config([
             return questionService.get($stateParams.id);
           }]
         }
+      })
+      .state('login', {
+        url: '/login',
+        templateUrl: '/login.html',
+        controller: 'AuthCtrl',
+        onEnter: ['$state', 'authFactory', function($state, authFactory){
+          if(authFactory.isLoggedIn()){
+            $state.go('home');
+          }
+        }]
+      })
+      .state('register', {
+        url: '/register',
+        templateUrl: '/register.html',
+        controller: 'AuthCtrl',
+        onEnter: ['$state', 'authFactory', function($state, authFactory){
+          if(authFactory.isLoggedIn()){
+            $state.go('home');
+          }
+        }]
       });
       // .state('posts', {
       //   url: '/posts/{id}',
