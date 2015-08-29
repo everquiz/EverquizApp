@@ -9,7 +9,7 @@ app.config([
       })
       .state('users', {
         url: '/users',
-        templateUrl: '/users.html',
+        templateUrl: 'views/partials/users.html',
         controller: 'MainCtrl',
         resolve: {
           userPromise: ['userService', 
@@ -20,7 +20,7 @@ app.config([
       })
       .state('dashboard', {
         url: '/dashboard/{id}',
-        templateUrl: '/dashboard.html',
+        templateUrl: 'views/partials/dashboard.html',
         controller: 'UserCtrl',
         resolve: {
           user: ['$stateParams', 'userService', 
@@ -31,7 +31,7 @@ app.config([
       })
       .state('quizzes', {
         url: '/quizzes',
-        templateUrl: '/quizzes.html',
+        templateUrl: 'views/partials/quizzes.html',
         controller: 'QuizzesCtrl',
         resolve: {
           userPromise: ['quizService', 
@@ -42,7 +42,7 @@ app.config([
       })
       .state('quiz', {
         url: '/quiz/{id}',
-        templateUrl: '/quiz.html',
+        templateUrl: 'views/partials/quiz.html',
         controller: 'QuizCtrl',
         resolve: {
           quiz: ['$stateParams', 'quizService', 
@@ -53,7 +53,7 @@ app.config([
       })
       .state('question', {
         url: '/quiz/{quizId}/question/{id}',
-        templateUrl: '/question.html',
+        templateUrl: 'views/partials/question.html',
         controller: 'QuestionCtrl',
         resolve: {
           question: ['$stateParams', 'questionService', 
@@ -64,7 +64,7 @@ app.config([
       })
       .state('login', {
         url: '/login',
-        templateUrl: '/login.html',
+        templateUrl: 'views/partials/auth/login.html',
         controller: 'AuthCtrl',
         onEnter: ['$state', 'authFactory', function($state, authFactory){
           if(authFactory.isLoggedIn()){
@@ -74,7 +74,7 @@ app.config([
       })
       .state('register', {
         url: '/register',
-        templateUrl: '/register.html',
+        templateUrl: 'views/partials/auth/register.html',
         controller: 'AuthCtrl',
         onEnter: ['$state', 'authFactory', function($state, authFactory){
           if(authFactory.isLoggedIn()){

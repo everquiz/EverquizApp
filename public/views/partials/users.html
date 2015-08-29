@@ -1,0 +1,26 @@
+<div>
+  {{test}}
+</div>
+<div ng-repeat="user in users">
+  <i class="fa fa-trash-o" ng-click='removeUser(user)'></i>
+  <i class="fa fa-wrench" ng-click='editUser(user)'></i>
+  <a href="#/dashboard/{{user._id}}">
+    {{user.name}}
+  </a>
+  - {{user.email}} 
+  <small>createAt</small> {{user.createAt}}
+  <span>
+    <a href="#/dashboard/{{user._id}}">Notes</a>
+  </span>
+</div>
+<form ng-submit="addUser()">
+  <input type="text" placeholder="Name" ng-model="name"></input>
+  <br>
+  <input type="email" placeholder="Email" ng-model="email"></input>
+  <br>
+  <input type="password" placeholder="Password" ng-model="password"></input>
+  <br>
+  <input type="password" placeholder="Repeat password" ng-model="passwordRepeat"></input>
+  <br>
+  <button type="submit">Add User</button>
+</form>

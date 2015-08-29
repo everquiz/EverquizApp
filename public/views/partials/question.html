@@ -1,0 +1,29 @@
+<h2>
+  {{question.text}}
+</h2>
+<h3>
+  Answers:
+</h3>
+<div ng-repeat="answer in answers">
+  <i class="fa fa-trash-o" ng-click='deactivateAnswer(answer)'></i>
+  <i class="fa fa-wrench" ng-click='editAnswer(answer)'></i>
+  <a href="#/question/{{question._id}}/question/{{question._id}}">
+    {{answer.text}}
+  </a>
+  - {{answer.correct}}
+  <small>createAt</small> {{question.createAt}}
+
+</div>
+
+<!-- post template -->
+
+<form ng-submit="addQuestion()"
+  style="margin-top:30px;">
+  <h3>Add new question</h3>
+
+  <input type="text"
+  placeholder="Text of question"
+  ng-model="text"></input><br/>
+  
+  <button type="submit">New question</button>
+</form>

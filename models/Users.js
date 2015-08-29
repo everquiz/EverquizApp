@@ -8,16 +8,11 @@ var UserSchema = new mongoose.Schema({
   email: String,
   hash: String,
   salt: String,
-  password: String,
   status: {type: String, default: 'active' },
   notes: [NoteSchema],
   history: [ { type: mongoose.Schema.Types.ObjectId, ref: 'Hystory'  } ],
   createAt: {type: Date, default: new Date } 
 });
-
-UserSchema.methods.addNote = function(title, text) {
-    this.notes.push(new NoteModel({ title: title, text: text }));
-};
 
 UserSchema.methods.setPassword = function(password){
   this.salt = crypto.randomBytes(16).toString('hex');

@@ -1,0 +1,27 @@
+<h2>
+  {{user.name}} - {{user.email}}
+</h2>
+<h3>
+  Notes:
+</h3>
+<div ng-repeat="note in notes | orderBy:'-createAt'">
+  <i class="fa fa-trash-o" ng-click='removeNote(note, user)'></i>
+  <i class="fa fa-wrench" ng-click='editNote(note, user)'></i>
+  {{note.title}} - createAt {{note.createAt}}
+  <span style="font-size:20px; margin-left:10px;">
+    {{note.text}}
+  </span>
+</div>
+
+<!-- post template -->
+
+<form ng-submit="addNote()"
+  style="margin-top:30px;">
+  <h3>Add new note</h3>
+
+  <input type="text"
+  placeholder="Title"
+  ng-model="title"></input><br/>
+  <textarea ng-model="text"></textarea><br/>
+  <button type="submit">New note</button>
+</form>
