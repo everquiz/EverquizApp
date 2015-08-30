@@ -1,0 +1,39 @@
+{
+  "name": "EverquizApp",
+  "version": "0.0.0",
+  "homepage": "https://github.com/everquiz/EverquizApp",
+  "authors": [
+    "AndrewLolo <andrewloloal@gmail.com>"
+  ],
+  "description": "Everquiz application",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.4.5",
+    "angular-ui-router": "~0.2.15",
+    "normalize-css": "normalize.css#~3.0.3"
+  },
+  "overrides": {
+    "angular": {
+      "main": [
+        "./angular.min.js"
+      ]
+    },
+    "angular-ui-router": {
+      "main": [
+        "./release/angular-ui-router.min.js"
+      ]
+    },
+    "normalize.css": {
+      "main": [
+        "normalize.css"
+      ]
+    }
+  }
+}
