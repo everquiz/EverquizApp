@@ -30,9 +30,6 @@ router.post('/login', function(req, res, next){
 
   passport.authenticate('local', function(err, user, info){
     if(err){return next(err); }
-
-    console.log(typeof info);
-    console.log(req.body.email + " "+ req.body.password);
     if(user){
       return res.json({token: user.generateJWT()});
     } else {
