@@ -7,7 +7,10 @@
   <a href="#/dashboard/{{user._id}}">
     {{user.name}}
   </a>
-  - {{user.email}} 
+  - 
+  <a href="#/dashboard/{{user._id}}">
+    {{user.email}} 
+  </a>
   <small>createAt</small> {{user.createAt}}
   <span>
     <a href="#/dashboard/{{user._id}}">Notes</a>
@@ -24,3 +27,4 @@
   <br>
   <button type="submit">Add User</button>
 </form>
+  <button ng-click="test()">Test</button>

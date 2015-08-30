@@ -1,19 +1,8 @@
 app.controller('UserCtrl', [
-          '$scope','userService', 'user', 'noteService',
-  function($scope,  userService,   user,   noteService){
+          '$scope', 'user', 'noteService',
+  function($scope,   user,   noteService){
     $scope.notes = user.notes;
     $scope.user = user;
-    $scope.addNote = function(){
-      if((!$scope.title || $scope.title === '')
-        || (!$scope.text || $scope.text === '')) { return; }
-      var note = {};
-      note.title = $scope.title;
-      note.text = $scope.text;
-      note.user = $scope.user;
-      noteService.create(note);
-      $scope.title = '';
-      $scope.text = '';
-    };
 
     $scope.editNote = function(note) {
       $scope.title = note.title;
@@ -24,39 +13,28 @@ app.controller('UserCtrl', [
     $scope.addNote = function() {
       if((!$scope.title || $scope.title === '')
         || (!$scope.text || $scope.text === '')) { return; }
+      var note = {};
       if (!$scope.id || $scope.id === '') {
-        var note = {};
         note.title = $scope.title;
         note.text = $scope.text;
-        user.notes.push(note);
-        userService.update(user);
+        note.user = user;
+        noteService.create(note, user);
       } else {
-        var notes = user.notes,
-            i = 0,
-            length = notes.length;
-        for (; i < length; i++) {
-          if(notes[i]._id === $scope.id) {
-            notes[i].title = $scope.title;
-            notes[i].text = $scope.text;
-            break;
-          }
-        };
-        userService.update(user);
+        note.id = $scope.id;
+        note.title = $scope.title;
+        note.text = $scope.text;
+        note.user = user;
+        noteService.update(note, user);
+        $scope.id = '';
+
       }
+      $scope.title = '';
+      $scope.text = '';
     };
 
     $scope.removeNote = function(note) {
       if (confirm('Do you want to delete ' + note.title + ' ?')) {
-        var notes = user.notes,
-            i = 0,
-            length = notes.length;
-        for (; i < length; i++) {
-          if(notes[i]._id === note._id) {
-            notes.splice(i, 1);
-            break;
-          }
-        };
-        userService.update(user);
+        noteService.remove(note, user);
       };
     };
 }]);

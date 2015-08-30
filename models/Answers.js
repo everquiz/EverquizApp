@@ -11,3 +11,4 @@ var AnswerSchema = new mongoose.Schema({
 });
 
 module.exports = mongoose.model('Answer', AnswerSchema);
+module.exports.AnswerSchema = AnswerSchema; 

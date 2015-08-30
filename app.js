@@ -28,7 +28,7 @@ require('./config/passport')
   Routes
  */
 var routes = require('./routes/index');
-// var users = require('./routes/users');
+var users = require('./routes/users');
 
 var app = express();
 // view engine setup
@@ -52,7 +52,7 @@ restify.serve(router, AnswerModel);
 app.use(router);
 
 app.use('/', routes);
-// app.use('/users', users);
+app.use('/users', users);
 
 
 // catch 404 and forward to error handler

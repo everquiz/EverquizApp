@@ -8,4 +8,6 @@ var QuestionSchema = new mongoose.Schema({
   answers: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Answer' }],
 });
 
+
 module.exports = mongoose.model('Question', QuestionSchema);
+module.exports.QuestionSchema = QuestionSchema; 

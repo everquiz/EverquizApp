@@ -4,7 +4,7 @@
 <h3>
   Notes:
 </h3>
-<div ng-repeat="note in notes | orderBy:'-createAt'">
+<div ng-repeat="note in user.notes | orderBy:'-createAt'">
   <i class="fa fa-trash-o" ng-click='removeNote(note)'></i>
   <i class="fa fa-wrench" ng-click='editNote(note)'></i>
   {{note.title}} - createAt {{note.createAt}}
@@ -22,6 +22,6 @@
   <input type="text"
   placeholder="Title"
   ng-model="title"></input><br/>
-  <textarea ng-model="text"></textarea><br/>
+  <textarea ng-model="text" placeholder="Text"></textarea><br/>
   <button type="submit">Submit</button>
 </form>

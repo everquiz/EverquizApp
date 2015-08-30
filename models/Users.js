@@ -9,7 +9,7 @@ var UserSchema = new mongoose.Schema({
   hash: String,
   salt: String,
   status: {type: String, default: 'active' },
-  notes: [NoteSchema],
+  notes: [ { type: mongoose.Schema.Types.ObjectId, ref: 'Note'  } ],
   history: [ { type: mongoose.Schema.Types.ObjectId, ref: 'Hystory'  } ],
   createAt: {type: Date, default: new Date } 
 });

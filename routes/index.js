@@ -1,10 +1,10 @@
-var express = require('express');
-var router = express.Router();
-var passport = require('passport');
-var mongoose = require('mongoose');
-var User = mongoose.model('User');
-var jwt = require('express-jwt');
-var auth = jwt({secret: 'SECRET', userProperty: 'payload'});
+var express = require('express'),
+    router = express.Router(),
+    passport = require('passport'),
+    mongoose = require('mongoose'),
+    User = mongoose.model('User'),
+    jwt = require('express-jwt'),
+    auth = jwt({secret: 'SECRET', userProperty: 'payload'});
 
 
 /*
@@ -17,11 +17,9 @@ router.post('/posts', auth, function(req, res, next) {
 
 */
 
-// var Post = mongoose.model('Post');
-// var Comment = mongoose.model('Comment');
-
 /* GET home page. */
 router.get('/', function(req, res, next) {
+  console.log('ROUTER ROOT');
   res.render('index');
 });
 
