@@ -4,8 +4,8 @@
 <h3>
   Questions:
 </h3>
-<div ng-repeat="question in questions">
-  <i class="fa fa-trash-o" ng-click='deactivateQuestion(question)'></i>
+<div ng-repeat="question in quiz.questions">
+  <i class="fa fa-trash-o"  ng-click='removeQuestion(question)'></i>
   <i class="fa fa-wrench" ng-click='editQuestion(question)'></i>
   <a href="#/quiz/{{quiz._id}}/question/{{question._id}}">
     {{question.text}}

@@ -30,13 +30,8 @@ app.service('userService', function ($http) {
     return $http.put('/api/v1/Users/' + user._id, user);
   };
 
-  this.addNote= function(user, note) {
-    return $http.post('/api/v1/Users/' + user._id + '/Notes/', note);
-  };
-
-  this.test = function() {
-    $http.get('/users').success(function(data) {
-      console.log('test angular');
-    });
-  };
+  // ToDo delete??? don't remember for what it
+  // this.addNote= function(user, note) {
+  //   return $http.post('/api/v1/Users/' + user._id + '/Notes/', note);
+  // };
 });

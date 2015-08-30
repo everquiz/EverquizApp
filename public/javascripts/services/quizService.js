@@ -9,7 +9,7 @@ app.service('quizService', function ($http) {
   };
 
   this.get = function(id) {
-    return $http.get('/api/v1/Quizzes/' + id).then(function(res) {
+    return $http.get('/api/v1/Quizzes/' + id + '?populate=questions').then(function(res) {
       return res.data;
     });
   };
