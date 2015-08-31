@@ -1,4 +1,4 @@
-app.service('questionService',['$http', 'quizService',  function ($http, quizService) {
+app.service('questionService',['$http', 'quizService', function ($http, quizService) {
   var _questions = [];
   this.questions = _questions;
 
@@ -18,11 +18,16 @@ app.service('questionService',['$http', 'quizService',  function ($http, quizSer
 
   this.remove = function(question, quiz) {
     return $http.delete('/api/v1/Questions/' + question._id, question).success(function(data) {
-      var questionPos = quiz.questions.indexOf(data);
-      // quiz.questions.splice(questionPos, 1);
-      // quizService.update(quiz);
-      
-      _questions.splice(questionPos, 1);
+    //   var questionPos = quiz.questions.indexOf(data);
+    //   // quiz.questions.splice(questionPos, 1);
+    //   // quizService.update(quiz);
+    //   ToDo refresh question array
+    //   _questions.splice(questionPos, 1);
+      for (var i = question.answers.length - 1; i >= 0; i--) {
+        var answer = question.answers[i];
+        console.log(answer);
+        $http.delete('/api/v1/Answers/' + answer);
+      };
     });
   };
 
