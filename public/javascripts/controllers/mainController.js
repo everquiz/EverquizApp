@@ -6,29 +6,23 @@ app.controller('MainCtrl', [
     $scope.users = userService.users;
 
     $scope.addUser = function() {
-      if((!$scope.name || $scope.name === '')
-        || (!$scope.email || $scope.email === '') 
-        || (!$scope.password || $scope.password === '')
-        || (!$scope.passwordRepeat || $scope.passwordRepeat === '')) { return; }
-      if (!$scope.id || $scope.id === '') {
-        userService.create({
-          name: $scope.name,
-          email: $scope.email,
-          password: $scope.password
-        });
+      if((!$scope.user.name || $scope.user.name === '')
+        || (!$scope.user.email || $scope.user.email === '') 
+        // || (!$scope.user.password || $scope.user.password === '')
+        // || (!$scope.user.passwordRepeat || $scope.user.passwordRepeat === '')
+      ) { return; }
+      if (!$scope.user._id || $scope.user._id === '') {
+        // userService.create({
+        //   name: $scope.name,
+        //   email: $scope.email,
+        //   password: $scope.password
+        // });
       } else {
-        userService.update({
-          _id: $scope.id,
-          name: $scope.name,
-          email: $scope.email,
-          password: $scope.password
-        });
+        console.log($scope.user);
+        userService.update($scope.user);
       }
       
-      $scope.name = '';
-      $scope.email = '';
-      $scope.password = '';
-      $scope.passwordRepeat = '';
+      $scope.user = '';
     };
 
     $scope.removeUser = function(user) {
@@ -38,10 +32,7 @@ app.controller('MainCtrl', [
     };
 
     $scope.editUser = function(user) {
-      console.log(user);
-      $scope.name = user.name;
-      $scope.email = user.email;
-      $scope.id = user._id;
+      $scope.user = user;
     };
 
     $scope.incrementUpvotes = function(post) {

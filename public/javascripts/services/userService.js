@@ -14,17 +14,17 @@ app.service('userService', function ($http) {
     });
   };
 
-  this.create = function(user) {
-    return $http.post('/api/v1/Users', user).success(function(data) {
-      _users.push(data);
-    })
-  };
+  // this.create = function(user) {
+  //   return $http.post('/api/v1/Users', user).success(function(data) {
+  //     _users.push(data);
+  //   })
+  // };
 
-  this.remove = function(user) {
-    return $http.delete('/api/v1/Users/' + user._id, user).success(function(data) {
-      _users.splice(_users.indexOf(user), 1);
-    })
-  };
+  // this.remove = function(user) {
+  //   return $http.delete('/api/v1/Users/' + user._id, user).success(function(data) {
+  //     _users.splice(_users.indexOf(user), 1);
+  //   })
+  // };
 
   this.update = function(user) {
     return $http.put('/api/v1/Users/' + user._id, user);

@@ -2,29 +2,29 @@
   {{test}}
 </div>
 <div ng-repeat="user in users">
-  <i class="fa fa-trash-o" ng-click='removeUser(user)'></i>
   <i class="fa fa-wrench" ng-click='editUser(user)'></i>
   <a href="#/dashboard/{{user._id}}">
     {{user.name}}
   </a>
   - 
   <a href="#/dashboard/{{user._id}}">
-    {{user.email}} 
+    {{user.email}}
   </a>
   <small>createAt</small> {{user.createAt}}
-  <span>
+  | Notes: {{user.notes.length}}
+  | Quizzes: 
+<!--   <span>
     <a href="#/dashboard/{{user._id}}">Notes</a>
-  </span>
+  </span> -->
 </div>
 <form ng-submit="addUser()">
-  <input type="text" placeholder="Name" ng-model="name"></input>
+  <input type="text" placeholder="Name" ng-model="user.name"></input>
   <br>
-  <input type="email" placeholder="Email" ng-model="email"></input>
+  <input type="email" placeholder="Email" ng-model="user.email"></input>
   <br>
-  <input type="password" placeholder="Password" ng-model="password"></input>
+  <input type="password" placeholder="Password" ng-model="user.password"></input>
   <br>
   <input type="password" placeholder="Repeat password" ng-model="passwordRepeat"></input>
   <br>
   <button type="submit">Add User</button>
 </form>
-  <button ng-click="test()">Test</button>
