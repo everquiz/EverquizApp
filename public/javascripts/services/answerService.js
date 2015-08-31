@@ -8,32 +8,26 @@ app.service('answerService',['$http', 'questionService', function ($http, questi
     });
   };
 
-  this.create = function(answer, question) {
-    console.log('answer');
-    console.log(answer);
-    console.log('question');
-    console.log(question);
+  this.create = function(answer) {
     return $http.post('/api/v1/Answers', answer).success(function(data) {
       _answers.push(data);
-      question.answers.push(data);
-      console.log('question');
-      console.log(question);
-      questionService.updateFull(question);
+      answer.question.answers.push(data);
+      questionService.update(answer.question);
     })
   };
 
   this.update = function(answer) {
-    var id = answer.id || answer._id;
-    return $http.get('/api/v1/Answers/' + id).success(function(data) {
-      var answerUpdate = data;
-      answerUpdate.text = answer.text;
-      answerUpdate.editedAt = new Date;
-      answerUpdate.correct = answer.correct;
-      return $http.put('/api/v1/Answers/' + answerUpdate._id, answerUpdate)
-      .success(function(data) {
-        // ToDo need to update _answers array
-      });
-    });
+    // return $http.get('/api/v1/Answers/' + answer._id).success(function(data) {
+    //   var answerUpdate = data;
+    //   answerUpdate.text = answer.text;
+    //   answerUpdate.editedAt = new Date;
+    //   answerUpdate.correct = answer.correct;
+    //   return $http.put('/api/v1/Answers/' + answerUpdate._id, answerUpdate)
+    //   .success(function(data) {
+    //     // ToDo need to update _answers array
+    //   });
+    // });
+    return $http.put('/api/v1/Answers/' + answer._id, answer)
   };
 
   this.remove = function(answer, question) {
@@ -44,7 +38,7 @@ app.service('answerService',['$http', 'questionService', function ($http, questi
       _answers.splice(_answers.indexOf(answer), 1);
       var answerPos = question.answers.indexOf(data);
       question.answers.splice(answerPos, 1);
-      questionService.updateFull(question);
+      questionService.update(question);
     });
   };
 }]);

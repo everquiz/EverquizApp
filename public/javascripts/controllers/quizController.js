@@ -5,27 +5,19 @@ app.controller('QuizCtrl', [
     $scope.quiz = quiz;
 
     $scope.editQuestion = function(question) {
-      $scope.text = question.text;
-      $scope.id = question._id;
+      $scope.question = question;
     };
 
     $scope.addQuestion = function() {
-      if((!$scope.text || $scope.text === '')) { return; }
-      var question = {};
-      if (!$scope.id || $scope.id === '') {
-        question.text = $scope.text;
-        question.quiz = quiz;
-        questionService.create(question, quiz);
+      if((!$scope.question.text || $scope.question.text === '')) { return; }
+      if (!$scope.question._id || $scope.question._id === '') {
+        $scope.question.quiz = quiz;
+        questionService.create($scope.question);
       } 
       else {
-        question.id = $scope.id;
-        question.text = $scope.text;
-        question.quiz = quiz;
-        questionService.update(question);
-        $scope.id = '';
-        
+        questionService.update($scope.question);
       }
-      $scope.text = '';
+      $scope.question = "";
     };
 
     $scope.removeQuestion = function(question) {

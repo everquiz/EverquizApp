@@ -11,25 +11,15 @@ app.controller('QuizzesCtrl', [
     }
 
     $scope.addQuiz = function() {
-      if((!$scope.title || $scope.title === '')
-        || (!$scope.description || $scope.description === '')) { return; }
-      if (!$scope.id || $scope.id === '') {
-        quizService.create({
-          title: $scope.title,
-          description: $scope.description
-        });
+      if((!$scope.quiz.title || $scope.quiz.title === '')
+        || (!$scope.quiz.description || $scope.quiz.description === '')) { return; }
+      if (!$scope.quiz._id || $scope.quiz._id === '') {
+        quizService.create($scope.quiz);
       } 
       else {
-        quizService.update({
-          _id: $scope.id,
-          title: $scope.title,
-          description: $scope.description,
-          status: $scope.status
-        });
+        quizService.update($scope.quiz);
       }
-      $scope.id = '';
-      $scope.title = '';
-      $scope.description = '';
+      $scope.quiz = {};
     };
 
     $scope.deactivateQuiz = function(quiz) {
@@ -39,10 +29,10 @@ app.controller('QuizzesCtrl', [
     };
 
     $scope.editQuiz = function(quiz) {
-      console.log(quiz);
-      $scope.title = quiz.title;
-      $scope.description = quiz.description;
-      $scope.id = quiz._id;
-      $scope.status = quiz.status;
+      $scope.quiz = quiz;
+    };
+
+    $scope.activateQuiz = function(quiz) {
+      quizService.active(quiz);
     };
 }]);

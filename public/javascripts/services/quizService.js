@@ -25,6 +25,11 @@ app.service('quizService', function ($http) {
     return $http.put('/api/v1/Quizzes/' + quiz._id, quiz);
   };
 
+  this.active = function(quiz) {
+    quiz.status = 1;
+    return $http.put('/api/v1/Quizzes/' + quiz._id, quiz);
+  };
+
   this.update = function(quiz) {
     return $http.put('/api/v1/Quizzes/' + quiz._id, quiz);
   };

@@ -5,32 +5,22 @@ app.controller('QuestionCtrl', [
     $scope.question = question;
 
     $scope.editAnswer = function(answer) {
-      $scope.text = answer.text;
-      $scope.correct = answer.correct;
-      $scope.id = answer._id;
+      $scope.answer = answer;
     };
 
     $scope.addAnswer = function() {
-      if ($scope.correct == undefined) {
-        $scope.correct = false;
+      if ($scope.answer.correct == undefined) {
+        $scope.answer.correct = false;
       };
-      if((!$scope.text || $scope.text === '')) { return; }
-      var answer = {};
-      if (!$scope.id || $scope.id === '') {
-        answer.text = $scope.text;
-        answer.correct = +$scope.correct;
-        answer.question = question;
-        answerService.create(answer, question);
+      if((!$scope.answer.text || $scope.answer.text === '')) { return; }
+      if (!$scope.answer._id || $scope.answer._id === '') {
+        $scope.answer.question = question;
+        answerService.create($scope.answer);
       } 
       else {
-        answer.id = $scope.id;
-        answer.text = $scope.text;
-        answer.correct = +$scope.correct;
-        answerService.update(answer, question);
+        answerService.update($scope.answer);
       }
-      $scope.id = '';
-      $scope.text = '';
-      $scope.correct = '';
+      $scope.answer = '';
     };
 
     $scope.removeAnswer = function(answer) {
