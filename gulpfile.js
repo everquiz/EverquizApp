@@ -5,17 +5,21 @@ var concat = require('gulp-concat');
 var uglify = require('gulp-uglify');
 var addsrc = require('gulp-add-src');
 var sass = require('gulp-sass');
+var exec = require('child_process').exec;
+var ngAnnotate = require('gulp-ng-annotate');
 
 gulp.task('minify-js', function() {
     return gulp.src(mainBowerFiles('**/*.js'))
         .pipe(addsrc.append([
             'assets/*.js',
             'assets/angular-js/*.js',
+            'assets/angular-js/config/*.js',
+
             'assets/angular-js/services/*.js',
             'assets/angular-js/controllers/*.js',
-            'assets/angular-js/config/*.js',
             'assets/generic-js/*.js']))
         .pipe(concat('application.min.js'))
+        .pipe(ngAnnotate())
         .pipe(uglify())
         .pipe(gulp.dest('public'));
 });
@@ -31,6 +35,14 @@ gulp.task('minify-css', function() {
         .pipe(gulp.dest('public'));
 });
 
-gulp.task('default', ['minify-css', 'minify-js'], function() {
-    }
-);
+gulp.task('server', ['minify-css', 'minify-js'], function (cb) {
+  exec('npm start', function (err, stdout, stderr) {
+    console.log(stdout);
+    console.log(stderr);
+    cb(err);
+  });
+});
+
+gulp.task('default', ['server'], function() {
+
+});
