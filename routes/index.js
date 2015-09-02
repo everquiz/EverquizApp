@@ -7,7 +7,6 @@ var jwt = require('express-jwt');
 var auth = jwt({secret: 'SECRET', userProperty: 'payload'});
 
 // ADMIN USER
-
 var admin = new User();
 admin.email = "admin@admin.com";
 admin.setPassword("admin");

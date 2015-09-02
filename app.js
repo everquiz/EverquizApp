@@ -3,7 +3,9 @@ var path = require('path');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 var restify = require('express-restify-mongoose');
-var acl = require("acl");
+var acl = require('acl');
+var passport = require('passport');
+var session = require('express-session')
 
 
 /*
@@ -11,27 +13,8 @@ var acl = require("acl");
  */
 var mongoose = require('mongoose');
 var db = mongoose.connection;
-mongoose.connect('mongodb://localhost/everquizdb'
-  // , function() {
-  //   var nodeAcl = new acl(new acl.mongodbBackend(mongoose.connection.db, "accesscontrol_"));
-  //   nodeAcl.allow('user', 'user', '*');
-  //   nodeAcl.allow('admin', 'admin', '*');
-  //   app.use( nodeAcl.middleware );
-
-  //   app.get('/user', nodeAcl.middleware(1), function(req, res, next) {
-  //     res.send( 'Welcome user!' );
-  //     // res.render('user');
-  //   });
-  //   app.get('/admin', nodeAcl.middleware(1), function(req, res, next) {
-  //     res.send( 'Welcome admin!' );
-  //     // res.render('admin');
-  //   });
-  //   app.get('/test', function(req, res, next) {
-  //     res.send( 'Welcome test!' );
-  //     // res.render('admin');
-  //   });
-  // }
-  );
+mongoose.connect('mongodb://localhost/everquizdb');
+  
 db.on('connected', function() {
     console.log('Mongoose connected to everquizdb');
 });
@@ -47,12 +30,6 @@ db.on('disconnected', function(){
 acl = new acl(new acl.mongodbBackend(mongoose.connection.db, 'acl_'));
 acl.allow('user', 'user', '*');
 acl.allow('admin', 'admin', '*');
-
-
-
-
-
-var passport = require('passport');
 
 
 var UserModel = require('./models/Users');
@@ -78,9 +55,13 @@ app.set('view engine', 'ejs');
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(methodOverride());
+
+app.use(session({ secret: 'keyboard cat', cookie: { maxAge: 60000 }})); //session secret
+app.use(passport.initialize());
+app.use(passport.session()); //persistent login session
+
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(passport.initialize());
 
 var router = express.Router();
 restify.serve(router, NoteModel);
@@ -91,14 +72,23 @@ restify.serve(router, QuestionModel);
 restify.serve(router, AnswerModel);
 app.use(router);
 
-app.get('/user', acl.middleware(1), function(req, res, next) {
+app.get('/user', acl.middleware(1, get_user_id), function(req, res, next) {
   res.send( 'Welcome user!' );
   // res.render('user');
 });
-app.get('/admin', acl.middleware(1), function(req, res, next) {
+app.get('/admin', acl.middleware(1, get_user_id), function(req, res, next) {
   res.send( 'Welcome admin!' );
   // res.render('admin');
 });
+
+function get_user_id( request, response ) {
+    console.log('request');
+    console.log(request.session);
+    console.log('user');
+    console.log(request.user);
+    return 'admin@admin.com';
+}
+
 app.use('/', routes);
 // app.use('/users', users);
 
