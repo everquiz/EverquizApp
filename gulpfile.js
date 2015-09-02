@@ -46,3 +46,4 @@ gulp.task('server', ['minify-css', 'minify-js'], function (cb) {
 gulp.task('default', ['server'], function() {
 
 });
+
