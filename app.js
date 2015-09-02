@@ -3,6 +3,7 @@ var path = require('path');
 var bodyParser = require('body-parser');
 var methodOverride = require('method-override');
 var restify = require('express-restify-mongoose');
+var acl = require("acl");
 
 
 /*
@@ -85,5 +86,20 @@ app.use(function(err, req, res, next) {
     error: {}
   });
 });
+
+
+/*
+ * ------------------------------------------------
+ * ACL
+ */
+
+var nodeAcl = new acl(new acl.mongodbBackend(mongoose.connection.db));
+app.use( nodeAcl.middleware );
+
+nodeAcl.allow('user', 'hello', '*');
+nodeAcl.allow('admin', ['hello', 'admin'], '*');
+
+
+
 
 module.exports = app;

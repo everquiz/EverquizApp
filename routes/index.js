@@ -6,6 +6,17 @@ var User = mongoose.model('User');
 var jwt = require('express-jwt');
 var auth = jwt({secret: 'SECRET', userProperty: 'payload'});
 
+// ADMIN USER
+
+var admin = new User();
+admin.email = "admin@admin.com";
+admin.setPassword("admin");
+admin.roles = ["admin"];
+admin.save(admin.generateJWT());
+
+
+
+
 router.post('/register', function(req, res, next){
   if(!req.body.email || !req.body.password){
     return res.status(400).json({message: 'Please fill out all fields'});
@@ -54,6 +65,13 @@ router.post('/posts', auth, function(req, res, next) {
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index');
+});
+
+router.get('/hello', function(req, res, next) {
+  res.render('hello');
+});
+router.get('/admin', function(req, res, next) {
+  res.render('admin');
 });
 
 // router.get('/posts', function(req, res, next) {

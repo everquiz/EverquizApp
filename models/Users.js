@@ -5,13 +5,14 @@ var NoteSchema = require('./Notes').NoteSchema;
 
 var UserSchema = new mongoose.Schema({
   name: String,
-  email: String,
+  email: {type: String, unique: true }, 
   hash: String,
   salt: String,
   status: {type: String, default: 'active' },
   notes: [NoteSchema],
   history: [ { type: mongoose.Schema.Types.ObjectId, ref: 'Hystory'  } ],
-  createAt: {type: Date, default: new Date } 
+  createAt: {type: Date, default: new Date },
+  roles: { type: [String], default: "user" }
 });
 
 UserSchema.methods.setPassword = function(password){
