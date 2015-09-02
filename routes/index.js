@@ -67,12 +67,12 @@ router.get('/', function(req, res, next) {
   res.render('index');
 });
 
-router.get('/hello', function(req, res, next) {
-  res.render('hello');
-});
-router.get('/admin', function(req, res, next) {
-  res.render('admin');
-});
+// router.get('/user', acl.middleware(), function(req, res, next) {
+//   res.render('user');
+// });
+// router.get('/admin', acl.middleware(), function(req, res, next) {
+//   res.render('admin');
+// });
 
 // router.get('/posts', function(req, res, next) {
 //   Post.find(function(err, posts){

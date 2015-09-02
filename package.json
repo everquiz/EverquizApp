@@ -28,6 +28,7 @@
     "acl": "~0.4.8"
   },
   "devDependencies": {
+    "acl": "git://github.com/OptimalBits/node_acl.git#master",
     "gulp": "^3.9.0",
     "sass": "^0.5.0"
   }

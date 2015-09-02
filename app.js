@@ -10,10 +10,49 @@ var acl = require("acl");
   Connect to db
  */
 var mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/everquizdb');
+var db = mongoose.connection;
+mongoose.connect('mongodb://localhost/everquizdb'
+  // , function() {
+  //   var nodeAcl = new acl(new acl.mongodbBackend(mongoose.connection.db, "accesscontrol_"));
+  //   nodeAcl.allow('user', 'user', '*');
+  //   nodeAcl.allow('admin', 'admin', '*');
+  //   app.use( nodeAcl.middleware );
+
+  //   app.get('/user', nodeAcl.middleware(1), function(req, res, next) {
+  //     res.send( 'Welcome user!' );
+  //     // res.render('user');
+  //   });
+  //   app.get('/admin', nodeAcl.middleware(1), function(req, res, next) {
+  //     res.send( 'Welcome admin!' );
+  //     // res.render('admin');
+  //   });
+  //   app.get('/test', function(req, res, next) {
+  //     res.send( 'Welcome test!' );
+  //     // res.render('admin');
+  //   });
+  // }
+  );
+db.on('connected', function() {
+    console.log('Mongoose connected to everquizdb');
+});
+
+db.on('disconnected', function(){
+    console.log('Mongoose disconnected');
+});
+
+
+/**
+ * acl connect
+ */
+acl = new acl(new acl.mongodbBackend(mongoose.connection.db, 'acl_'));
+acl.allow('user', 'user', '*');
+acl.allow('admin', 'admin', '*');
+
+
+
+
 
 var passport = require('passport');
-
 
 
 var UserModel = require('./models/Users');
@@ -52,6 +91,14 @@ restify.serve(router, QuestionModel);
 restify.serve(router, AnswerModel);
 app.use(router);
 
+app.get('/user', acl.middleware(1), function(req, res, next) {
+  res.send( 'Welcome user!' );
+  // res.render('user');
+});
+app.get('/admin', acl.middleware(1), function(req, res, next) {
+  res.send( 'Welcome admin!' );
+  // res.render('admin');
+});
 app.use('/', routes);
 // app.use('/users', users);
 
@@ -62,8 +109,6 @@ app.use(function(req, res, next) {
   err.status = 404;
   next(err);
 });
-
-// error handlers
 
 // development error handler
 // will print stacktrace
@@ -93,13 +138,13 @@ app.use(function(err, req, res, next) {
  * ACL
  */
 
-var nodeAcl = new acl(new acl.mongodbBackend(mongoose.connection.db));
-app.use( nodeAcl.middleware );
+// var nodeAcl = new acl(new acl.mongodbBackend(mongoose.connection.db));
+// app.use( nodeAcl.middleware );
+// 
+// var nodeAcl = new acl(new acl.mongodbBackend(mongoose.connection.db));
 
-nodeAcl.allow('user', 'hello', '*');
-nodeAcl.allow('admin', ['hello', 'admin'], '*');
+// nodeAcl.allow('user', 'hello', '*');
+// nodeAcl.allow('admin', 'admin', '*');
 
-
-
-
+  
 module.exports = app;
