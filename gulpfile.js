@@ -32,7 +32,7 @@ gulp.task('minify-js', function() {
 gulp.task('normalize', function() {
     return gulp.src(mainBowerFiles('**/*.css'))
         .pipe(minifyCss({compatibility: 'ie8'}))
-        .pipe(gulp.dest('public/css/vendor'));
+        .pipe(gulp.dest('public/css'));
 });
 
 gulp.task('vendor-css', ['normalize'], function(){
@@ -46,7 +46,7 @@ gulp.task('custom-css', function() {
         .pipe(sass().on('error', sass.logError))
         .pipe(concat('application.min.css'))
         .pipe(minifyCss({compatibility: 'ie8'}))
-        .pipe(gulp.dest('public/css/custom'));
+        .pipe(gulp.dest('public/css'));
 });
 
 //Prepare all styles
