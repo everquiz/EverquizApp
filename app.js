@@ -28,7 +28,7 @@ db.on('disconnected', function(){
 /**
  * acl connect
  */
-acl = new acl(new acl.mongodbBackend(mongoose.connection.db, 'acl_'));
+acl = new acl(new acl.mongodbBackend(db, 'acl_'));
 acl.allow('user', '/user', '*');
 acl.allow('admin', '/admin', '*');
 
@@ -61,7 +61,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(cookieParser());
 app.use(session({
-  secret: 'keyboard cat',
+  secret: 'route66',
   cookie: { maxAge: 600000 },
   resave: true,
   saveUninitialized: true
@@ -79,6 +79,15 @@ restify.serve(router, QuestionModel);
 restify.serve(router, AnswerModel);
 app.use(router);
 
+
+// Check your current user and roles
+app.get( '/status', function( request, response ) {
+  console.log(request);
+  response.send( 'token: ' + JSON.stringify( request.token ));
+    // acl.userRoles( get_user_id( request, response ), function( error, roles ){
+    //     response.send( 'User: ' + JSON.stringify( request.user ) + ' Roles: ' + JSON.stringify( roles ) );
+    // });
+});
 app.get('/user', acl.middleware(1, get_user_id), function(req, res, next) {
   res.send( 'Welcome user!' );
   // res.render('user');
@@ -89,11 +98,10 @@ app.get('/admin', acl.middleware(1, get_user_id), function(req, res, next) {
 });
 
 function get_user_id( request, response ) {
-    console.log('request');
-    console.log(request.session);
-    console.log('user');
-    console.log(request.user);
-    return 'admin@admin.com';
+  // return JSON.parse(window.atob(window.localStorage['everquizApp-token'].split('.')[1]))._id || false;
+  // return request.user && request.user.id.toString() || false;
+  console.log(request.token)
+  return false;
 }
 
 app.use('/', routes);
