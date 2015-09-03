@@ -1,12 +1,12 @@
-var express = require('express');
-var path = require('path');
-var bodyParser = require('body-parser');
-var methodOverride = require('method-override');
-var restify = require('express-restify-mongoose');
-var acl = require('acl');
-var passport = require('passport');
-var session = require('express-session');
-var cookieParser = require('cookie-parser');
+var express = require('express'),
+    path = require('path'),
+    bodyParser = require('body-parser'),
+    methodOverride = require('method-override'),
+    restify = require('express-restify-mongoose'),
+    acl = require('acl'),
+    passport = require('passport'),
+    session = require('express-session'),
+    cookieParser = require('cookie-parser');
 
 
 /*
@@ -79,10 +79,12 @@ restify.serve(router, QuestionModel);
 restify.serve(router, AnswerModel);
 app.use(router);
 
-
 // Check your current user and roles
 app.get( '/status', function( request, response ) {
-  console.log(request);
+  var token = request.body.token || request.query.token || request.headers['x-access-token'];
+  console.log(request.body.token);
+  console.log(request.query.token);
+  console.log(request.headers['x-access-token']);
   response.send( 'token: ' + JSON.stringify( request.token ));
     // acl.userRoles( get_user_id( request, response ), function( error, roles ){
     //     response.send( 'User: ' + JSON.stringify( request.user ) + ' Roles: ' + JSON.stringify( roles ) );
