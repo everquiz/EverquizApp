@@ -5,7 +5,8 @@ var methodOverride = require('method-override');
 var restify = require('express-restify-mongoose');
 var acl = require('acl');
 var passport = require('passport');
-var session = require('express-session')
+var session = require('express-session');
+var cookieParser = require('cookie-parser');
 
 
 /*
@@ -28,8 +29,8 @@ db.on('disconnected', function(){
  * acl connect
  */
 acl = new acl(new acl.mongodbBackend(mongoose.connection.db, 'acl_'));
-acl.allow('user', 'user', '*');
-acl.allow('admin', 'admin', '*');
+acl.allow('user', '/user', '*');
+acl.allow('admin', '/admin', '*');
 
 
 var UserModel = require('./models/Users');
@@ -56,12 +57,18 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(methodOverride());
 
-app.use(session({ secret: 'keyboard cat', cookie: { maxAge: 60000 }})); //session secret
-app.use(passport.initialize());
-app.use(passport.session()); //persistent login session
-
 app.use(express.static(path.join(__dirname, 'public')));
 
+app.use(cookieParser());
+app.use(session({
+  secret: 'keyboard cat',
+  cookie: { maxAge: 600000 },
+  resave: true,
+  saveUninitialized: true
+})); //session secret
+
+app.use(passport.initialize());
+app.use(passport.session()); //persistent login session
 
 var router = express.Router();
 restify.serve(router, NoteModel);
