@@ -25,4 +25,13 @@ app.controller('AuthCtrl', [
 					};
 				});
 			};
+
+			$scope.isLogged = function() {
+				// body...
+			};
+
+			$scope.isAdmin = function() {
+				alert('no access');
+				return false;
+			};
 }]);

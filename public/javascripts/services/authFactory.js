@@ -33,24 +33,14 @@ app.factory('authFactory', ['$http', '$window', function($http, $window){
   }
 
   auth.isAdmin = function(){
-    var token = auth.getToken();
-    if(token){
+    if(auth.isLoggedIn()){
+        var token = auth.getToken();
         var payload = JSON.parse($window.atob(token.split('.')[1]));
-        
-        console.log('isAdmin()');
-
-        console.log(auth.checkRole());
-        // $http.get('/status', {
-        //   headers: {Authorization: 'Bearer ' + auth.getToken()}
-        // }).success(function(data) {
-        //   if (data === 'admin') {
-        //     console.log(data);
-        //     return true;
-        //   };
-        // })
-      } else {
+        if (payload.roles[0] === 'admin') {
+          return true
+        };
         return false;
-    }
+      }
   };
 
   auth.isUser = function(){
