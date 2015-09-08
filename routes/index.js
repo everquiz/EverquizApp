@@ -17,6 +17,8 @@ admin.save(admin.generateJWT());
 
 
 router.post('/register', function(req, res, next){
+  console.log('req.body');
+  console.log(req.body);
   if(!req.body.email || !req.body.password){
     return res.status(400).json({message: 'Please fill out all fields'});
   }
@@ -66,92 +68,15 @@ router.get('/', function(req, res, next) {
   res.render('index');
 });
 
-// router.get('/user', acl.middleware(), function(req, res, next) {
-//   res.render('user');
-// });
-// router.get('/admin', acl.middleware(), function(req, res, next) {
-//   res.render('admin');
-// });
-
-// router.get('/posts', function(req, res, next) {
-//   Post.find(function(err, posts){
-//     if(err){ return next(err); }
-
-//     res.json(posts);
-//   });
-// });
-
-// router.post('/posts', function(req, res, next) {
-//   var post = new Post(req.body);
-//   post.save(function(err, post){
-//     if(err){ return next(err); }
-
-//     res.json(post);
-//   });
-// });
-
-// router.get('/posts/:post', function(req, res, next) {
-//   req.post.populate('comments', function(err, post) {
-//     if (err) { return next(err); }
-
-//     res.json(post);
-//   });
-// });
-
-// router.put('/posts/:post/upvote', function(req, res, next) {
-//   req.post.upvote(function(err, post){
-//     if (err) { return next(err); }
-
-//     res.json(post);
-//   });
-// });
-
-// router.post('/posts/:post/comments', function(req, res, next) {
-//   var comment = new Comment(req.body);
-//   comment.post = req.post;
-
-//   comment.save(function(err, comment){
-//     if(err){ return next(err); }
-
-//     req.post.comments.push(comment);
-//     req.post.save(function(err, post) {
-//       if(err){ return next(err); }
-
-//       res.json(comment);
-//     });
-//   });
-// });
-
-// router.put('/posts/:post/comments/:comment/upvote', function(req, res, next) {
-//   req.comment.upvote(function(err, comment){
-//     if (err) { return next(err); }
-
-//     res.json(comment);
-//   });
-// });
-
-// router.param('post', function(req, res, next, id) {
-//   var query = Post.findById(id);
-
-//   query.exec(function (err, post){
-//     if (err) { return next(err); }
-//     if (!post) { return next(new Error('can\'t find post')); }
-
-//     req.post = post;
-//     return next();
-//   });
-// });
-
-// router.param('comment', function(req, res, next, id) {
-//   var query = Comment.findById(id);
-
-//   query.exec(function (err, comment){
-//     if (err) { return next(err); }
-//     if (!comment) { return next(new Error('can\'t find comment')); }
-
-//     req.comment = comment;
-//     return next();
-//   });
-// });
+// Check your current user and roles
+router.get( '/status', auth, function( request, response, next ) {
+  console.log('/status');
+  console.log(request.payload.roles[0]);
+  if (request.payload.roles[0] === 'admin') {
+    response.send('admin');
+  } else if(request.payload.roles[0] === 'user'){
+    response.send('user');
+  };
+});
 
 module.exports = router;

@@ -65,12 +65,7 @@ app.config([
       .state('login', {
         url: '/login',
         templateUrl: 'views/partials/auth/login.html',
-        controller: 'AuthCtrl',
-        onEnter: ['$state', 'authFactory', function($state, authFactory){
-          if(authFactory.isLoggedIn()){
-            $state.go('home');
-          }
-        }]
+        controller: 'AuthCtrl'
       })
       .state('register', {
         url: '/register',
@@ -81,6 +76,11 @@ app.config([
             $state.go('home');
           }
         }]
+      })
+      .state('admin', {
+        url: '/admin',
+        templateUrl: 'views/admin/index.html',
+        controller: 'AdminCtrl'
       });
       // .state('posts', {
       //   url: '/posts/{id}',

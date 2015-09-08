@@ -1,9 +1,15 @@
-app.service('userService', function ($http) {
+app.service('userService',[
+           '$http', 'authFactory', 
+  function ($http,   authFactory) {
   var _users = [];
   this.users = _users;
   
   this.getAll = function() {
-    return $http.get('/api/v1/Users').success(function(data) {
+    return $http.get('/api/v1/Users', {
+      headers: {
+        Authorization: 'Bearer ' + authFactory.getToken()
+      }
+    }).success(function(data) {
       angular.copy(data, _users);
     });
   };
@@ -34,4 +40,4 @@ app.service('userService', function ($http) {
   this.addNote= function(user, note) {
     return $http.post('/api/v1/Users/' + user._id + '/Notes/', note);
   };
-});
+}]);

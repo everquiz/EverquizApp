@@ -6,7 +6,10 @@ var express = require('express'),
     acl = require('acl'),
     passport = require('passport'),
     session = require('express-session'),
-    cookieParser = require('cookie-parser');
+    cookieParser = require('cookie-parser'),
+    jwt = require('express-jwt'),
+    auth = jwt({secret: 'SECRET', userProperty: 'payload'});
+
 
 
 /*
@@ -72,43 +75,40 @@ app.use(passport.session()); //persistent login session
 
 var router = express.Router();
 restify.serve(router, NoteModel);
-restify.serve(router, UserModel);
+restify.serve(router, UserModel, {
+  middleware: auth,
+  prereq: function(req) {
+    if (req.payload.roles[0] === 'admin') {
+      return true;
+    } 
+
+    return false;
+  },
+  access: function(req) {
+    console.log(req.payload);
+
+    if (req.payload.roles[0] === 'admin') {
+      console.log(req.payload.roles[0] === 'admin');
+      return 'public';
+    } else {
+      console.log(req.payload.roles[0]);
+      console.log('else');
+      return false;
+    }
+    
+  },
+  private: 'email'
+});
 restify.serve(router, QuizModel);
 restify.serve(router, HistoryModel);
 restify.serve(router, QuestionModel);
 restify.serve(router, AnswerModel);
 app.use(router);
 
-// Check your current user and roles
-app.get( '/status', function( request, response ) {
-  var token = request.body.token || request.query.token || request.headers['x-access-token'];
-  console.log(request.body.token);
-  console.log(request.query.token);
-  console.log(request.headers['x-access-token']);
-  response.send( 'token: ' + JSON.stringify( request.token ));
-    // acl.userRoles( get_user_id( request, response ), function( error, roles ){
-    //     response.send( 'User: ' + JSON.stringify( request.user ) + ' Roles: ' + JSON.stringify( roles ) );
-    // });
-});
-app.get('/user', acl.middleware(1, get_user_id), function(req, res, next) {
-  res.send( 'Welcome user!' );
-  // res.render('user');
-});
-app.get('/admin', acl.middleware(1, get_user_id), function(req, res, next) {
-  res.send( 'Welcome admin!' );
-  // res.render('admin');
-});
-
-function get_user_id( request, response ) {
-  // return JSON.parse(window.atob(window.localStorage['everquizApp-token'].split('.')[1]))._id || false;
-  // return request.user && request.user.id.toString() || false;
-  console.log(request.token)
-  return false;
-}
-
 app.use('/', routes);
 // app.use('/users', users);
 
+app.use(auth);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
