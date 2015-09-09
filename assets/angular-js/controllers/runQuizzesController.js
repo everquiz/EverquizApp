@@ -11,7 +11,7 @@ function RunQuizzesCtrl($scope, quizService, categoryService){
   self.quizzes = quizService.getQuizzes();
   self.categories = [];
   
-  self.categories.push(categoryService.getCategories());
+  self.categories = categoryService.getCategories();
   self.categories.push({'_id': '12', 'title': 'All categories'});
 
   self.getQuizzesByCategory = getQuizzesByCategory;
