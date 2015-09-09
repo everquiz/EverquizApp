@@ -10,19 +10,17 @@ app.service('quizService', function ($http) {
    * For user section
    */
   this.getQuizzes = function() {
-    $http.get('/api/v1/Quizzes').then(function(res) {
-      console.log('res.data');
-      console.log(res.data);
+    $http.get('/api/v1/Quizzes?populate=category').then(function(res) {
       angular.copy(res.data, _self.quizzes);
-      console.log('_quizzes');
-      console.log(_self.quizzes);
-
     });
-    console.log('_quizzes2');
-    console.log(_self.quizzes);
     return _self.quizzes;
   }
-
+  this.getQuizzesByCategory = function(category) {
+    $http.get('/api/v1/Quizzes?populate=category&category=' + category).then(function(res) {
+      angular.copy(res.data, _self.quizzes);
+    });
+    return _self.quizzes;
+  }
   /**
    * For admin section
    */

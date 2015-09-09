@@ -39,11 +39,17 @@ acl.allow('admin', '/admin', '*');
 var UserModel = require('./models/Users');
 var NoteModel = require('./models/Notes');
 var QuizModel = require('./models/Quizzes');
+var CategoryModel = require('./models/Categories');
 var HistoryModel = require('./models/Histories');
 var QuestionModel = require('./models/Questions');
 var AnswerModel = require('./models/Answers');
 
-require('./config/passport')
+/**
+ * Populate categories
+ */
+require('./config/populateCategories');
+
+require('./config/passport');
 
 /*
   Routes
@@ -100,6 +106,7 @@ restify.serve(router, UserModel, {
   private: 'email'
 });
 restify.serve(router, QuizModel);
+restify.serve(router, CategoryModel);
 restify.serve(router, HistoryModel);
 restify.serve(router, QuestionModel);
 restify.serve(router, AnswerModel);

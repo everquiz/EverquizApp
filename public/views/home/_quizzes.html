@@ -1,7 +1,11 @@
 <div ng-controller="RunQuizzesCtrl as quizzes">
-  {{quizzes.quizzes}}
-  <h2>Quizzes</h2>
+  <p>Categories</p>
+  {{quizzes.categories}}
 
+  <h2>Quizzes</h2>
+  <select ng-model="selected" ng-options="o._id as o.title for o in quizzes.categories" ng-change="quizzes.getQuizzesByCategory()">
+  </select>
+  selected: {{selected}}
   <div class="CSSTableGenerator" >
     <table >
       <tr>
@@ -26,7 +30,7 @@
       </tr>
       <tr ng-repeat="quiz in quizzes.quizzes">
         <td >
-          Category
+          {{quiz.category.title}}
         </td>
         <td>
           {{quiz.title}}
