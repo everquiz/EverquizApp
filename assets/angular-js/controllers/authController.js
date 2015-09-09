@@ -2,9 +2,12 @@ app.controller('AuthCtrl', [
 					'$scope', '$state', '$window', 'authFactory',
 	function($scope,   $state,   $window,   authFactory){
 			$scope.user = {};
-			$scope.user.email = 'admin@admin.com';
-			$scope.user.password = 'admin';
-
+			// admin
+			// $scope.user.email = 'admin@admin.com';
+			// $scope.user.password = 'admin';
+			// user
+			$scope.user.email = '2@2';
+			$scope.user.password = '2';
 
 			$scope.register = function(){
 				authFactory.register($scope.user).error(function(error){

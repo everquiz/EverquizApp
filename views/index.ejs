@@ -5,23 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>EverQuiz</title>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-  <link rel="stylesheet" type="text/css" href="application.min.css"/>
+  <link rel="stylesheet" type="text/css" href="css/application.min.css"/>
 
   <!--[if lt IE 8]><p class=chromeframe>Your browser is <em>ancient!</em> <a href="http://browsehappy.com/">Upgrade to a different browser</a> or <a href="http://www.google.com/chromeframe/?redirect=true">install Google Chrome Frame</a> to experience this site.</p><![endif]-->
 </head>
 
 <body ng-app="everquizApp">
-  
-  <nav ng-controller="NavCtrl">
-    <ul>
-      <li ng-show="isLoggedIn()"><a>{{ currentUser() }}</a></li>
-      <li ng-show="isLoggedIn()"><a href="" ng-click="logOut()">Log Out</a></li>
-      <li ng-hide="isLoggedIn()"><a href="#/login">Log In</a></li>
-      <li ng-hide="isLoggedIn()"><a href="#/register">Register</a></li>
-    </ul>
-  </nav>
-
-<!--   <h1>EverQuiz</h1>
+  <div ng-include="'views/layouts/_header.html'"></div>
+  <div ng-include="'views/home/_getStarted.html'"></div>
+  <div ng-include="'views/home/_profile.html'"></div>
+  <div ng-include="'views/home/_quizzes.html'"></div>
+  <div ng-include="'views/profile/_notes.html'"></div>
+  <div ng-include="'views/home/_getFail.html'"></div>
+  <div ng-include="'views/layouts/_footer.html'"></div>
+  <!--   <h1>EverQuiz</h1>
   <ul class="top-menu">
     <li><a href="#/users">Users</a></li>
     <li><a href="#/quizzes">Quizzes</a></li>

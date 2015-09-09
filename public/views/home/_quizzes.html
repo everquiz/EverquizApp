@@ -1,0 +1,54 @@
+<div ng-controller="RunQuizzesCtrl as quizzes">
+  {{quizzes.quizzes}}
+  <h2>Quizzes</h2>
+
+  <div class="CSSTableGenerator" >
+    <table >
+      <tr>
+        <td>
+          Category
+        </td>
+        <td >
+          Title
+        </td>
+        <td>
+          Difficulty
+        </td>
+        <td>
+          Avrg
+        </td>
+        <td>
+          Best
+        </td>
+        <td>
+          Total passing
+        </td>
+      </tr>
+      <tr ng-repeat="quiz in quizzes.quizzes">
+        <td >
+          Category
+        </td>
+        <td>
+          {{quiz.title}}
+        </td>
+        <td>
+          Difficulty
+        </td>
+        <td >
+          avrg
+        </td>
+        <td>
+          best
+        </td>
+        <td>
+          total pass
+        </td>
+      </tr>
+    </table>
+  </div>
+              
+
+
+
+  <hr>
+</div>

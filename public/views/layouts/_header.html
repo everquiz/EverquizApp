@@ -1,0 +1,15 @@
+<nav ng-controller="NavCtrl">
+  <ul>
+    <li><a ng-click="goHome()">HOME</a></li>
+    <li>VIDEO</li>
+    <li>QUIZZES</li>
+    <li ng-show="isLoggedIn()">NOTES</li>
+    <li>GET FAIL?</li>
+
+    <li ng-show="isLoggedIn()"><a ng-click="showProfile()">{{ currentUser() }}</a></li>
+    <li ng-show="isLoggedIn()"><a href="" ng-click="logOut()">Log Out</a></li>
+    <li ng-hide="isLoggedIn()"><a href="#/login">Log In</a></li>
+    <li ng-hide="isLoggedIn()"><a href="#/register">Register</a></li>
+  </ul>
+</nav>
+<hr>
