@@ -3,6 +3,21 @@ app.config([
   '$urlRouterProvider',
   function($stateProvider, $urlRouterProvider) {
 
+    // Handler for Restricting Access to a page using the state.resolve call
+    var accessUser = function(authFactory, $state) {
+      if (!authFactory.isLoggedIn()) {
+        alert('You have to login');
+        $state.go('/login');
+      };
+    };
+
+    var accessAdmin = function(authFactory, $state) {
+      if (!authFactory.isAdmin()) {
+        alert('You have to be admin to be here');
+        $state.go('/login');
+      };
+    };
+
     $stateProvider
       .state('home', {
         url: '/'
@@ -65,12 +80,7 @@ app.config([
       .state('login', {
         url: '/login',
         templateUrl: 'views/partials/auth/login.html',
-        controller: 'AuthCtrl',
-        onEnter: ['$state', 'authFactory', function($state, authFactory){
-          if(authFactory.isLoggedIn()){
-            $state.go('home');
-          }
-        }]
+        controller: 'AuthCtrl'
       })
       .state('register', {
         url: '/register',
@@ -81,18 +91,13 @@ app.config([
             $state.go('home');
           }
         }]
+      })
+      .state('admin', {
+        url: '/admin',
+        templateUrl: 'views/admin/index.html',
+        controller: 'AdminCtrl',
+        resolve: { loginRequired : accessAdmin } 
       });
-      // .state('posts', {
-      //   url: '/posts/{id}',
-      //   templateUrl: '/posts.html',
-      //   controller: 'PostCtrl',
-      //   resolve: {
-      //     post: ['$stateParams', 'postService', 
-      //     function($stateParams, postService) {
-      //       return postService.get($stateParams.id);
-      //     }]
-      //   }
-      // });
 
     $urlRouterProvider.otherwise('home');
 }]);

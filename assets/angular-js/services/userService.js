@@ -1,9 +1,17 @@
-app.service('userService', function ($http) {
+app
+  .service('userService',['$http', 'authFactory', userService])
+  
+function userService($http, authFactory) {
   var _users = [];
+  this.users = _users;
   this.users = _users;
   
   this.getAll = function() {
-    return $http.get('/api/v1/Users').success(function(data) {
+    return $http.get('/api/v1/Users', {
+      headers: {
+        Authorization: 'Bearer ' + authFactory.getToken()
+      }
+    }).success(function(data) {
       angular.copy(data, _users);
     });
   };
@@ -12,6 +20,10 @@ app.service('userService', function ($http) {
     return $http.get('/api/v1/Users/' + id + '?populate=notes').then(function(res) {
       return res.data;
     });
+  };
+
+  this.update = function(user) {
+    return $http.put('/api/v1/Users/' + user._id, user);
   };
 
   // this.create = function(user) {
@@ -25,13 +37,10 @@ app.service('userService', function ($http) {
   //     _users.splice(_users.indexOf(user), 1);
   //   })
   // };
-
-  this.update = function(user) {
-    return $http.put('/api/v1/Users/' + user._id, user);
-  };
-
+  
   // ToDo delete??? don't remember for what it
   // this.addNote= function(user, note) {
   //   return $http.post('/api/v1/Users/' + user._id + '/Notes/', note);
   // };
-});
+
+};

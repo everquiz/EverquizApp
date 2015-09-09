@@ -5,13 +5,14 @@ var NoteSchema = require('./Notes').NoteSchema;
 
 var UserSchema = new mongoose.Schema({
   name: String,
-  email: String,
+  email: {type: String, unique: true }, 
   hash: String,
   salt: String,
   status: {type: String, default: 'active' },
   notes: [ { type: mongoose.Schema.Types.ObjectId, ref: 'Note'  } ],
   history: [ { type: mongoose.Schema.Types.ObjectId, ref: 'Hystory'  } ],
-  createAt: {type: Date, default: new Date } 
+  createAt: {type: Date, default: new Date },
+  roles: { type: [String], default: "user" }
 });
 
 UserSchema.methods.setPassword = function(password){
@@ -36,6 +37,7 @@ UserSchema.methods.generateJWT = function() {
   return jwt.sign({
     _id: this._id,
     email: this.email,
+    roles: this.roles,
     exp: parseInt(exp.getTime() / 1000),
   }, 'SECRET');
 };
