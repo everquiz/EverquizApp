@@ -27,3 +27,8 @@ build/Release
 node_modules
 bower_components
 .idea/
+
+
+#minified css and js
+public/css
+public/js
