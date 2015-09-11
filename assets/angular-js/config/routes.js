@@ -19,8 +19,9 @@ app.config([
     };
 
     $stateProvider
-      .state('home', {
-        url: '/'
+      .state('/', {
+        url: '/',
+        templateUrl: 'views/home/home.html'
       })
       .state('users', {
         url: '/users',
@@ -99,5 +100,5 @@ app.config([
         resolve: { loginRequired : accessAdmin } 
       });
 
-    $urlRouterProvider.otherwise('home');
+    $urlRouterProvider.otherwise('/');
 }]);

@@ -11,19 +11,13 @@
 </head>
 
 <body ng-app="everquizApp">
-  <div ng-include="'views/layouts/_header.html'"></div>
-  <div ng-include="'views/home/_getStarted.html'"></div>
-  <div ng-include="'views/home/_profile.html'"></div>
-  <div ng-include="'views/home/_quizzes.html'"></div>
-  <div ng-include="'views/profile/_notes.html'"></div>
-  <div ng-include="'views/home/_getFail.html'"></div>
-  <div ng-include="'views/layouts/_footer.html'"></div>
+  <ui-view>
   <!--   <h1>EverQuiz</h1>
   <ul class="top-menu">
     <li><a href="#/users">Users</a></li>
     <li><a href="#/quizzes">Quizzes</a></li>
   </ul> -->
-  <ui-view></ui-view>
+  </ui-view>
 
   <!-- External dependencies -->
   <script src="js/application.min.js"></script>
