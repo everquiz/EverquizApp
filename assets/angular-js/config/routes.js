@@ -21,7 +21,7 @@ app.config([
     $stateProvider
       .state('/', {
         url: '/',
-        templateUrl: 'views/home/home.html'
+        templateUrl: 'views/home/index.html'
       })
       .state('users', {
         url: '/users',
