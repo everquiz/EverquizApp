@@ -43,6 +43,7 @@ var CategoryModel = require('./models/Categories');
 var HistoryModel = require('./models/Histories');
 var QuestionModel = require('./models/Questions');
 var AnswerModel = require('./models/Answers');
+var StatisticModel = require('./models/Statistic');
 
 /**
  * Populate categories

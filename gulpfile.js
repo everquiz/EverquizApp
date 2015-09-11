@@ -5,12 +5,12 @@ var gulp = require('gulp'),
     uglify = require('gulp-uglify'),
     addsrc = require('gulp-add-src'),
     sass = require('gulp-sass'),
-    exec = require('child_process').exec,
-    ngAnnotate = require('gulp-ng-annotate'),
-    browserSync = require('browser-sync').create(),
-    watch = require('gulp-watch'),
-    plumber = require('gulp-plumber'),
-    jshint = require('gulp-jshint');
+    exec = require('child_process').exec;
+    ngAnnotate = require('gulp-ng-annotate');
+    //browserSync = require('browser-sync').create(),
+    //watch = require('gulp-watch'),
+    //plumber = require('gulp-plumber'),
+    //jshint = require('gulp-jshint');
 
 // watching scss/js/html files
 gulp.task('watch', function() {
@@ -30,9 +30,9 @@ gulp.task('minify-js', function() {
             'assets/angular-js/services/*.js',
             'assets/angular-js/controllers/*.js',
             'assets/generic-js/*.js']))
-        .pipe(plumber())
+        //.pipe(plumber())
         .pipe(ngAnnotate())
-        .pipe(jshint.reporter('default'))
+        //.pipe(jshint.reporter('default'))
         .pipe(concat('application.min.js'))
         .pipe(uglify())
         .pipe(gulp.dest('public/js'));
