@@ -7,7 +7,7 @@ var QuizSchema = new mongoose.Schema({
   editedAt: {type: Date, default: new Date },
   status: {type: Number, default: 0 },
   questions: [{ type: mongoose.Schema.Types.ObjectId, ref: 'Question' }],
-  category: { type: mongoose.Schema.Types.ObjectId, ref: 'Category', required: true}
+  category: { type: mongoose.Schema.Types.ObjectId, ref: 'Category'}
 });
 
 module.exports = mongoose.model('Quiz', QuizSchema);
