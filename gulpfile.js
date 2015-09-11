@@ -1,12 +1,23 @@
-var gulp = require('gulp');
-var mainBowerFiles = require('main-bower-files');
-var minifyCss = require('gulp-minify-css');
-var concat = require('gulp-concat');
-var uglify = require('gulp-uglify');
-var addsrc = require('gulp-add-src');
-var sass = require('gulp-sass');
-var exec = require('child_process').exec;
-var ngAnnotate = require('gulp-ng-annotate');
+var gulp = require('gulp'),
+    mainBowerFiles = require('main-bower-files'),
+    minifyCss = require('gulp-minify-css'),
+    concat = require('gulp-concat'),
+    uglify = require('gulp-uglify'),
+    addsrc = require('gulp-add-src'),
+    sass = require('gulp-sass'),
+    exec = require('child_process').exec,
+    ngAnnotate = require('gulp-ng-annotate'),
+    browserSync = require('browser-sync').create(),
+    watch = require('gulp-watch'),
+    plumber = require('gulp-plumber'),
+    jshint = require('gulp-jshint');
+
+// watching scss/js/html files
+gulp.task('watch', function() {
+  gulp.watch('assets/styles/**/*.css', ['general-css']);
+  gulp.watch('assets/styles/**/*.scss', ['general-css']);
+  gulp.watch('assets/**/*.js', ['minify-js']);
+});
 
 //****************************************************************
 //JavaScripts section
@@ -19,8 +30,10 @@ gulp.task('minify-js', function() {
             'assets/angular-js/services/*.js',
             'assets/angular-js/controllers/*.js',
             'assets/generic-js/*.js']))
-        .pipe(concat('application.min.js'))
+        .pipe(plumber())
         .pipe(ngAnnotate())
+        .pipe(jshint.reporter('default'))
+        .pipe(concat('application.min.js'))
         .pipe(uglify())
         .pipe(gulp.dest('public/js'));
 });
@@ -65,6 +78,6 @@ gulp.task('server', ['general-css', 'minify-js'], function (cb) {
 });
 
 //Default task
-gulp.task('default', ['server'], function() {
+gulp.task('default', ['watch'], function() {
 });
 

@@ -1,7 +1,6 @@
 app.service('answerService',['$http', 'questionService', function ($http, questionService) {
   var _answers = [];
   this.answers = _answers;
-
   this.get = function(id) {
     return $http.get('/api/v1/Answers/' + id).then(function(res) {
       return res.data;
