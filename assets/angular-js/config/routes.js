@@ -19,9 +19,42 @@ app.config([
     };
 
     $stateProvider
-      .state('/', {
+      // .state('home', {
+      //   url: '/',
+      //   templateUrl: 'views/home/index.html'
+      // })
+      .state('home', {
         url: '/',
-        templateUrl: 'views/home/index.html'
+        views: {
+          '': {
+            templateUrl: 'views/home/index.html'
+          },
+          'header@home': { 
+            templateUrl: 'views/layouts/_header.html',
+            controller: 'NavCtrl'
+          },
+          'getStarted@home': {
+            templateUrl: 'views/home/_getStarted.html'
+          },
+          'profile@home': {
+            templateUrl: 'views/home/_profile.html',
+            controller: 'ProfileController as profileCtrl'
+          },
+          'quizzes@home': {
+            templateUrl: 'views/home/_quizzes.html',
+            controller: 'RunQuizzesCtrl as quizzes'
+          },
+          'notes@home': {
+            templateUrl: 'views/profile/_notes.html',
+            controller: 'NotesController as notes'
+          },
+          'getFail@home': {
+            templateUrl: 'views/home/_getFail.html'
+          },
+          'footer@home': {
+            templateUrl: 'views/layouts/_footer.html'
+          }
+        }
       })
       .state('users', {
         url: '/users',

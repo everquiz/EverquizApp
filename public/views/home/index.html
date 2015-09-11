@@ -1,8 +1,15 @@
-<div ng-include="'views/layouts/_header.html'"></div>
+<div ui-view="header"></div>
+<div ui-view="getStarted"></div>
+<div ui-view="profile" id="profile"></div>
+<div ui-view="quizzes"></div>
+<div ui-view="notes"></div>
+<div ui-view="getFail"></div>
+<div ui-view="footer"></div>
+<!-- <div ng-include="'views/layouts/_header.html'"></div>
 <div ng-include="'views/home/_getStarted.html'"></div>
 <div ng-include="'views/home/_profile.html'"></div>
 <div ng-include="'views/home/_quizzes.html'" ng-show="true"></div>
 <div ng-include="'views/home/_quiz.html'" ng-show="true"></div>
 <div ng-include="'views/profile/_notes.html'"></div>
 <div ng-include="'views/home/_getFail.html'"></div>
-<div ng-include="'views/layouts/_footer.html'"></div>
+<div ng-include="'views/layouts/_footer.html'"></div> -->
