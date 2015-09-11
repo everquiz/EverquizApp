@@ -1,30 +1,51 @@
-<h2>
-  {{quiz.title}} - {{quiz.description}}
-</h2>
-<h3>
-  Questions:
-</h3>
-<div ng-repeat="question in quiz.questions">
-  <i class="fa fa-trash-o"  ng-click='removeQuestion(question)'></i>
-  <i class="fa fa-wrench" ng-click='editQuestion(question)'></i>
-  <a href="#/quiz/{{quiz._id}}/question/{{question._id}}">
-    {{question.text}}
-  </a>
-  -
-  <small>createAt</small> {{question.createAt}}
-  | {{question.answers.length}}
+<div class="quiz" ng-controller="Questions as questions">
+  <div class="quiz__title">
+    Quiz title
+  </div>
+  <div class="quiz-question-block">
+      <div class="question-block__question" ng-repeat="question in questions.questions">
+      {{question.title}}
+      </div>
+  </div>
 
-</div>
+    <form action="" class="question-block-answers" >
+      
+        <ul class="question-block-answers-list" ng-repeat="question in questions.questions">
+          <li class="question-block-answers-list-item">
+          <label class="question-block-answers-list-item-answer__title">
+          <input type="checkbox" class="question-block-answers-list-item-answer__select">
+          {{question.answers[1].title}}
+          </label>
+          </li>
+          <li class="question-block-answers-list-item">
+          <label class="question-block-answers-list-item-answer__title">
+          <input type="checkbox" class="question-block-answers-list-item-answer__select">
+          {{question.answers[2].title}}
+          </label>
+          </li>
+          <li class="question-block-answers-list-item">
+          <label class="question-block-answers-list-item-answer__title">
+          <input type="checkbox" class="question-block-answers-list-item-answer__select">
+          {{question.answers[3].title}}
+          </label>
+          </li>
+          <li class="question-block-answers-list-item">
+          <label class="question-block-answers-list-item-answer__title">
+          <input type="checkbox" class="question-block-answers-list-item-answer__select">
+          {{question.answers[4].title}}
+          </label>
+          </li>
+        </ul>
+        
+      </form>
+  </div>
 
-<!-- post template -->
-
-<form ng-submit="addQuestion()"
-  style="margin-top:30px;">
-  <h3>Add new question</h3>
-
-  <input type="text"
-  placeholder="Text of question"
-  ng-model="question.text"></input><br/>
-  
-  <button type="submit">New question</button>
-</form>
+  <div class="quiz-back"><a href="quizzes.html" class="quiz-back__link">BACK TO ALL QUIZZES</a></div>
+  <div class="quiz-counter">
+      <span class="quiz-counter-indicator">
+                  <span class="quiz-counter-indicator__item quiz-counter-indicator__item_current">7</span
+                  ><span class="quiz-counter-indicator__item quiz-counter-indicator__item_separator">/</span><span class="quiz-counter-indicator__item quiz-counter-indicator__item_total">20</span>
+                </span
+                >
+  </div>
+</div>  
