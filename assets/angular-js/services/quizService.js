@@ -6,6 +6,9 @@ app.service('quizService', function ($http) {
   // For user
   var _self = {};
   _self.quizzes = [];
+
+  _self.activeQuiz = null;
+
   /**
    * For user section
    */
@@ -25,10 +28,9 @@ app.service('quizService', function ($http) {
    * For admin section
    */
   this.getAll = function() {
-    return $http.get('/api/v1/Quizzes').success(function(data) {
-      angular.copy(data, _quizzes);
-      console.log('data');
-      console.log(data);
+    return $http.get('/api/v1/Quizzes').then(function(res) {
+      angular.copy(res.data, _quizzes);
+      return res.data;
     });
   };
 

@@ -1,12 +1,12 @@
 <h2>
-  {{question.text}}
+  {{questionCtrl.question.text}}
 </h2>
 <h3>
   Answers:
 </h3>
-<div ng-repeat="answer in question.answers">
-  <i class="fa fa-trash-o" ng-click='removeAnswer(answer)'></i>
-  <i class="fa fa-wrench" ng-click='editAnswer(answer)'></i>
+<div ng-repeat="answer in questionCtrl.question.answers">
+  <i class="fa fa-trash-o" ng-click='questionCtrl.removeAnswer(answer)'></i>
+  <i class="fa fa-wrench" ng-click='questionCtrl.editAnswer(answer)'></i>
   <a href="#/question/{{question._id}}/question/{{question._id}}">
     {{answer.text}}
   </a>
@@ -17,12 +17,11 @@
 
 <!-- post template -->
 
-<form ng-submit="addAnswer()"
+<form ng-submit="questionCtrl.addAnswer()"
   style="margin-top:30px;">
   <h3>Add new/edit answer</h3>
 
-  <input type="text" placeholder="Text of question"
-  ng-model="answer.text"></input><br/>
+  <input type="text" placeholder="Text of question" ng-model="answer.text"></input><br/>
 
   <label for="correct">is this a correct answer?</label>
   <input name="correct" type="checkbox"
