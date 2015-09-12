@@ -37,14 +37,16 @@
 	}	
 }
 &-back {
-	position: fixed;
-	top: 40px;
-	right: 100px;
+	position: absolute;
+	padding-top: 200px;
+	padding-right: 100px;
+
 }
 &-counter {
-	position: fixed;
-	top: 150px;
-	left: 100px;
+	position: absolute;
+	display: inline-block;
+	top: 250px;
+	left: 20px;
 	&-indicator {
 		font-size: 60px;
 		color: #b9bdbe;
