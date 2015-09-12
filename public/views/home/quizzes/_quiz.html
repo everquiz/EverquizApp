@@ -3,14 +3,14 @@
         {{passingQuizCtrl.quiz.title}}
     </div>
     <div class="quiz-question-block">
-        <div class="question-block__question" ng-repeat="question in passingQuizCtrl.quiz.questions">
+        <div class="question-block__question" ng-repeat="question in passingQuizCtrl.questions">
             {{question.text}}
 
             <ul class="question-block-answers-list">
                 <li class="question-block-answers-list-item" ng-repeat="answer in question.answers">
                     <label class="question-block-answers-list-item-answer__title">
                         <input type="checkbox" class="question-block-answers-list-item-answer__select">
-                        {{answer.text}}
+                            {{answer.text}}
                     </label>
                 </li>
             </ul>

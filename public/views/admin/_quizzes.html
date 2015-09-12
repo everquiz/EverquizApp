@@ -1,18 +1,31 @@
-<div ng-repeat="quiz in quizzesCtrl.quizzes">
-  <i class="fa fa-trash-o" ng-click='quizzesCtrl.deactivateQuiz(quiz)'></i>
-  <i class="fa fa-play" ng-click='quizzesCtrl.activateQuiz(quiz)'></i>
-  <i class="fa fa-wrench" ng-click='quizzesCtrl.editQuiz(quiz)'></i>
-  {{quiz.category.title}} | 
-  <a href="#/admin/quiz/{{quiz._id}}">
-    {{quiz.title}}
-  </a>
-  - {{quiz.description}} 
-  <small>createAt</small> {{quiz.createAt}}
-  Status: {{quizzesCtrl.getStatus(quiz.status)}}
-  | {{quiz.questions.length}}
+<div class="quizzes-header">
+    <div class="quizzes-header__title">Quizzes</div>
 </div>
 
-<form ng-submit="quizzesCtrl.addQuiz()" style="margin-top:30px;">
+<div class="quizzes-selection">
+    <table class="quizzes-selection-table">
+        <tr class="quizzes-selection-table-row-heading">
+            <th class="quizzes-selection-table-row-heading__title">Category</th>
+            <th class="quizzes-selection-table-row-heading__title">Name</th>
+            <th class="quizzes-selection-table-row-heading__title">Description</th>
+            <th class="quizzes-selection-table-row-heading__title">createAt</th>
+            <th class="quizzes-selection-table-row-heading__title">Status</th>
+            <th class="quizzes-selection-table-row-heading__title">Total questions</th>
+            <th class="quizzes-selection-table-row-heading__title">Actions</th>
+        </tr>
+        <tr class="quizzes-selection-table-row-content" ng-repeat="quiz in quizzesCtrl.quizzes">
+            <td class="quizzes-selection-table-row-content__title">{{quiz.category.title}}</td>
+            <td class="quizzes-selection-table-row-content__title"  ui-sref="admin.quiz({ id: quiz._id})">{{quiz.title}}</td>
+            <td class="quizzes-selection-table-row-content__title">{{quiz.description}}</td>
+            <td class="quizzes-selection-table-row-content__title">{{quiz.createAt}}</td>
+            <td class="quizzes-selection-table-row-content__title">{{quizzesCtrl.getStatus(quiz.status)}}</td>
+            <td class="quizzes-selection-table-row-content__title">{{quiz.questions.length}}</td>
+            <td class="quizzes-selection-table-row-content__title"><i class="fa fa-trash-o" ng-click='quizzesCtrl.deactivateQuiz(quiz)'></i>  <i class="fa fa-play" ng-click='quizzesCtrl.activateQuiz(quiz)'></i>  <i class="fa fa-wrench" ng-click='quizzesCtrl.editQuiz(quiz)'></i></td>
+        </tr>
+    </table>
+</div>
+
+<!-- <form ng-submit="quizzesCtrl.addQuiz()" style="margin-top:30px;">
   <h3>Add new quiz</h3>
 
   <label for="category"> Category: </label><br>
@@ -28,5 +41,28 @@
   </div>
   
   <button type="submit">New quiz</button>
-</form>
+</form> -->
+<form ng-submit="quizzesCtrl.addQuiz()" style="margin: 30px auto 0;" class="form-container">
+  <div class="form-title"><h2>Add new quiz</h2></div>
 
+  <div class="form-title">Category:</div>
+  <select class="form-field" name="category" ng-model="quiz.category"ng-options="o._id as o.title for o in quizzesCtrl.categories"></select>
+
+  <div class="form-title">Title</div>
+  <input class="form-field" type="text" placeholder="Title" ng-model="quiz.title"></input><br/>
+
+  <div class="form-title">Description</div>
+  <textarea class="form-field" ng-model="quiz.description" placeholder="Description"></textarea><br/>
+
+  <div ng-show="quiz._id">
+    <div class="form-title">Status</div>
+    <select class="form-field" name="status" ng-model="quiz.status">
+      <option value="0" >Unactive</option>
+      <option value="1">Active</option>
+    </select><br>
+  </div>
+
+  <div class="submit-container">
+  <input class="submit-button" type="submit" value="Submit" />
+  </div>
+</form>

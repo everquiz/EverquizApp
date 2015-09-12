@@ -9,10 +9,11 @@
     function PassingQuizCtrl(quizService) {
         var self = this;
 
-        quizService.get(quizService.activeQuiz).then(
+        quizService.getAnswers(quizService.activeQuiz).then(
             function (data) {
-                self.quiz = data;
+                self.questions = data;
             }
         )
+
     }
 })();
