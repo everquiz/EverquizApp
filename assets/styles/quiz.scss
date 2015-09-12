@@ -4,24 +4,26 @@
 		font-family: Roboto, sans-serif;
 		color: red;
 		font-weight: bold;
-		margin: 0 0 40px 40px;
+		padding: 0 0 40px 40px;
 
 	}
 	&-question-block{
+		display: table-cell;
+		height: 100%;
+		outline: 1px red solid;
 	&-question {
 		margin-right: 100%;
-		&__item {
-			font-size: 30px;
-			font-family: Roboro, sans-serif;
-			color: #2c2c2c;
-			font-weight: bold;
-
-		}
+		font-size: 30px;
+		font-family: Roboro, sans-serif;
+		color: #2c2c2c;
+		font-weight: bold;
+		
 	}
 	&-answers {
 		&-list {
-			list-style-type: none;
+				padding-left: 0;
 			&-item {
+				list-style-type: none;
 				font-size: 20px;
 				font-family: Roboro, sans-serif;
 				color: #2c2c2c;
