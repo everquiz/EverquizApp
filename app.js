@@ -43,6 +43,7 @@ var CategoryModel = require('./models/Categories');
 var HistoryModel = require('./models/Histories');
 var QuestionModel = require('./models/Questions');
 var AnswerModel = require('./models/Answers');
+var StatisticModel = require('./models/Statistic');
 
 /**
  * Populate categories
@@ -81,30 +82,32 @@ app.use(passport.session()); //persistent login session
 
 var router = express.Router();
 restify.serve(router, NoteModel);
-restify.serve(router, UserModel, {
-  middleware: auth,
-  prereq: function(req) {
-    if (req.payload.roles[0] === 'admin') {
-      return true;
-    } 
-
-    return false;
-  },
-  access: function(req) {
-    console.log(req.payload);
-
-    if (req.payload.roles[0] === 'admin') {
-      console.log(req.payload.roles[0] === 'admin');
-      return 'public';
-    } else {
-      console.log(req.payload.roles[0]);
-      console.log('else');
-      return false;
-    }
-    
-  },
-  private: 'email'
-});
+restify.serve(router, UserModel
+    //, {
+//  middleware: auth,
+//  prereq: function(req) {
+//    if (req.payload.roles[0] === 'admin') {
+//      return true;
+//    }
+//
+//    return false;
+//  },
+//  access: function(req) {
+//    console.log(req.payload);
+//
+//    if (req.payload.roles[0] === 'admin') {
+//      console.log(req.payload.roles[0] === 'admin');
+//      return 'public';
+//    } else {
+//      console.log(req.payload.roles[0]);
+//      console.log('else');
+//      return false;
+//    }
+//
+//  },
+//  private: 'email'
+//}
+);
 restify.serve(router, QuizModel);
 restify.serve(router, CategoryModel);
 restify.serve(router, HistoryModel);

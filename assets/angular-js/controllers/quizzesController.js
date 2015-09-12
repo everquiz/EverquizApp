@@ -14,9 +14,11 @@ app.controller('QuizzesCtrl', [
       if((!$scope.quiz.title || $scope.quiz.title === '')
         || (!$scope.quiz.description || $scope.quiz.description === '')) { return; }
       if (!$scope.quiz._id || $scope.quiz._id === '') {
+        console.log('create');
         quizService.create($scope.quiz);
       } 
       else {
+        console.log('update');
         quizService.update($scope.quiz);
       }
       $scope.quiz = {};

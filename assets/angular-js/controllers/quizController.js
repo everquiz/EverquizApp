@@ -9,6 +9,8 @@ app.controller('QuizCtrl', [
     };
 
     $scope.addQuestion = function() {
+      console.log('addQuestion');
+      console.log($scope);
       if((!$scope.question.text || $scope.question.text === '')) { return; }
       if (!$scope.question._id || $scope.question._id === '') {
         $scope.question.quiz = quiz;

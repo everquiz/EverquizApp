@@ -62,6 +62,56 @@ app.config([
           }
         }
       })
+      .state('admin', {
+        url: '/admin',
+        templateUrl: 'views/admin/index.html',
+        controller: 'AdminCtrl',
+        resolve: { loginRequired : accessAdmin } 
+      })
+      .state('admin.quizzes', {
+        url: '/quizzes',
+        templateUrl: 'views/admin/_quizzes.html',
+        controller: 'QuizzesCtrl',
+        resolve: {
+          userPromise: ['quizService', 
+          function(quizService){
+            return quizService.getAll();
+          }]
+        }
+      })
+      .state('admin.quizzes.quiz', {
+        url: '/{id}',
+        templateUrl: 'views/admin/_quiz.html',
+        controller: 'QuizCtrl',
+        resolve: {
+          quiz: ['$stateParams', 'quizService', 
+          function($stateParams,  quizService) {
+            return quizService.get($stateParams.id);
+          }]
+        }
+      })
+      .state('admin.quizzes.quiz.question', {
+        url: '/question/{qId}',
+        templateUrl: 'views/admin/_question.html',
+        controller: 'QuestionCtrl',
+        resolve: {
+          question: ['$stateParams', 'questionService', 
+          function($stateParams,  questionService) {
+            return questionService.get($stateParams.qId);
+          }]
+        }
+      })
+      .state('admin.users', {
+        url: '/users',
+        templateUrl: 'views/admin/_users.html',
+        controller: 'MainCtrl',
+        resolve: {
+          userPromise: ['userService', 
+          function(userService){
+            return userService.getAll();
+          }]
+        }
+      })
       .state('users', {
         url: '/users',
         templateUrl: 'views/partials/users.html',
@@ -132,12 +182,12 @@ app.config([
           }
         }]
       })
-      .state('admin', {
-        url: '/admin',
-        templateUrl: 'views/admin/index.html',
-        controller: 'AdminCtrl',
-        resolve: { loginRequired : accessAdmin } 
-      });
+      // .state('admin', {
+      //   url: '/admin',
+      //   templateUrl: 'views/admin/index.html',
+      //   controller: 'AdminCtrl',
+      //   resolve: { loginRequired : accessAdmin } 
+      // });
 
     $urlRouterProvider.otherwise('/');
 }]);

@@ -1,24 +1,25 @@
 app
-  .factory('profileFactory', [ profileFactory ]);
+  .factory('profileFactory', ['$http', 'authFactory',  profileFactory ]);
   
-function profileFactory() {
+function profileFactory($http, authFactory) {
   var _this = {};
-  _this.profile = false;
-  _this.showProfile = showProfile;
-  _this.hideProfile = hideProfile;
-  _this.getStatus = getStatus;
+  var id = authFactory.currentUserId();
+
+  _this.getQuizHistory = getQuizHistory;
+  _this.getProfileInfo = getProfileInfo;
   return _this;
 
-  function showProfile() {
-    _this.profile = true;
-  }
-  function hideProfile() {
-    _this.profile = false;
-  }
+  function getProfileInfo() {
+    var profile = {};
+    profile.email = authFactory.currentUser();
+    return profile;
+  };
 
-  function getStatus() {
-    return _this.profile;
-  }
+  function getQuizHistory() {
+    return $http.get('/api/v1/Users/' + id).then(function(res) {
+      return res.data;
+    });
+  };
 
 }
 
