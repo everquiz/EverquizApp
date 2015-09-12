@@ -40,6 +40,10 @@ app.service('quizService', function ($http) {
     });
   };
 
+  this.getAnswers = function() {
+
+  };
+
   this.create = function(quiz) {
     console.log('quiz');
     console.log(quiz);
