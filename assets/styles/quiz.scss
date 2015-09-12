@@ -4,47 +4,42 @@
 		font-family: Roboto, sans-serif;
 		color: red;
 		font-weight: bold;
-		margin: 0 0 40px 40px;
+		margin: 0 0 150px 150px;
 
 	}
 	&-question-block{
+		
+		width: 100%;
+		
 	&-question {
-		margin-right: 100%;
-		&__item {
-			font-size: 30px;
-			font-family: Roboro, sans-serif;
-			color: #2c2c2c;
-			font-weight: bold;
-
-		}
+		display: table-cell;
+		padding-left: 150px;
+		margin-right: 1280px;
+		font-size: 30px;
+		font-family: Roboro, sans-serif;
+		color: #2c2c2c;
+		font-weight: bold;
+		
 	}
-	&-answers {
-		&-list {
-			list-style-type: none;
-			&-item {
+	&-answers-list-item {
+				list-style-type: none;
 				font-size: 20px;
 				font-family: Roboro, sans-serif;
 				color: #2c2c2c;
-				&-answer {
-					&__title {
-						
-					}
-					
-
-				}
 			}
-		}
-	}	
+		
+	
 }
 &-back {
-	position: fixed;
-	top: 40px;
-	right: 100px;
+	
+	padding-top: 100px;
+	padding-right: 50px;
+
 }
 &-counter {
-	position: fixed;
-	top: 150px;
-	left: 100px;
+	
+	display: inline-block;
+	
 	&-indicator {
 		font-size: 60px;
 		color: #b9bdbe;
@@ -53,20 +48,5 @@
 	}
 }
 }
-label {
-    width: 30px;
-    height: 28px;
-    display: block;
-    position: relative;
-   }
-input[type="checkbox"] + span{
-	display: inline-block;
-	width: 29px; 
-	height: 29px;
-	background-image: url(../i/checkbox.png);
-	background-repeat: no-repeat;
-						
-					}	
-input[type="checkbox"]:checked + span {
-	background-position: -30px 0;
-}					
+
+
