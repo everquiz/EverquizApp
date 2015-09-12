@@ -1,38 +1,49 @@
-app.controller('QuizzesCtrl', [
-          '$scope', 'quizService',
-  function($scope,   quizService){
-    $scope.quizzes = quizService.quizzes;
+app.controller('QuizzesController', [
+          '$scope', 'quizzes', 'quizService', 'categoryService',
+  function($scope,   quizzes,   quizService,   categoryService){
+    // $scope.quizzes = quizService.quizzes;
 
-    $scope.status = 0;
+    var self = this;
+    self.status = 0;
+    self.quizzes = quizzes;
+    self.categories = categoryService.getCategories();
+    self.addQuiz = addQuiz;
+    self.editQuiz = editQuiz;
+    self.getStatus = getStatus;
+    self.deactivateQuiz = deactivateQuiz;
+    self.activateQuiz = activateQuiz;
+    return self;
 
-    $scope.getStatus = function(status) {
-      var statusTypes = ['Unactive', 'Active'];
-      return statusTypes[status];
-    }
-
-    $scope.addQuiz = function() {
-      if((!$scope.quiz.title || $scope.quiz.title === '')
-        || (!$scope.quiz.description || $scope.quiz.description === '')) { return; }
-      if (!$scope.quiz._id || $scope.quiz._id === '') {
-        quizService.create($scope.quiz);
-      } 
-      else {
-        quizService.update($scope.quiz);
-      }
-      $scope.quiz = {};
+    function activateQuiz(quiz) {
+      quizService.active(quiz);
     };
 
-    $scope.deactivateQuiz = function(quiz) {
+    function deactivateQuiz(quiz) {
       if (confirm('Do you want to make unactive ' + quiz.title + ' ?')) {
         quizService.unactive(quiz);
       };
     };
 
-    $scope.editQuiz = function(quiz) {
+    function getStatus(status) {
+      var statusTypes = ['Unactive', 'Active'];
+      return statusTypes[status];
+    };
+
+    function editQuiz(quiz) {
+      console.log($scope.quiz);
       $scope.quiz = quiz;
     };
 
-    $scope.activateQuiz = function(quiz) {
-      quizService.active(quiz);
+    function addQuiz() {
+      console.log($scope.quiz);
+      if((!$scope.quiz.title || $scope.quiz.title === '')
+        || (!$scope.quiz.description || $scope.quiz.description === '')) { return; }
+      if (!$scope.quiz._id || $scope.quiz._id === '') {
+        quizService.create($scope.quiz);
+      }
+      else {
+        quizService.update($scope.quiz);
+      }
+      $scope.quiz = {};
     };
 }]);

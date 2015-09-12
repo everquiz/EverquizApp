@@ -1,3 +1,13 @@
-<span ng-show="!profileCtrl.profile()">video</span>
-<span ng-show="profileCtrl.profile()">profile</span>
+<!--<span ng-show="!profileCtrl.profile()">video</span>-->
+<!--<span ng-show="profileCtrl.profile()">profile</span>-->
+<!--<hr>-->
+<div ng-show="!profileCtrl.isVisible()">video</div>
+<div ng-show="profileCtrl.isVisible()">
+<img src="" alt="Image">
+<span>Name: {{profileCtrl.profile.name}}</span>
+<br>
+<span>Quiz completed: {{profileCtrl.profile.quizCompleted}}</span>
+<br>
+<span>Average result: {{profileCtrl.profile.averageResult}}</span>
+</div>
 <hr>

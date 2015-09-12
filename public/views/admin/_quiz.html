@@ -1,0 +1,27 @@
+<h2>
+  {{quizCtrl.quiz.title}} - {{quizCtrl.quiz.description}}
+</h2>
+<h3>
+  Questions:
+</h3>
+<div ng-repeat="question in quizCtrl.quiz.questions">
+  <i class="fa fa-trash-o"  ng-click='quizCtrl.removeQuestion(question)'></i>
+  <i class="fa fa-wrench" ng-click='quizCtrl.editQuestion(question)'></i>
+  <a href="#/admin/question/{{question._id}}">
+    {{question.text}}
+  </a>
+  -
+  <small>createAt</small> {{question.createAt}}
+  | {{question.answers.length}}
+
+</div>
+
+<!-- post template -->
+<form ng-submit="quizCtrl.addQuestion()"
+  style="margin-top:30px;">
+  <h3>Add new question</h3>
+
+  <input type="text" placeholder="Text of question" ng-model="question.text"></input><br/>
+  
+  <button type="submit">New question</button>
+</form>

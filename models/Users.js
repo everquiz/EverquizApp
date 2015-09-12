@@ -2,15 +2,17 @@ var mongoose = require('mongoose');
 var crypto = require('crypto');
 var jwt = require('jsonwebtoken');
 var NoteSchema = require('./Notes').NoteSchema;
+var StatisticSchema = require('./Statistic').StatisticSchema;
 
 var UserSchema = new mongoose.Schema({
-  name: String,
+  name: { type:String, default: "User_Default" },
   email: {type: String, unique: true }, 
   hash: String,
   salt: String,
   status: {type: String, default: 'active' },
   notes: [ { type: mongoose.Schema.Types.ObjectId, ref: 'Note'  } ],
-  history: [ { type: mongoose.Schema.Types.ObjectId, ref: 'Hystory'  } ],
+  history: [ { type: mongoose.Schema.Types.ObjectId, ref: 'History'  } ],
+  statistic: [ { type: mongoose.Schema.Types.ObjectId, ref: 'Statistic'  } ],
   createAt: {type: Date, default: new Date },
   roles: { type: [String], default: "user" }
 });

@@ -1,13 +1,6 @@
 <p>{{test}}</p>
 <ul class="top-menu">
-  <li><a href="#/users">Users</a></li>
-  <li><a href="#/quizzes">Quizzes</a></li>
+  <li><a ui-sref=".users">Users</a></li>
+  <li><a ui-sref=".quizzes">quizzes</a></li>
 </ul>
-<select ng-model="selection" ng-options="item for item in items">
-</select>
-<code>selection={{selection}}</code>
-<hr/>
-<div ng-switch on="selection">
-  <div class="animate-switch" ng-switch-when="quizzes">Quizzes</div>
-  <div class="animate-switch" ng-switch-when="users">Users</div>
-</div>
+<ui-view></ui-view>
