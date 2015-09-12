@@ -42,7 +42,15 @@ app.config([
           },
           'quizzes@home': {
             templateUrl: 'views/home/_quizzes.html',
+            controller: "QuizzesContainerController as quizzesContainerCtrl"
+          },
+          'list@home':{
+            templateUrl: 'views/home/quizzes/_list.html',
             controller: 'RunQuizzesCtrl as quizzes'
+          },
+          'quiz@home': {
+            templateUrl: 'views/home/quizzes/_quiz.html',
+            controller: 'PassingQuizCtrl as passingQuizCtrl'
           },
           'notes@home': {
             templateUrl: 'views/profile/_notes.html',
@@ -78,28 +86,29 @@ app.config([
           }]
         }
       })
-      .state('quizzes', {
-        url: '/quizzes',
-        templateUrl: 'views/partials/quizzes.html',
-        controller: 'QuizzesCtrl',
-        resolve: {
-          userPromise: ['quizService', 
-          function(quizService){
-            return quizService.getAll();
-          }]
-        }
-      })
-      .state('quiz', {
-        url: '/quiz/{id}',
-        templateUrl: 'views/partials/quiz.html',
-        controller: 'QuizCtrl',
-        resolve: {
-          quiz: ['$stateParams', 'quizService', 
-          function($stateParams,  quizService) {
-            return quizService.get($stateParams.id);
-          }]
-        }
-      })
+      //.state('quizzes', {
+      //  views : {
+      //    'quizzesView': {
+      //      templateUrl: 'views/home/_quizzes.html',
+      //      controller: 'QuizzesCtrl'
+      //    },
+      //    'quiz': {
+      //      templateUrl: 'views/partials/_quiz.html',
+      //      controller: 'QuizzesCtrl'
+      //    }
+      //  }
+      //})
+      //.state('quiz', {
+      //  url: '/quiz/{id}',
+      //  templateUrl: 'views/partials/_quiz.html',
+      //  controller: 'QuizCtrl',
+      //  resolve: {
+      //    quiz: ['$stateParams', 'quizService',
+      //    function($stateParams,  quizService) {
+      //      return quizService.get($stateParams.id);
+      //    }]
+      //  }
+      //})
       .state('question', {
         url: '/quiz/{quizId}/question/{id}',
         templateUrl: 'views/partials/question.html',

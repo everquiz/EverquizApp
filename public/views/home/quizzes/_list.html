@@ -1,0 +1,49 @@
+<h2>Quizzes</h2>
+<select ng-model="selected" ng-options="o._id as o.title for o in quizzes.categories" ng-change="quizzes.getQuizzesByCategory()">
+</select>
+selected: {{selected}}
+<div class="CSSTableGenerator" >
+    <table >
+        <tr>
+            <td>
+                Category
+            </td>
+            <td >
+                Title
+            </td>
+            <td>
+                Difficulty
+            </td>
+            <td>
+                Avrg
+            </td>
+            <td>
+                Best
+            </td>
+            <td>
+                Total passing
+            </td>
+        </tr>
+        <tr ng-repeat="quiz in quizzes.quizzes" ng-click="quizzesContainerCtrl.quizService.activeQuiz = quiz._id;">
+            <td >
+                {{quiz.category.title}}
+            </td>
+            <td>
+                <a href="">{{quiz.title}}</a>
+            </td>
+            <td>
+                Difficulty
+            </td>
+            <td >
+                avrg
+            </td>
+            <td>
+                best
+            </td>
+            <td>
+                total pass set active
+            </td>
+        </tr>
+    </table>
+</div>
+<hr>
