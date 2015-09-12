@@ -5,7 +5,7 @@ var NoteSchema = require('./Notes').NoteSchema;
 var StatisticSchema = require('./Statistic').StatisticSchema;
 
 var UserSchema = new mongoose.Schema({
-  name: String,
+  name: { type:String, default: "User_Default" },
   email: {type: String, unique: true }, 
   hash: String,
   salt: String,

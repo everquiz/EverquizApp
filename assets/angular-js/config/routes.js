@@ -62,9 +62,6 @@ app.config([
           'footer@home': {
             templateUrl: 'views/layouts/_footer.html'
           },
-          //'quiz@home': {
-          //  templateUrl: 'views/home/_quiz.html'
-          //},
           'addQuiz@home': {
             templateUrl: 'views/home/_addQuiz.html'
           }

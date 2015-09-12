@@ -1,0 +1,72 @@
+.quiz {
+	&__title {
+		font-size: 30px;
+		font-family: Roboto, sans-serif;
+		color: red;
+		font-weight: bold;
+		margin: 0 0 40px 40px;
+
+	}
+	&-question-block{
+	&-question {
+		margin-right: 100%;
+		&__item {
+			font-size: 30px;
+			font-family: Roboro, sans-serif;
+			color: #2c2c2c;
+			font-weight: bold;
+
+		}
+	}
+	&-answers {
+		&-list {
+			list-style-type: none;
+			&-item {
+				font-size: 20px;
+				font-family: Roboro, sans-serif;
+				color: #2c2c2c;
+				&-answer {
+					&__title {
+						
+					}
+					
+
+				}
+			}
+		}
+	}	
+}
+&-back {
+	position: fixed;
+	top: 40px;
+	right: 100px;
+}
+&-counter {
+	position: fixed;
+	top: 150px;
+	left: 100px;
+	&-indicator {
+		font-size: 60px;
+		color: #b9bdbe;
+		font-family: ProximaNova, sans-serif;
+		font-weight: bold;
+	}
+}
+}
+label {
+    width: 30px;
+    height: 28px;
+    display: block;
+    position: relative;
+   }
+input[type="checkbox"] + span{
+	display: inline-block;
+	width: 29px; 
+	height: 29px;
+	background-image: url(../i/checkbox.png);
+	background-repeat: no-repeat;
+						
+					}	
+input[type="checkbox"]:checked + span {
+	background-position: -30px 0;
+}					

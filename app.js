@@ -82,7 +82,9 @@ app.use(passport.session()); //persistent login session
 
 var router = express.Router();
 restify.serve(router, NoteModel);
-restify.serve(router, UserModel
+restify.serve(router, UserModel,{
+    private: ['password', 'hash', 'salt']
+});
     //, {
 //  middleware: auth,
 //  prereq: function(req) {
@@ -107,7 +109,7 @@ restify.serve(router, UserModel
 //  },
 //  private: 'email'
 //}
-);
+//);
 restify.serve(router, QuizModel);
 restify.serve(router, CategoryModel);
 restify.serve(router, HistoryModel);

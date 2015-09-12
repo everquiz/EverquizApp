@@ -7,10 +7,14 @@ app
 
 function ProfileController ($scope, profileFactory) {
   var self = this;
+  self.isVisible = profileFactory.isVisible;
   self.profile = {};
-  self.profile.info = profileFactory.getProfileInfo();
   profileFactory.getQuizHistory()
       .then(function(data) {
-        self.profile.quiz = data;
+        self.profile = data;
+
+        var result = profileFactory.getQuizStatistic(self.profile.history);
+        self.profile.averageResult = result.averageResult;
+        self.profile.quizCompleted = result.quizCompleted;
       });
 }
