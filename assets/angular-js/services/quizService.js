@@ -6,6 +6,9 @@ app.service('quizService', function ($http) {
   // For user
   var _self = {};
   _self.quizzes = [];
+
+  _self.activeQuiz = null;
+
   /**
    * For user section
    */

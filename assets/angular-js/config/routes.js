@@ -42,7 +42,15 @@ app.config([
           },
           'quizzes@home': {
             templateUrl: 'views/home/_quizzes.html',
+            controller: "QuizzesContainerController as quizzesContainerCtrl"
+          },
+          'list@home':{
+            templateUrl: 'views/home/quizzes/_list.html',
             controller: 'RunQuizzesCtrl as quizzes'
+          },
+          'quiz@home': {
+            templateUrl: 'views/home/quizzes/_quiz.html',
+            controller: 'PassingQuizCtrl as passingQuizCtrl'
           },
           'notes@home': {
             templateUrl: 'views/profile/_notes.html',
@@ -53,6 +61,12 @@ app.config([
           },
           'footer@home': {
             templateUrl: 'views/layouts/_footer.html'
+          },
+          //'quiz@home': {
+          //  templateUrl: 'views/home/_quiz.html'
+          //},
+          'addQuiz@home': {
+            templateUrl: 'views/home/_addQuiz.html'
           }
         }
       })
@@ -128,28 +142,6 @@ app.config([
           }]
         }
       })
-      .state('quizzes', {
-        url: '/quizzes',
-        templateUrl: 'views/partials/quizzes.html',
-        controller: 'QuizzesCtrl',
-        resolve: {
-          userPromise: ['quizService', 
-          function(quizService){
-            return quizService.getAll();
-          }]
-        }
-      })
-      .state('quiz', {
-        url: '/quiz/{id}',
-        templateUrl: 'views/partials/quiz.html',
-        controller: 'QuizCtrl',
-        resolve: {
-          quiz: ['$stateParams', 'quizService', 
-          function($stateParams,  quizService) {
-            return quizService.get($stateParams.id);
-          }]
-        }
-      })
       .state('question', {
         url: '/quiz/{quizId}/question/{id}',
         templateUrl: 'views/partials/question.html',
@@ -176,12 +168,5 @@ app.config([
           }
         }]
       })
-      // .state('admin', {
-      //   url: '/admin',
-      //   templateUrl: 'views/admin/index.html',
-      //   controller: 'AdminCtrl',
-      //   resolve: { loginRequired : accessAdmin } 
-      // });
-
     $urlRouterProvider.otherwise('/');
 }]);
