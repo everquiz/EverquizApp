@@ -2,6 +2,7 @@
   <i class="fa fa-trash-o" ng-click='quizzesCtrl.deactivateQuiz(quiz)'></i>
   <i class="fa fa-play" ng-click='quizzesCtrl.activateQuiz(quiz)'></i>
   <i class="fa fa-wrench" ng-click='quizzesCtrl.editQuiz(quiz)'></i>
+  {{quiz.category.title}} | 
   <a href="#/admin/quiz/{{quiz._id}}">
     {{quiz.title}}
   </a>
@@ -14,10 +15,12 @@
 <form ng-submit="quizzesCtrl.addQuiz()" style="margin-top:30px;">
   <h3>Add new quiz</h3>
 
+  <label for="category"> Category: </label><br>
+  <select name="category" ng-model="quiz.category"ng-options="o._id as o.title for o in quizzesCtrl.categories"></select><br/>
   <input type="text" placeholder="Title" ng-model="quiz.title"></input><br/>
   <textarea ng-model="quiz.description" placeholder="Description"></textarea><br/>
-  <div ng-show="id">
-    <label for="status"> Single select: </label><br>
+  <div ng-show="quiz._id">
+    <label for="status"> Status: </label><br>
     <select name="status" ng-model="quiz.status">
       <option value="0" >Unactive</option>
       <option value="1">Active</option>

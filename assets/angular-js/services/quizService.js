@@ -28,7 +28,7 @@ app.service('quizService', function ($http) {
    * For admin section
    */
   this.getAll = function() {
-    return $http.get('/api/v1/Quizzes').then(function(res) {
+    return $http.get('/api/v1/Quizzes?populate=category').then(function(res) {
       angular.copy(res.data, _quizzes);
       return res.data;
     });
