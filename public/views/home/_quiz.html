@@ -2,49 +2,52 @@
   <div class="quiz__title">
     Quiz title
   </div>
-  <div class="quiz-question-block">
-      <div class="question-block__question" ng-repeat="question in questions.questions">
+  <div class="quiz-question-block-question">
+      <div class="quiz-question-block-question__item" ng-repeat="question in questions.questions">
       {{question.title}}
       </div>
   </div>
 
-    <form action="" class="question-block-answers" >
+    <form action="" class="quiz-question-block-answers" >
       
-        <ul class="question-block-answers-list" ng-repeat="question in questions.questions">
-          <li class="question-block-answers-list-item">
-          <label class="question-block-answers-list-item-answer__title">
-          <input type="checkbox" class="question-block-answers-list-item-answer__select">
+        <ul class="quiz-question-block-answers-list" ng-repeat="question in questions.questions">
+          <li class="quiz-question-block-answers-list-item">
+          <label class="quiz-question-block-answers-list-item-answer__title">
+          <input type="checkbox" class="quiz-question-block-answers-list-item-answer__select">
+          <span class="quiz-question-block-answers-list-item-answer__variant">
           {{question.answers[1].title}}
+          </span>
           </label>
           </li>
-          <li class="question-block-answers-list-item">
-          <label class="question-block-answers-list-item-answer__title">
-          <input type="checkbox" class="question-block-answers-list-item-answer__select">
+          <li class="quiz-question-block-answers-list-item">
+          <label class="quiz-question-block-answers-list-item-answer__title">
+          <input type="checkbox" class="quiz-question-block-answers-list-item-answer__select">
+          <span class="quiz-question-block-answers-list-item-answer__variant">
           {{question.answers[2].title}}
+          </span>
           </label>
           </li>
-          <li class="question-block-answers-list-item">
-          <label class="question-block-answers-list-item-answer__title">
-          <input type="checkbox" class="question-block-answers-list-item-answer__select">
+          <li class="quiz-question-block-answers-list-item">
+          <label class="quiz-question-block-answers-list-item-answer__title">
+          <input type="checkbox" class="quiz-question-block-answers-list-item-answer__select">
           {{question.answers[3].title}}
           </label>
           </li>
-          <li class="question-block-answers-list-item">
-          <label class="question-block-answers-list-item-answer__title">
-          <input type="checkbox" class="question-block-answers-list-item-answer__select">
+          <li class="quiz-question-block-answers-list-item">
+          <label class="quiz-question-block-answers-list-item-answer__title">
+          <input type="checkbox" class="quiz-question-block-answers-list-item-answer__select">
           {{question.answers[4].title}}
           </label>
           </li>
         </ul>
         
       </form>
-  </div>
 
-  <div class="quiz-back"><a href="quizzes.html" class="quiz-back__link">BACK TO ALL QUIZZES</a></div>
+  <div class="quiz-back"><a href="#" class="quiz-back__link">BACK TO ALL QUIZZES</a></div>
   <div class="quiz-counter">
       <span class="quiz-counter-indicator">
-                  <span class="quiz-counter-indicator__item quiz-counter-indicator__item_current">7</span
-                  ><span class="quiz-counter-indicator__item quiz-counter-indicator__item_separator">/</span><span class="quiz-counter-indicator__item quiz-counter-indicator__item_total">20</span>
+                  <span class="quiz-counter-indicator__item quiz-counter-indicator__item_current">2</span
+                  ><span class="quiz-counter-indicator__item quiz-counter-indicator__item_separator">/</span><span class="quiz-counter-indicator__item quiz-counter-indicator__item_total">5</span>
                 </span
                 >
   </div>
