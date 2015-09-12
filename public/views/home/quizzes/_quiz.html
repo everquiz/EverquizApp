@@ -6,13 +6,11 @@
         <div class="quiz-question-block-question" ng-repeat="question in passingQuizCtrl.questions">
             {{question.text}}
 
-            
-        </div>
-        <div class="quiz-question-block-answers">
-            <ul class="quiz-question-block-answers-list">
-                <li class="quiz-question-block-answers-list-item" ng-repeat="answer in question.answers">
-                    <label class="quiz-question-block-answers-list-item-answer__title">
-                        <input type="checkbox" class="quiz-question-block-answers-list-item-answer__select">
+            <ul class="question-block-answers-list">
+                <li class="question-block-answers-list-item" ng-repeat="answer in question.answers">
+                    <label class="question-block-answers-list-item-answer__title">
+                        <input type="checkbox" class="question-block-answers-list-item-answer__select">
+
                             {{answer.text}}
                     </label>
                 </li>
