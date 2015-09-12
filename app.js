@@ -5,7 +5,6 @@ var express = require('express'),
     restify = require('express-restify-mongoose'),
     acl = require('acl'),
     passport = require('passport'),
-    session = require('express-session'),
     cookieParser = require('cookie-parser'),
     jwt = require('express-jwt'),
     auth = jwt({secret: 'SECRET', userProperty: 'payload'});
@@ -17,7 +16,7 @@ var express = require('express'),
  */
 var mongoose = require('mongoose');
 var db = mongoose.connection;
-mongoose.connect('mongodb://localhost/everquizdb');
+mongoose.connect('mongodb://root:root@ds041663.mongolab.com:41663/everquizdb');
   
 db.on('connected', function() {
     console.log('Mongoose connected to everquizdb');
@@ -70,15 +69,9 @@ app.use(methodOverride());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(cookieParser());
-app.use(session({
-  secret: 'route66',
-  cookie: { maxAge: 600000 },
-  resave: true,
-  saveUninitialized: true
-})); //session secret
+
 
 app.use(passport.initialize());
-app.use(passport.session()); //persistent login session
 
 var router = express.Router();
 restify.serve(router, NoteModel);
@@ -151,19 +144,4 @@ app.use(function(err, req, res, next) {
   });
 });
 
-
-/*
- * ------------------------------------------------
- * ACL
- */
-
-// var nodeAcl = new acl(new acl.mongodbBackend(mongoose.connection.db));
-// app.use( nodeAcl.middleware );
-// 
-// var nodeAcl = new acl(new acl.mongodbBackend(mongoose.connection.db));
-
-// nodeAcl.allow('user', 'hello', '*');
-// nodeAcl.allow('admin', 'admin', '*');
-
-  
 module.exports = app;
