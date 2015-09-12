@@ -2,14 +2,21 @@
     <div class="quiz__title">
         {{passingQuizCtrl.quiz.title}}
     </div>
+    <div class="quiz-counter">
+      <span class="quiz-counter-indicator">
+                  <span class="quiz-counter-indicator__item quiz-counter-indicator__item_current">7</span
+                          ><span class="quiz-counter-indicator__item quiz-counter-indicator__item_separator">/</span><span class="quiz-counter-indicator__item quiz-counter-indicator__item_total">20</span>
+                </span
+                        >
+    </div>
     <div class="quiz-question-block">
         <div class="quiz-question-block-question" ng-repeat="question in passingQuizCtrl.questions">
             {{question.text}}
 
-            <ul class="question-block-answers-list">
-                <li class="question-block-answers-list-item" ng-repeat="answer in question.answers">
-                    <label class="question-block-answers-list-item-answer__title">
-                        <input type="checkbox" class="question-block-answers-list-item-answer__select">
+            <ul class="quiz-question-block-answers-list">
+                <li class="quiz-question-block-answers-list-item" ng-repeat="answer in question.answers">
+                    <label class="quiz-question-block-answers-list-item-answer__title">
+                        <input type="checkbox" class="quiz-question-block-answers-list-item-answer__select">
 
                             {{answer.text}}
                     </label>
@@ -20,11 +27,5 @@
 
 
 <div class="quiz-back" ><a href="" class="quiz-back__link" ng-click="quizzesContainerCtrl.quizService.activeQuiz = null">BACK TO ALL QUIZZES</a></div>
-<div class="quiz-counter">
-      <span class="quiz-counter-indicator">
-                  <span class="quiz-counter-indicator__item quiz-counter-indicator__item_current">7</span
-                          ><span class="quiz-counter-indicator__item quiz-counter-indicator__item_separator">/</span><span class="quiz-counter-indicator__item quiz-counter-indicator__item_total">20</span>
-                </span
-                        >
-</div>
+
 </div>

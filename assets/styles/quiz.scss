@@ -4,50 +4,42 @@
 		font-family: Roboto, sans-serif;
 		color: red;
 		font-weight: bold;
-		padding: 0 0 40px 40px;
+		margin: 0 0 150px 150px;
 
 	}
 	&-question-block{
-		display: table-cell;
-		height: 100%;
-		outline: 1px red solid;
+		
+		width: 100%;
+		
 	&-question {
-		margin-right: 100%;
+		display: table-cell;
+		padding-left: 150px;
+		margin-right: 1280px;
 		font-size: 30px;
 		font-family: Roboro, sans-serif;
 		color: #2c2c2c;
 		font-weight: bold;
 		
 	}
-	&-answers {
-		&-list {
-				padding-left: 0;
-			&-item {
+	&-answers-list-item {
 				list-style-type: none;
 				font-size: 20px;
 				font-family: Roboro, sans-serif;
 				color: #2c2c2c;
-				&-answer {
-					&__title {
-						
-					}
-					
-
-				}
 			}
-		}
-	}	
+		
+	
 }
 &-back {
-	position: absolute;
-	padding-top: 200px;
-	padding-right: 100px;
+	float: right;
+	padding-top: 100px;
+	padding-right: 50px;
 
 }
 &-counter {
 	position: absolute;
 	display: inline-block;
-	top: 250px;
+	top: 300px;
 	left: 20px;
 	&-indicator {
 		font-size: 60px;
@@ -57,20 +49,5 @@
 	}
 }
 }
-label {
-    width: 30px;
-    height: 28px;
-    display: block;
-    position: relative;
-   }
-input[type="checkbox"] + span{
-	display: inline-block;
-	width: 29px; 
-	height: 29px;
-	background-image: url(../i/checkbox.png);
-	background-repeat: no-repeat;
-						
-					}	
-input[type="checkbox"]:checked + span {
-	background-position: -30px 0;
-}					
+
+
