@@ -16,7 +16,7 @@
         </tr>
         <tr class="quizzes-selection-table-row-content" ng-repeat="answer in questionCtrl.question.answers">
             <td class="quizzes-selection-table-row-content__title">{{answer.text}}</td>
-            <td class="quizzes-selection-table-row-content__title"  ui-sref="admin.question({ id: question._id})">{{answer._id}}</td>
+            <td class="quizzes-selection-table-row-content__title">{{answer._id}}</td>
             <td class="quizzes-selection-table-row-content__title">{{answer.createAt}}</td>
             <td class="quizzes-selection-table-row-content__title">{{answer.correct}}</td>
             <td class="quizzes-selection-table-row-content__title"><i class="fa fa-trash-o" ng-click='questionCtrl.removeAnswer(answer)'></i><i class="fa fa-wrench" ng-click='questionCtrl.editAnswer(answer)'></i></td>
