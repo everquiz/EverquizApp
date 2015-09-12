@@ -6,16 +6,6 @@ var express = require('express'),
     jwt = require('express-jwt'),
     auth = jwt({secret: 'SECRET', userProperty: 'payload'});
 
-// ADMIN USER
-var admin = new User();
-admin.email = "admin@admin.com";
-admin.setPassword("admin");
-admin.roles = ["admin"];
-admin.save(admin.generateJWT());
-
-
-
-
 router.post('/register', function(req, res, next){
   console.log('req.body');
   console.log(req.body);
