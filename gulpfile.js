@@ -36,7 +36,6 @@ gulp.task('minify-js', function() {
         .pipe(ngAnnotate())
         .pipe(jshint.reporter('default'))
         .pipe(concat('application.min.js'))
-        //.pipe(uglify())
         .pipe(sourcemaps.write('maps'))
         .pipe(gulp.dest('public/js'));
 });
