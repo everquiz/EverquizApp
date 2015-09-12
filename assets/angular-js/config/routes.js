@@ -79,18 +79,18 @@ app.config([
       .state('admin.quizzes', {
         url: '/quizzes',
         templateUrl: 'views/admin/_quizzes.html',
-        controller: 'QuizzesCtrl',
+        controller: 'QuizzesController as quizzesCtrl',
         resolve: {
-          userPromise: ['quizService', 
+          quizzes: ['quizService', 
           function(quizService){
             return quizService.getAll();
           }]
         }
       })
-      .state('admin.quizzes.quiz', {
-        url: '/{id}',
+      .state('admin.quiz', {
+        url: '/quiz/{id}',
         templateUrl: 'views/admin/_quiz.html',
-        controller: 'QuizCtrl',
+        controller: 'QuizController as quizCtrl',
         resolve: {
           quiz: ['$stateParams', 'quizService', 
           function($stateParams,  quizService) {
@@ -98,14 +98,14 @@ app.config([
           }]
         }
       })
-      .state('admin.quizzes.quiz.question', {
-        url: '/question/{qId}',
+      .state('admin.question', {
+        url: '/question/{id}',
         templateUrl: 'views/admin/_question.html',
-        controller: 'QuestionCtrl',
+        controller: 'QuestionController as questionCtrl',
         resolve: {
           question: ['$stateParams', 'questionService', 
           function($stateParams,  questionService) {
-            return questionService.get($stateParams.qId);
+            return questionService.get($stateParams.id);
           }]
         }
       })
