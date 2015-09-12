@@ -7,5 +7,10 @@ app
 
 function ProfileController ($scope, profileFactory) {
   var self = this;
-  self.profile = profileFactory.getStatus;
+  self.profile = {};
+  self.profile.info = profileFactory.getProfileInfo();
+  profileFactory.getQuizHistory()
+      .then(function(data) {
+        self.profile.quiz = data;
+      });
 }

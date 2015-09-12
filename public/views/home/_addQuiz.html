@@ -1,0 +1,51 @@
+<div class="quiz">
+  <div class="quiz-header">
+    <p class="quiz-header__title">Quiz title</p>
+    <p class="quiz-header__description">Quiz description</p>
+  </div>
+  <div class="quiz__title">
+    Quiz title
+  </div>
+  <div class="quiz-question-block">
+      <div class="question-block__question" ng-repeat="i in [0,1,2]" style="display: inline-block; margin-left: 64px;">
+        <input type="text" class="question-block__question_add" placeholder="Type question here">
+      </div>
+  </div>
+
+    <form action="" class="question-block-answers" >
+      
+        <ul class="question-block-answers-list" ng-repeat="i in [0,1,2]"  style="display: inline-block; list-style: none;">
+          <li class="question-block-answers-list-item">
+              <input type="checkbox" class="question-block-answers-list-item__correct">
+              <input type="text" class="question-block-answers-list-item" placeholder="Type answer variant here">
+          </li>
+          <li class="question-block-answers-list-item">
+              <input type="checkbox" class="question-block-answers-list-item__correct">
+              <input type="text" class="question-block-answers-list-item" placeholder="Type answer variant here">
+          </li>
+          <li class="question-block-answers-list-item">
+              <input type="checkbox" class="question-block-answers-list-item__correct">
+              <input type="text" class="question-block-answers-list-item" placeholder="Type answer variant here">
+          </li>
+          <li class="question-block-answers-list-item">
+              <input type="checkbox" class="question-block-answers-list-item__correct">
+              <input type="text" class="question-block-answers-list-item" placeholder="Type answer variant here">
+          </li>
+        </ul>
+        
+    </form>
+    
+  <div class="quiz-control">
+    <button class="quiz-control__prev">Previous</button>
+    <button class="quiz-control__next">Next</button>
+  </div>
+
+  <div class="quiz-back"><a href="quizzes.html" class="quiz-back__link">BACK TO ALL QUIZZES</a></div>
+  <div class="quiz-counter">
+      <span class="quiz-counter-indicator">
+        <span class="quiz-counter-indicator__item quiz-counter-indicator__item_current">7</span
+        ><span class="quiz-counter-indicator__item quiz-counter-indicator__item_separator">/</span
+        ><span class="quiz-counter-indicator__item quiz-counter-indicator__item_total">20</span>
+      </span>
+  </div>
+</div>  

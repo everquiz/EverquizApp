@@ -3,6 +3,7 @@ app.service('questionService',['$http', 'quizService', function ($http, quizServ
   this.questions = _questions;
 
   this.get = function(id) {
+    console.log('get question');
     return $http.get('/api/v1/Questions/' + id + '?populate=answers').then(function(res) {
       return res.data;
     });

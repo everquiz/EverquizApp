@@ -61,7 +61,63 @@ app.config([
           },
           'footer@home': {
             templateUrl: 'views/layouts/_footer.html'
+          },
+          //'quiz@home': {
+          //  templateUrl: 'views/home/_quiz.html'
+          //},
+          'addQuiz@home': {
+            templateUrl: 'views/home/_addQuiz.html'
           }
+        }
+      })
+      .state('admin', {
+        url: '/admin',
+        templateUrl: 'views/admin/index.html',
+        controller: 'AdminCtrl',
+        resolve: { loginRequired : accessAdmin } 
+      })
+      .state('admin.quizzes', {
+        url: '/quizzes',
+        templateUrl: 'views/admin/_quizzes.html',
+        controller: 'QuizzesCtrl',
+        resolve: {
+          userPromise: ['quizService', 
+          function(quizService){
+            return quizService.getAll();
+          }]
+        }
+      })
+      .state('admin.quizzes.quiz', {
+        url: '/{id}',
+        templateUrl: 'views/admin/_quiz.html',
+        controller: 'QuizCtrl',
+        resolve: {
+          quiz: ['$stateParams', 'quizService', 
+          function($stateParams,  quizService) {
+            return quizService.get($stateParams.id);
+          }]
+        }
+      })
+      .state('admin.quizzes.quiz.question', {
+        url: '/question/{qId}',
+        templateUrl: 'views/admin/_question.html',
+        controller: 'QuestionCtrl',
+        resolve: {
+          question: ['$stateParams', 'questionService', 
+          function($stateParams,  questionService) {
+            return questionService.get($stateParams.qId);
+          }]
+        }
+      })
+      .state('admin.users', {
+        url: '/users',
+        templateUrl: 'views/admin/_users.html',
+        controller: 'MainCtrl',
+        resolve: {
+          userPromise: ['userService', 
+          function(userService){
+            return userService.getAll();
+          }]
         }
       })
       .state('users', {
@@ -86,29 +142,6 @@ app.config([
           }]
         }
       })
-      //.state('quizzes', {
-      //  views : {
-      //    'quizzesView': {
-      //      templateUrl: 'views/home/_quizzes.html',
-      //      controller: 'QuizzesCtrl'
-      //    },
-      //    'quiz': {
-      //      templateUrl: 'views/partials/_quiz.html',
-      //      controller: 'QuizzesCtrl'
-      //    }
-      //  }
-      //})
-      //.state('quiz', {
-      //  url: '/quiz/{id}',
-      //  templateUrl: 'views/partials/_quiz.html',
-      //  controller: 'QuizCtrl',
-      //  resolve: {
-      //    quiz: ['$stateParams', 'quizService',
-      //    function($stateParams,  quizService) {
-      //      return quizService.get($stateParams.id);
-      //    }]
-      //  }
-      //})
       .state('question', {
         url: '/quiz/{quizId}/question/{id}',
         templateUrl: 'views/partials/question.html',
@@ -135,12 +168,5 @@ app.config([
           }
         }]
       })
-      .state('admin', {
-        url: '/admin',
-        templateUrl: 'views/admin/index.html',
-        controller: 'AdminCtrl',
-        resolve: { loginRequired : accessAdmin } 
-      });
-
     $urlRouterProvider.otherwise('/');
 }]);
