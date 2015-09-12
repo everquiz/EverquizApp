@@ -1,14 +1,17 @@
-app.controller('QuestionCtrl', [
+app.controller('QuestionController', [
           '$scope', 'question', 'answerService',
   function($scope,   question,   answerService){
-    $scope.answers = question.answers;
-    $scope.question = question;
+    // $scope.answers = question.answers;
+    // $scope.question = question;
+    var self = this;
+    self.question = question;
+    self.answers = question.answers;
+    self.addAnswer = addAnswer;
+    self.editAnswer = editAnswer;
+    self.removeAnswer = removeAnswer;
+    return self;
 
-    $scope.editAnswer = function(answer) {
-      $scope.answer = answer;
-    };
-
-    $scope.addAnswer = function() {
+    function addAnswer() {
       if ($scope.answer.correct == undefined) {
         $scope.answer.correct = false;
       };
@@ -22,11 +25,19 @@ app.controller('QuestionCtrl', [
       }
       $scope.answer = '';
     };
+    
+    function editAnswer(answer) {
+      $scope.answer = answer;
+    };
 
-    $scope.removeAnswer = function(answer) {
+    function removeAnswer(answer) {
       if (confirm('Do you want to delete this answer?')) {
         answerService.remove(answer, question);
       };
     };
+
+    
+
+    
 
 }]);
