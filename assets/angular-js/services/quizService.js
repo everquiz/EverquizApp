@@ -40,8 +40,10 @@ app.service('quizService', function ($http) {
     });
   };
 
-  this.getAnswers = function() {
-
+  this.getAnswers = function(id) {
+    return $http.get('/api/v1/Questions?quiz=' + id + '&populate=answers').then(function(res) {
+      return res.data;
+    });
   };
 
   this.create = function(quiz) {
