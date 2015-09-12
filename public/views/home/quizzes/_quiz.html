@@ -1,5 +1,52 @@
-<h2>Quiz </h2>
 <button ng-click="quizzesContainerCtrl.quizService.activeQuiz = null">Deselect quiz</button>
-<hr>
-{{passingQuizCtrl.quiz}}
-<hr>
+<div class="quiz">
+    <div class="quiz__title">
+        {{passingQuizCtrl.quiz.title}}
+    </div>
+    <div class="quiz-question-block">
+        <div class="question-block__question" ng-repeat="question in passingQuizCtrl.quiz.questions">
+            {{passingQuizCtrl.quiz.questions}}
+        </div>
+    </div>
+
+    <form action="" class="question-block-answers" >
+
+        <ul class="question-block-answers-list" ng-repeat="question in questions.questions">
+            <li class="question-block-answers-list-item">
+                <label class="question-block-answers-list-item-answer__title">
+                    <input type="checkbox" class="question-block-answers-list-item-answer__select">
+                    {{question.answers[1].title}}
+                </label>
+            </li>
+            <li class="question-block-answers-list-item">
+                <label class="question-block-answers-list-item-answer__title">
+                    <input type="checkbox" class="question-block-answers-list-item-answer__select">
+                    {{question.answers[2].title}}
+                </label>
+            </li>
+            <li class="question-block-answers-list-item">
+                <label class="question-block-answers-list-item-answer__title">
+                    <input type="checkbox" class="question-block-answers-list-item-answer__select">
+                    {{question.answers[3].title}}
+                </label>
+            </li>
+            <li class="question-block-answers-list-item">
+                <label class="question-block-answers-list-item-answer__title">
+                    <input type="checkbox" class="question-block-answers-list-item-answer__select">
+                    {{question.answers[4].title}}
+                </label>
+            </li>
+        </ul>
+
+    </form>
+</div>
+
+<div class="quiz-back"><a href="quizzes.html" class="quiz-back__link">BACK TO ALL QUIZZES</a></div>
+<div class="quiz-counter">
+      <span class="quiz-counter-indicator">
+                  <span class="quiz-counter-indicator__item quiz-counter-indicator__item_current">7</span
+                          ><span class="quiz-counter-indicator__item quiz-counter-indicator__item_separator">/</span><span class="quiz-counter-indicator__item quiz-counter-indicator__item_total">20</span>
+                </span
+                        >
+</div>
+</div>
