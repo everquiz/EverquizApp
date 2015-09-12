@@ -9,6 +9,12 @@
     function PassingQuizCtrl(quizService) {
         var self = this;
 
+        quizService.get(quizService.activeQuiz).then(
+            function (data) {
+                self.quiz = data;
+            }
+        )
+
         quizService.getAnswers(quizService.activeQuiz).then(
             function (data) {
                 self.questions = data;
