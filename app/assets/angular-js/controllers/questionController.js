@@ -1,33 +1,39 @@
-app.controller('QuestionController', [
-          '$scope', 'question', 'answerService',
-  function($scope,   question,   answerService){
-    // $scope.answers = question.answers;
-    // $scope.question = question;
-    var self = this;
-    self.question = question;
-    self.answers = question.answers;
-    self.addAnswer = addAnswer;
-    self.editAnswer = editAnswer;
-    self.removeAnswer = removeAnswer;
-    return self;
+(function() {
+  'use strict';
+
+  angular
+      .module('everquizApp')
+      .controller('QuestionController', QuestionController);
+
+  QuestionController.$inject = ['question', 'answerService'];
+  
+  function QuestionController(question,   answerService) {
+    // vm.answers = question.answers;
+    // vm.question = question;
+    var vm = this;
+    vm.question = question;
+    vm.answers = question.answers;
+    vm.addAnswer = addAnswer;
+    vm.editAnswer = editAnswer;
+    vm.removeAnswer = removeAnswer;
 
     function addAnswer() {
-      if ($scope.answer.correct == undefined) {
-        $scope.answer.correct = false;
+      if (vm.answer.correct == undefined) {
+        vm.answer.correct = false;
       };
-      if((!$scope.answer.text || $scope.answer.text === '')) { return; }
-      if (!$scope.answer._id || $scope.answer._id === '') {
-        $scope.answer.question = question;
-        answerService.create($scope.answer);
-      } 
-      else {
-        answerService.update($scope.answer);
+      if((!vm.answer.text || vm.answer.text === '')) { return; }
+      if (!vm.answer._id || vm.answer._id === '') {
+        vm.answer.question = question;
+        answerService.create(vm.answer);
       }
-      $scope.answer = '';
+      else {
+        answerService.update(vm.answer);
+      }
+      vm.answer = '';
     };
-    
+
     function editAnswer(answer) {
-      $scope.answer = answer;
+      vm.answer = answer;
     };
 
     function removeAnswer(answer) {
@@ -35,9 +41,6 @@ app.controller('QuestionController', [
         answerService.remove(answer, question);
       };
     };
-
-    
-
-    
-
-}]);
+  }
+  
+})();

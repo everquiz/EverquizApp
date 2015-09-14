@@ -1,12 +1,15 @@
-app
-  .controller('RunQuizzesCtrl', [
-    '$scope',
-    'quizService',
-    'categoryService',
-    RunQuizzesCtrl
-  ]);
+(function() {
+  'use strict';
 
-function RunQuizzesCtrl($scope, quizService, categoryService){
-  var self = this;
-  self.quizzes = quizService.getQuizzes();
-}
+  angular
+      .module('everquizApp')
+      .controller('RunQuizzesController', RunQuizzesController);
+
+    RunQuizzesController.$inject = ['quizService', 'categoryService'];
+
+  function RunQuizzesController(quizService, categoryService) {
+    var vm = this;
+    vm.quizzes = quizService.getQuizzes();
+  }
+
+})();

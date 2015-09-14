@@ -1,25 +1,27 @@
 (function () {
     'use strict';
 
-    app.controller('PassingQuizCtrl', [
-        'quizService',
-        PassingQuizCtrl
-    ]);
+    angular
+        .module('everquizApp')
+        .controller('PassingQuizController', PassingQuizController);
 
-    function PassingQuizCtrl(quizService) {
-        var self = this;
-        self.quizService = quizService;
-        self.checkResult = checkResult;
+    PassingQuizController.$inject = ['quizService'];
+
+    function PassingQuizController(quizService) {
+
+        var vm = this;
+        vm.quizService = quizService;
+        vm.checkResult = checkResult;
 
         quizService.get(quizService.activeQuiz).then(
             function (data) {
-                self.quiz = data;
+                vm.quiz = data;
             }
         )
 
         quizService.getAnswers(quizService.activeQuiz).then(
             function (data) {
-                self.quiz.questions = data;
+                vm.quiz.questions = data;
             }
         )
 
@@ -27,8 +29,8 @@
             quizService.checkResult(self.quiz).then(
                 function (data) {
                     self.result = data;
-                }
-            )
-        }
+                    }
+                )
+            }
     }
 })();

@@ -1,10 +1,16 @@
-app
-  .controller('NotesController', [
-    '$scope',
-    'authFactory',
-    NotesController
-  ]);
+(function() {
+  'use strict';
 
-function NotesController ($scope, authFactory) {
-  $scope.isLoggedIn = authFactory.isLoggedIn;
-}
+  angular
+      .module('everquizApp')
+      .controller('NotesController', NotesController);
+
+  NotesController.$inject = ['authFactory'];
+
+  function NotesController(authFactory) {
+
+    var vm = this;
+    vm.isLoggedIn = authFactory.isLoggedIn;
+  }
+
+})();

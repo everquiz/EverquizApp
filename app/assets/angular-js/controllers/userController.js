@@ -1,40 +1,57 @@
-app.controller('UserCtrl', [
-          '$scope', 'user', 'noteService',
-  function($scope,   user,   noteService){
-    $scope.notes = user.notes;
-    $scope.user = user;
+(function() {
+  'use strict';
 
-    $scope.editNote = function(note) {
-      $scope.title = note.title;
-      $scope.text = note.text;
-      $scope.id = note._id;
+  angular
+      .module('everquizApp')
+      .controller('UserController', UserController);
+
+  UserController.$inject = ['user', 'noteService'];
+
+  function UserController(user, noteService) {
+    
+    var vm = this;
+    vm.notes = user.notes;
+    vm.user = user;
+    vm.editNote = editNote;
+    vm.addNote = addNote;
+    vm.removeNote = removeNote;
+
+    function editNote(note) {
+      vm.title = note.title;
+      vm.text = note.text;
+      vm.id = note._id;
     }
 
-    $scope.addNote = function() {
-      if((!$scope.title || $scope.title === '')
-        || (!$scope.text || $scope.text === '')) { return; }
+    function addNote() {
+      if ((!vm.title || vm.title === '')
+          || (!vm.text || vm.text === '')) {
+        return;
+      }
       var note = {};
-      if (!$scope.id || $scope.id === '') {
-        note.title = $scope.title;
-        note.text = $scope.text;
+      if (!vm.id || vm.id === '') {
+        note.title = vm.title;
+        note.text = vm.text;
         note.user = user;
         noteService.create(note, user);
       } else {
-        note.id = $scope.id;
-        note.title = $scope.title;
-        note.text = $scope.text;
+        note.id = vm.id;
+        note.title = vm.title;
+        note.text = vm.text;
         note.user = user;
         noteService.update(note, user);
-        $scope.id = '';
+        vm.id = '';
 
       }
-      $scope.title = '';
-      $scope.text = '';
+      vm.title = '';
+      vm.text = '';
     };
 
-    $scope.removeNote = function(note) {
+    function removeNote(note) {
       if (confirm('Do you want to delete ' + note.title + ' ?')) {
         noteService.remove(note, user);
-      };
+      }
+      ;
     };
-}]);
+  }
+  
+})();

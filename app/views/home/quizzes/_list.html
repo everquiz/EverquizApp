@@ -2,8 +2,8 @@
     <div class="quizzes-header__title">Quizzes</div>
 
     <form class="quizzes-header-selector" method="get" action="">
-        <select name="category" id="category" class="quizzes-header-selector-item" ng-model="selected"
-                ng-options="o._id as o.title for o in quizzes.categories" ng-change="quizzes.getQuizzesByCategory()">
+        <select name="category" id="category" class="quizzes-header-selector-item" ng-model="RunQuizzesCtrl.selected"
+                ng-options="o._id as o.title for o in RunQuizzesCtrl.categories" ng-change="RunQuizzesCtrl.getQuizzesByCategory()">
             <option value="All">All categories</option>
             <option value="HTMLnCSS">HTML&amp;CSS</option>
             <option value="JavaScript">JavaScript</option>
@@ -35,7 +35,7 @@
             <th class="quizzes-selection-table-row-heading__title">Best</th>
             <th class="quizzes-selection-table-row-heading__title">Total passing</th>
         </tr>
-        <tr class="quizzes-selection-table-row-content" ng-repeat="quiz in quizzes.quizzes" ng-click="quizzesContainerCtrl.quizService.activeQuiz
+        <tr class="quizzes-selection-table-row-content" ng-repeat="quiz in RunQuizzesCtrl.quizzes" ng-click="QuizzesContainerCtrl.quizService.activeQuiz
          = quiz._id;">
             <td class="quizzes-selection-table-row-content__title">{{quiz.category.title}}</td>
             <td class="quizzes-selection-table-row-content__title">{{quiz.title}}</td>

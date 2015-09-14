@@ -1,10 +1,16 @@
 (function() {
     'use strict';
 
-    app.controller('QuizzesContainerController', QuizzesContainerController);
+    angular
+        .module('everquizApp')
+        .controller('QuizzesContainerController', QuizzesContainerController);
 
     QuizzesContainerController.$inject = ['quizService'];
+
     function QuizzesContainerController (quizService) {
-        this.quizService = quizService;
+
+        var vm = this;
+        vm.quizService = quizService;
     }
+
 })();

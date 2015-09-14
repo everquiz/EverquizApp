@@ -1,41 +1,55 @@
-app.controller('MainCtrl', [
-          '$scope', 'userService',
-  function($scope,   userService){
-    $scope.test = 'Hello world!';
+(function() {
+  'use strict';
 
-    $scope.users = userService.users;
+  angular
+      .module('everquizApp')
+      .controller('MainController', MainController);
 
-    $scope.addUser = function() {
-      if((!$scope.user.name || $scope.user.name === '')
-        || (!$scope.user.email || $scope.user.email === '') 
-        // || (!$scope.user.password || $scope.user.password === '')
-        // || (!$scope.user.passwordRepeat || $scope.user.passwordRepeat === '')
+  MainController.$inject = ['userService'];
+
+  function MainController(userService) {
+
+    var vm = this;
+    vm.test = 'Hello world!';
+    vm.users = userService.users;
+    vm.addUser = addUser;
+    vm.removeUser = removeUser;
+    vm.editUser = editUser;
+    vm.incrementUpvotes = incrementUpvotes;
+
+    function addUser() {
+      if((!vm.user.name || vm.user.name === '')
+          || (!vm.user.email || vm.user.email === '')
+      // || (!vm.user.password || vm.user.password === '')
+      // || (!vm.user.passwordRepeat || vm.user.passwordRepeat === '')
       ) { return; }
-      if (!$scope.user._id || $scope.user._id === '') {
+      if (!vm.user._id || vm.user._id === '') {
         // userService.create({
-        //   name: $scope.name,
-        //   email: $scope.email,
-        //   password: $scope.password
+        //   name: vm.name,
+        //   email: vm.email,
+        //   password: vm.password
         // });
       } else {
-        console.log($scope.user);
-        userService.update($scope.user);
+        console.log(vm.user);
+        userService.update(vm.user);
       }
-      
-      $scope.user = '';
+
+      vm.user = '';
     };
 
-    $scope.removeUser = function(user) {
+    function removeUser(user) {
       if (confirm('Do you want to delete ' + user.name + ' ?')) {
         userService.remove(user);
       };
     };
 
-    $scope.editUser = function(user) {
-      $scope.user = user;
+    function editUser(user) {
+      vm.user = user;
     };
 
-    $scope.incrementUpvotes = function(post) {
+    function incrementUpvotes(post) {
       postService.upvote(post);
     };
-}]);
+  }
+
+})();

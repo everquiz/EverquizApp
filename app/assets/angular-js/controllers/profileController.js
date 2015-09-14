@@ -1,20 +1,25 @@
-app
-  .controller('ProfileController', [
-    '$scope',
-    'profileFactory',
-    ProfileController
-  ]);
+(function () {
+    'use strict';
 
-function ProfileController ($scope, profileFactory) {
-  var self = this;
-  self.isVisible = profileFactory.isVisible;
-  self.profile = {};
-  profileFactory.getQuizHistory()
-      .then(function(data) {
-        self.profile = data;
+    angular
+        .module('everquizApp')
+        .controller('ProfileController', ProfileController);
 
-        var result = profileFactory.getQuizStatistic(self.profile.history);
-        self.profile.averageResult = result.averageResult;
-        self.profile.quizCompleted = result.quizCompleted;
-      });
-}
+    ProfileController.$inject = ['profileFactory'];
+
+    function ProfileController(profileFactory) {
+
+      var vm = this;
+      vm.isVisible = profileFactory.isVisible;
+      vm.profile = {};
+      profileFactory.getQuizHistory()
+          .then(function (data) {
+            vm.profile = data;
+
+            var result = profileFactory.getQuizStatistic(vm.profile.history);
+            vm.profile.averageResult = result.averageResult;
+            vm.profile.quizCompleted = result.quizCompleted;
+          });
+    }
+
+})();

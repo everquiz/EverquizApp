@@ -1,5 +1,5 @@
 <div class="quizzes-header">
-    <div class="quizzes-header__title">{{quizCtrl.quiz.title}}</div>
+    <div class="quizzes-header__title">{{QuizCtrl.quiz.title}}</div>
 </div>
 <div class="quizzes-header">
     <div class="quizzes-header__title">Questions</div>
@@ -14,12 +14,12 @@
             <th class="quizzes-selection-table-row-heading__title">Total Answers</th>
             <th class="quizzes-selection-table-row-heading__title">Actions</th>
         </tr>
-        <tr class="quizzes-selection-table-row-content" ng-repeat="question in quizCtrl.quiz.questions">
+        <tr class="quizzes-selection-table-row-content" ng-repeat="question in QuizCtrl.quiz.questions">
             <td class="quizzes-selection-table-row-content__title">{{question.text}}</td>
             <td class="quizzes-selection-table-row-content__title"  ui-sref="admin.question({ id: question._id})">{{question._id}}</td>
             <td class="quizzes-selection-table-row-content__title">{{question.createAt}}</td>
             <td class="quizzes-selection-table-row-content__title">{{question.answers.length}}</td>
-            <td class="quizzes-selection-table-row-content__title"><i class="fa fa-trash-o"  ng-click='quizCtrl.removeQuestion(question)'></i><i class="fa fa-wrench" ng-click='quizCtrl.editQuestion(question)'></i></td>
+            <td class="quizzes-selection-table-row-content__title"><i class="fa fa-trash-o"  ng-click='QuizCtrl.removeQuestion(question)'></i><i class="fa fa-wrench" ng-click='QuizCtrl.editQuestion(question)'></i></td>
         </tr>
     </table>
 </div>
@@ -33,11 +33,11 @@
   
   <button type="submit">New question</button>
 </form> -->
-<form ng-submit="quizCtrl.addQuestion()" style="margin: 30px auto 0;" class="form-container">
+<form ng-submit="QuizCtrl.addQuestion()" style="margin: 30px auto 0;" class="form-container">
   <div class="form-title"><h2>Add new question</h2></div>
 
   <div class="form-title">Text</div>
-  <textarea class="form-field" ng-model="question.text" placeholder="Text"></textarea><br/>
+  <textarea class="form-field" ng-model="QuizCtrl.question.text" placeholder="Text"></textarea><br/>
 
   <div class="submit-container">
   <input class="submit-button" type="submit" value="Submit" />

@@ -1,6 +1,6 @@
 <div class="quiz">
     <div class="quiz__title">
-        {{passingQuizCtrl.quiz.title}}
+        {{PassingQuizCtrl.quiz.title}}
     </div>
     <div class="quiz-counter">
       <span class="quiz-counter-indicator">
@@ -9,21 +9,21 @@
                 </span>
     </div>
     <div class="quiz-question-block">
-        <form class="question-form" ng-submit="passingQuizCtrl.checkResult();">
-            <div class="quiz-question-block-question" ng-repeat="question in passingQuizCtrl.quiz.questions">
+        <form class="question-form" ng-submit="PassingQuizCtrl.checkResult();">
+            <div class="quiz-question-block-question" ng-repeat="question in PassingQuizCtrl.quiz.questions">
                 {{question.text}}
-                    <ul class="quiz-question-block-answers-list">
-                        <li class="quiz-question-block-answers-list-item" ng-repeat="answer in question.answers">
-                            <label class="quiz-question-block-answers-list-item-answer__title">
+                <ul class="quiz-question-block-answers-list">
+                    <li class="quiz-question-block-answers-list-item" ng-repeat="answer in question.answers">
+                        <label class="quiz-question-block-answers-list-item-answer__title">
                             <input type="checkbox" class="quiz-question-block-answers-list-item-answer__select" ng-model="answer.userResult">
-                                {{answer.text}}
-                            </label>
-                        </li>
-                    </ul>
-                </div>
+                            {{answer.text}}
+                        </label>
+                    </li>
+                </ul>
+            </div>
             <input type="submit">
         </form>
     </div>
-<div class="quiz-back" ><a href="" class="quiz-back__link" ng-click="quizzesContainerCtrl.quizService.activeQuiz = null">BACK TO ALL QUIZZES</a></div>
+    <div class="quiz-back" ><a href="" class="quiz-back__link" ng-click="QuizzesContainerCtrl.quizService.activeQuiz = null">BACK TO ALL QUIZZES</a></div>
 
 </div>

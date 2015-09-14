@@ -1,18 +1,24 @@
-app.controller('QuizzesController', [
-          '$scope', 'quizzes', 'quizService', 'categoryService',
-  function($scope,   quizzes,   quizService,   categoryService){
+(function() {
+  'use strict';
+
+  angular
+      .module('everquizApp')
+      .controller('QuizzesController', QuizzesController);
+
+  QuizzesController.$inject = ['$scope', 'quizzes', 'quizService', 'categoryService'];
+
+  function QuizzesController($scope, quizzes, quizService, categoryService) {
     // $scope.quizzes = quizService.quizzes;
 
-    var self = this;
-    self.status = 0;
-    self.quizzes = quizzes;
-    self.categories = categoryService.getCategories();
-    self.addQuiz = addQuiz;
-    self.editQuiz = editQuiz;
-    self.getStatus = getStatus;
-    self.deactivateQuiz = deactivateQuiz;
-    self.activateQuiz = activateQuiz;
-    return self;
+    var vm = this;
+    vm.status = 0;
+    vm.quizzes = quizzes;
+    vm.categories = categoryService.getCategories();
+    vm.addQuiz = addQuiz;
+    vm.editQuiz = editQuiz;
+    vm.getStatus = getStatus;
+    vm.deactivateQuiz = deactivateQuiz;
+    vm.activateQuiz = activateQuiz;
 
     function activateQuiz(quiz) {
       quizService.active(quiz);
@@ -21,7 +27,8 @@ app.controller('QuizzesController', [
     function deactivateQuiz(quiz) {
       if (confirm('Do you want to make unactive ' + quiz.title + ' ?')) {
         quizService.unactive(quiz);
-      };
+      }
+      ;
     };
 
     function getStatus(status) {
@@ -36,8 +43,10 @@ app.controller('QuizzesController', [
 
     function addQuiz() {
       console.log($scope.quiz);
-      if((!$scope.quiz.title || $scope.quiz.title === '')
-        || (!$scope.quiz.description || $scope.quiz.description === '')) { return; }
+      if ((!$scope.quiz.title || $scope.quiz.title === '')
+          || (!$scope.quiz.description || $scope.quiz.description === '')) {
+        return;
+      }
       if (!$scope.quiz._id || $scope.quiz._id === '') {
         quizService.create($scope.quiz);
       }
@@ -46,4 +55,6 @@ app.controller('QuizzesController', [
       }
       $scope.quiz = {};
     };
-}]);
+  };
+
+})();

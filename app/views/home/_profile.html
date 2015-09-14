@@ -1,8 +1,8 @@
 <!--<span ng-show="!profileCtrl.profile()">video</span>-->
 <!--<span ng-show="profileCtrl.profile()">profile</span>-->
 <!--<hr>-->
-<div ng-show="!profileCtrl.isVisible()">video</div>
-<div class="l-wrapper" ng-show="profileCtrl.isVisible()">
+<div ng-show="!ProfileCtrl.isVisible()">video</div>
+<div class="l-wrapper" ng-show="ProfileCtrl.isVisible()">
 <div class="profile">
     <div class="profile-photo">
         <div class="profile-photo__image-outer">
@@ -10,14 +10,14 @@
         </div>
     </div>
     <div class="profile-content">
-        <h1 class="profile-content__name">{{profileCtrl.profile.name}}</h1>
+        <h1 class="profile-content__name">{{ProfileCtrl.profile.name}}</h1>
         <div class="profile-content-item">
             <span class="profile-content-item__header">Total Passing:</span>
-            <span class="profile-content-item__value">{{profileCtrl.profile.quizCompleted}}</span>
+            <span class="profile-content-item__value">{{ProfileCtrl.profile.quizCompleted}}</span>
         </div>
         <div class="profile-content-item">
             <span class="profile-content-item__header">Average result:</span>
-            <span class="profile-content-item__value">{{profileCtrl.profile.averageResult}}</span>
+            <span class="profile-content-item__value">{{ProfileCtrl.profile.averageResult}}</span>
         </div>
     </div>
 </div>

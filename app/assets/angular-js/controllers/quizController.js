@@ -1,32 +1,36 @@
-;(function () {
-  app.controller('QuizController', [
-            '$scope', 'quiz', 'questionService',
-    function($scope,   quiz,   questionService){
-      // $scope.questions = quiz.questions;
-      // $scope.quiz = quiz;
+(function () {
 
-      var self = this;
-      self.quiz = quiz;
-      self.questions = quiz.questions;
-      self.addQuestion = addQuestion;
-      self.editQuestion = editQuestion;
-      self.removeQuestion = removeQuestion;
-      return self;
+  angular
+      .module('everquizApp')
+      .controller('QuizController', QuizController);
+
+  QuizController.$inject = ['quiz', 'questionService'];
+
+  function QuizController(quiz,   questionService){
+      // vm.questions = quiz.questions;
+      // vm.quiz = quiz;
+
+      var vm = this;
+      vm.quiz = quiz;
+      vm.questions = quiz.questions;
+      vm.addQuestion = addQuestion;
+      vm.editQuestion = editQuestion;
+      vm.removeQuestion = removeQuestion;
 
       function addQuestion() {
-        if((!$scope.question.text || $scope.question.text === '')) { return; }
-        if (!$scope.question._id || $scope.question._id === '') {
-          $scope.question.quiz = quiz;
-          questionService.create($scope.question);
+        if((!vm.question.text || vm.question.text === '')) { return; }
+        if (!vm.question._id || vm.question._id === '') {
+          vm.question.quiz = quiz;
+          questionService.create(vm.question);
         } 
         else {
-          questionService.update($scope.question);
+          questionService.update(vm.question);
         }
-        $scope.question = "";
+        vm.question = "";
       };
 
       function editQuestion(question) {
-        $scope.question = question;
+        vm.question = question;
       };
 
       function removeQuestion(question) {
@@ -34,10 +38,7 @@
           questionService.remove(question, quiz);
         };
       };
+  };
 
-      
-
-      
-  }]);
 })(); 
   

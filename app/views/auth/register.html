@@ -2,11 +2,11 @@
   <h1>Registration template</h1>
 </div>
 
-<div ng-show="error" class="alert alert-danger row">
-  <span>{{ error.message }}</span>
+<div ng-show="AuthCtrl.error" class="alert alert-danger row">
+  <span>{{ AuthCtrl.error.message }}</span>
 </div>
 
-<form ng-submit="register()"
+<form ng-submit="AuthCtrl.register()"
   style="margin-top:30px;">
   <h3>Register</h3>
 
@@ -14,13 +14,13 @@
     <input type="text"
     class="form-control"
     placeholder="email"
-    ng-model="user.email"></input>
+    ng-model="AuthCtrl.user.email"></input>
   </div>
   <div class="form-group">
     <input type="password"
     class="form-control"
     placeholder="Password"
-    ng-model="user.password"></input>
+    ng-model="AuthCtrl.user.password"></input>
   </div>
   <button type="submit" class="btn btn-primary">Register</button>
 </form>

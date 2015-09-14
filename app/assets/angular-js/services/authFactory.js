@@ -1,104 +1,130 @@
-app.factory('authFactory', ['$http', '$window', function($http, $window){
-	var auth = {};
-	
-	auth.saveToken = function (token){
- 		$window.localStorage['everquizApp-token'] = token;
-	};
+(function() {
+    'use strict'
 
-	auth.getToken = function (){
-		return $window.localStorage['everquizApp-token'];
-	};
+    angular
+        .module('everquizApp')
+        .factory('authFactory', authFactory);
 
-	auth.isLoggedIn = function(){
-		var token = auth.getToken();
-		if(token){
-	    	var payload = JSON.parse($window.atob(token.split('.')[1]));
-	    	return payload.exp > Date.now() / 1000;
-	  	} else {
-	    	return false;
-	 	}
-	};
+    authFactory.$inject = ['$http', '$window'];
 
-  auth.checkRole = function() {
-    return $http.get('/status', {
-      headers: {Authorization: 'Bearer ' + auth.getToken()}
-    }).success(function(data) {
-      if (data === 'admin') {
-        console.log(data);
-        return true;
-      } else {
-        return false;
-      }
-    });
-  }
+    function authFactory($http, $window) {
 
-  auth.isAdmin = function(){
-    if(auth.isLoggedIn()){
-        var token = auth.getToken();
-        var payload = JSON.parse($window.atob(token.split('.')[1]));
-        if (payload.roles[0] === 'admin') {
-          return true
+        var auth = {
+            saveToken: saveToken,
+            getToken: getToken,
+            isLoggedIn: isLoggedIn,
+            checkRole: checkRole,
+            isAdmin: isAdmin,
+            isUser: isUser,
+            currentUser: currentUser,
+            currentUserId: currentUserId,
+            register: register,
+            logIn: logIn,
+            logOut: logOut
         };
-        return false;
-      }
-  };
+        //*****************************************************
+        return auth;
 
-  auth.isUser = function(){
-    var token = auth.getToken();
-    if(token){
-        var payload = JSON.parse($window.atob(token.split('.')[1]));
-        
-        console.log('isUser()');
+        function saveToken(token) {
+            $window.localStorage['everquizApp-token'] = token;
+        };
 
+        function getToken() {
+            return $window.localStorage['everquizApp-token'];
+        };
 
-        $http.get('/status', {
-          headers: {Authorization: 'Bearer ' + auth.getToken()}
-        }).success(function(data) {
-          if (data === 'user') {
-            console.log(data);
-            return true;
-          };
-        })
-      } else {
-        return false;
-    }
-  };
-
-	auth.currentUser = function(){
-  		if(auth.isLoggedIn()){
-    		var token = auth.getToken();
-  	  		var payload = JSON.parse($window.atob(token.split('.')[1]));
-
-    		return payload.email;
-  		}
-	};
-
-    auth.currentUserId = function() {
-        if(auth.isLoggedIn()){
+        function isLoggedIn() {
             var token = auth.getToken();
-            var payload = JSON.parse($window.atob(token.split('.')[1]));
+            if (token) {
+                var payload = JSON.parse($window.atob(token.split('.')[1]));
+                return payload.exp > Date.now() / 1000;
+            } else {
+                return false;
+            }
+        };
 
-            return payload._id;
+        function checkRole() {
+            return $http.get('/status', {
+                headers: {Authorization: 'Bearer ' + auth.getToken()}
+            }).success(function (data) {
+                if (data === 'admin') {
+                    console.log(data);
+                    return true;
+                } else {
+                    return false;
+                }
+            });
         }
-    };
+
+        function isAdmin() {
+            if (auth.isLoggedIn()) {
+                var token = auth.getToken();
+                var payload = JSON.parse($window.atob(token.split('.')[1]));
+                if (payload.roles[0] === 'admin') {
+                    return true
+                }
+                ;
+                return false;
+            }
+        };
+
+        function isUser() {
+            var token = auth.getToken();
+            if (token) {
+                var payload = JSON.parse($window.atob(token.split('.')[1]));
+
+                console.log('isUser()');
 
 
-	auth.register = function(user){
-	  	return $http.post('/register', user).success(function(data){
-	    	auth.saveToken(data.token);
-	  	});
-	};
+                $http.get('/status', {
+                    headers: {Authorization: 'Bearer ' + auth.getToken()}
+                }).success(function (data) {
+                    if (data === 'user') {
+                        console.log(data);
+                        return true;
+                    }
+                    ;
+                })
+            } else {
+                return false;
+            }
+        };
 
-	auth.logIn = function(user){
-		return $http.post('/login', user).success(function(data){
-	    	auth.saveToken(data.token);
-	  	});
-	};
-	
+        function currentUser() {
+            if (auth.isLoggedIn()) {
+                var token = auth.getToken();
+                var payload = JSON.parse($window.atob(token.split('.')[1]));
 
-	auth.logOut = function(){
-  		$window.localStorage.removeItem('everquizApp-token');
-	};
+                return payload.email;
+            }
+        };
 
-	return auth;
-}]);
+        function currentUserId() {
+            if (auth.isLoggedIn()) {
+                var token = auth.getToken();
+                var payload = JSON.parse($window.atob(token.split('.')[1]));
+
+                return payload._id;
+            }
+        };
+
+
+        function register(user) {
+            return $http.post('/register', user).success(function (data) {
+                auth.saveToken(data.token);
+            });
+        };
+
+        function logIn(user) {
+            return $http.post('/login', user).success(function (data) {
+                auth.saveToken(data.token);
+            });
+        };
+
+
+        function logOut() {
+            $window.localStorage.removeItem('everquizApp-token');
+        };
+    }
+
+})();

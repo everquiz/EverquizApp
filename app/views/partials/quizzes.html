@@ -1,0 +1,31 @@
+<div ng-repeat="quiz in quizzes">
+  <i class="fa fa-trash-o" ng-click='deactivateQuiz(quiz)'></i>
+  <i class="fa fa-play" ng-click='activateQuiz(quiz)'></i>
+  <i class="fa fa-wrench" ng-click='editQuiz(quiz)'></i>
+  <a href="#/quiz/{{quiz._id}}">
+    {{quiz.title}}
+  </a>
+  - {{quiz.description}} 
+  <small>createAt</small> {{quiz.createAt}}
+  Status: {{getStatus(quiz.status)}}
+  | {{quiz.questions.length}}
+</div>
+
+<!-- post template -->
+
+<form ng-submit="addQuiz()"
+  style="margin-top:30px;">
+  <h3>Add new quiz</h3>
+
+  <input type="text" placeholder="Title" ng-model="quiz.title"></input><br/>
+  <textarea ng-model="quiz.description" placeholder="Description"></textarea><br/>
+  <div ng-show="id">
+    <label for="status"> Single select: </label><br>
+    <select name="status" ng-model="quiz.status">
+      <option value="0" >Unactive</option>
+      <option value="1">Active</option>
+    </select><br>
+  </div>
+  
+  <button type="submit">New note</button>
+</form>
