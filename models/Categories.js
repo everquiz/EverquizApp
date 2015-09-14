@@ -1,7 +1,7 @@
 var mongoose = require('mongoose');
 
 var CategorySchema = new mongoose.Schema({
-  title: String,
+  title: {type: String, unique: true},
   description: String,
   createAt: {type: Date, default: new Date },
   editedAt: {type: Date, default: new Date }

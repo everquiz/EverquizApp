@@ -40,16 +40,6 @@ router.post('/login', function(req, res, next){
   })(req, res, next);
 });
 
-/*
-
-To require authentication use methods like this 
-router.post('/posts', auth, function(req, res, next) {
-  var post = new Post(req.body);
-  post.author = req.payload.email;
-}
-
-*/
-
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index');

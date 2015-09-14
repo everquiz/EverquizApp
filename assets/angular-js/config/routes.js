@@ -19,10 +19,6 @@ app.config([
     };
 
     $stateProvider
-      // .state('home', {
-      //   url: '/',
-      //   templateUrl: 'views/home/index.html'
-      // })
       .state('home', {
         url: '/',
         views: {
