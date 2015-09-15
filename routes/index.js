@@ -5,6 +5,7 @@ var express = require('express'),
     User = mongoose.model('User'),
     Quiz = mongoose.model('Quiz'),
     Question = mongoose.model('Question'),
+    History = mongoose.model('History'),
     Answer = mongoose.model('Answer'),
 
     jwt = require('express-jwt'),
@@ -56,19 +57,35 @@ router.get('/', function (req, res, next) {
 //quizpassing result
 router.put('/checkresult', auth, function (req, res, next) {
     var results = req.body;
-    console.log(req.payload);
     var quiz = {
         _id: results._id
     };
-    Question.find({quiz: results._id})
+    var promise = Question.find({quiz: results._id})
         .populate('answers')
-        .exec(function (err, questions) {
+        .exec();
 
-            quiz.questions = questions;
-            res.send({
-                result: checkResult(quiz, results)
-            });
-        })
+    promise.then(function (questions) {
+        quiz.questions = questions;
+        var result = checkResult(quiz, results);
+
+        var history = new History();
+        history.quiz = quiz._id;
+        if (result >= 0.5) {
+            history.isCompleted = true;
+        } else {
+            history.isCompleted = false;
+        }
+        history.result = result;
+        history.save(function (err) {
+            if (err) {
+                return next(err);
+            } else {
+                return res.send({
+                    result: result
+                });
+            }
+        });
+    });
 });
 
 function checkResult(quiz, result) {
@@ -97,7 +114,7 @@ function checkResult(quiz, result) {
         wrongAnswers = 0;
         trueVariants = 0;
     }
-    return sum / (quiz.questions.length-1);
+    return sum / (quiz.questions.length - 1);
 }
 
 
