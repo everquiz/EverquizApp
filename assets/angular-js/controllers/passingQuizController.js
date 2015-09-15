@@ -14,12 +14,11 @@
         quizService.get(quizService.activeQuiz).then(
             function (data) {
                 self.quiz = data;
-            }
-        )
-
-        quizService.getAnswers(quizService.activeQuiz).then(
-            function (data) {
-                self.quiz.questions = data;
+                quizService.getAnswers(quizService.activeQuiz).then(
+                    function (data) {
+                        self.quiz.questions = data;
+                    }
+                )
             }
         )
 
