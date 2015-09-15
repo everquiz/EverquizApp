@@ -67,7 +67,7 @@ app.use(passport.initialize());
 var router = express.Router();
 restify.serve(router, NoteModel);
 restify.serve(router, UserModel,{
-    private: ['password', 'hash', 'salt']
+    private: ['hash', 'salt']
 });
     //, {
 //  middleware: auth,
@@ -94,11 +94,17 @@ restify.serve(router, UserModel,{
 //  private: 'email'
 //}
 //);
-restify.serve(router, QuizModel);
+restify.serve(router, QuizModel, {
+    private: ['description', 'status', 'editedAt', 'createAt', '__v']
+});
 restify.serve(router, CategoryModel);
 restify.serve(router, HistoryModel);
-restify.serve(router, QuestionModel);
-restify.serve(router, AnswerModel);
+restify.serve(router, QuestionModel, {
+    private: ['editedAt', 'createAt', '__v']
+});
+restify.serve(router, AnswerModel, {
+    private: ['correct', 'editedAt', 'createAt', '__v']
+});
 app.use(router);
 
 app.use('/', routes);
