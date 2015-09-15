@@ -5,7 +5,7 @@ var gulp = require('gulp'),
     uglify = require('gulp-uglify'),
     addsrc = require('gulp-add-src'),
     sass = require('gulp-sass'),
-    exec = require('child_process').exec;
+    exec = require('gulp-exec'),
     ngAnnotate = require('gulp-ng-annotate'),
     sourcemaps = require('gulp-sourcemaps'),
     browserSync = require('browser-sync').create(),
@@ -13,7 +13,9 @@ var gulp = require('gulp'),
     plumber = require('gulp-plumber'),
     jshint = require('gulp-jshint'),
     notify = require('gulp-notify'),
-    templateCache = require('gulp-angular-templatecache');
+    templateCache = require('gulp-angular-templatecache'),
+    spawn = require('child_process').spawn,
+    node;
 
 //****************************************************************
 //JavaScripts section
@@ -76,11 +78,18 @@ gulp.task('vendors', ['vendor-css', 'vendor-js'], function () {
 
 //****************************************************************
 // watching scss/js/html files
-gulp.task('watch', ['vendors', 'scripts', 'styles', 'template'], function() {
+gulp.task('watch', ['vendors', 'scripts', 'styles', 'template', 'server'], function() {
     gulp.watch('app/assets/styles/**/*.css', ['styles']);
     gulp.watch('app/assets/styles/**/*.scss', ['styles']);
     gulp.watch('app/assets/**/*.js', ['scripts']);
     gulp.watch('app/views/**/*.html', ['template']);
+    gulp.watch([
+        'config/*.js',
+        'routes/*.js',
+        'views/*.ejs',
+        'app.js',
+        'app/models/*.js'
+        ], ['server']);
 });
 
 //****************************************************************
@@ -92,6 +101,43 @@ gulp.task('template', function() {
         .pipe(notify({ message: 'Template task complete' }));
 });
 
+//****************************************************************
+// Run server
+// gulp.task('server', function() {
+//     var options = {
+//         continueOnError: false, // default = false, true means don't emit error event 
+//         pipeStdout: false // default = false, true means stdout is written to file.contents 
+//     };
+//     var reportOptions = {
+//         err: true, // default = true, false means don't write err 
+//         stderr: true, // default = true, false means don't write stderr 
+//         stdout: true // default = true, false means don't write stdout 
+//     }
+//     gulp.src('./bin/www')
+//         .pipe(exec('node <%= file.path %>', options))
+//         .pipe(exec.reporter(reportOptions))
+//         .pipe(notify({ message: 'Server is started' }));
+
+// });
+
+/**
+ * $ gulp server
+ * description: launch the server. If there's a server already running, kill it.
+ */
+gulp.task('server', function() {
+  if (node) node.kill()
+  node = spawn('node', ['./bin/www'], {stdio: 'inherit'})
+  node.on('close', function (code) {
+    if (code === 8) {
+      gulp.log('Error detected, waiting for changes...');
+    }
+  });
+})
+
+// clean up if an error goes unhandled.
+process.on('exit', function() {
+    if (node) node.kill()
+})
 
 //Default task
 gulp.task('default', ['watch'], function() {

@@ -1,6 +1,5 @@
 (function() {
   'use strict'
-
   angular
       .module('everquizApp')
       .config([
@@ -155,19 +154,19 @@
               })
               .state('login', {
                 url: '/login',
-                templateUrl: 'partials/auth/login.html',
+                templateUrl: 'auth/login.html',
                 controller: 'AuthController as AuthCtrl'
               })
               .state('register', {
                 url: '/register',
-                templateUrl: 'partials/auth/register.html',
+                templateUrl: 'auth/register.html',
                 controller: 'AuthController as AuthCtrl',
                 onEnter: ['$state', 'authFactory', function ($state, authFactory) {
                   if (authFactory.isLoggedIn()) {
                     $state.go('home');
                   }
                 }]
-              })
+              });
           $urlRouterProvider.otherwise('/');
         }]);
 
