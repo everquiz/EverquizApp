@@ -1,0 +1,1 @@
+angular.module('everquizApp', ['ui.router', 'templates']);

@@ -32,3 +32,6 @@ bower_components
 #minified css and js
 public/css
 public/js
+
+#templatecache
+app/assets/angular-js/templates.js

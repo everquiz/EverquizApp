@@ -1,0 +1,30 @@
+<div>
+  {{test}}
+</div>
+<div ng-repeat="user in MainCtrl.users">
+  <i class="fa fa-wrench" ng-click='MainCtrl.editUser(user)'></i>
+  <a href="#/dashboard/{{user._id}}">
+    {{user.name}}
+  </a>
+  - 
+  <a href="#/dashboard/{{user._id}}">
+    {{user.email}}
+  </a>
+  <small>createAt</small> {{user.createAt}}
+  | Notes: {{user.notes.length}}
+  | Quizzes: 
+<!--   <span>
+    <a href="#/dashboard/{{user._id}}">Notes</a>
+  </span> -->
+</div>
+<form ng-submit="MainCtrl.addUser()">
+  <input type="text" placeholder="Name" ng-model="MainCtrl.user.name"></input>
+  <br>
+  <input type="email" placeholder="Email" ng-model="MainCtrl.user.email"></input>
+  <br>
+  <input type="password" placeholder="Password" ng-model="MainCtrl.user.password"></input>
+  <br>
+  <input type="password" placeholder="Repeat password" ng-model="MainCtrl.passwordRepeat"></input>
+  <br>
+  <button type="submit">Add User</button>
+</form>

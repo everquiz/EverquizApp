@@ -11,32 +11,35 @@ var gulp = require('gulp'),
     browserSync = require('browser-sync').create(),
     watch = require('gulp-watch'),
     plumber = require('gulp-plumber'),
-    jshint = require('gulp-jshint');
-
-// watching scss/js/html files
-gulp.task('watch', function() {
-  gulp.watch('assets/styles/**/*.css', ['general-css']);
-  gulp.watch('assets/styles/**/*.scss', ['general-css']);
-  gulp.watch('assets/**/*.js', ['minify-js']);
-});
+    jshint = require('gulp-jshint'),
+    notify = require('gulp-notify'),
+    templateCache = require('gulp-angular-templatecache');
 
 //****************************************************************
 //JavaScripts section
-gulp.task('minify-js', function() {
-    return gulp.src(mainBowerFiles('**/*.js'))
-        .pipe(addsrc.append([
-            'assets/*.js',
-            'assets/angular-js/*.js',
-            'assets/angular-js/config/*.js',
-            'assets/angular-js/services/*.js',
-            'assets/angular-js/controllers/*.js',
-            'assets/generic-js/*.js']))
+gulp.task('scripts', function() {
+    return gulp.src([
+            'app/assets/*.js',
+            'app/assets/angular-js/*.js',
+            'app/assets/angular-js/config/*.js',
+            'app/assets/angular-js/services/*.js',
+            'app/assets/angular-js/controllers/*.js',
+            'app/assets/generic-js/*.js'])
         .pipe(plumber())
         .pipe(sourcemaps.init())
         .pipe(ngAnnotate())
-        .pipe(jshint.reporter('default'))
+        .pipe(jshint())
+        // .pipe(jshint.reporter('default'))
         .pipe(concat('application.min.js'))
         .pipe(sourcemaps.write('maps'))
+        .pipe(gulp.dest('public/js'))
+        .pipe(notify({ message: 'Script task complete' }));;
+});
+
+gulp.task('vendor-js', function() {
+    return gulp.src(mainBowerFiles('**/*.js'))
+        .pipe(plumber())
+        .pipe(concat('vendors.min.js'))
         .pipe(gulp.dest('public/js'));
 });
 
@@ -54,30 +57,41 @@ gulp.task('vendor-css', ['normalize'], function(){
 });
 
 //Custom styles
-gulp.task('custom-css', function() {
+gulp.task('styles', function() {
     return gulp.src([
-            'assets/styles/*.scss',
-            'assets/styles/*.css'])
+            'app/assets/styles/*.scss',
+            'app/assets/styles/*.css'])
         .pipe(sass().on('error', sass.logError))
         .pipe(concat('application.min.css'))
         .pipe(minifyCss({compatibility: 'ie8'}))
-        .pipe(gulp.dest('public/css'));
-});
-
-//Prepare all styles
-gulp.task('general-css', ['vendor-css', 'custom-css'], function() {
+        .pipe(gulp.dest('public/css'))
+        .pipe(notify({ message: 'Styles task complete' }));
 });
 
 //****************************************************************
 //General section
-//Run server
-gulp.task('server', ['general-css', 'minify-js'], function (cb) {
-  exec('npm start', function (err, stdout, stderr) {
-    console.log(stdout);
-    console.log(stderr);
-    cb(err);
-  });
+// Vendors scripts and styles
+gulp.task('vendors', ['vendor-css', 'vendor-js'], function () {
 });
+
+//****************************************************************
+// watching scss/js/html files
+gulp.task('watch', ['vendors', 'scripts', 'styles', 'template'], function() {
+    gulp.watch('app/assets/styles/**/*.css', ['styles']);
+    gulp.watch('app/assets/styles/**/*.scss', ['styles']);
+    gulp.watch('app/assets/**/*.js', ['scripts']);
+    gulp.watch('app/views/**/*.html', ['template']);
+});
+
+//****************************************************************
+// Angular templates
+gulp.task('template', function() {
+    return gulp.src('app/views/**/*.html')
+        .pipe(templateCache('templates.js', {standalone:true}))
+        .pipe(gulp.dest('app/assets/angular-js'))
+        .pipe(notify({ message: 'Template task complete' }));
+});
+
 
 //Default task
 gulp.task('default', ['watch'], function() {

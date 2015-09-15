@@ -26,23 +26,14 @@ db.on('disconnected', function(){
     console.log('Mongoose disconnected');
 });
 
-
-/**
- * acl connect
- */
-acl = new acl(new acl.mongodbBackend(db, 'acl_'));
-acl.allow('user', '/user', '*');
-acl.allow('admin', '/admin', '*');
-
-
-var UserModel = require('./models/Users');
-var NoteModel = require('./models/Notes');
-var QuizModel = require('./models/Quizzes');
-var CategoryModel = require('./models/Categories');
-var HistoryModel = require('./models/Histories');
-var QuestionModel = require('./models/Questions');
-var AnswerModel = require('./models/Answers');
-var StatisticModel = require('./models/Statistic');
+var UserModel = require('./app/models/Users');
+var NoteModel = require('./app/models/Notes');
+var QuizModel = require('./app/models/Quizzes');
+var CategoryModel = require('./app/models/Categories');
+var HistoryModel = require('./app/models/Histories');
+var QuestionModel = require('./app/models/Questions');
+var AnswerModel = require('./app/models/Answers');
+var StatisticModel = require('./app/models/Statistic');
 
 /**
  * Populate categories
