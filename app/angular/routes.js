@@ -110,7 +110,7 @@
               .state('admin.users', {
                 url: '/users',
                 templateUrl: 'admin/_users.html',
-                controller: 'AdminUsersController as AdminUserCtrl',
+                controller: 'AdminUsersController as AdminUsersCtrl',
                 resolve: {
                   userPromise: ['userService',
                     function (userService) {

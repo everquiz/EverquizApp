@@ -20,7 +20,9 @@ var gulp = require('gulp'),
 //****************************************************************
 //JavaScripts section
 gulp.task('scripts', function() {
-    return gulp.src('app/angular/**/*.js')
+    return gulp.src([
+            'app/angular/**/*.js',
+            'app/scripts/**/*.js'])
         .pipe(plumber())
         .pipe(sourcemaps.init())
         .pipe(ngAnnotate())
@@ -75,7 +77,10 @@ gulp.task('vendors', ['vendor-css', 'vendor-js'], function () {
 gulp.task('watch', ['vendors', 'scripts', 'styles', 'template', 'server'], function() {
     gulp.watch('app/styles/**/*.css', ['styles']);
     gulp.watch('app/styles/**/*.scss', ['styles']);
-    gulp.watch('app/scripts/**/*.js', ['scripts']);
+    gulp.watch([
+        'app/scripts/**/*.js',
+        'app/angular/**/*.js'
+        ], ['scripts']);
     gulp.watch('app/angular/**/*.html', ['template']);
     gulp.watch([
         'config/*.js',
