@@ -60,11 +60,11 @@ router.put('/checkresult', auth, function (req, res, next) {
     var quiz = {
         _id: results._id
     };
-    var promise = Question.find({quiz: results._id})
+    var questionPromise = Question.find({quiz: results._id})
         .populate('answers')
         .exec();
 
-    promise.then(function (questions) {
+    questionPromise.then(function (questions) {
         quiz.questions = questions;
         var result = checkResult(quiz, results);
 
@@ -80,6 +80,13 @@ router.put('/checkresult', auth, function (req, res, next) {
             if (err) {
                 return next(err);
             } else {
+                var userPromise = User.findById(req.payload._id)
+                    .exec();
+                userPromise.then(function (user) {
+                        user.history.push(history.id);
+                        user.save();
+                    }
+                );
                 return res.send({
                     result: result
                 });
