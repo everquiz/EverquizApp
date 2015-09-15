@@ -3,11 +3,11 @@
 
   angular
       .module('everquizApp')
-      .controller('UserController', UserController);
+      .controller('NoteController', NoteController);
 
-  UserController.$inject = ['user', 'noteService'];
+  NoteController.$inject = ['user', 'noteService'];
 
-  function UserController(user, noteService) {
+  function NoteController(user, noteService) {
     
     var vm = this;
     vm.notes = user.notes;

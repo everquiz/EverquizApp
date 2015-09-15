@@ -39,19 +39,19 @@
                     templateUrl: 'home/_getStarted.html'
                   },
                   'profile@home': {
-                    templateUrl: 'home/_profile.html',
+                    templateUrl: 'profile/_profile.html',
                     controller: 'ProfileController as ProfileCtrl'
                   },
                   'quizzes@home': {
-                    templateUrl: 'home/_quizzes.html',
+                    templateUrl: 'quizzes/runQuiz/_quizzes.html',
                     controller: "QuizzesContainerController as QuizzesContainerCtrl"
                   },
                   'list@home': {
-                    templateUrl: 'home/quizzes/_list.html',
+                    templateUrl: 'quizzes/runQuiz/_list.html',
                     controller: 'RunQuizzesController as RunQuizzesCtrl'
                   },
                   'quiz@home': {
-                    templateUrl: 'home/quizzes/_quiz.html',
+                    templateUrl: 'quizzes/runQuiz/_quiz.html',
                     controller: 'PassingQuizController as PassingQuizCtrl'
                   },
                   'notes@home': {
@@ -65,14 +65,13 @@
                     templateUrl: 'layouts/_footer.html'
                   },
                   'addQuiz@home': {
-                    templateUrl: 'home/_addQuiz.html'
+                    templateUrl: 'quizzes/_addQuiz.html'
                   }
                 }
               })
               .state('admin', {
                 url: '/admin',
                 templateUrl: 'admin/index.html',
-                controller: 'AdminController as AdminCtrl',
                 resolve: {loginRequired: accessAdmin}
               })
               .state('admin.quizzes', {
@@ -111,44 +110,11 @@
               .state('admin.users', {
                 url: '/users',
                 templateUrl: 'admin/_users.html',
-                controller: 'MainController as MainCtrl',
+                controller: 'AdminUsersController as AdminUsersCtrl',
                 resolve: {
                   userPromise: ['userService',
                     function (userService) {
                       return userService.getAll();
-                    }]
-                }
-              })
-              .state('users', {
-                url: '/users',
-                templateUrl: 'partials/users.html',
-                controller: 'MainController as MainCtrl',
-                resolve: {
-                  userPromise: ['userService',
-                    function (userService) {
-                      return userService.getAll();
-                    }]
-                }
-              })
-              .state('dashboard', {
-                url: '/dashboard/{id}',
-                templateUrl: 'partials/dashboard.html',
-                controller: 'UserController as UserCtrl',
-                resolve: {
-                  user: ['$stateParams', 'userService',
-                    function ($stateParams, userService) {
-                      return userService.get($stateParams.id);
-                    }]
-                }
-              })
-              .state('question', {
-                url: '/quiz/{quizId}/question/{id}',
-                templateUrl: 'partials/question.html',
-                controller: 'QuestionController as QuestionCtrl',
-                resolve: {
-                  question: ['$stateParams', 'questionService',
-                    function ($stateParams, questionService) {
-                      return questionService.get($stateParams.id);
                     }]
                 }
               })

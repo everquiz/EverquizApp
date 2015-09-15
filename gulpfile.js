@@ -21,12 +21,8 @@ var gulp = require('gulp'),
 //JavaScripts section
 gulp.task('scripts', function() {
     return gulp.src([
-            'app/assets/*.js',
-            'app/assets/angular-js/*.js',
-            'app/assets/angular-js/config/*.js',
-            'app/assets/angular-js/services/*.js',
-            'app/assets/angular-js/controllers/*.js',
-            'app/assets/generic-js/*.js'])
+            'app/angular/**/*.js',
+            'app/scripts/**/*.js'])
         .pipe(plumber())
         .pipe(sourcemaps.init())
         .pipe(ngAnnotate())
@@ -61,8 +57,8 @@ gulp.task('vendor-css', ['normalize'], function(){
 //Custom styles
 gulp.task('styles', function() {
     return gulp.src([
-            'app/assets/styles/*.scss',
-            'app/assets/styles/*.css'])
+            'app/*.scss',
+            'app/*.css'])
         .pipe(sass().on('error', sass.logError))
         .pipe(concat('application.min.css'))
         .pipe(minifyCss({compatibility: 'ie8'}))
@@ -79,10 +75,13 @@ gulp.task('vendors', ['vendor-css', 'vendor-js'], function () {
 //****************************************************************
 // watching scss/js/html files
 gulp.task('watch', ['vendors', 'scripts', 'styles', 'template', 'server'], function() {
-    gulp.watch('app/assets/styles/**/*.css', ['styles']);
-    gulp.watch('app/assets/styles/**/*.scss', ['styles']);
-    gulp.watch('app/assets/**/*.js', ['scripts']);
-    gulp.watch('app/views/**/*.html', ['template']);
+    gulp.watch('app/styles/**/*.css', ['styles']);
+    gulp.watch('app/styles/**/*.scss', ['styles']);
+    gulp.watch([
+        'app/scripts/**/*.js',
+        'app/angular/**/*.js'
+        ], ['scripts']);
+    gulp.watch('app/angular/**/*.html', ['template']);
     gulp.watch([
         'config/*.js',
         'routes/*.js',
@@ -95,9 +94,9 @@ gulp.task('watch', ['vendors', 'scripts', 'styles', 'template', 'server'], funct
 //****************************************************************
 // Angular templates
 gulp.task('template', function() {
-    return gulp.src('app/views/**/*.html')
+    return gulp.src('app/angular/**/*.html')
         .pipe(templateCache('templates.js', {standalone:true}))
-        .pipe(gulp.dest('app/assets/angular-js'))
+        .pipe(gulp.dest('app/angular'))
         .pipe(notify({ message: 'Template task complete' }));
 });
 

@@ -3,11 +3,11 @@
 
   angular
       .module('everquizApp')
-      .controller('MainController', MainController);
+      .controller('AdminUsersController', AdminUsersController);
 
-  MainController.$inject = ['userService'];
+  AdminUsersController.$inject = ['userService'];
 
-  function MainController(userService) {
+  function AdminUsersController(userService) {
 
     var vm = this;
     vm.test = 'Hello world!';
@@ -15,7 +15,6 @@
     vm.addUser = addUser;
     vm.removeUser = removeUser;
     vm.editUser = editUser;
-    vm.incrementUpvotes = incrementUpvotes;
 
     function addUser() {
       if((!vm.user.name || vm.user.name === '')
@@ -45,10 +44,6 @@
 
     function editUser(user) {
       vm.user = user;
-    };
-
-    function incrementUpvotes(post) {
-      postService.upvote(post);
     };
   }
 
