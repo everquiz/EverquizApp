@@ -16,7 +16,7 @@
         quizService.get(quizService.activeQuiz).then(
             function (data) {
                 vm.quiz = data;
-                quizService.getAnswers(quizService.activeQuiz).then(
+                quizService.getQuestions(quizService.activeQuiz).then(
                     function (data) {
                         vm.quiz.questions = data;
                     }
@@ -27,7 +27,7 @@
         function checkResult() {
             quizService.checkResult(vm.quiz).then(
                 function (data) {
-                    vm.result = data;
+                    vm.result = data.result;
                 }
             )
         }

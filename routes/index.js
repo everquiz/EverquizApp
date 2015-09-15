@@ -54,8 +54,9 @@ router.get('/', function (req, res, next) {
 });
 
 //quizpassing result
-router.put('/checkresult', function (req, res, next) {
+router.put('/checkresult', auth, function (req, res, next) {
     var results = req.body;
+    console.log(req.payload);
     var quiz = {
         _id: results._id
     };
@@ -64,18 +65,39 @@ router.put('/checkresult', function (req, res, next) {
         .exec(function (err, questions) {
 
             quiz.questions = questions;
-            checkResult(quiz, results);
+            res.send({
+                result: checkResult(quiz, results)
+            });
         })
 });
 
 function checkResult(quiz, result) {
+    var correctAnswers = 0;
+    var wrongAnswers = 0;
+    var trueVariants = 0;
+    var sum = 0;
+
     for (var i = 0; i < quiz.questions.length; i++) {
         for (var j = 0; j < quiz.questions[i].answers.length; j++) {
-            if (quiz.questions[i].answers[j].correct === result.questions[i].answers[j].userResult) {
-                console.log('one moar true answer');
+            if (result.questions[i].answers[j].userResult === true && quiz.questions[i].answers[j].correct === true) {
+                correctAnswers++;
+            }
+            if (result.questions[i].answers[j].userResult === true && quiz.questions[i].answers[j].correct === false) {
+                wrongAnswers++;
+            }
+            if (quiz.questions[i].answers[j].correct) {
+                trueVariants++;
             }
         }
+
+        if (((correctAnswers - wrongAnswers) / trueVariants) > 0) {
+            sum += (correctAnswers - wrongAnswers) / trueVariants;
+        }
+        correctAnswers = 0;
+        wrongAnswers = 0;
+        trueVariants = 0;
     }
+    return sum / (quiz.questions.length-1);
 }
 
 
