@@ -19,7 +19,7 @@ var gulp = require('gulp'),
 
 //****************************************************************
 //JavaScripts section
-gulp.task('scripts', function() {
+gulp.task('heroku:prod', 'scripts', function() {
     return gulp.src([
             'app/angular/**/*.js',
             'app/scripts/**/*.js'])
@@ -34,7 +34,7 @@ gulp.task('scripts', function() {
         .pipe(notify({ message: 'Script task complete' }));;
 });
 
-gulp.task('vendor-js', function() {
+gulp.task('heroku:prod', 'vendor-js', function() {
     return gulp.src(mainBowerFiles('**/*.js'))
         .pipe(plumber())
         .pipe(concat('vendors.min.js'))
@@ -45,17 +45,17 @@ gulp.task('vendor-js', function() {
 //****************************************************************
 //CSS section
 //External styles
-gulp.task('normalize', function() {
+gulp.task('heroku:prod', 'normalize', function() {
     return gulp.src(mainBowerFiles('**/*.css'))
         .pipe(minifyCss({compatibility: 'ie8'}))
         .pipe(gulp.dest('public/css'));
 });
 
-gulp.task('vendor-css', ['normalize'], function(){
+gulp.task('heroku:prod', 'vendor-css', ['normalize'], function(){
 });
 
 //Custom styles
-gulp.task('styles', function() {
+gulp.task('heroku:prod', 'styles', function() {
     return gulp.src([
             'app/*.scss',
             'app/*.css'])
@@ -69,12 +69,12 @@ gulp.task('styles', function() {
 //****************************************************************
 //General section
 // Vendors scripts and styles
-gulp.task('vendors', ['vendor-css', 'vendor-js'], function () {
+gulp.task('heroku:prod', 'vendors', ['vendor-css', 'vendor-js'], function () {
 });
 
 //****************************************************************
 // watching scss/js/html files
-gulp.task('watch', ['vendors', 'scripts', 'styles', 'template', 'server'], function() {
+gulp.task('heroku:prod', 'watch', ['vendors', 'scripts', 'styles', 'template', 'server'], function() {
     gulp.watch('app/styles/**/*.css', ['styles']);
     gulp.watch('app/styles/**/*.scss', ['styles']);
     gulp.watch([
@@ -93,7 +93,7 @@ gulp.task('watch', ['vendors', 'scripts', 'styles', 'template', 'server'], funct
 
 //****************************************************************
 // Angular templates
-gulp.task('template', function() {
+gulp.task('heroku:prod', 'template', function() {
     return gulp.src('app/angular/**/*.html')
         .pipe(templateCache('templates.js', {standalone:true}))
         .pipe(gulp.dest('app/angular'))
@@ -123,7 +123,7 @@ gulp.task('template', function() {
  * $ gulp server
  * description: launch the server. If there's a server already running, kill it.
  */
-gulp.task('server', function() {
+gulp.task('heroku:prod', 'server', function() {
   if (node) node.kill()
   node = spawn('node', ['./bin/www'], {stdio: 'inherit'})
   node.on('close', function (code) {
@@ -139,6 +139,6 @@ process.on('exit', function() {
 })
 
 //Default task
-gulp.task('default', ['watch'], function() {
+gulp.task('heroku:prod', 'default', ['watch'], function() {
 });
 
