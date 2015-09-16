@@ -34,3 +34,6 @@ public/js
 
 #templatecache
 app/angular/templates.js
+
+#db connect
+config/db.js
