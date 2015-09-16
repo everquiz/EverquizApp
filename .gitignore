@@ -36,5 +36,4 @@ public/js
 app/angular/templates.js
 
 #db connect
-
-/db.js
+config/db.js
