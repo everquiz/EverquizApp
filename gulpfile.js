@@ -142,3 +142,8 @@ process.on('exit', function() {
 gulp.task('default', ['watch'], function() {
 });
 
+// heroku task
+gulp.task('heroku:test', ['vendors', 'scripts', 'styles', 'template']);
+
+
+

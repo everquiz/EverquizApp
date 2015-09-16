@@ -3,11 +3,11 @@
 
   angular
       .module('everquizApp')
-      .controller('AdminUsersController', AdminUsersController);
+      .controller('UsersController', UsersController);
 
-  AdminUsersController.$inject = ['userService'];
+  UsersController.$inject = ['userService'];
 
-  function AdminUsersController(userService) {
+  function UsersController(userService) {
 
     var vm = this;
     vm.test = 'Hello world!';

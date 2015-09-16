@@ -11,6 +11,7 @@ var express = require('express'),
     jwt = require('express-jwt'),
     auth = jwt({secret: 'SECRET', userProperty: 'payload'});
 
+
 router.post('/register', function (req, res, next) {
     console.log('req.body');
     console.log(req.body);
@@ -67,6 +68,9 @@ router.put('/checkresult', auth, function (req, res, next) {
     questionPromise.then(function (questions) {
         quiz.questions = questions;
         var result = checkResult(quiz, results);
+        res.send({
+            result: result
+        });
 
         var history = new History();
         history.quiz = quiz._id;
@@ -87,9 +91,6 @@ router.put('/checkresult', auth, function (req, res, next) {
                         user.save();
                     }
                 );
-                return res.send({
-                    result: result
-                });
             }
         });
     });
