@@ -57,8 +57,8 @@ gulp.task('vendor-css', ['normalize'], function(){
 //Custom styles
 gulp.task('styles', function() {
     return gulp.src([
-            'app/*.scss',
-            'app/*.css'])
+            'app/styles/**/*.scss',
+            'app/styles/**/*.css'])
         .pipe(sass().on('error', sass.logError))
         .pipe(concat('application.min.css'))
         .pipe(minifyCss({compatibility: 'ie8'}))
