@@ -55,7 +55,7 @@
                     controller: 'PassingQuizController as PassingQuizCtrl'
                   },
                   'notes@home': {
-                    templateUrl: 'profile/_notes.html',
+                    templateUrl: 'notes/_notes.html',
                     controller: 'NotesController as NotesCtrl'
                   },
                   'getFail@home': {
