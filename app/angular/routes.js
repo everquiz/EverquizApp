@@ -43,15 +43,15 @@
                     controller: 'ProfileController as ProfileCtrl'
                   },
                   'quizzes@home': {
-                    templateUrl: 'quizzes/runQuiz/_quizzes.html',
+                    templateUrl: 'quizzes/_quizzes.html',
                     controller: "QuizzesContainerController as QuizzesContainerCtrl"
                   },
                   'list@home': {
-                    templateUrl: 'quizzes/runQuiz/_list.html',
+                    templateUrl: 'quizzes/list/_list.html',
                     controller: 'RunQuizzesController as RunQuizzesCtrl'
                   },
                   'quiz@home': {
-                    templateUrl: 'quizzes/runQuiz/_quiz.html',
+                    templateUrl: 'quizzes/single/_quiz.html',
                     controller: 'PassingQuizController as PassingQuizCtrl'
                   },
                   'notes@home': {
@@ -76,7 +76,7 @@
               })
               .state('admin.quizzes', {
                 url: '/quizzes',
-                templateUrl: 'admin/_quizzes.html',
+                templateUrl: 'admin/quizzes/_quizzes.html',
                 controller: 'QuizzesController as QuizzesCtrl',
                 resolve: {
                   quizzes: ['quizService',
@@ -87,7 +87,7 @@
               })
               .state('admin.quiz', {
                 url: '/quiz/{id}',
-                templateUrl: 'admin/_quiz.html',
+                templateUrl: 'admin/quiz/_quiz.html',
                 controller: 'QuizController as QuizCtrl',
                 resolve: {
                   quiz: ['$stateParams', 'quizService',
@@ -98,7 +98,7 @@
               })
               .state('admin.question', {
                 url: '/question/{id}',
-                templateUrl: 'admin/_question.html',
+                templateUrl: 'admin/question/_question.html',
                 controller: 'QuestionController as QuestionCtrl',
                 resolve: {
                   question: ['$stateParams', 'questionService',
@@ -109,8 +109,8 @@
               })
               .state('admin.users', {
                 url: '/users',
-                templateUrl: 'admin/_users.html',
-                controller: 'AdminUsersController as AdminUsersCtrl',
+                templateUrl: 'admin/users/_users.html',
+                controller: 'UsersController as UsersCtrl',
                 resolve: {
                   userPromise: ['userService',
                     function (userService) {
