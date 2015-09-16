@@ -74,6 +74,17 @@
                 templateUrl: 'admin/index.html',
                 resolve: {loginRequired: accessAdmin}
               })
+              .state('admin.categories', {
+                url: '/categories',
+                templateUrl: 'admin/categories/_categories.html',
+                controller: 'CategoriesController as CategoriesCtrl',
+                resolve: {
+                  categories: ['categoryService',
+                    function (categoryService) {
+                      return categoryService.getAll();
+                    }]
+                }
+              })
               .state('admin.quizzes', {
                 url: '/quizzes',
                 templateUrl: 'admin/quizzes/_quizzes.html',

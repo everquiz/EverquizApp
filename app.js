@@ -14,17 +14,7 @@ var express = require('express'),
 /*
   Connect to db
  */
-var mongoose = require('mongoose');
-var db = mongoose.connection;
-mongoose.connect('mongodb://root:root@ds041663.mongolab.com:41663/everquizdb');
-  
-db.on('connected', function() {
-    console.log('Mongoose connected to everquizdb');
-});
-
-db.on('disconnected', function(){
-    console.log('Mongoose disconnected');
-});
+require('./config/db');
 
 var UserModel = require('./app/models/Users');
 var NoteModel = require('./app/models/Notes');
@@ -34,11 +24,6 @@ var HistoryModel = require('./app/models/Histories');
 var QuestionModel = require('./app/models/Questions');
 var AnswerModel = require('./app/models/Answers');
 var StatisticModel = require('./app/models/Statistic');
-
-/**
- * Populate categories
- */
-require('./config/populateCategories');
 
 require('./config/passport');
 

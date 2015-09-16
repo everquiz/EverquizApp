@@ -73,8 +73,6 @@
         };
 
         this.create = function (quiz) {
-            console.log('quiz');
-            console.log(quiz);
             return $http.post('/api/v1/Quizzes', quiz).success(function (data) {
                 _quizzes.push(data);
             });
