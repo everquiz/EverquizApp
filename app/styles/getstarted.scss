@@ -1,7 +1,7 @@
 .about-container {
-	background: #a1c6cb;
+	background: linear-gradient(to bottom, #b3c5cb, #cddcdf);
 	height: 500px;
-	padding: 50px 10%;
+	padding: 100px 10%;
 
 	&-name {
 		float: left;
@@ -10,6 +10,7 @@
 		&__vertical {
 			display: inline-block;
 			vertical-align: top;
+			text-align: center;
 			margin-left: 20px;
 			font-size: 3em;
 			width: 1em;

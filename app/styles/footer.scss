@@ -23,9 +23,10 @@
 		overflow:hidden;
 		text-align: center;
 
-		& a {
+		&__item {
 			color: #a1a1a1;
 			text-decoration: none;
+			margin: 0 10px;
 
 			&:hover {
 				text-decoration: none;

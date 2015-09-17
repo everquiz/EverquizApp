@@ -1,34 +1,38 @@
 .video {
-	height: 500px;
-	background: #9aa5ab;
-	padding-top: 200px;
+	height: 700px;
+	background: radial-gradient(#d9dad9, #727a7f);
+	
+	&-content {
+		padding-top: 300px;
 
-	&__start {
-		display: block;
-		width: 100px;
-		height: 100px;
-		padding: 0 0 0 5px;
-		margin: auto;
-		text-align: center;
-		border-radius: 100px;
-		border: 5px solid #fff;
-		font-size: 50px;
-		color: #fff;
-		background: transparent;
-	}
-
-	&-description {
-		width: 35%;
-		margin: 30px auto 0;
-
-		&__content {
+		&__start {
+			display: block;
+			width: 100px;
+			height: 100px;
+			padding: 0 0 0 5px;
+			margin: auto;
+			text-align: center;
+			border-radius: 100px;
+			border: 5px solid #fff;
+			font-size: 50px;
 			color: #fff;
-			font-weight: bold;
-			font-size: 24px;
-
-			&.is-important {
-				color: #fd2828;
-			}	
+			background: transparent;
 		}
-	}
+
+		&-description {
+			width: 35%;
+			margin: 30px auto 0;
+
+			&__content {
+				color: #fff;
+				font-weight: bold;
+				font-size: 24px;
+				text-align: center;
+
+				&.is-important {
+					color: #fd2828;
+				}	
+			}
+		}
+	}	
 }
