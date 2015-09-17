@@ -1,0 +1,13 @@
+<ul>
+  <li><a ng-click="NavCtrl.goHome()">HOME</a></li>
+  <li>VIDEO</li>
+  <li>QUIZZES</li>
+  <li ng-show="NavCtrl.isLoggedIn()">NOTES</li>
+  <li>GET FAIL?</li>
+
+  <li ng-show="NavCtrl.isLoggedIn()"><a ng-click="NavCtrl.showProfile()">{{ NavCtrl.currentUser() }}</a></li>
+  <li ng-show="NavCtrl.isLoggedIn()"><a href="" ng-click="NavCtrl.logOut()">Log Out</a></li>
+  <li ng-hide="NavCtrl.isLoggedIn()"><a href="#/login">Log In</a></li>
+  <li ng-hide="NavCtrl.isLoggedIn()"><a href="#/register">Register</a></li>
+</ul>
+<hr>

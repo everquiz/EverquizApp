@@ -25,10 +25,15 @@ build/Release
 # Dependency directory
 # https://www.npmjs.org/doc/misc/npm-faq.html#should-i-check-my-node_modules-folder-into-git
 node_modules
-<<<<<<< HEAD
 bower_components
 .idea/
 
 #minified css and js
 public/css
 public/js
+
+#templatecache
+app/angular/templates.js
+
+#db connect
+config/db.js
