@@ -5,9 +5,9 @@
         .module('everquizApp')
         .service('quizService', quizService);
 
-    quizService.$inject = ['$http', 'authFactory'];
+    quizService.$inject = ['$http', 'authFactory', 'categoryService'];
 
-    function quizService($http, authFactory) {
+    function quizService($http, authFactory, categoryService) {
 
         // For admin
         var _quizzes = [];
@@ -58,10 +58,12 @@
          * For admin section
          */
         this.getAll = function () {
-            $http.get('/api/v1/Quizzes?populate=category')
+            $http.get('/api/v1/Quizzes?populate=category&select=category._id,category.title', {
+                    headers: {Authorization: 'Bearer ' + authFactory.getToken()}
+                })
                 .then(function (res) {
-                angular.copy(res.data, self.quizzes);
-            });
+                    angular.copy(res.data, self.quizzes);
+                });
             return self.quizzes;
         };
 
@@ -73,9 +75,18 @@
         };
 
         this.create = function (quiz) {
-            return $http.post('/api/v1/Quizzes', quiz).success(function (data) {
-                self.quizzes.push(data);
-            });
+            return $http.post('/api/v1/Quizzes', quiz, {
+                    headers: {Authorization: 'Bearer ' + authFactory.getToken()}
+                }).success(function (data) {
+                    console.log(data);
+                    categoryService.get(data.category).then(function (res) {
+                        console.log(res);
+                        data.category = res;
+                        console.log(data);
+                        self.quizzes.push(data);
+                    });
+                    
+                });
         };
 
         this.unactive = function (quiz) {
@@ -89,8 +100,12 @@
         };
 
         this.update = function (quiz) {
-            return $http.put('/api/v1/Quizzes/' + quiz._id, quiz);
+            return $http.put('/api/v1/Quizzes/' + quiz._id, quiz, {
+                    headers: {Authorization: 'Bearer ' + authFactory.getToken()}
+                });
         };
+
+
     }
 
 })();
