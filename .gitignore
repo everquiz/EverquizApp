@@ -15,11 +15,12 @@ coverage
 
 # Grunt intermediate storage (http://gruntjs.com/creating-plugins#storing-task-files)
 .grunt
-/config/db.js
 
 # node-waf configuration
 .lock-wscript
 
+# Compiled binary addons (http://nodejs.org/api/addons.html)
+build/Release
 
 # Dependency directory
 # https://www.npmjs.org/doc/misc/npm-faq.html#should-i-check-my-node_modules-folder-into-git
@@ -32,7 +33,4 @@ public/css
 public/js
 
 #templatecache
-/app/angular/templates.js
-
-#db connect
-config/db.js
+app/angular/templates.js
