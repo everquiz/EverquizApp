@@ -15,7 +15,6 @@
     vm.removeCategory = removeCategory;
 
     function addCategory() {
-      console.log(vm.category);
       if ((!vm.category.title || vm.category.title === '')
           || (!vm.category.description || vm.category.description === '')) {
         return;
