@@ -1,6 +1,6 @@
 <div class="quiz">
     <div class="quiz__title">
-        {{passingQuizCtrl.quiz.title}}
+        {{PassingQuizCtrl.quiz.title}}
     </div>
     <div class="quiz-counter">
       <span class="quiz-counter-indicator">
@@ -12,7 +12,7 @@
     
         <form class="quiz-question-block" id="slider" ng-submit="PassingQuizCtrl.checkResult();">
             <div class="quiz-question-block-question" ng-repeat="question in PassingQuizCtrl.quiz.questions">
-                {{question.text}}
+                <div class="quiz-question-block-question__title">{{question.text}}</div> 
                     <ul class="quiz-question-block-answers-list">
                         <li class="quiz-question-block-answers-list-item" ng-repeat="answer in question.answers">
                             
@@ -26,9 +26,9 @@
         <span>
             {{PassingQuizCtrl.result}}
         </span>
-    <button onclick="">NEXT STEP</button>
+    <button onclick="" class="quiz-question-block__submit">NEXT STEP</button>
 
 
-<div class="quiz-back" ><a href="" class="quiz-back__link" ng-click="quizzesContainerCtrl.quizService.activeQuiz = null">BACK TO ALL QUIZZES</a></div>
+<div class="quiz-back" ><a href="" class="quiz-back__link" ng-click="QuizzesContainerCtrl.quizService.activeQuiz = null">BACK TO ALL QUIZZES</a></div>
 
 </div>
