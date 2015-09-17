@@ -101,24 +101,6 @@ gulp.task('template', function() {
 });
 
 //****************************************************************
-// Run server
-// gulp.task('server', function() {
-//     var options = {
-//         continueOnError: false, // default = false, true means don't emit error event 
-//         pipeStdout: false // default = false, true means stdout is written to file.contents 
-//     };
-//     var reportOptions = {
-//         err: true, // default = true, false means don't write err 
-//         stderr: true, // default = true, false means don't write stderr 
-//         stdout: true // default = true, false means don't write stdout 
-//     }
-//     gulp.src('./bin/www')
-//         .pipe(exec('node <%= file.path %>', options))
-//         .pipe(exec.reporter(reportOptions))
-//         .pipe(notify({ message: 'Server is started' }));
-
-// });
-
 /**
  * $ gulp server
  * description: launch the server. If there's a server already running, kill it.

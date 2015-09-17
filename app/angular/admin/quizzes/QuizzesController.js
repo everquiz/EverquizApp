@@ -13,7 +13,7 @@
     var vm = this;
     vm.status = 0;
     vm.quizzes = quizzes;
-    vm.categories = categoryService.getCategories();
+    vm.categories = categoryService.getAll();
     vm.addQuiz = addQuiz;
     vm.editQuiz = editQuiz;
     vm.getStatus = getStatus;
@@ -37,24 +37,21 @@
     };
 
     function editQuiz(quiz) {
-      console.log($scope.quiz);
       $scope.quiz = quiz;
     };
 
     function addQuiz() {
-      console.log($scope.quiz);
-      if ((!$scope.quiz.title || $scope.quiz.title === '')
-          || (!$scope.quiz.description || $scope.quiz.description === '')) {
+      if ((!vm.quiz.title || vm.quiz.title === '')
+          || (!vm.quiz.description || vm.quiz.description === '')) {
         return;
       }
-      if (!$scope.quiz._id || $scope.quiz._id === '') {
-        quizService.create($scope.quiz);
+      if (!vm.quiz._id || vm.quiz._id === '') {
+        quizService.create(vm.quiz);
       }
       else {
-        quizService.update($scope.quiz);
+        quizService.update(vm.quiz);
       }
-      $scope.quiz = {};
+      vm.quiz = {};
     };
   };
-
 })();

@@ -14,10 +14,10 @@
         this.quizzes = _quizzes;
 
         // For user
-        var _self = {};
-        _self.quizzes = [];
+        var self = {};
+        self.quizzes = [];
 
-        _self.activeQuiz = null;
+        self.activeQuiz = null;
 
         /**
          * For user section
@@ -25,17 +25,17 @@
         this.getQuizzes = function () {
             $http.get('/api/v1/Quizzes?populate=category')
                 .then(function (res) {
-                angular.copy(res.data, _self.quizzes);
+                angular.copy(res.data, self.quizzes);
             });
-            return _self.quizzes;
+            return self.quizzes;
         }
 
         this.getQuizzesByCategory = function (category) {
             $http.get('/api/v1/Quizzes?populate=category&category=' + category)
                 .then(function (res) {
-                angular.copy(res.data, _self.quizzes);
+                angular.copy(res.data, self.quizzes);
             });
-            return _self.quizzes;
+            return self.quizzes;
         }
 
         this.getQuestions = function (id) {
@@ -58,11 +58,11 @@
          * For admin section
          */
         this.getAll = function () {
-            return $http.get('/api/v1/Quizzes?populate=category')
+            $http.get('/api/v1/Quizzes?populate=category')
                 .then(function (res) {
-                angular.copy(res.data, _quizzes);
-                return res.data;
+                angular.copy(res.data, self.quizzes);
             });
+            return self.quizzes;
         };
 
         this.get = function (id) {
@@ -74,7 +74,7 @@
 
         this.create = function (quiz) {
             return $http.post('/api/v1/Quizzes', quiz).success(function (data) {
-                _quizzes.push(data);
+                self.quizzes.push(data);
             });
         };
 
