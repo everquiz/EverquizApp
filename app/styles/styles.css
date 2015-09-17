@@ -1,5 +1,15 @@
+/* Font faces*/
+
+@font-face {
+	font-family: 'Proxima Nova';
+    src: url(../font/proximanova.otf);
+}
+
+/*Styles*/
+
 body {
     margin: 0;
+    font-family: 'Proxima Nova';
 }
 p {
     font-family: arial, helvetica, sans-serif;
@@ -23,6 +33,8 @@ p#paragraph1 {
 [type="button"] {
     background-color: green;
 }
+
+
 /**
  * Temporary form for admin DEMO HAKATON
  */
