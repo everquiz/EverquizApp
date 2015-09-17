@@ -1,47 +1,49 @@
-<div class="quizzes-header">
-    <div class="quizzes-header__title">Quizzes</div>
+<div class="quizzes">
+    <div class="quizzes-header">
+        <div class="quizzes-header__title">Quizzes</div>
 
-    <form class="quizzes-header-selector" method="get" action="">
-        <select name="category" id="category" class="quizzes-header-selector-item" ng-model="RunQuizzesCtrl.selected" ng-options="o._id as o.title for o in RunQuizzesCtrl.categories" ng-change="RunQuizzesCtrl.getQuizzesByCategory()">
-            <option value="All">All categories</option>
-            <option value="HTMLnCSS">HTML&amp;CSS</option>
-            <option value="JavaScript">JavaScript</option>
-            <option value="Ruby">Ruby</option>
-            <option value="Perl">Perl</option>
-            <option value="Python">Python</option>
-        </select>
-        <select name="difficulty" id="difficulty" class="quizzes-header-selector-item">
-            <option value="All">All difficulties</option>
-            <option value="Novice">Novice</option>
-            <option value="Advanced">Advanced</option>
-            <option value="Ruby">Expert</option>
-        </select>
-        <select name="status" id="status" class="quizzes-header-selector-item">
-            <option value="All">All statuses</option>
-            <option value="Novice">Passed</option>
-            <option value="Advanced">non-Passed</option>
-        </select>
-    </form>
-</div>
+        <form class="quizzes-header-selector" method="get" action="">
+            <select name="category" id="category" class="quizzes-header-selector-item" ng-model="RunQuizzesCtrl.selected" ng-options="o._id as o.title for o in RunQuizzesCtrl.categories" ng-change="RunQuizzesCtrl.getQuizzesByCategory()">
+                <option value="All">All categories</option>
+                <option value="HTMLnCSS">HTML&amp;CSS</option>
+                <option value="JavaScript">JavaScript</option>
+                <option value="Ruby">Ruby</option>
+                <option value="Perl">Perl</option>
+                <option value="Python">Python</option>
+            </select>
+            <select name="difficulty" id="difficulty" class="quizzes-header-selector-item">
+                <option value="All">All difficulties</option>
+                <option value="Novice">Novice</option>
+                <option value="Advanced">Advanced</option>
+                <option value="Ruby">Expert</option>
+            </select>
+            <select name="status" id="status" class="quizzes-header-selector-item">
+                <option value="All">All statuses</option>
+                <option value="Novice">Passed</option>
+                <option value="Advanced">non-Passed</option>
+            </select>
+        </form>
+    </div>
 
-<div class="quizzes-selection">
-    <table class="quizzes-selection-table">
-        <tr class="quizzes-selection-table-row-heading">
-            <th class="quizzes-selection-table-row-heading__title">Category</th>
-            <th class="quizzes-selection-table-row-heading__title">Name</th>
-            <th class="quizzes-selection-table-row-heading__title">Difficulty</th>
-            <th class="quizzes-selection-table-row-heading__title">Avrg</th>
-            <th class="quizzes-selection-table-row-heading__title">Best</th>
-            <th class="quizzes-selection-table-row-heading__title">Total passing</th>
-        </tr>
-        <tr class="quizzes-selection-table-row-content" ng-repeat="quiz in RunQuizzesCtrl.quizzes" ng-click="QuizzesContainerCtrl.quizService.activeQuiz
-         = quiz._id;">
-            <td class="quizzes-selection-table-row-content__title">{{quiz.category.title}}</td>
-            <td class="quizzes-selection-table-row-content__title">{{quiz.title}}</td>
-            <td class="quizzes-selection-table-row-content__title">quiz_difficulty</td>
-            <td class="quizzes-selection-table-row-content__title">avrg_result</td>
-            <td class="quizzes-selection-table-row-content__title">best_result</td>
-            <td class="quizzes-selection-table-row-content__title">total_passing</td>
-        </tr>
-    </table>
+    <div class="quizzes-selection">
+        <table class="quizzes-selection-table">
+            <tr class="quizzes-selection-table-row-heading">
+                <th class="quizzes-selection-table-row-heading__title">Category</th>
+                <th class="quizzes-selection-table-row-heading__title">Name</th>
+                <th class="quizzes-selection-table-row-heading__title">Difficulty</th>
+                <th class="quizzes-selection-table-row-heading__title">Avrg</th>
+                <th class="quizzes-selection-table-row-heading__title">Best</th>
+                <th class="quizzes-selection-table-row-heading__title">Total passing</th>
+            </tr>
+            <tr class="quizzes-selection-table-row-content" ng-repeat="quiz in RunQuizzesCtrl.quizzes" ng-click="QuizzesContainerCtrl.quizService.activeQuiz
+             = quiz._id;">
+                <td class="quizzes-selection-table-row-content__title">{{quiz.category.title}}</td>
+                <td class="quizzes-selection-table-row-content__title">{{quiz.title}}</td>
+                <td class="quizzes-selection-table-row-content__title">quiz_difficulty</td>
+                <td class="quizzes-selection-table-row-content__title">avrg_result</td>
+                <td class="quizzes-selection-table-row-content__title">best_result</td>
+                <td class="quizzes-selection-table-row-content__title">total_passing</td>
+            </tr>
+        </table>
+    </div>
 </div>

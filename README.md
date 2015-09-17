@@ -6,6 +6,10 @@
 4. npm start
 5. app location (http://localhost:3000)
 
+
+Command for using own db:
+git update-index --assume-unchanged config/db.js
+
 Checking db status:
 
 To connect using the shell:

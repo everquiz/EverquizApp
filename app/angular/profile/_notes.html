@@ -1,4 +1,15 @@
-<div ng-show="NotesCtrl.isLoggedIn()">
-  notes "User logged"
-  <hr>
+<div class="notes"  ng-show="NotesCtrl.isLoggedIn()">
+		<div class="notes-header">
+			<span class="notes-header__title">Notes</span>
+		</div>
+		<div class="notes-wrapper">
+			<div class="notes-block" ng-repeat="i in [0,1,2,3,4,5,6,7]">
+				<div class="notes-block__name">Note #{{i+1}} name</div>
+				<div class="notes-block__content">Note content</div>
+				<div class="notes-block__info">Note info</div>
+			</div>
+		</div>	
+	<div class="notes-button">
+		<button class="notes-button__show-all">VIEW ALL</button>
+	</div>
 </div>
