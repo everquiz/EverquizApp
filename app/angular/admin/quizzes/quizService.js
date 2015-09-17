@@ -23,7 +23,9 @@
          * For user section
          */
         this.getQuizzes = function () {
-            $http.get('/api/v1/Quizzes?populate=category')
+            $http.get('/api/v1/Quizzes?populate=category', {
+                    headers: {Authorization: 'Bearer ' + authFactory.getToken()}
+                })
                 .then(function (res) {
                 angular.copy(res.data, self.quizzes);
             });
@@ -31,7 +33,9 @@
         }
 
         this.getQuizzesByCategory = function (category) {
-            $http.get('/api/v1/Quizzes?populate=category&category=' + category)
+            $http.get('/api/v1/Quizzes?populate=category&category=' + category, {
+                    headers: {Authorization: 'Bearer ' + authFactory.getToken()}
+                })
                 .then(function (res) {
                 angular.copy(res.data, self.quizzes);
             });
