@@ -1,13 +1,34 @@
-<ul>
-  <li><a ng-click="NavCtrl.goHome()">HOME</a></li>
-  <li>VIDEO</li>
-  <li>QUIZZES</li>
-  <li ng-show="NavCtrl.isLoggedIn()">NOTES</li>
-  <li>GET FAIL?</li>
-
-  <li ng-show="NavCtrl.isLoggedIn()"><a ng-click="NavCtrl.showProfile()">{{ NavCtrl.currentUser() }}</a></li>
-  <li ng-show="NavCtrl.isLoggedIn()"><a href="" ng-click="NavCtrl.logOut()">Log Out</a></li>
-  <li ng-hide="NavCtrl.isLoggedIn()"><a href="#/login">Log In</a></li>
-  <li ng-hide="NavCtrl.isLoggedIn()"><a href="#/register">Register</a></li>
-</ul>
-<hr>
+<header class="header clearfix">
+	<div class="header-main">
+		<nav class="header-main-nav">
+			<ul class="header-main-nav-list">
+				<li class="header-main-nav-list-item">
+					<a href="#about" class="header-main-nav-list-item__home" ng-click="NavCtrl.goHome()">E</a>
+				</li
+				><li class="header-main-nav-list-item">
+					<a href="#video" class="header-main-nav-list-item__video">VIDEO</a>
+				</li
+				><li class="header-main-nav-list-item">
+					<a href="quizzes" class="header-main-nav-list-item__quizzes">QUIZZES</a>
+				</li
+				><li class="header-main-nav-list-item">
+					<a href="#notes" class="header-main-nav-list-item__notes">NOTES</a>
+				</li
+				><li class="header-main-nav-list-item">
+					<a href="#parallax" class="header-main-nav-list-item__parallax">GET FAIL?</a>
+				</li>
+			</ul>		
+		</nav>
+	</div>
+	<div class="header-profile">
+		<div class="header-profile-photo" ng-show="NavCtrl.isLoggedIn()" ng-click="NavCtrl.showProfile()">
+			<img src="../../i/profile-image.jpg" alt=""  class="header-profile-photo__user">
+		</div>
+		<div class="header-profile__popup" ng-show="NavCtrl.isLoggedIn()" ng-click="NavCtrl.showProfile()">&#9660</div>
+		<div class="header-profile-nav">
+			<a href="" class="header-profile-nav__logout" ng-click="NavCtrl.logOut()" ng-show="NavCtrl.isLoggedIn()">LOGOUT</a>
+			<a href="#/login" class="header-profile-nav__login" ng-hide="NavCtrl.isLoggedIn()">Log In</a>
+  			<a href="#/register" class="header-profile-nav__register" ng-hide="NavCtrl.isLoggedIn()">Register</a>
+		</div>	
+	</div>
+</header>
