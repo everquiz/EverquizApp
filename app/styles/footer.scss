@@ -4,15 +4,23 @@
 	font-size: 18px;
 	line-height: 54px;
 
-	&-epam {
-		float:left;
+	&-logo {
+		display:inline-block;
+		vertical-align: top;
+		line-height: 54px;
+		height: 54px;
 		margin-left: 10%;
-		& a {
-			color: #a1a1a1;
-			text-decoration: none;
+
+		&__link {
+			display: inline-block;
+			vertical-align: middle;
+			width: 70px;
+			height: 24px;
+			background: transparent url(../i/logo.png) no-repeat 0 50%;
+			transition: background 0.5s ease-in-out;
 
 			&:hover {
-				text-decoration: none;
+				background: transparent url(../i/logo_hover.png) no-repeat 0 50%;
 			}
 		}
 	}
@@ -20,16 +28,63 @@
 	&-socials {
 		margin-left: 30%;
 		display: inline-block;
-		overflow:hidden;
 		text-align: center;
+		vertical-align: top;
+		height: 54px;
 
-		&__item {
-			color: #a1a1a1;
-			text-decoration: none;
+		&__tw {
+			display: inline-block;
+			vertical-align: top;
+			width: 18px;
+			height: 54px;
+			background: transparent url(../i/twitter.png) no-repeat 0% 50%;
 			margin: 0 10px;
+			transition: background 0.5s ease-in-out;
 
 			&:hover {
-				text-decoration: none;
+				background: transparent url(../i/twitter_hover.png) no-repeat 0% 50%;
+			}
+		}
+
+		&__fb {
+			display: inline-block;
+			vertical-align: top;
+			width: 11px;
+			height: 54px;
+			background: transparent url(../i/facebook.png) no-repeat 0% 50%;
+			margin: 0 10px;
+			transition: background 0.5s ease-in-out;
+
+			&:hover {
+				background: transparent url(../i/facebook_hover.png) no-repeat 0% 50%;
+			}
+		}
+
+		&__in {
+			display: inline-block;
+			vertical-align: top;
+			width: 20px;
+			height: 54px;
+			background: transparent url(../i/linkedin.png) no-repeat 0% 47%;
+			margin: 0 10px;
+			transition: background 0.5s ease-in-out;
+
+			&:hover {
+				background: transparent url(../i/linkedin_hover.png) no-repeat 0% 47%;
+			}
+		}
+
+		&__gp {
+			display: inline-block;
+			vertical-align: top;
+			width: 20px;
+			height: 54px;
+			background: transparent url(../i/googleplus.png) no-repeat 0% 55%;
+			margin: 0 10px;
+			transition: background 0.5s ease-in-out;
+
+			&:hover {
+				background: transparent url(../i/googleplus_hover.png) no-repeat 0% 55%;
 			}
 		}
 	}

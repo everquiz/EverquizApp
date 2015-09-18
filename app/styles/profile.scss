@@ -1,0 +1,27 @@
+.profile {
+    background-color: #f7f7f7;
+    position: fixed;
+    left: 0;
+    top: 64px;
+    width: 100%;
+    padding: 50px;
+
+    &-photo {
+        float: left;
+        width: 100px;
+        height: 150px;
+    }
+
+    &-content {
+        padding-left: 30px;
+        overflow: hidden;
+
+        &__name {
+        }
+
+        &-item {
+            display: inline-block;
+            padding-right: 20px;
+        }
+    }
+}
