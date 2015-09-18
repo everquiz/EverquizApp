@@ -15,6 +15,7 @@
     vm.logOut = logOut;
     vm.showProfile = showProfile;
     vm.showNotes = showNotes;
+    vm.toggleProfile = toggleProfile;
     vm.goHome = goHome;
 
     if (vm.isLoggedIn()) vm.showNotes();
@@ -27,6 +28,10 @@
 
     function showProfile() {
       profileFactory.showProfile();
+    }
+
+    function toggleProfile() {
+      profileFactory.toggleProfile();
     }
 
     function showNotes() {

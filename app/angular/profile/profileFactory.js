@@ -15,6 +15,7 @@
       updateProfile: updateProfile,
       showProfile: showProfile,
       hideProfile: hideProfile,
+      toggleProfile: toggleProfile,
       isVisible: isVisible
       };
 
@@ -68,6 +69,10 @@
 
     function isVisible() {
       return display;
+    }
+
+    function toggleProfile() {
+      display = (display ? false : true);
     }
   }
 
