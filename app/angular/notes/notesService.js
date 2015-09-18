@@ -11,6 +11,8 @@
 
     var notes = [];
     var id = authFactory.currentUserId();
+    var display = false;
+    if (id) display = true;
 
     this.addNote = function(note) {
       note.user = id;
@@ -28,6 +30,18 @@
           return notes;
         });
       }
+    }
+
+    this.hideNotes = function () {
+      display = false;
+    };
+
+    this.showNotes = function () {
+      display = true;
+    };
+
+    this.isVisible = function () {
+      return display;
     }
 
   }
