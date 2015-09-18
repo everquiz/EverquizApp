@@ -1,7 +1,6 @@
-<div class="profile" ng-show="NotesCtrl.isVisible()">
+<div ng-show="NotesCtrl.isVisible()">
   <ul>
   <li ng-repeat="note in NotesCtrl.notes">
-    <hr>
     <div class=title">{{note.title}}</div>
     <div class=title">{{note.text}}</div>
   </li>
@@ -18,5 +17,4 @@
       <input type="submit" value="Submit" />
     </div>
   </form>
-  <hr>
 </div>

@@ -10,6 +10,7 @@
 body {
     margin: 0;
     font-family: 'Proxima Nova';
+    min-width: 1280px;
 }
 p {
     font-family: arial, helvetica, sans-serif;
