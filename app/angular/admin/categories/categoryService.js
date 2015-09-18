@@ -34,8 +34,8 @@
     this.getAll = function () {
       $http.get('/api/v1/Categories?select=_id,title,description').then(function (res) {
         angular.copy(res.data, self.categories);
-      });
-      return self.categories;
+      });ies;
+      return self.categor
     };
     this.remove = function(category) {
       return $http.delete('/api/v1/Categories/' + category._id, category).then(function (res) {

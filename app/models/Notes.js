@@ -1,4 +1,5 @@
 var mongoose = require('mongoose');
+var UserModel = require('./Users');
 
 var NoteSchema = new mongoose.Schema({
   title: String,

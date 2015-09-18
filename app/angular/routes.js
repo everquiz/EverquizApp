@@ -40,7 +40,12 @@
                   },
                   'profile@home': {
                     templateUrl: 'profile/_profile.html',
-                    controller: 'ProfileController as ProfileCtrl'
+                    controller: 'ProfileController as ProfileCtrl',
+                    resolve: {
+                      profile: [ 'profileFactory',
+                      function (profileFactory) {
+                        return profileFactory.updateProfile();
+                      }]}
                   },
                   'quizzes@home': {
                     templateUrl: 'quizzes/_quizzes.html',
@@ -55,8 +60,13 @@
                     controller: 'PassingQuizController as PassingQuizCtrl'
                   },
                   'notes@home': {
-                    templateUrl: 'profile/_notes.html',
-                    controller: 'NotesController as NotesCtrl'
+                    templateUrl: 'notes/_notes.html',
+                    controller: 'NotesController as NotesCtrl',
+                    resolve: {
+                      notes: [ 'notesService',
+                        function (notesService) {
+                          return notesService.getNotes();
+                        }]}
                   },
                   'getFail@home': {
                     templateUrl: 'home/_getFail.html'
