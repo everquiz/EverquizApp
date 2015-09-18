@@ -79,13 +79,18 @@ restify.serve(router, UserModel, {
 //}
 //);
 restify.serve(router, QuizModel, {
+    protected: ['__v'],
     private: ['description', 'status', 'editedAt', 'createAt', '__v'],
+    middleware: auth,
     access: function (req) {
         if (req.payload === undefined) {
             return 'public';
         }
         if (req.payload.roles[0] === 'admin') {
             return 'private';
+        }
+        if (req.payload.roles[0] === 'user') {
+            return 'protected';
         }
         return 'public';
     }
@@ -94,6 +99,7 @@ restify.serve(router, CategoryModel);
 restify.serve(router, HistoryModel);
 restify.serve(router, QuestionModel, {
     private: ['editedAt', 'createAt', '__v'],
+    middleware: auth,
     access: function (req) {
         if (req.payload === undefined) {
             return 'public';
@@ -106,6 +112,7 @@ restify.serve(router, QuestionModel, {
 });
 restify.serve(router, AnswerModel, {
     private: ['correct', 'editedAt', 'createAt', '__v'],
+    middleware: auth,
     access: function (req) {
         if (req.payload === undefined) {
             return 'public';
