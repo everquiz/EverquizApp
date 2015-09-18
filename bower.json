@@ -17,12 +17,18 @@
   "dependencies": {
     "angular": "~1.4.5",
     "angular-ui-router": "~0.2.15",
+    "angular-animate": "~1.4.6",
     "normalize-css": "normalize.css#~3.0.3"
   },
   "overrides": {
     "angular": {
       "main": [
         "./angular.min.js"
+      ]
+    },
+    "angular-animate": {
+      "main": [
+        "./angular-animate.min.js"
       ]
     },
     "angular-ui-router": {
