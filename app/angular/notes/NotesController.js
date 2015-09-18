@@ -10,6 +10,7 @@
   function NotesController(notes, noteService) {
 
       var vm = this;
+      vm.isVisible = noteService.isVisible;
       vm.notes = notes;
       vm.newNote = {};
       vm.addNote = noteService.addNote;
