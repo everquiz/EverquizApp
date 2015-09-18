@@ -11,7 +11,7 @@
     </div>
 
     <form class="quiz-question-block" id="slider" ng-submit="PassingQuizCtrl.checkResult();"
-          ng-style="{'margin-left': sliding + 'px'}" ng-class="animation">
+          ng-style="{'margin-left': sliding + 'px'}">
         <div class="quiz-question-block-question" ng-repeat="question in PassingQuizCtrl.quiz.questions">
             <div class="quiz-question-block-question__title">{{question.text}}</div>
             <ul class="quiz-question-block-answers-list">
@@ -26,7 +26,7 @@
         <span>
             {{PassingQuizCtrl.result}}
         </span>
-    <button ng-click="animation = 'animated'; sliding = sliding - 1320; questionCount = questionCount + 1;"
+    <button ng-click="sliding = sliding - 1320; questionCount = questionCount + 1;"
             class="quiz-question-block__submit">NEXT STEP
     </button>
 
