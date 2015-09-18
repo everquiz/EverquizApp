@@ -28,6 +28,13 @@
         });
     };
 
+    this.get = function (id) {
+            return $http.get('/api/v1/Categories/' + id + '?select=title')
+                .then(function (res) {
+                    return res.data;
+                });
+        };
+
     this.update = function (category) {
         return $http.put('/api/v1/Categories/' + category._id, category);
     };

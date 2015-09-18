@@ -1,34 +1,38 @@
 <div class="quiz">
     <div class="quiz__title">
-        {{passingQuizCtrl.quiz.title}}
+        {{PassingQuizCtrl.quiz.title}}
     </div>
     <div class="quiz-counter">
       <span class="quiz-counter-indicator">
-                  <span class="quiz-counter-indicator__item_current" id="counter">0</span
-                          ><span class="quiz-counter-indicator__item_separator">/</span><span class="quiz-counter-indicator__item_total">20</span>
-                </span
-                        >
+                  <span class="quiz-counter-indicator__item_current" id="counter" ng-init="questionCount=0">{{questionCount}}</span
+                          ><span class="quiz-counter-indicator__item_separator">/</span><span
+              class="quiz-counter-indicator__item_total">{{PassingQuizCtrl.quiz.questions.length}}</span>
+                </span>
     </div>
-    
-        <form class="quiz-question-block" id="slider" ng-submit="PassingQuizCtrl.checkResult();">
-            <div class="quiz-question-block-question" ng-repeat="question in PassingQuizCtrl.quiz.questions">
-                {{question.text}}
-                    <ul class="quiz-question-block-answers-list">
-                        <li class="quiz-question-block-answers-list-item" ng-repeat="answer in question.answers">
-                            
-                            <input type="checkbox" class="quiz-question-block-answers-list-item-answer__select" ng-model="answer.userResult" id="{{answer._id}}" hidden
+
+    <form class="quiz-question-block" id="slider" ng-submit="PassingQuizCtrl.checkResult();"
+          ng-style="{'margin-left': sliding + 'px'}">
+        <div class="quiz-question-block-question" ng-repeat="question in PassingQuizCtrl.quiz.questions">
+            <div class="quiz-question-block-question__title">{{question.text}}</div>
+            <ul class="quiz-question-block-answers-list">
+                <li class="quiz-question-block-answers-list-item" ng-repeat="answer in question.answers">
+                    <input type="checkbox" class="quiz-question-block-answers-list-item-answer__select"
+                           ng-model="answer.userResult" id="{{answer._id}}" hidden
                             ><label for="{{answer._id}}" class="quiz-question-block-answers-list-item-answer__title">{{answer.text}}</label>
-                        </li>
-                    </ul>
-                </div>
-            
-        </form>
+                </li>
+            </ul>
+        </div>
+    </form>
         <span>
             {{PassingQuizCtrl.result}}
         </span>
-    <button onclick="">NEXT STEP</button>
+    <button ng-click="sliding = sliding - 1320; questionCount = questionCount + 1;"
+            class="quiz-question-block__submit">NEXT STEP
+    </button>
 
 
-<div class="quiz-back" ><a href="" class="quiz-back__link" ng-click="quizzesContainerCtrl.quizService.activeQuiz = null">BACK TO ALL QUIZZES</a></div>
+    <div class="quiz-back"><a href="" class="quiz-back__link"
+                              ng-click="QuizzesContainerCtrl.quizService.activeQuiz = null">BACK TO ALL QUIZZES</a>
+    </div>
 
 </div>

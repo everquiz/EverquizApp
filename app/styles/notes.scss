@@ -1,0 +1,41 @@
+.notes {
+	height: 700px;
+	padding: 30px 10% 0;
+	background: #edebda;
+
+	&-header{
+		padding: 50px 0 25px;
+
+		&__title {
+			color: #2c2c2c;
+			font-size: 24px;
+			font-weight: bold;
+		}
+	}
+
+	&-wrapper {
+		overflow: hidden;
+	}
+
+	&-block {
+		float: left;
+		width: 15%;
+		margin: 0 5% 5% 0;
+		padding: 5% 0 5% 5%;
+		background: #fff;
+	}
+
+	&-button {
+		clear: left;
+		width: 100px;
+		margin: 50px auto;
+
+		&__show-all {
+			background: #fd2828;
+			width: 100px;
+			color: #fff;
+			border: none;
+			padding: 10px 10px;
+		}
+	}
+}

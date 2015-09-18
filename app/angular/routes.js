@@ -35,9 +35,6 @@
                     templateUrl: 'layouts/_header.html',
                     controller: 'NavController as NavCtrl'
                   },
-                  'getStarted@home': {
-                    templateUrl: 'home/_getStarted.html'
-                  },
                   'profile@home': {
                     templateUrl: 'profile/_profile.html',
                     controller: 'ProfileController as ProfileCtrl',
@@ -46,6 +43,12 @@
                       function (profileFactory) {
                         return profileFactory.updateProfile();
                       }]}
+                  },
+                  'getStarted@home': {
+                    templateUrl: 'home/_getStarted.html'
+                  },
+                  'video@home': {
+                    templateUrl: 'video/_video.html'
                   },
                   'quizzes@home': {
                     templateUrl: 'quizzes/_quizzes.html',

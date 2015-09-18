@@ -19,6 +19,13 @@
     vm.getStatus = getStatus;
     vm.deactivateQuiz = deactivateQuiz;
     vm.activateQuiz = activateQuiz;
+    vm.statuses = [{
+      id: 0,
+      title: 'Unactive'
+    }, {
+      id: 1,
+      title: 'Active'
+    }]
 
     function activateQuiz(quiz) {
       quizService.active(quiz);
@@ -28,7 +35,6 @@
       if (confirm('Do you want to make unactive ' + quiz.title + ' ?')) {
         quizService.unactive(quiz);
       }
-      ;
     };
 
     function getStatus(status) {
@@ -37,7 +43,12 @@
     };
 
     function editQuiz(quiz) {
-      $scope.quiz = quiz;
+      vm.quiz = quiz;
+      vm.categories.forEach(function(element, index){
+        if (vm.quiz.category._id === element._id) {
+          vm.quiz.category = element;
+        };
+      });
     };
 
     function addQuiz() {
@@ -45,6 +56,15 @@
           || (!vm.quiz.description || vm.quiz.description === '')) {
         return;
       }
+      // if (!vm.quiz.category || vm.quiz.category === '') {
+      //   vm.categories.forEach(function(element, index){
+      //     if (vm.quiz.category._id === element._id) {
+      //       vm.quiz.category = element;
+      //     };
+      //   });
+      // }
+      // 
+      
       if (!vm.quiz._id || vm.quiz._id === '') {
         quizService.create(vm.quiz);
       }
@@ -54,4 +74,6 @@
       vm.quiz = {};
     };
   };
+
+
 })();
