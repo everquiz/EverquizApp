@@ -24,6 +24,8 @@ var QuestionModel = require('./app/models/Questions');
 var AnswerModel = require('./app/models/Answers');
 var StatisticModel = require('./app/models/Statistic');
 
+
+
 require('./config/passport');
 
 /*
@@ -97,32 +99,54 @@ restify.serve(router, QuizModel, {
 });
 restify.serve(router, CategoryModel);
 restify.serve(router, HistoryModel);
-restify.serve(router, QuestionModel, {
-    private: ['editedAt', 'createAt', '__v'],
-    middleware: auth,
-    access: function (req) {
-        if (req.payload === undefined) {
-            return 'public';
-        }
-        if (req.payload.roles[0] === 'admin') {
-            return 'private';
-        }
-        return 'public';
-    }
-});
-restify.serve(router, AnswerModel, {
-    private: ['correct', 'editedAt', 'createAt', '__v'],
-    middleware: auth,
-    access: function (req) {
-        if (req.payload === undefined) {
-            return 'public';
-        }
-        if (req.payload.roles[0] === 'admin') {
-            return 'private';
-        }
-        return 'public';
-    }
-});
+restify.serve(router, QuestionModel
+//     , {
+//     private: ['editedAt', 'createAt', '__v'],
+//     middleware: auth,
+//     access: function (req) {
+//         if (req.payload === undefined) {
+//             return 'public';
+//         }
+//         if (req.payload.roles[0] === 'admin') {
+//             return 'private';
+//         }
+//         return 'public';
+//     },
+//     prereq: function(req) {
+//         // TODO No token here, can't check if admin or not
+//         console.log(req.method);
+        
+//         if (req.payload.roles[0] === 'admin') {
+//             console.log('admin');
+//             return true;
+//         }
+//         console.log(req.method === 'DELETE');
+//         if (req.method === 'DELETE') {
+//             console.log('true');
+//             return true;
+//         }
+//         return false;
+//      }
+// }
+);
+restify.serve(router, AnswerModel
+//     , {
+//     private: ['correct', 'editedAt', 'createAt', '__v'],
+//     middleware: auth,
+//     access: function (req) {
+//         if (req.payload === undefined) {
+//             return 'public';
+//         }
+//         if (req.payload.roles[0] === 'admin') {
+//             return 'private';
+//         }
+//         if (req.payload.roles[0] === 'user') {
+//             return 'protected';
+//         }
+//         return 'public';
+//     }
+// }
+);
 app.use(router);
 
 app.use('/', routes);

@@ -1,0 +1,24 @@
+<div ng-show="true">
+  <hr>
+  <ul>
+  <li ng-repeat="note in NotesCtrl.notes">
+    <hr>
+    <div class=title">{{note.title}}</div>
+    <div class=title">{{note.text}}</div>
+    <hr>
+  </li>
+  </ul>
+  <form ng-submit="NotesCtrl.addNote(NotesCtrl.newNote)">
+    <div><h2>Create note</h2></div>
+    <div>Add title</div>
+    <textarea ng-model="NotesCtrl.newNote.title" placeholder="Title"></textarea><br/>
+
+    <div>Add text</div>
+    <textarea ng-model="NotesCtrl.newNote.text" placeholder="Text"></textarea><br/>
+
+    <div>
+      <input type="submit" value="Submit" />
+    </div>
+  </form>
+  <hr>
+</div>

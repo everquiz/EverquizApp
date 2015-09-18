@@ -8,29 +8,31 @@
   profileFactory.$inject = ['$http', 'authFactory'];
 
   function profileFactory($http, authFactory) {
-    var _this = {};
-    var id = authFactory.currentUserId();
+    var profile = {};
+    var display = false;
 
-    _this._isVisible = false;
-    _this.isVisible = isVisible,
-        _this.getQuizHistory = getQuizHistory;
-    _this.showProfile = showProfile;
-    _this.hideProfile = hideProfile;
-    _this.getQuizStatistic = getQuizStatistic;
-    //_this.getProfileInfo = getProfileInfo;
-    return _this;
+    var service = {
+      updateProfile: updateProfile,
+      showProfile: showProfile,
+      hideProfile: hideProfile,
+      isVisible: isVisible
+      };
 
-    //function getProfileInfo() {
-    //  var profile = {};
-    //  profile.email = authFactory.currentUser();
-    //  return profile;
-    //};
+    return service;
 
-    function getQuizHistory() {
-      return $http.get('/api/v1/Users/' + id + '?populate=history').then(function (res) {
-        return res.data;
-      });
-    };
+    function updateProfile() {
+      var id = authFactory.currentUserId();
+      if (id) {
+        return $http.get('/api/v1/Users/' + id + '?populate=history').then(function (res) {
+          profile = res.data;
+
+          var result = getQuizStatistic(profile.history);
+          profile.averageResult = result.averageResult;
+          profile.quizCompleted = result.quizCompleted;
+          return profile;
+        });
+      }
+    }
 
     function getQuizStatistic(history) {
       var result = {};
@@ -45,7 +47,7 @@
       var quizCompleted = 0;
       for (var i = 0; i < history.length; ++i) {
         averageResult += history[i].result;
-        if (history[i].isCompleted) quizCompleted
+        if (history[i].isCompleted) quizCompleted++;
       }
 
       result = {
@@ -57,15 +59,15 @@
     }
 
     function hideProfile() {
-      _this._isVisible = false;
+      display = false;
     };
 
     function showProfile() {
-      _this._isVisible = true;
+      display = true;
     };
 
     function isVisible() {
-      return _this._isVisible;
+      return display;
     }
   }
 
