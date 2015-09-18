@@ -1,0 +1,31 @@
+.parallax {
+	height: 700px;
+	background: linear-gradient(to bottom, #26292c, #34383b);
+	
+	&-content {
+		padding-top: 300px;
+		width: 20%;
+		text-align: center;
+		margin: 0 auto;
+		
+		&__title {
+			color: #fff;
+			font-size: 18px;
+			font-weight: bold;
+			margin-bottom: 20px;
+		}
+
+		&-action {
+			&__link{
+				text-decoration: none;
+				color: #fd2828;
+				font-size: 18px;
+				font-weight: bold;
+
+				&:hover {
+					text-decoration: none;
+				}
+			}
+		}
+	}
+}

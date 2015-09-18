@@ -1,8 +1,24 @@
-<p>{{test}}</p>
-<div class="demoBtn raised green">
-  <a ui-sref=".users"><div class="center" fit>Users</div></a>
-</div> 
-<div class="demoBtn raised green">
-  <a ui-sref=".quizzes"><div class="center" fit>Quizzes</div></a>
-</div>   
-<ui-view></ui-view>
+<header class="header clearfix">
+  <div class="header-main">
+    <nav class="header-main-nav">
+      <ul class="header-main-nav-list">
+        <li class="header-main-nav-list-item">
+          <a ui-sref="." class="header-main-nav-list-item__home">E</a>
+        </li>
+        <li class="header-main-nav-list-item">
+          <a ui-sref=".users" class="header-main-nav-list-item__video">USERS</a>
+        </li
+        ><li class="header-main-nav-list-item">
+          <a ui-sref=".quizzes" class="header-main-nav-list-item__quizzes">QUIZZES</a>
+        </li
+        ><li class="header-main-nav-list-item">
+          <a ui-sref=".categories" class="header-main-nav-list-item__notes">CATEGORIES</a>
+        </li>
+      </ul>   
+    </nav>
+  </div>
+  <div class="header-profile">
+    <a href="" class="header-profile-nav__logout" ng-click="NavCtrl.logOut()">LOGOUT</a>
+  </div>
+</header>
+<ui-view>Welcome to admin panel!</ui-view>

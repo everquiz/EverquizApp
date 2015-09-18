@@ -10,7 +10,6 @@
   function UsersController(userService) {
 
     var vm = this;
-    vm.test = 'Hello world!';
     vm.users = userService.users;
     vm.addUser = addUser;
     vm.removeUser = removeUser;

@@ -33,4 +33,4 @@ public/css
 public/js
 
 #templatecache
-app/angular/templates.js
+/app/angular/templates.js

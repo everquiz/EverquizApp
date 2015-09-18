@@ -20,33 +20,16 @@
             <td class="quizzes-selection-table-row-content__title">{{quiz.createAt}}</td>
             <td class="quizzes-selection-table-row-content__title">{{QuizzesCtrl.getStatus(quiz.status)}}</td>
             <td class="quizzes-selection-table-row-content__title">{{quiz.questions.length}}</td>
-            <td class="quizzes-selection-table-row-content__title"><i class="fa fa-trash-o" ng-click='QuizzesCtrl.deactivateQuiz(quiz)'></i>  <i class="fa fa-play" ng-click='QuizzesCtrl.activateQuiz(quiz)'></i>  <i class="fa fa-wrench" ng-click='quizzesCtrl.editQuiz(quiz)'></i></td>
+            <td class="quizzes-selection-table-row-content__title"><i class="fa fa-trash-o" ng-click='QuizzesCtrl.deactivateQuiz(quiz)'></i>  <i class="fa fa-play" ng-click='QuizzesCtrl.activateQuiz(quiz)'></i>  <i class="fa fa-wrench" ng-click='QuizzesCtrl.editQuiz(quiz)'></i></td>
         </tr>
     </table>
 </div>
 
-<!-- <form ng-submit="quizzesCtrl.addQuiz()" style="margin-top:30px;">
-  <h3>Add new quiz</h3>
-
-  <label for="category"> Category: </label><br>
-  <select name="category" ng-model="quiz.category"ng-options="o._id as o.title for o in quizzesCtrl.categories"></select><br/>
-  <input type="text" placeholder="Title" ng-model="quiz.title"></input><br/>
-  <textarea ng-model="quiz.description" placeholder="Description"></textarea><br/>
-  <div ng-show="quiz._id">
-    <label for="status"> Status: </label><br>
-    <select name="status" ng-model="quiz.status">
-      <option value="0" >Unactive</option>
-      <option value="1">Active</option>
-    </select><br>
-  </div>
-  
-  <button type="submit">New quiz</button>
-</form> -->
 <form ng-submit="QuizzesCtrl.addQuiz()" style="margin: 30px auto 0;" class="form-container">
   <div class="form-title"><h2>Add new quiz</h2></div>
 
   <div class="form-title">Category:</div>
-  <select class="form-field" name="category" ng-model="QuizzesCtrl.quiz.category"ng-options="o._id as o.title for o in QuizzesCtrl.categories"></select>
+  <select class="form-field" name="category" ng-model="QuizzesCtrl.quiz.category" ng-options="o as o.title for o in QuizzesCtrl.categories"></select>
 
   <div class="form-title">Title</div>
   <input class="form-field" type="text" placeholder="Title" ng-model="QuizzesCtrl.quiz.title"></input><br/>
@@ -56,9 +39,7 @@
 
   <div ng-show="QuizzesCtrl.quiz._id">
     <div class="form-title">Status</div>
-    <select class="form-field" name="status" ng-model="QuizzesCtrl.quiz.status">
-      <option value="0" >Unactive</option>
-      <option value="1">Active</option>
+    <select class="form-field" name="status" ng-model="QuizzesCtrl.quiz.status" ng-options="o.id as o.title for o in QuizzesCtrl.statuses">
     </select><br>
   </div>
 

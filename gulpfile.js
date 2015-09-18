@@ -19,7 +19,7 @@ var gulp = require('gulp'),
 
 //****************************************************************
 //JavaScripts section
-gulp.task('scripts', function() {
+gulp.task('scripts', ['template'], function() {
     return gulp.src([
             'app/angular/**/*.js',
             'app/scripts/**/*.js'])
@@ -74,7 +74,7 @@ gulp.task('vendors', ['vendor-css', 'vendor-js'], function () {
 
 //****************************************************************
 // watching scss/js/html files
-gulp.task('watch', ['vendors', 'scripts', 'styles', 'template', 'server'], function() {
+gulp.task('watch', ['vendors', 'scripts', 'styles', 'server'], function() {
     gulp.watch('app/styles/**/*.css', ['styles']);
     gulp.watch('app/styles/**/*.scss', ['styles']);
     gulp.watch([
@@ -101,24 +101,6 @@ gulp.task('template', function() {
 });
 
 //****************************************************************
-// Run server
-// gulp.task('server', function() {
-//     var options = {
-//         continueOnError: false, // default = false, true means don't emit error event 
-//         pipeStdout: false // default = false, true means stdout is written to file.contents 
-//     };
-//     var reportOptions = {
-//         err: true, // default = true, false means don't write err 
-//         stderr: true, // default = true, false means don't write stderr 
-//         stdout: true // default = true, false means don't write stdout 
-//     }
-//     gulp.src('./bin/www')
-//         .pipe(exec('node <%= file.path %>', options))
-//         .pipe(exec.reporter(reportOptions))
-//         .pipe(notify({ message: 'Server is started' }));
-
-// });
-
 /**
  * $ gulp server
  * description: launch the server. If there's a server already running, kill it.
@@ -143,7 +125,7 @@ gulp.task('default', ['watch'], function() {
 });
 
 // heroku task
-gulp.task('heroku:test', ['vendors', 'scripts', 'styles', 'template']);
+gulp.task('heroku:test', ['vendors', 'scripts', 'styles']);
 
 
 

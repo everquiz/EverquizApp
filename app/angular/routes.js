@@ -35,12 +35,20 @@
                     templateUrl: 'layouts/_header.html',
                     controller: 'NavController as NavCtrl'
                   },
+                  'profile@home': {
+                    templateUrl: 'profile/_profile.html',
+                    controller: 'ProfileController as ProfileCtrl',
+                    resolve: {
+                      profile: [ 'profileFactory',
+                      function (profileFactory) {
+                        return profileFactory.updateProfile();
+                      }]}
+                  },
                   'getStarted@home': {
                     templateUrl: 'home/_getStarted.html'
                   },
-                  'profile@home': {
-                    templateUrl: 'profile/_profile.html',
-                    controller: 'ProfileController as ProfileCtrl'
+                  'video@home': {
+                    templateUrl: 'video/_video.html'
                   },
                   'quizzes@home': {
                     templateUrl: 'quizzes/_quizzes.html',
@@ -56,7 +64,12 @@
                   },
                   'notes@home': {
                     templateUrl: 'notes/_notes.html',
-                    controller: 'NotesController as NotesCtrl'
+                    controller: 'NotesController as NotesCtrl',
+                    resolve: {
+                      notes: [ 'notesService',
+                        function (notesService) {
+                          return notesService.getNotes();
+                        }]}
                   },
                   'getFail@home': {
                     templateUrl: 'home/_getFail.html'
@@ -73,6 +86,17 @@
                 url: '/admin',
                 templateUrl: 'admin/index.html',
                 resolve: {loginRequired: accessAdmin}
+              })
+              .state('admin.categories', {
+                url: '/categories',
+                templateUrl: 'admin/categories/_categories.html',
+                controller: 'CategoriesController as CategoriesCtrl',
+                resolve: {
+                  categories: ['categoryService',
+                    function (categoryService) {
+                      return categoryService.getAll();
+                    }]
+                }
               })
               .state('admin.quizzes', {
                 url: '/quizzes',

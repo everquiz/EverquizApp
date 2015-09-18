@@ -5,12 +5,15 @@
       .module('everquizApp')
       .controller('NotesController', NotesController);
 
-  NotesController.$inject = ['authFactory'];
+  NotesController.$inject = ['notes', 'notesService'];
 
-  function NotesController(authFactory) {
+  function NotesController(notes, noteService) {
 
-    var vm = this;
-    vm.isLoggedIn = authFactory.isLoggedIn;
+      var vm = this;
+      vm.isVisible = noteService.isVisible;
+      vm.notes = notes;
+      vm.newNote = {};
+      vm.addNote = noteService.addNote;
   }
-
+  
 })();

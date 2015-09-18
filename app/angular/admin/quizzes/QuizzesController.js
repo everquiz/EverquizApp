@@ -13,12 +13,19 @@
     var vm = this;
     vm.status = 0;
     vm.quizzes = quizzes;
-    vm.categories = categoryService.getCategories();
+    vm.categories = categoryService.getAll();
     vm.addQuiz = addQuiz;
     vm.editQuiz = editQuiz;
     vm.getStatus = getStatus;
     vm.deactivateQuiz = deactivateQuiz;
     vm.activateQuiz = activateQuiz;
+    vm.statuses = [{
+      id: 0,
+      title: 'Unactive'
+    }, {
+      id: 1,
+      title: 'Active'
+    }]
 
     function activateQuiz(quiz) {
       quizService.active(quiz);
@@ -28,7 +35,6 @@
       if (confirm('Do you want to make unactive ' + quiz.title + ' ?')) {
         quizService.unactive(quiz);
       }
-      ;
     };
 
     function getStatus(status) {
@@ -37,24 +43,37 @@
     };
 
     function editQuiz(quiz) {
-      console.log($scope.quiz);
-      $scope.quiz = quiz;
+      vm.quiz = quiz;
+      vm.categories.forEach(function(element, index){
+        if (vm.quiz.category._id === element._id) {
+          vm.quiz.category = element;
+        };
+      });
     };
 
     function addQuiz() {
-      console.log($scope.quiz);
-      if ((!$scope.quiz.title || $scope.quiz.title === '')
-          || (!$scope.quiz.description || $scope.quiz.description === '')) {
+      if ((!vm.quiz.title || vm.quiz.title === '')
+          || (!vm.quiz.description || vm.quiz.description === '')) {
         return;
       }
-      if (!$scope.quiz._id || $scope.quiz._id === '') {
-        quizService.create($scope.quiz);
+      // if (!vm.quiz.category || vm.quiz.category === '') {
+      //   vm.categories.forEach(function(element, index){
+      //     if (vm.quiz.category._id === element._id) {
+      //       vm.quiz.category = element;
+      //     };
+      //   });
+      // }
+      // 
+      
+      if (!vm.quiz._id || vm.quiz._id === '') {
+        quizService.create(vm.quiz);
       }
       else {
-        quizService.update($scope.quiz);
+        quizService.update(vm.quiz);
       }
-      $scope.quiz = {};
+      vm.quiz = {};
     };
   };
+
 
 })();

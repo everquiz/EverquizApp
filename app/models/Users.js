@@ -44,4 +44,16 @@ UserSchema.methods.generateJWT = function() {
   }, 'SECRET');
 };
 
-module.exports = mongoose.model('User', UserSchema);
+var User = mongoose.model('User', UserSchema);
+
+NoteSchema.pre('save', function(next, done) {
+  var note = this;
+  User.findById(note.user, function (err, user) {
+    user.notes.push(note._id);
+    user.save();
+    console.log(user);
+  });
+  next();
+});
+
+module.exports = User;

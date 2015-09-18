@@ -5,19 +5,23 @@
       .module('everquizApp')
       .service('answerService', answerService);
 
-  answerService.$inject = ['$http', 'questionService'];
+  answerService.$inject = ['$http', 'questionService', 'authFactory'];
 
-  function answerService($http, questionService) {
+  function answerService($http, questionService, authFactory) {
     var _answers = [];
     this.answers = _answers;
     this.get = function (id) {
-      return $http.get('/api/v1/Answers/' + id).then(function (res) {
+      return $http.get('/api/v1/Answers/' + id, {
+            headers: {Authorization: 'Bearer ' + authFactory.getToken()}
+        }).then(function (res) {
         return res.data;
       });
     };
 
     this.create = function (answer) {
-      return $http.post('/api/v1/Answers', answer).success(function (data) {
+      return $http.post('/api/v1/Answers', answer, {
+            headers: {Authorization: 'Bearer ' + authFactory.getToken()}
+        }).success(function (data) {
         _answers.push(data);
         answer.question.answers.push(data);
         questionService.update(answer.question);
@@ -42,10 +46,14 @@
       // if (question._id !== answer.question) {
       //   return false;
       // };
-      return $http.delete('/api/v1/Answers/' + answer._id, answer).success(function (data) {
-        _answers.splice(_answers.indexOf(answer), 1);
-        var answerPos = question.answers.indexOf(data);
-        question.answers.splice(answerPos, 1);
+      return $http.delete('/api/v1/Answers/' + answer._id, answer , {
+            headers: {Authorization: 'Bearer ' + authFactory.getToken()}
+          }).then(function (res) {
+          question.answers.forEach(function(element, index){
+            if (res.config._id === element._id) {
+              question.answers.splice(index, 1);
+            };
+          });
         questionService.update(question);
       });
     };

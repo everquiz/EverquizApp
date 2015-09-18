@@ -10,21 +10,10 @@ var express = require('express'),
     auth = jwt({secret: 'SECRET', userProperty: 'payload'});
 
 
-
 /*
-  Connect to db
+ Connect to db
  */
-var mongoose = require('mongoose');
-var db = mongoose.connection;
-mongoose.connect('mongodb://root:root@ds041663.mongolab.com:41663/everquizdb');
-  
-db.on('connected', function() {
-    console.log('Mongoose connected to everquizdb');
-});
-
-db.on('disconnected', function(){
-    console.log('Mongoose disconnected');
-});
+require('./config/db');
 
 var UserModel = require('./app/models/Users');
 var NoteModel = require('./app/models/Notes');
@@ -35,15 +24,12 @@ var QuestionModel = require('./app/models/Questions');
 var AnswerModel = require('./app/models/Answers');
 var StatisticModel = require('./app/models/Statistic');
 
-/**
- * Populate categories
- */
-require('./config/populateCategories');
+
 
 require('./config/passport');
 
 /*
-  Routes
+ Routes
  */
 var routes = require('./routes/index');
 var users = require('./routes/users');
@@ -54,7 +40,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.urlencoded({extended: false}));
 app.use(methodOverride());
 
 app.use(express.static(path.join(__dirname, 'public')));
@@ -66,10 +52,10 @@ app.use(passport.initialize());
 
 var router = express.Router();
 restify.serve(router, NoteModel);
-restify.serve(router, UserModel,{
+restify.serve(router, UserModel, {
     private: ['hash', 'salt']
 });
-    //, {
+//, {
 //  middleware: auth,
 //  prereq: function(req) {
 //    if (req.payload.roles[0] === 'admin') {
@@ -95,16 +81,72 @@ restify.serve(router, UserModel,{
 //}
 //);
 restify.serve(router, QuizModel, {
-    private: ['description', 'status', 'editedAt', 'createAt', '__v']
+    protected: ['__v'],
+    private: ['description', 'status', 'editedAt', 'createAt', '__v'],
+    middleware: auth,
+    access: function (req) {
+        if (req.payload === undefined) {
+            return 'public';
+        }
+        if (req.payload.roles[0] === 'admin') {
+            return 'private';
+        }
+        if (req.payload.roles[0] === 'user') {
+            return 'protected';
+        }
+        return 'public';
+    }
 });
 restify.serve(router, CategoryModel);
 restify.serve(router, HistoryModel);
-restify.serve(router, QuestionModel, {
-    private: ['editedAt', 'createAt', '__v']
-});
-restify.serve(router, AnswerModel, {
-    private: ['correct', 'editedAt', 'createAt', '__v']
-});
+restify.serve(router, QuestionModel
+//     , {
+//     private: ['editedAt', 'createAt', '__v'],
+//     middleware: auth,
+//     access: function (req) {
+//         if (req.payload === undefined) {
+//             return 'public';
+//         }
+//         if (req.payload.roles[0] === 'admin') {
+//             return 'private';
+//         }
+//         return 'public';
+//     },
+//     prereq: function(req) {
+//         // TODO No token here, can't check if admin or not
+//         console.log(req.method);
+        
+//         if (req.payload.roles[0] === 'admin') {
+//             console.log('admin');
+//             return true;
+//         }
+//         console.log(req.method === 'DELETE');
+//         if (req.method === 'DELETE') {
+//             console.log('true');
+//             return true;
+//         }
+//         return false;
+//      }
+// }
+);
+restify.serve(router, AnswerModel
+//     , {
+//     private: ['correct', 'editedAt', 'createAt', '__v'],
+//     middleware: auth,
+//     access: function (req) {
+//         if (req.payload === undefined) {
+//             return 'public';
+//         }
+//         if (req.payload.roles[0] === 'admin') {
+//             return 'private';
+//         }
+//         if (req.payload.roles[0] === 'user') {
+//             return 'protected';
+//         }
+//         return 'public';
+//     }
+// }
+);
 app.use(router);
 
 app.use('/', routes);
@@ -113,32 +155,32 @@ app.use('/users', users);
 app.use(auth);
 
 // catch 404 and forward to error handler
-app.use(function(req, res, next) {
-  var err = new Error('Not Found');
-  err.status = 404;
-  next(err);
+app.use(function (req, res, next) {
+    var err = new Error('Not Found');
+    err.status = 404;
+    next(err);
 });
 
 // development error handler
 // will print stacktrace
 if (app.get('env') === 'development') {
-  app.use(function(err, req, res, next) {
-    res.status(err.status || 500);
-    res.render('error', {
-      message: err.message,
-      error: err
+    app.use(function (err, req, res, next) {
+        res.status(err.status || 500);
+        res.render('error', {
+            message: err.message,
+            error: err
+        });
     });
-  });
 }
 
 // production error handler
 // no stacktraces leaked to user
-app.use(function(err, req, res, next) {
-  res.status(err.status || 500);
-  res.render('error', {
-    message: err.message,
-    error: {}
-  });
+app.use(function (err, req, res, next) {
+    res.status(err.status || 500);
+    res.render('error', {
+        message: err.message,
+        error: {}
+    });
 });
 
 module.exports = app;

@@ -1,3 +1,17 @@
+/* Font faces*/
+
+@font-face {
+	font-family: 'Proxima Nova';
+    src: url(../font/proximanova.otf);
+}
+
+/*Styles*/
+
+body {
+    margin: 0;
+    font-family: 'Proxima Nova';
+    min-width: 1280px;
+}
 p {
     font-family: arial, helvetica, sans-serif;
 }
@@ -14,15 +28,14 @@ h2 {
 p#paragraph1 {
     padding-left: 10px;
 }
-a:hover {
-    text-decoration: none;
-}
 #news p {
     color: blue;
 }
 [type="button"] {
     background-color: green;
 }
+
+
 /**
  * Temporary form for admin DEMO HAKATON
  */
