@@ -19,7 +19,7 @@ var gulp = require('gulp'),
 
 //****************************************************************
 //JavaScripts section
-gulp.task('scripts', function() {
+gulp.task('scripts', ['template'], function() {
     return gulp.src([
             'app/angular/**/*.js',
             'app/scripts/**/*.js'])
@@ -74,7 +74,7 @@ gulp.task('vendors', ['vendor-css', 'vendor-js'], function () {
 
 //****************************************************************
 // watching scss/js/html files
-gulp.task('watch', ['vendors', 'scripts', 'styles', 'template', 'server'], function() {
+gulp.task('watch', ['vendors', 'scripts', 'styles', 'server'], function() {
     gulp.watch('app/styles/**/*.css', ['styles']);
     gulp.watch('app/styles/**/*.scss', ['styles']);
     gulp.watch([
@@ -125,7 +125,7 @@ gulp.task('default', ['watch'], function() {
 });
 
 // heroku task
-gulp.task('heroku:test', ['vendors', 'scripts', 'styles', 'template']);
+gulp.task('heroku:test', ['vendors', 'scripts', 'styles']);
 
 
 
