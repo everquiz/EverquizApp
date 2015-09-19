@@ -2,17 +2,16 @@ var mongoose = require('mongoose');
 var crypto = require('crypto');
 var jwt = require('jsonwebtoken');
 var NoteSchema = require('./Notes').NoteSchema;
-var StatisticSchema = require('./Statistic').StatisticSchema;
+var HistorySchema = require('./Histories').HistorySchema;
 
 var UserSchema = new mongoose.Schema({
   name: { type:String, default: "User_Default" },
-  email: {type: String, unique: true }, 
+  email: {type: String, unique: true },
   hash: String,
   salt: String,
   status: {type: String, default: 'active' },
   notes: [ { type: mongoose.Schema.Types.ObjectId, ref: 'Note'  } ],
   history: [ { type: mongoose.Schema.Types.ObjectId, ref: 'History'  } ],
-  statistic: [ { type: mongoose.Schema.Types.ObjectId, ref: 'Statistic'  } ],
   createAt: { type: Date, default: new Date },
   roles: { type: [String], default: "user" }
 });
@@ -52,6 +51,15 @@ NoteSchema.pre('save', function(next, done) {
     user.notes.push(note._id);
     user.save();
     console.log(user);
+  });
+  next();
+});
+
+HistorySchema.pre('save', function(next, done) {
+  var history = this;
+  User.findById(history.user, function (err, user) {
+    user.history.push(history._id);
+    user.save();
   });
   next();
 });

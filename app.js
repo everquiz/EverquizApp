@@ -23,7 +23,6 @@ var CategoryModel = require('./app/models/Categories');
 var HistoryModel = require('./app/models/Histories');
 var QuestionModel = require('./app/models/Questions');
 var AnswerModel = require('./app/models/Answers');
-var StatisticModel = require('./app/models/Statistic');
 
 
 
