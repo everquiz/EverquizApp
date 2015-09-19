@@ -4,12 +4,6 @@
 
         <form class="quizzes-header-selector" method="get" action="">
             <select name="category" id="category" class="quizzes-header-selector-item" ng-model="RunQuizzesCtrl.selected" ng-options="o._id as o.title for o in RunQuizzesCtrl.categories" ng-change="RunQuizzesCtrl.getQuizzesByCategory()">
-                <option value="All">All categories</option>
-                <option value="HTMLnCSS">HTML&amp;CSS</option>
-                <option value="JavaScript">JavaScript</option>
-                <option value="Ruby">Ruby</option>
-                <option value="Perl">Perl</option>
-                <option value="Python">Python</option>
             </select>
             <select name="difficulty" id="difficulty" class="quizzes-header-selector-item">
                 <option value="All">All difficulties</option>

@@ -30,7 +30,8 @@
     "mongoose-lifecycle": "^1.0.0",
     "node-localstorage": "^0.5.2",
     "passport": "~0.3.0",
-    "passport-local": "~1.0.0"
+    "passport-local": "~1.0.0",
+    "express-favicon": "~1.0.1"
   },
   "devDependencies": {
     "browser-sync": "^2.9.3",
