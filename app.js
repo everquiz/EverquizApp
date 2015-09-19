@@ -7,7 +7,8 @@ var express = require('express'),
     passport = require('passport'),
     cookieParser = require('cookie-parser'),
     jwt = require('express-jwt'),
-    auth = jwt({secret: 'SECRET', userProperty: 'payload'});
+    auth = jwt({secret: 'SECRET', userProperty: 'payload'}),
+    favicon = require('express-favicon');
 
 
 /*
@@ -35,6 +36,7 @@ var routes = require('./routes/index');
 var users = require('./routes/users');
 
 var app = express();
+app.use(favicon(path.join(__dirname,'public','i','favicon.ico')));
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
