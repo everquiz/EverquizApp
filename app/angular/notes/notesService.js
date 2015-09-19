@@ -25,11 +25,18 @@
     this.getNotes = function() {
       var id = authFactory.currentUserId();
       if (id) {
-        return $http.get('/api/v1/Users/' + id + '?populate=notes&select=notes').then(function (res) {
-          notes = res.data.notes;
+        return $http.get('/api/v1/Notes?user=' + id + '&limit=8').then(function (res) {
+          notes = res.data;
           return notes;
         });
       }
+    }
+
+    this.deleteNote = function(id) {
+      $http.delete('/api/v1/Notes/:' + id).then(function (res) {
+        notes = res.data;
+        return notes;
+      })
     }
 
     this.hideNotes = function () {

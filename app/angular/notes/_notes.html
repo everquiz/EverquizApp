@@ -1,6 +1,6 @@
 <div ng-show="NotesCtrl.isVisible()">
   <ul>
-  <li ng-repeat="note in NotesCtrl.notes">
+  <li ng-click="NotesCtrl.onNoteClick()" ng-repeat="note in NotesCtrl.notes  | limitTo:NotesCtrl.limit">
     <div class=title">{{note.title}}</div>
     <div class=title">{{note.text}}</div>
   </li>
