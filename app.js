@@ -23,7 +23,6 @@ var CategoryModel = require('./app/models/Categories');
 var HistoryModel = require('./app/models/Histories');
 var QuestionModel = require('./app/models/Questions');
 var AnswerModel = require('./app/models/Answers');
-var StatisticModel = require('./app/models/Statistic');
 
 
 
@@ -82,23 +81,25 @@ restify.serve(router, UserModel, {
 //  private: 'email'
 //}
 //);
-restify.serve(router, QuizModel, {
-    protected: ['__v'],
-    private: ['description', 'status', 'editedAt', 'createAt', '__v'],
-    middleware: auth,
-    access: function (req) {
-        if (req.payload === undefined) {
-            return 'public';
-        }
-        if (req.payload.roles[0] === 'admin') {
-            return 'private';
-        }
-        if (req.payload.roles[0] === 'user') {
-            return 'protected';
-        }
-        return 'public';
-    }
-});
+restify.serve(router, QuizModel
+//     , {
+//     protected: ['__v'],
+//     private: ['description', 'status', 'editedAt', 'createAt', '__v'],
+//     middleware: auth,
+//     access: function (req) {
+//         if (req.payload === undefined) {
+//             return 'public';
+//         }
+//         if (req.payload.roles[0] === 'admin') {
+//             return 'private';
+//         }
+//         if (req.payload.roles[0] === 'user') {
+//             return 'protected';
+//         }
+//         return 'public';
+//     }
+// }
+);
 restify.serve(router, CategoryModel);
 restify.serve(router, HistoryModel);
 restify.serve(router, QuestionModel

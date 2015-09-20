@@ -3,13 +3,9 @@
         <div class="quizzes-header__title">Quizzes</div>
 
         <form class="quizzes-header-selector" method="get" action="">
-            <select name="category" id="category" class="quizzes-header-selector-item" ng-model="RunQuizzesCtrl.selected" ng-options="o._id as o.title for o in RunQuizzesCtrl.categories" ng-change="RunQuizzesCtrl.getQuizzesByCategory()">
+            <select name="category" id="category" class="quizzes-header-selector-item" ng-model="RunQuizzesCtrl.selectedCategory" ng-options="o._id as o.title for o in RunQuizzesCtrl.categories" ng-change="RunQuizzesCtrl.updateQuizzes()">
             </select>
-            <select name="difficulty" id="difficulty" class="quizzes-header-selector-item">
-                <option value="All">All difficulties</option>
-                <option value="Novice">Novice</option>
-                <option value="Advanced">Advanced</option>
-                <option value="Ruby">Expert</option>
+            <select name="difficulty" id="difficulty" class="quizzes-header-selector-item" ng-model="RunQuizzesCtrl.selectedComplexity"  ng-options="o._id as o.title for o in RunQuizzesCtrl.difficulties" ng-change="RunQuizzesCtrl.updateQuizzes()">
             </select>
             <select name="status" id="status" class="quizzes-header-selector-item">
                 <option value="All">All statuses</option>
@@ -33,7 +29,7 @@
              = quiz._id;">
                 <td class="quizzes-selection-table-row-content__title">{{quiz.category.title}}</td>
                 <td class="quizzes-selection-table-row-content__title">{{quiz.title}}</td>
-                <td class="quizzes-selection-table-row-content__title">quiz_difficulty</td>
+                <td class="quizzes-selection-table-row-content__title">{{RunQuizzesCtrl.getComplexity(quiz.complexity)}}</td>
                 <td class="quizzes-selection-table-row-content__title">avrg_result</td>
                 <td class="quizzes-selection-table-row-content__title">best_result</td>
                 <td class="quizzes-selection-table-row-content__title">total_passing</td>

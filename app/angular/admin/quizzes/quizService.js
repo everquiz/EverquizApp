@@ -32,8 +32,8 @@
             return self.quizzes;
         }
 
-        this.getQuizzesByCategory = function (category) {
-            $http.get('/api/v1/Quizzes?populate=category&category=' + category, {
+        this.getQuizzesByQuery = function (query) {
+            $http.get('/api/v1/Quizzes?populate=category&' + query, {
                     headers: {Authorization: 'Bearer ' + authFactory.getToken()}
                 })
                 .then(function (res) {

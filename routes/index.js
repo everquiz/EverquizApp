@@ -74,23 +74,11 @@ router.put('/checkresult', auth, function (req, res, next) {
 
         var history = new History();
         history.quiz = quiz._id;
-        if (result >= 0.5) {
-            history.isCompleted = true;
-        } else {
-            history.isCompleted = false;
-        }
         history.result = result;
+        history.user = req.payload._id;
         history.save(function (err) {
             if (err) {
                 return next(err);
-            } else {
-                var userPromise = User.findById(req.payload._id)
-                    .exec();
-                userPromise.then(function (user) {
-                        user.history.push(history.id);
-                        user.save();
-                    }
-                );
             }
         });
     });
@@ -124,17 +112,5 @@ function checkResult(quiz, result) {
     }
     return sum / (quiz.questions.length - 1);
 }
-
-
-// Check your current user and roles
-router.get('/status', auth, function (request, response, next) {
-    console.log('/status');
-    console.log(request.payload.roles[0]);
-    if (request.payload.roles[0] === 'admin') {
-        response.send('admin');
-    } else if (request.payload.roles[0] === 'user') {
-        response.send('user');
-    }
-});
 
 module.exports = router;
