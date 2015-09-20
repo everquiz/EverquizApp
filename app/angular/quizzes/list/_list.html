@@ -29,7 +29,7 @@
              = quiz._id;">
                 <td class="quizzes-selection-table-row-content__title">{{quiz.category.title}}</td>
                 <td class="quizzes-selection-table-row-content__title">{{quiz.title}}</td>
-                <td class="quizzes-selection-table-row-content__title">quiz_difficulty</td>
+                <td class="quizzes-selection-table-row-content__title">{{RunQuizzesCtrl.getComplexity(quiz.complexity)}}</td>
                 <td class="quizzes-selection-table-row-content__title">avrg_result</td>
                 <td class="quizzes-selection-table-row-content__title">best_result</td>
                 <td class="quizzes-selection-table-row-content__title">total_passing</td>

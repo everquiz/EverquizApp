@@ -56,7 +56,13 @@
                   },
                   'list@home': {
                     templateUrl: 'quizzes/list/_list.html',
-                    controller: 'RunQuizzesController as RunQuizzesCtrl'
+                    controller: 'RunQuizzesController as RunQuizzesCtrl',
+                    resolve: {
+                      quizzes: [ 'quizService', 
+                        function (quizService) {
+                          return quizService.getQuizzes();
+                        }]
+                      }
                   },
                   'quiz@home': {
                     templateUrl: 'quizzes/single/_quiz.html',

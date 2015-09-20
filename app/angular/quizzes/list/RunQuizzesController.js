@@ -5,13 +5,13 @@
       .module('everquizApp')
       .controller('RunQuizzesController', RunQuizzesController);
 
-    RunQuizzesController.$inject = ['quizService', 'categoryService'];
+    RunQuizzesController.$inject = ['quizzes', 'quizService', 'categoryService'];
 
-  function RunQuizzesController(quizService, categoryService) {
+  function RunQuizzesController(quizzes, quizService, categoryService) {
     var vm = this;
     vm.selectedCategory = -1;
     vm.selectedComplexity = -1;
-    vm.quizzes = quizService.getQuizzes();
+    vm.quizzes = quizzes;
     vm.updateQuizzes = updateQuizzes;
     vm.difficulties = [
         {_id: -1, title: 'All difficulties'},
@@ -19,6 +19,7 @@
         {_id: 1, title: 'Advanced'},
         {_id: 2, title: 'Expert'}
       ];
+    vm.getComplexity = getComplexity;
 
     categoryService.getCategories().then(function(data) {
       vm.categories = data;
@@ -30,10 +31,7 @@
 
     function updateQuizzes() {
       var category, complexity, status, query;
-      // if (vm.selectedCategory === -1) {
-      //   vm.quizzes = quizService.getQuizzes();
-      //   return;
-      // };
+
       if (vm.selectedCategory === -1) {
         category = '!=-11111111111111111111111';
       } else {
@@ -44,12 +42,18 @@
       } else {
         complexity = vm.selectedComplexity;
       };
-      console.log(category);
 
       query = 'category=' + category + '&complexity=' + complexity;
-      console.log(query);
       vm.quizzes = quizService.getQuizzesByQuery(query);
     }
+
+    function getComplexity(complexity) {
+      for (var i = vm.difficulties.length - 1; i >= 0; i--) {
+        if (vm.difficulties[i]._id === complexity) {
+          return vm.difficulties[i].title;
+        };
+      };
+    };
   }
 
 })();
