@@ -16,10 +16,10 @@
   ],
   "dependencies": {
     "angular": "~1.4.5",
-    "angular-ui-router": "~0.2.15",
     "angular-animate": "~1.4.6",
-    "normalize-css": "normalize.css#~3.0.3",
-    "angular-bootstrap": "~0.13.4"
+    "angular-bootstrap": "~0.13.4",
+    "angular-ui-router": "~0.2.15",
+    "normalize-css": "normalize.css#~3.0.3"
   },
   "overrides": {
     "angular": {
@@ -35,6 +35,11 @@
     "angular-ui-router": {
       "main": [
         "./release/angular-ui-router.min.js"
+      ]
+    },
+    "angular-bootstrap": {
+      "main": [
+        "./ui-bootstrap-tpls.min.js"
       ]
     },
     "normalize.css": {
