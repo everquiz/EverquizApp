@@ -12,7 +12,6 @@ var gulp = require('gulp'),
     watch = require('gulp-watch'),
     plumber = require('gulp-plumber'),
     jshint = require('gulp-jshint'),
-    notify = require('gulp-notify'),
     templateCache = require('gulp-angular-templatecache'),
     spawn = require('child_process').spawn,
     node;
@@ -30,8 +29,7 @@ gulp.task('scripts', ['template'], function() {
         // .pipe(jshint.reporter('default'))
         .pipe(concat('application.min.js'))
         .pipe(sourcemaps.write('maps'))
-        .pipe(gulp.dest('public/js'))
-        .pipe(notify({ message: 'Script task complete' }));;
+        .pipe(gulp.dest('public/js'));
 });
 
 gulp.task('vendor-js', function() {
@@ -62,8 +60,7 @@ gulp.task('styles', function() {
         .pipe(sass().on('error', sass.logError))
         .pipe(concat('application.min.css'))
         .pipe(minifyCss({compatibility: 'ie8'}))
-        .pipe(gulp.dest('public/css'))
-        .pipe(notify({ message: 'Styles task complete' }));
+        .pipe(gulp.dest('public/css'));
 });
 
 //****************************************************************
@@ -96,8 +93,7 @@ gulp.task('watch', ['vendors', 'scripts', 'styles', 'server'], function() {
 gulp.task('template', function() {
     return gulp.src('app/angular/**/*.html')
         .pipe(templateCache('templates.js', {standalone:true}))
-        .pipe(gulp.dest('app/angular'))
-        .pipe(notify({ message: 'Template task complete' }));
+        .pipe(gulp.dest('app/angular'));
 });
 
 //****************************************************************
