@@ -1,0 +1,16 @@
+<div>
+    <form ng-submit="NotesListCtrl.addNote(NotesListCtrl.newNote)">
+        <div><h2>Create note</h2></div>
+        <div>Add title</div>
+        <textarea ng-model="NotesListCtrl.newNote.title" placeholder="Title"></textarea><br/>
+
+        <div>Add text</div>
+        <textarea ng-model="NotesListCtrl.newNote.text" placeholder="Text"></textarea><br/>
+
+        <div>
+            <input type="submit" value="Submit" />
+        </div>
+    </form>
+
+    <button ng-click="NotesListCtrl.switchToMain()">Back to main</button>
+</div>

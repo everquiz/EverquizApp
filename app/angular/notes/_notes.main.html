@@ -1,0 +1,7 @@
+<ul>
+    <li ng-click="NotesMainCtrl.onNoteClick(notes.id)" ng-repeat="note in NotesMainCtrl.notes  | limitTo:NotesMainCtrl.limit">
+        <div class=title">{{note.title}}</div>
+        <div class=title">{{note.text}}</div>
+    </li>
+    <button ng-click="NotesMainCtrl.switchToList()">View All</button>
+</ul>

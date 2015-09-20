@@ -64,7 +64,20 @@
                   },
                   'notes@home': {
                     templateUrl: 'notes/_notes.html',
-                    controller: 'NotesController as NotesCtrl',
+                    controller: 'NotesContainerController as NotesContainerCtrl'
+                  },
+                  'notesList@home': {
+                    templateUrl: 'notes/_notes.list.html',
+                    controller: 'NotesListController as NotesListCtrl',
+                    resolve: {
+                      notes: [ 'notesService',
+                        function (notesService) {
+                          return notesService.getNotes();
+                        }]}
+                  },
+                  'notesMain@home': {
+                    templateUrl: 'notes/_notes.main.html',
+                    controller: 'NotesMainController as NotesMainCtrl',
                     resolve: {
                       notes: [ 'notesService',
                         function (notesService) {

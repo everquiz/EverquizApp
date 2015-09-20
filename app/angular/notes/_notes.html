@@ -1,20 +1,4 @@
-<div ng-show="NotesCtrl.isVisible()">
-  <ul>
-  <li ng-click="NotesCtrl.onNoteClick()" ng-repeat="note in NotesCtrl.notes  | limitTo:NotesCtrl.limit">
-    <div class=title">{{note.title}}</div>
-    <div class=title">{{note.text}}</div>
-  </li>
-  </ul>
-  <form ng-submit="NotesCtrl.addNote(NotesCtrl.newNote)">
-    <div><h2>Create note</h2></div>
-    <div>Add title</div>
-    <textarea ng-model="NotesCtrl.newNote.title" placeholder="Title"></textarea><br/>
-
-    <div>Add text</div>
-    <textarea ng-model="NotesCtrl.newNote.text" placeholder="Text"></textarea><br/>
-
-    <div>
-      <input type="submit" value="Submit" />
-    </div>
-  </form>
+<div ng-show="NotesContainerCtrl.isVisible()">
+<div ui-view="notesMain" ng-if="NotesContainerCtrl.isMain()"></div>
+<div ui-view="notesList" ng-if="NotesContainerCtrl.isList()"></div>
 </div>
