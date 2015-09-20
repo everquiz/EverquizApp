@@ -18,7 +18,8 @@
     "angular": "~1.4.5",
     "angular-ui-router": "~0.2.15",
     "angular-animate": "~1.4.6",
-    "normalize-css": "normalize.css#~3.0.3"
+    "normalize-css": "normalize.css#~3.0.3",
+    "angular-bootstrap": "~0.13.4"
   },
   "overrides": {
     "angular": {
@@ -39,6 +40,11 @@
     "normalize.css": {
       "main": [
         "normalize.css"
+      ]
+    },
+    "angular-bootstrap": {
+      "main": [
+        "./ui-bootstrap-tpls.min.js"
       ]
     }
   }

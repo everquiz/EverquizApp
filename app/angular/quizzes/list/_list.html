@@ -25,7 +25,7 @@
                 <th class="quizzes-selection-table-row-heading__title">Best</th>
                 <th class="quizzes-selection-table-row-heading__title">Total passing</th>
             </tr>
-            <tr class="quizzes-selection-table-row-content" ng-repeat="quiz in RunQuizzesCtrl.quizzes" ng-click="QuizzesContainerCtrl.quizService.activeQuiz
+            <tr class="quizzes-selection-table-row-content" ng-repeat="quiz in RunQuizzesCtrl.filteredQuizzes" ng-click="QuizzesContainerCtrl.quizService.activeQuiz
              = quiz._id;">
                 <td class="quizzes-selection-table-row-content__title">{{quiz.category.title}}</td>
                 <td class="quizzes-selection-table-row-content__title">{{quiz.title}}</td>
@@ -35,5 +35,8 @@
                 <td class="quizzes-selection-table-row-content__title">total_passing</td>
             </tr>
         </table>
+        <div data-pagination="" data-num-pages="RunQuizzesCtrl.numPages()" 
+              data-current-page="currentPage" data-max-size="maxSize"  
+              data-boundary-links="true"></div>
     </div>
 </div>

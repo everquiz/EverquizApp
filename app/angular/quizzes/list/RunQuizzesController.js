@@ -5,9 +5,9 @@
       .module('everquizApp')
       .controller('RunQuizzesController', RunQuizzesController);
 
-    RunQuizzesController.$inject = ['quizzes', 'quizService', 'categoryService'];
+    RunQuizzesController.$inject = ['quizzes', 'quizService', 'categoryService', '$scope'];
 
-  function RunQuizzesController(quizzes, quizService, categoryService) {
+  function RunQuizzesController(quizzes, quizService, categoryService, $scope) {
     var vm = this;
     vm.selectedCategory = -1;
     vm.selectedComplexity = -1;
@@ -20,18 +20,26 @@
         {_id: 2, title: 'Expert'}
       ];
     vm.getComplexity = getComplexity;
-
+    vm.updateFilteredQuizzes = updateFilteredQuizzes;
     categoryService.getCategories().then(function(data) {
       vm.categories = data;
       vm.categories.unshift({_id: -1, title: 'All categories'})
-      console.log(vm.categories);
     });
 
-
+    /**
+     * Paginations variables
+     */
+    vm.maxSize = $scope.maxSize = 5;
+    vm.numPerPage = $scope.numPerPage = 5;
+    $scope.currentPage = $scope.currentPage = 1;
+    vm.numPages = numPages;
+    quizService.getAllTest().then(function(res) {
+      vm.filteredQuizzes = res.slice(0, vm.numPerPage);
+    });
 
     function updateQuizzes() {
       var category, complexity, status, query;
-
+      console.log(vm.selectedCategory);
       if (vm.selectedCategory === -1) {
         category = '!=-11111111111111111111111';
       } else {
@@ -44,7 +52,10 @@
       };
 
       query = 'category=' + category + '&complexity=' + complexity;
-      vm.quizzes = quizService.getQuizzesByQuery(query);
+      quizService.getQuizzesByQuery(query).then(function (data) {
+        vm.quizzes = data;
+        vm.updateFilteredQuizzes();
+      });
     }
 
     function getComplexity(complexity) {
@@ -54,6 +65,24 @@
         };
       };
     };
-  }
 
+    function numPages() {
+      return Math.ceil(vm.quizzes.length / vm.numPerPage);
+    };
+
+    /**
+     * Watcher for paggination
+     */
+    $scope.$watch('currentPage + numPerPage' , updateFilteredQuizzes);
+
+    /**
+     * Handler for pagination
+     */
+    function updateFilteredQuizzes () {
+      var begin = (($scope.currentPage - 1) * vm.numPerPage)
+      , end = begin + vm.numPerPage;
+      vm.filteredQuizzes = vm.quizzes.slice(begin, end);
+      console.log(vm.filteredQuizzes);
+    }
+  }
 })();

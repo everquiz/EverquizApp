@@ -23,23 +23,21 @@
          * For user section
          */
         this.getQuizzes = function () {
-            $http.get('/api/v1/Quizzes?populate=category', {
+            return $http.get('/api/v1/Quizzes?populate=category', {
                     headers: {Authorization: 'Bearer ' + authFactory.getToken()}
                 })
                 .then(function (res) {
-                angular.copy(res.data, self.quizzes);
+                return res.data;
             });
-            return self.quizzes;
         }
 
         this.getQuizzesByQuery = function (query) {
-            $http.get('/api/v1/Quizzes?populate=category&' + query, {
+            return $http.get('/api/v1/Quizzes?populate=category&' + query, {
                     headers: {Authorization: 'Bearer ' + authFactory.getToken()}
                 })
                 .then(function (res) {
-                angular.copy(res.data, self.quizzes);
+                return res.data;
             });
-            return self.quizzes;
         }
 
         this.getQuestions = function (id) {
@@ -72,6 +70,16 @@
                 });
             return self.quizzes;
         };
+
+        this.getAllTest = function () {
+            return $http.get('/api/v1/Quizzes?populate=category&select=category._id,category.title', {
+                    headers: {Authorization: 'Bearer ' + authFactory.getToken()}
+                })
+                .then(function (res) {
+                    return res.data;
+                });
+        };
+
 
         this.get = function (id) {
             return $http.get('/api/v1/Quizzes/' + id + '?populate=questions', {
