@@ -10,14 +10,55 @@
     function historyService($http, authFactory) {
         var vm = this;
         vm.getHistory = getHistory;
+        vm.getAverageResult = getAverageResult;
+        vm.getBestResult = getBestResult;
+        vm.getTotalPassing = getTotalPassing;
 
         function getHistory() {
             var id = authFactory.currentUserId();
             if (id) {
                 return $http.get('/api/v1/Histories?user=' + id).then(function (res) {
-                    return res.data;
+                    vm.history = res.data;
+                    return vm.history;
                 });
             }
+        }
+
+        function getAverageResult(quiz) {
+            var sum = 0;
+            var count = 0;
+            for (var i = 0; i < vm.history.length; i++) {
+                if (vm.history[i].quiz === quiz._id) {
+                    sum += vm.history[i].result;
+                    count++;
+                }
+            }
+
+            return sum / count ? sum / count : 0;
+        }
+
+        function getBestResult(quiz) {
+            var max = 0;
+            for (var i = 0; i < vm.history.length; i++) {
+                if (vm.history[i].quiz === quiz._id) {
+                    if (max < vm.history[i].result) {
+                        max = vm.history[i].result;
+                    }
+                }
+            }
+
+            return max;
+        }
+
+        function getTotalPassing(quiz) {
+            var count = 0;
+            for (var i = 0; i < vm.history.length; i++) {
+                if (vm.history[i].quiz === quiz._id) {
+                    count++;
+                }
+            }
+
+            return count;
         }
     }
 })();

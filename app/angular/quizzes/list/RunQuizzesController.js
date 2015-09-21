@@ -5,18 +5,15 @@
         .module('everquizApp')
         .controller('RunQuizzesController', RunQuizzesController);
 
-    RunQuizzesController.$inject = ['quizzes', 'quizService', 'categoryService', '$scope', 'history'];
+    RunQuizzesController.$inject = ['quizzes', 'quizService', 'categoryService', '$scope', 'historyService'];
 
-    function RunQuizzesController(quizzes, quizService, categoryService, $scope, history) {
+    function RunQuizzesController(quizzes, quizService, categoryService, $scope, historyService) {
         var vm = this;
         vm.selectedCategory = -1;
         vm.selectedComplexity = -1;
         vm.quizzes = quizzes;
         vm.updateQuizzes = updateQuizzes;
-        vm.history = history;
-        vm.getAverageResult = getAverageResult;
-        vm.getBestResult = getBestResult;
-        vm.getTotalPassing = getTotalPassing;
+        vm.historyService = historyService;
         vm.difficulties = [
             {_id: -1, title: 'All difficulties'},
             {_id: 0, title: 'Novice'},
@@ -25,10 +22,20 @@
         ];
         vm.getComplexity = getComplexity;
         vm.updateFilteredQuizzes = updateFilteredQuizzes;
+
         categoryService.getCategories().then(function (data) {
             vm.categories = data;
             vm.categories.unshift({_id: -1, title: 'All categories'})
         });
+
+        historyService.getHistory()
+            .then(function (history) {
+                vm.statistics = {
+                    getAverageResult : historyService.getAverageResult,
+                    getBestResult : historyService.getBestResult,
+                    getTotalPassing : historyService.getTotalPassing
+                }
+            });
 
         /**
          * Paginations variables
@@ -62,42 +69,6 @@
             });
         }
 
-        function getAverageResult(quiz) {
-            var sum = 0;
-            var count = 0;
-            for (var i = 0; i < vm.history.length; i++) {
-                if (vm.history[i].quiz === quiz._id) {
-                    sum += vm.history[i].result;
-                    count++;
-                }
-            }
-
-            return sum / count ? sum / count : 0;
-        }
-
-        function getBestResult(quiz) {
-            var max = 0;
-            for (var i = 0; i < vm.history.length; i++) {
-                if (vm.history[i].quiz === quiz._id) {
-                    if (max < vm.history[i].result) {
-                        max = vm.history[i].result;
-                    }
-                }
-            }
-
-            return max;
-        }
-
-        function getTotalPassing(quiz) {
-            var count = 0;
-            for (var i = 0; i < vm.history.length; i++) {
-                if (vm.history[i].quiz === quiz._id) {
-                    count++;
-                }
-            }
-
-            return count;
-        }
 
         function getComplexity(complexity) {
             for (var i = vm.difficulties.length - 1; i >= 0; i--) {
