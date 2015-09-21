@@ -69,6 +69,9 @@
                                 templateUrl: 'quizzes/single/_quiz.html',
                                 controller: 'PassingQuizController as PassingQuizCtrl'
                             },
+                            'result@home': {
+                                templateUrl: 'quizzes/result/_result.html'
+                            },
                             'notes@home': {
                                 templateUrl: 'notes/_notes.html',
                                 controller: 'NotesContainerController as NotesContainerCtrl'
@@ -92,9 +95,6 @@
                                             return notesService.getNotes();
                                         }]
                                 }
-                            },
-                            'getFail@home': {
-                                templateUrl: 'home/_getFail.html'
                             },
                             'footer@home': {
                                 templateUrl: 'layouts/_footer.html'

@@ -162,37 +162,6 @@ Icon classes can be used entirely standalone. They are named after their origina
 		margin-right: 10%;
 	}	
 }
-.parallax {
-	height: 700px;
-	background: linear-gradient(to bottom, #26292c, #34383b);
-	
-	&-content {
-		padding-top: 300px;
-		width: 20%;
-		text-align: center;
-		margin: 0 auto;
-		
-		&__title {
-			color: #fff;
-			font-size: 18px;
-			font-weight: bold;
-			margin-bottom: 20px;
-		}
-
-		&-action {
-			&__link{
-				text-decoration: none;
-				color: #fd2828;
-				font-size: 18px;
-				font-weight: bold;
-
-				&:hover {
-					text-decoration: none;
-				}
-			}
-		}
-	}
-}
 .about-container {
 	background: linear-gradient(to bottom, #b3c5cb, #cddcdf);
 	height: 500px;
@@ -464,7 +433,7 @@ Icon classes can be used entirely standalone. They are named after their origina
     }
 }
 .quiz {
-    height: 800px;
+    height: 700px;
     width: 1280px;
     overflow: hidden;
     position: relative;
@@ -480,11 +449,25 @@ Icon classes can be used entirely standalone. They are named after their origina
             font-weight: bold;
         }
         &-block {
-            height: 800px;
+            height: 700px;
             width: 90000px;
             position: absolute;
             display: inline-block;
             overflow: hidden;
+            &__intro {
+                    display: table-cell;
+                    width: 1280px;
+                    padding-right: 320px;
+                    font-size: 30px;
+                    font-family: Roboto;
+                    color: #2c2c2c;
+                    font-weight: bold;
+                    padding: 120px 0 0 80px;
+                    &_slide {
+                        transition:all cubic-bezier(1, 0, 0, 1) 0.5s;
+                    
+                    }
+                }
             &-question {
                 display: table-cell;
                 font-size: 30px;
@@ -494,6 +477,7 @@ Icon classes can be used entirely standalone. They are named after their origina
                 width: 1280px;
                 height: 130px;
                 padding: 120px 0 0 80px;
+
                 &__title {
                     transition:all cubic-bezier(1, 0, 0, 1) 0.5s;
                     width: 1040px;
@@ -506,6 +490,16 @@ Icon classes can be used entirely standalone. They are named after their origina
                 overflow: hidden;
                 padding: 0 0 0 240px;
                 transition:all cubic-bezier(1, 0, 0, 1) 2s;
+                &__intro {
+                    
+                    display: table-cell;
+                    width: 800px;
+                    padding-right: 560px; 
+                    font-size: 20px;
+                    font-family: Roboto;
+                    padding-bottom: 10px;
+                    color: #373737;
+                }
                 &-form {
                     display: table-cell;
                     width: 1040px;
@@ -558,9 +552,12 @@ Icon classes can be used entirely standalone. They are named after their origina
         }
         &-counter {
             position: absolute;
-            left: 80px;
             top: 250px;
-
+            width: 200px;
+            height: 300px;
+            background-color: white;
+            text-align: right;
+            vertical-align: top;
             &-indicator {
                 font-size: 60px;
                 color: #b9bdbe;
@@ -650,6 +647,57 @@ Icon classes can be used entirely standalone. They are named after their origina
 						padding: 10px;
 						text-align: center;
 					}	
+				}
+			}
+		}
+	}
+}
+.finish {
+	height: 700px;
+	background: linear-gradient(to bottom, #26292c, #34383b);
+	
+	&-content {
+		padding-top: 200px;
+		width: 20%;
+		text-align: center;
+		margin: 0 auto;
+
+		&-summary {
+			&__title {
+				color: #fff;
+				font-size: 18px;
+				font-weight: bold;
+				margin-bottom: 20px;
+			}
+
+			&__result {
+				color: #fff;
+				font-size: 36px;
+				font-weight: bold;
+				margin-bottom: 20px;
+			}
+		}
+		
+
+		&-action {
+			padding-top: 100px;
+			&-call {
+				&__title {
+					color: #fff;
+					font-size: 18px;
+					font-weight: bold;
+					margin-bottom: 20px;
+				}
+			}
+
+			&__link{
+				text-decoration: none;
+				color: #fd2828;
+				font-size: 18px;
+				font-weight: bold;
+
+				&:hover {
+					text-decoration: none;
 				}
 			}
 		}
