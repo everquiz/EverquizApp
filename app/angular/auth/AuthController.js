@@ -36,7 +36,7 @@
             }).then(function () {
                 var payload = JSON.parse($window.atob(authFactory.getToken().split('.')[1]));
                 if (payload.roles[0] === 'admin') {
-                    $state.go('admin')
+                    $state.go('admin.quizzes');
                 } else if (payload.roles[0] === 'user') {
                     $state.go('home');
                 }
