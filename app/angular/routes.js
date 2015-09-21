@@ -111,6 +111,7 @@
                     .state('admin', {
                         url: '/admin',
                         templateUrl: 'admin/index.html',
+                        controller: 'NavController as NavCtrl',
                         resolve: {loginRequired: accessAdmin}
                     })
                     .state('admin.categories', {

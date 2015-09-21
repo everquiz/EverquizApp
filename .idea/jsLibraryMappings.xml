@@ -3,5 +3,6 @@
   <component name="JavaScriptLibraryMappings">
     <file url="file://$PROJECT_DIR$" libraries="{EverquizApp node_modules}" />
     <file url="file://$PROJECT_DIR$/app/models/Notes.js" libraries="{Node.js Globals}" />
+    <includedPredefinedLibrary name="ECMAScript 6" />
   </component>
 </project>
