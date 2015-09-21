@@ -15,6 +15,8 @@
         vm.updateQuizzes = updateQuizzes;
         vm.history = history;
         vm.getAverageResult = getAverageResult;
+        vm.getBestResult = getBestResult;
+        vm.getTotalPassing = getTotalPassing;
         vm.difficulties = [
             {_id: -1, title: 'All difficulties'},
             {_id: 0, title: 'Novice'},
@@ -63,14 +65,38 @@
         function getAverageResult(quiz) {
             var sum = 0;
             var count = 0;
-            for (var i = 0; i< vm.history.length; i++) {
+            for (var i = 0; i < vm.history.length; i++) {
                 if (vm.history[i].quiz === quiz._id) {
                     sum += vm.history[i].result;
-                    count += 1;
+                    count++;
                 }
             }
 
-            return sum /count ? sum/count : 0;
+            return sum / count ? sum / count : 0;
+        }
+
+        function getBestResult(quiz) {
+            var max = 0;
+            for (var i = 0; i < vm.history.length; i++) {
+                if (vm.history[i].quiz === quiz._id) {
+                    if (max < vm.history[i].result) {
+                        max = vm.history[i].result;
+                    }
+                }
+            }
+
+            return max;
+        }
+
+        function getTotalPassing(quiz) {
+            var count = 0;
+            for (var i = 0; i < vm.history.length; i++) {
+                if (vm.history[i].quiz === quiz._id) {
+                    count++;
+                }
+            }
+
+            return count;
         }
 
         function getComplexity(complexity) {
