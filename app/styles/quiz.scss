@@ -1,123 +1,130 @@
 .quiz {
-    position: relative;
     height: 800px;
+    width: 1280px;
     overflow: hidden;
-    &__title {
-        position: absolute;
-        top: 85px;
-        left: 80px;
-        font-size: 30px;
-        font-family: Roboto, sans-serif;
-        color: #fb3a3a;
-        font-weight: bold;
-
-    }
-    &-question-block {
-        position: absolute;
-        top: 120px;
-        left: 80px;
-
-        width: 93.75%;
-        height: 85%;
-        transition:all cubic-bezier(1, 0, 0, 1) 0.5s;
-
-        &.animated {
-        }
-
-        &-question {
-            display: table-cell;
-            position: relative;
-            left: 0;
-
-            height: 100%;
+    position: relative;
+    background: white;
+    z-index: 0;
+        &__title {
+            position: absolute;
+            top: 85px;
+            left: 80px;
             font-size: 30px;
-            font-family: Roboto, sans-serif;
-            color: #2c2c2c;
+            font-family: Roboto;
+            color: #fb3a3a;
             font-weight: bold;
-            &__title {
-                width: 900px;
-
-            }
-
         }
-
-        &-answers-list-item {
-            position: relative;
+        &-block {
+            height: 800px;
+            width: 90000px;
+            position: absolute;
             display: inline-block;
-            left: 15%;
-            top: 5%;
-            width: 85%;
-            height: 95%;
-            list-style-type: none;
-            font-size: 20px;
-            font-family: Roboto, sans-serif;
-            width: 1280px;
-            color: #373737;
-
-            padding-bottom: 10px;
-            &-answer__title {
-
-                &:before {
-
-                    content: "";
-                    display: inline-block;
-                    height: 29px;
-                    width: 29px;
-                    margin: 0 25px 0 0;
-                    background-image: url(../i/checkbox.png);
-                    background-repeat: no-repeat;
-                    vertical-align: middle;
-
+            overflow: hidden;
+            &-question {
+                display: table-cell;
+                font-size: 30px;
+                font-family: Roboto;
+                color: #2c2c2c;
+                font-weight: bold;
+                width: 1280px;
+                height: 130px;
+                padding: 120px 0 0 80px;
+                &__title {
+                    transition:all cubic-bezier(1, 0, 0, 1) 0.5s;
+                    width: 1040px;
+                    padding-right: 320px;
                 }
             }
-            &-answer__select:checked + &-answer__title:before {
-                background-position: -29px 0;
+            
+                
+            &-answer {
+                overflow: hidden;
+                padding: 0 0 0 240px;
+                transition:all cubic-bezier(1, 0, 0, 1) 2s;
+                &-form {
+                    display: table-cell;
+                    width: 1040px;
+                    padding-right: 320px;
+                    
+                    
+                    &-list {
+                        list-style-type: none;
 
+                        &-item {
+                            font-size: 20px;
+                            font-family: Roboto;
+                            padding-bottom: 10px;
+                            color: #373737;
+                            list-style-type: none;
+                            
+                            &__title {
+                                
+                                cursor: pointer;
+                                &:before {
+
+                                    content: "";
+                                    display: inline-block;
+                                    height: 29px;
+                                    width: 29px;
+                                    margin: 0 25px 0 0;
+                                    background-image: url(../i/checkbox.png);
+                                    background-repeat: no-repeat;
+                                    vertical-align: middle;
+
+                                }
+                            }
+                        }    
+                    }    
+                    &-list-item__checkbox:checked + &-list-item__title:before {
+                        background-position: -29px 0;
+
+                    }
+                }
             }
-
+            
+            &__submit {
+                position: absolute;
+                left: 640px;
+                top: 600px;
+                background-color: #fb3a3a;
+                color: white;
+                font-family: ProximaNova;
+                font-weight: bold;
+                border: none;
+                width: 140px;
+                height: 42px;
+                font-size: 18px;
+            }
         }
-        &__submit {
+        &-counter {
             position: absolute;
-            left: 50%;
-            bottom: 10px;
-            background-color: #fb3a3a;
-            color: white;
-            font-family: ProximaNova;
-            font-weight: bold;
-            border: none;
-            width: 140px;
-            height: 42px;
-            font-size: 18px;
+            left: 80px;
+            top: 250px;
+
+            &-indicator {
+                font-size: 60px;
+                color: #b9bdbe;
+                font-family: ProximaNova, sans-serif;
+                font-weight: bold;
+            }
         }
-
-    }
-    &-back__link {
-        position: absolute;
-        right: 80px;
-        top: 80px;
-        font-size: 18px;
-        font-family: ProximaNova, sans-serif;
-        font-weight: bold;
-        color: #b9bdbe;
-        text-decoration: none;
-
-    }
-    &-counter {
-        position: absolute;
-        left: 80px;
-        top: 200px;
-
-        &-indicator {
-            font-size: 60px;
-            color: #b9bdbe;
-            font-family: ProximaNova, sans-serif;
-            font-weight: bold;
+        &-back {
+            position: absolute;
+            right: 80px;
+            top: 80px;
+            &__title {
+                font-size: 18px;
+                font-family: ProximaNova, sans-serif;
+                font-weight: bold;
+                color: #b9bdbe;
+                text-decoration: none;
+            }
+            
         }
-    }
 }
 
-@import url(https://fonts.googleapis.com/css?family=Roboto&subset=latin,cyrillic-ext,cyrillic);
-
-
-
+@font-face {
+    font-family: Roboto; 
+    src: url(../fonts/Roboto.ttf); 
+   }
 
