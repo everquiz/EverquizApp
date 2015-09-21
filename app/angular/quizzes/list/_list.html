@@ -30,9 +30,9 @@
                 <td class="quizzes-selection-table-row-content__title">{{quiz.category.title}}</td>
                 <td class="quizzes-selection-table-row-content__title">{{quiz.title}}</td>
                 <td class="quizzes-selection-table-row-content__title">{{RunQuizzesCtrl.getComplexity(quiz.complexity)}}</td>
-                <td class="quizzes-selection-table-row-content__title">{{RunQuizzesCtrl.getAverageResult(quiz)}}</td>
-                <td class="quizzes-selection-table-row-content__title">{{RunQuizzesCtrl.getBestResult(quiz)}}</td>
-                <td class="quizzes-selection-table-row-content__title">{{RunQuizzesCtrl.getTotalPassing(quiz)}}</td>
+                <td class="quizzes-selection-table-row-content__title">{{RunQuizzesCtrl.statistics.getAverageResult(quiz)}}</td>
+                <td class="quizzes-selection-table-row-content__title">{{RunQuizzesCtrl.statistics.getBestResult(quiz)}}</td>
+                <td class="quizzes-selection-table-row-content__title">{{RunQuizzesCtrl.statistics.getTotalPassing(quiz)}}</td>
             </tr>
         </table>
         <div data-pagination="" data-num-pages="RunQuizzesCtrl.numPages()" 

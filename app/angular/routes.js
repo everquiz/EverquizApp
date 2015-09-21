@@ -62,10 +62,6 @@
                                     quizzes: ['quizService',
                                         function (quizService) {
                                             return quizService.getQuizzes();
-                                        }],
-                                    history: ['historyService',
-                                        function (historyService) {
-                                            return historyService.getHistory();
                                         }]
                                 }
                             },
