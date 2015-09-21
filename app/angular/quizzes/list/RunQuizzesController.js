@@ -14,6 +14,7 @@
         vm.quizzes = quizzes;
         vm.updateQuizzes = updateQuizzes;
         vm.history = history;
+        vm.getAverageResult = getAverageResult;
         vm.difficulties = [
             {_id: -1, title: 'All difficulties'},
             {_id: 0, title: 'Novice'},
@@ -46,13 +47,11 @@
             } else {
                 category = vm.selectedCategory;
             }
-            ;
             if (vm.selectedComplexity === -1) {
                 complexity = '!=1'
             } else {
                 complexity = vm.selectedComplexity;
             }
-            ;
 
             query = 'category=' + category + '&complexity=' + complexity;
             quizService.getQuizzesByQuery(query).then(function (data) {
@@ -61,19 +60,30 @@
             });
         }
 
+        function getAverageResult(quiz) {
+            var sum = 0;
+            var count = 0;
+            for (var i = 0; i< vm.history.length; i++) {
+                if (vm.history[i].quiz === quiz._id) {
+                    sum += vm.history[i].result;
+                    count += 1;
+                }
+            }
+
+            return sum /count ? sum/count : 0;
+        }
+
         function getComplexity(complexity) {
             for (var i = vm.difficulties.length - 1; i >= 0; i--) {
                 if (vm.difficulties[i]._id === complexity) {
                     return vm.difficulties[i].title;
                 }
-                ;
             }
-            ;
-        };
+        }
 
         function numPages() {
             return Math.ceil(vm.quizzes.length / vm.numPerPage);
-        };
+        }
 
         /**
          * Watcher for paggination
