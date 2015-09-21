@@ -51,6 +51,8 @@
     "gulp-spritesmith": "0.0.2",
     "gulp-uglify": "^1.4.0",
     "gulp-watch": "^4.3.5",
-    "main-bower-files": "^2.9.0"
+    "gulp.spritesmith": "^4.1.0",
+    "main-bower-files": "^2.9.0",
+    "merge-stream": "^1.0.0"
   }
 }

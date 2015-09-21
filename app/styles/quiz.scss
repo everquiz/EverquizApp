@@ -61,14 +61,10 @@
                                 
                                 cursor: pointer;
                                 &:before {
-
+                                    @extend .icon-checkbox_not_checked;
                                     content: "";
                                     display: inline-block;
-                                    height: 29px;
-                                    width: 29px;
                                     margin: 0 25px 0 0;
-                                    background-image: url(../i/checkbox.png);
-                                    background-repeat: no-repeat;
                                     vertical-align: middle;
 
                                 }
@@ -76,8 +72,7 @@
                         }    
                     }    
                     &-list-item__checkbox:checked + &-list-item__title:before {
-                        background-position: -29px 0;
-
+                        @extend .icon-checkbox_checked;
                     }
                 }
             }

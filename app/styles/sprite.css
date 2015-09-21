@@ -1,0 +1,83 @@
+/*
+Icon classes can be used entirely standalone. They are named after their original file names.
+
+```html
+<!-- `display: block` sprite -->
+<div class="icon-home"></div>
+
+<!-- `display: inline-block` sprite -->
+<img class="icon-home" />
+```
+*/
+.icon-checkbox_checked {
+  background-image: url(../i/sprite.png);
+  background-position: -70px 0px;
+  width: 29px;
+  height: 29px;
+}
+.icon-checkbox_not_checked {
+  background-image: url(../i/sprite.png);
+  background-position: 0px -50px;
+  width: 29px;
+  height: 29px;
+}
+.icon-facebook {
+  background-image: url(../i/sprite.png);
+  background-position: -99px -48px;
+  width: 24px;
+  height: 24px;
+}
+.icon-facebook_hover {
+  background-image: url(../i/sprite.png);
+  background-position: 0px -79px;
+  width: 24px;
+  height: 24px;
+}
+.icon-googleplus {
+  background-image: url(../i/sprite.png);
+  background-position: -29px -50px;
+  width: 24px;
+  height: 24px;
+}
+.icon-googleplus_hover {
+  background-image: url(../i/sprite.png);
+  background-position: -53px -50px;
+  width: 24px;
+  height: 24px;
+}
+.icon-linkedin {
+  background-image: url(../i/sprite.png);
+  background-position: -48px -79px;
+  width: 24px;
+  height: 24px;
+}
+.icon-linkedin_hover {
+  background-image: url(../i/sprite.png);
+  background-position: -99px -24px;
+  width: 24px;
+  height: 24px;
+}
+.icon-logo {
+  background-image: url(../i/sprite.png);
+  background-position: 0px 0px;
+  width: 70px;
+  height: 25px;
+}
+.icon-logo_hover {
+  background-image: url(../i/sprite.png);
+  background-position: 0px -25px;
+  width: 70px;
+  height: 25px;
+}
+.icon-twitter {
+  background-image: url(../i/sprite.png);
+  background-position: -24px -79px;
+  width: 24px;
+  height: 24px;
+}
+.icon-twitter_hover {
+  background-image: url(../i/sprite.png);
+  background-position: -99px 0px;
+  width: 24px;
+  height: 24px;
+}
