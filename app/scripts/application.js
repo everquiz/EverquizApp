@@ -10,3 +10,6 @@ myEvent(chkevent, function(e) { // For >=IE7, Chrome, Firefox
 Array.prototype.diff = function(a) {
     return this.filter(function(i) {return a.indexOf(i) < 0;});
 };
+Array.prototype.diffInvers = function(a) {
+    return this.filter(function(i) {return a.indexOf(i) >= 0;});
+};

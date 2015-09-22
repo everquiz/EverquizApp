@@ -69,7 +69,6 @@
             query = 'category=' + category + '&complexity=' + complexity;
             quizService.getQuizzesByQuery(query).then(function (data) {
                 vm.quizzes = data;
-                vm.updateFilteredQuizzes();
                 var quizzesByStatus = [];
                 
                 if (vm.selectedStatus != -1) {
@@ -79,15 +78,14 @@
                         };
                     };
                     if (!vm.selectedStatus) {
-                        console.log('passed');
+                        vm.quizzes = vm.quizzes.diffInvers( quizzesByStatus ); 
 
                     } else {
-                        console.log('not passed');
-                        console.log(vm.quizzes.diff( quizzesByStatus )); 
+                        vm.quizzes = vm.quizzes.diff( quizzesByStatus ); 
                     }
-                    console.log(quizzesByStatus);
-
                 };
+                vm.updateFilteredQuizzes();
+
             });
         }
 
