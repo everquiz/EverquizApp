@@ -29,7 +29,7 @@
          * For user section
          */
         this.getQuizzes = function () {
-            return $http.get('/api/v1/Quizzes?populate=category', {
+            return $http.get('/api/v1/Quizzes?populate=category&status=1', {
                     headers: {Authorization: 'Bearer ' + authFactory.getToken()}
                 })
                 .then(function (res) {
@@ -77,16 +77,6 @@
                 });
             return self.quizzes;
         };
-
-        this.getAllTest = function () {
-            return $http.get('/api/v1/Quizzes?populate=category&select=category._id,category.title', {
-                    headers: {Authorization: 'Bearer ' + authFactory.getToken()}
-                })
-                .then(function (res) {
-                    return res.data;
-                });
-        };
-
 
         this.get = function (id) {
             return $http.get('/api/v1/Quizzes/' + id + '?populate=questions', {

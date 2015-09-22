@@ -43,10 +43,10 @@
          * Paginations variables
          */
         vm.maxSize = $scope.maxSize = 5;
-        vm.numPerPage = $scope.numPerPage = 5;
+        vm.numPerPage = $scope.numPerPage = 16;
         $scope.currentPage = $scope.currentPage = 1;
         vm.numPages = numPages;
-        quizService.getAllTest().then(function (res) {
+        quizService.getQuizzes().then(function (res) {
             vm.filteredQuizzes = res.slice(0, vm.numPerPage);
         });
 
