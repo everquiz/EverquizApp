@@ -52,8 +52,8 @@
       }
 
       result = {
-        averageResult: averageResult / history.length,
-        quizCompleted: quizCompleted
+        averageResult: Math.round(( averageResult / history.length ) * 100) + '%',
+        quizCompleted: history.length
       }
 
       return result;
