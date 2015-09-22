@@ -35,7 +35,7 @@
 
 
         function paginatorCheck(index) {
-            return ( (vm.page * vm.limit < index) && (index < vm.page * vm.limit + vm.limit));
+            return ( (vm.page * vm.limit <= index) && (index < vm.page * vm.limit + vm.limit));
         }
 
         function nextPage() {
@@ -56,7 +56,7 @@
         function deleteNote(note) {
             notesService.deleteNote(note);
             vm.notesNumber--;
-            getMaxPages()
+            if (vm.page + 1 >  getMaxPages()) vm.previousPage();
         }
 
         function editInit(note) {
@@ -97,7 +97,7 @@
 
         function getMaxPages() {
             vm.maxPages = vm.notesNumber / vm.limit;
-            if (vm.notesNumber / vm.limit !== 0) vm.maxPages++;
+            if (vm.notesNumber % vm.limit !== 0) vm.maxPages++;
             return vm.maxPages;
         }
 
