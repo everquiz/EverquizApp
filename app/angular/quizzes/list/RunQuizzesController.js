@@ -94,7 +94,6 @@
             var begin = (($scope.currentPage - 1) * vm.numPerPage)
                 , end = begin + vm.numPerPage;
             vm.filteredQuizzes = vm.quizzes.slice(begin, end);
-            console.log(vm.filteredQuizzes);
         }
     }
 })();
