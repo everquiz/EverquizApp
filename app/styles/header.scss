@@ -1,17 +1,17 @@
 .header{
 	height: 64px;
-	width: 100%;
-	min-width: 1280px;
+	width: 1280px;
 	margin: 0 auto;
 	background: #fff;
 	position: fixed;
 	left: 0;
+	right: 0;
 	top:0;
 	z-index:1;
 
 	&-main {
 		float:left;
-		margin-left:10%;
+		margin-left: 80px;
 
 		&-nav {
 			&-list {
@@ -85,7 +85,7 @@
 
 	&-profile {
 		float: right;
-		margin-right: 10%;
+		margin-right: 80px;
 
 		&-photo{
 			display: inline-block;

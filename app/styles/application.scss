@@ -85,6 +85,8 @@ Icon classes can be used entirely standalone. They are named after their origina
 .footer {
 	background: #1c2124;
 	height: 54px;
+	width: 1280px;
+	margin: 0 auto;
 	font-size: 18px;
 	line-height: 54px;
 	text-align: center;
@@ -163,14 +165,15 @@ Icon classes can be used entirely standalone. They are named after their origina
 	}	
 }
 .about-container {
+	width: 1280px;
+	height: 880px;
+	margin: 64px auto 0;
 	background: linear-gradient(to bottom, #b3c5cb, #cddcdf);
-	height: 500px;
-	padding: 100px 0;
-	margin-top: 64px;
 
 	&-name {
 		float: left;
 		margin-left: 17.5%;
+		padding-top: 150px;
 
 		&__vertical {
 			display: inline-block;
@@ -188,6 +191,7 @@ Icon classes can be used entirely standalone. They are named after their origina
 	&-info {
 		overflow: hidden;
 		padding-left: 17.5%;
+		padding-top: 150px;
 		width: 190px;
 
 		&__heading {
@@ -208,7 +212,7 @@ Icon classes can be used entirely standalone. They are named after their origina
 		&__start {
 			background: #fd2828;
 			border: none;
-			padding: 5px 20px;
+			padding: 10px 20px;
 			color: #fff;
 			cursor: pointer;
 			font-weight: bold;
@@ -222,18 +226,18 @@ Icon classes can be used entirely standalone. They are named after their origina
 }
 .header{
 	height: 64px;
-	width: 100%;
-	min-width: 1280px;
+	width: 1280px;
 	margin: 0 auto;
 	background: #fff;
 	position: fixed;
 	left: 0;
+	right: 0;
 	top:0;
 	z-index:1;
 
 	&-main {
 		float:left;
-		margin-left:10%;
+		margin-left: 80px;
 
 		&-nav {
 			&-list {
@@ -307,7 +311,7 @@ Icon classes can be used entirely standalone. They are named after their origina
 
 	&-profile {
 		float: right;
-		margin-right: 10%;
+		margin-right: 80px;
 
 		&-photo{
 			display: inline-block;
@@ -394,12 +398,13 @@ Icon classes can be used entirely standalone. They are named after their origina
 	}
 }
 .notes {
-	height: 700px;
-	padding: 30px 10% 0;
+	width: 1280px;
+	height: 880px;
+	margin: 0 auto;
 	background: #edebda;
 
 	&-header{
-		padding: 50px 0 25px;
+		padding: 10% 10% 0;
 
 		&__title {
 			color: #2c2c2c;
@@ -409,6 +414,7 @@ Icon classes can be used entirely standalone. They are named after their origina
 	}
 
 	&-wrapper {
+		margin: 5%;
 		overflow: hidden;
 	}
 
@@ -422,16 +428,15 @@ Icon classes can be used entirely standalone. They are named after their origina
 
 	&-button {
 		clear: left;
-		width: 100px;
+		width: 120px;
 		margin: 50px auto;
 
 		&__show-all {
 			background: #fd2828;
-			width: 100px;
 			font-weight: bold;
 			color: #fff;
 			border: none;
-			padding: 10px 10px;
+			padding: 10px 20px;
 			cursor: pointer;
 			transition: background 0.5s ease-in-out;
 
@@ -442,189 +447,245 @@ Icon classes can be used entirely standalone. They are named after their origina
 	}
 }
 .profile {
-    background-color: #f7f7f7;
+    width: 1280px;
+    height: 640px;
+    background-color: #fff;
     position: fixed;
     left: 0;
+    right: 0;
     top: 64px;
-    width: 100%;
-    padding: 50px;
+    margin: 0 auto;
     z-index: 1;
-
-    &-photo {
-        float: left;
-        width: 100px;
-        height: 150px;
-    }
-
-    &-content {
-        padding-left: 30px;
-        overflow: hidden;
-
-        &__name {
+    
+    &-info {
+        position: relative;
+        width: 1120px;
+        height: 230px;
+        margin: 54px auto 0;
+        background-color: #f7f7f7;
+        
+        &-photo {
+            float: left;
+            width: 230px;
+            height: 230px;
         }
 
-        &-item {
-            display: inline-block;
-            padding-right: 20px;
+        &-content {
+            padding-left: 80px;
+            overflow: hidden;
+
+            &__name {
+                color: #2c2c2c;
+                font-size: 3em;
+                font-weight: bold;
+                padding: 30px 0 45px;
+            }
+
+            &-item {
+                display: inline-block;
+                padding: 0 20px;
+
+                &__header {
+                    margin: 0;
+                    color: #c5c5c5;
+                    font-size: 1.5em;
+                    font-weight: bold;
+                    padding-bottom: 10px;
+                }
+
+                &__value {
+                    margin: 0;
+                    color: #373737;
+                    font-size: 1.5em;
+                    font-weight: bold;
+                }
+
+                &:nth-child(2) {
+                    padding-left: 0;
+                    border-right: 1px solid #c5c5c5;
+                }
+            }
+        }
+
+        &-notes {
+            position: absolute;
+            right: 56px;
+            bottom: 64px;
+
+            &__link {
+                color: #fff;
+                background: #fd2828;
+                border: none;
+                font-weight: bold;
+                padding: 10px 20px;
+                transition: background 0.5s ease-in-out;
+
+                &:hover {
+                    background: #2c2c2c;
+                }
+            }
         }
     }
 }
 .quiz {
-    height: 700px;
     width: 1280px;
+    height: 880px;
+    margin: 0 auto;
     overflow: hidden;
     position: relative;
     background: white;
     z-index: 0;
-        &__title {
-            position: absolute;
-            top: 85px;
-            left: 80px;
+
+    &__title {
+        position: absolute;
+        top: 85px;
+        left: 80px;
+        font-size: 30px;
+        font-family: Roboto;
+        color: #fb3a3a;
+        font-weight: bold;
+    }
+
+    &-block {
+        height: 880px;
+        width: 25600px;
+        position: absolute;
+        display: inline-block;
+        overflow: hidden;
+
+        &__intro {
+            display: table-cell;
+            width: 1280px;
+            padding-right: 320px;
             font-size: 30px;
             font-family: Roboto;
-            color: #fb3a3a;
+            color: #2c2c2c;
             font-weight: bold;
-        }
-        &-block {
-            height: 700px;
-            width: 90000px;
-            position: absolute;
-            display: inline-block;
-            overflow: hidden;
-            &__intro {
-                    display: table-cell;
-                    width: 1280px;
-                    padding-right: 320px;
-                    font-size: 30px;
-                    font-family: Roboto;
-                    color: #2c2c2c;
-                    font-weight: bold;
-                    padding: 120px 0 0 80px;
-                    &_slide {
-                        transition:all cubic-bezier(1, 0, 0, 1) 0.5s;
-                    
-                    }
-                }
-            &-question {
-                display: table-cell;
-                font-size: 30px;
-                font-family: Roboto;
-                color: #2c2c2c;
-                font-weight: bold;
-                width: 1280px;
-                height: 130px;
-                padding: 120px 0 0 80px;
+            padding: 120px 0 0 80px;
 
-                &__title {
-                    transition:all cubic-bezier(1, 0, 0, 1) 0.5s;
-                    width: 1040px;
-                    padding-right: 320px;
-                }
+            &_slide {
+               transition: margin 0.5s cubic-bezier(1, 0, 0, 1);
             }
+        }
+            
+        &-question {
+            display: table-cell;
+            font-size: 30px;
+            font-family: Roboto;
+            color: #2c2c2c;
+            font-weight: bold;
+            width: 1280px;
+            height: 130px;
+            padding: 120px 0 0 80px;
+
+            &__title {
+                transition: margin 0.5s cubic-bezier(1, 0, 0, 1);
+                width: 1040px;
+                padding-right: 320px;
+            }
+        }
             
                 
-            &-answer {
-                overflow: hidden;
-                padding: 0 0 0 240px;
-                transition:all cubic-bezier(1, 0, 0, 1) 2s;
-                &__intro {
+        &-answer {
+            overflow: hidden;
+            padding: 0 0 0 240px;
+            transition: margin 0.5s cubic-bezier(1, 0, 0, 1) 0.1s;
+            
+            &__intro {  
+                display: table-cell;
+                width: 800px;
+                padding-right: 560px; 
+                font-size: 20px;
+                font-family: Roboto;
+                padding-bottom: 10px;
+                color: #373737;
+            }
+    
+            &-form {
+                display: table-cell;
+                width: 1040px;
+                padding-right: 320px;            
                     
-                    display: table-cell;
-                    width: 800px;
-                    padding-right: 560px; 
-                    font-size: 20px;
-                    font-family: Roboto;
-                    padding-bottom: 10px;
-                    color: #373737;
-                }
-                &-form {
-                    display: table-cell;
-                    width: 1040px;
-                    padding-right: 320px;
-                    
-                    
-                    &-list {
+                &-list {
+                    list-style-type: none;
+
+                    &-item {
+                        font-size: 20px;
+                        font-family: Roboto;
+                        padding-bottom: 10px;
+                        color: #373737;
                         list-style-type: none;
-
-                        &-item {
-                            font-size: 20px;
-                            font-family: Roboto;
-                            padding-bottom: 10px;
-                            color: #373737;
-                            list-style-type: none;
                             
-                            &__title {
-                                
-                                cursor: pointer;
-                                &:before {
-                                    @extend .icon-checkbox_not_checked;
-                                    content: "";
-                                    display: inline-block;
-                                    margin: 0 25px 0 0;
-                                    vertical-align: middle;
-
-                                }
+                        &__title {
+                            cursor: pointer;
+                            
+                            &:before {
+                                @extend .icon-checkbox_not_checked;
+                                content: "";
+                                display: inline-block;
+                                margin: 0 25px 0 0;
+                                vertical-align: middle;
                             }
-                        }    
+                        }
                     }    
-                    &-list-item__checkbox:checked + &-list-item__title:before {
-                        @extend .icon-checkbox_checked;
-                    }
+                }    
+            
+                &-list-item__checkbox:checked + &-list-item__title:before {
+                    @extend .icon-checkbox_checked;
                 }
             }
+        }
             
-            &__submit {
-                position: absolute;
-                left: 640px;
-                top: 600px;
-                background-color: #fb3a3a;
-                color: white;
-                font-family: ProximaNova;
-                font-weight: bold;
-                border: none;
-                width: 140px;
-                height: 42px;
-                font-size: 18px;
-            }
-        }
-        &-counter {
+        &__submit {
             position: absolute;
-            top: 250px;
-            width: 200px;
-            height: 300px;
-            background-color: white;
-            text-align: right;
-            vertical-align: top;
-            &-indicator {
-                font-size: 60px;
-                color: #b9bdbe;
-                font-family: ProximaNova, sans-serif;
-                font-weight: bold;
-            }
+            left: 640px;
+            top: 600px;
+            background-color: #fb3a3a;
+            color: white;
+            font-family: ProximaNova;
+            font-weight: bold;
+            border: none;
+            width: 140px;
+            height: 42px;
+            font-size: 18px;
         }
-        &-back {
-            position: absolute;
-            right: 80px;
-            top: 80px;
-            &__title {
-                font-size: 18px;
-                font-family: ProximaNova, sans-serif;
-                font-weight: bold;
-                color: #b9bdbe;
-                text-decoration: none;
-            }
-            
+    }
+
+    &-counter {
+        position: absolute;
+        top: 250px;
+        width: 200px;
+        height: 300px;
+        background-color: white;
+        text-align: right;
+        vertical-align: top;
+    
+        &-indicator {
+            font-size: 60px;
+            color: #b9bdbe;
+            font-family: ProximaNova, sans-serif;
+            font-weight: bold;
         }
+    }
+    
+    &-back {
+        position: absolute;
+        right: 80px;
+        top: 80px;
+        
+        &__title {
+            font-size: 18px;
+            font-family: ProximaNova, sans-serif;
+            font-weight: bold;
+            color: #b9bdbe;
+            text-decoration: none;
+        }    
+    }
 }
-
-@font-face {
-    font-family: Roboto; 
-    src: url(../fonts/Roboto.ttf); 
-   }
-
-
 .quizzes {
-	height: 700px;
+	width: 1280px;
+	height: 880px;
+	margin: 0 auto;
 
 	&-header {
 		height: 50px;
@@ -652,11 +713,14 @@ Icon classes can be used entirely standalone. They are named after their origina
 	}
 
 	&-selection {
+		position: relative;
+		height: 700px;
+
 		&-table {
+			width: 1120px;
 			border-top: 1px solid #e0e2e2;
 			border-spacing: 0;
-			width: 90%;
-			margin: 0 auto 50px;
+			margin: 0 auto 16px;
 			
 			&-row {
 				&-heading {
@@ -693,8 +757,14 @@ Icon classes can be used entirely standalone. They are named after their origina
 			}
 		}
 		&-pagination {
-			margin: 0;
+			position: absolute;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			margin: 0 auto;
+			width: 1120px;
 			text-align: center;
+
 			ul {
 				padding-left: 0; 
 				margin-top: 0;
@@ -759,8 +829,10 @@ Icon classes can be used entirely standalone. They are named after their origina
 	}
 }
 .finish {
-	height: 700px;
+	width: 1280px;
+	height: 880px;
 	background: linear-gradient(to bottom, #26292c, #34383b);
+	margin: 0 auto;
 	
 	&-content {
 		padding-top: 200px;
@@ -817,7 +889,9 @@ Icon classes can be used entirely standalone. They are named after their origina
 	}
 }
 .video {
-	height: 700px;
+	width: 1280px;
+	height: 880px;
+	margin: 0 auto;
 	background: radial-gradient(#d9dad9, #727a7f);
 	
 	&-content {
@@ -845,7 +919,7 @@ Icon classes can be used entirely standalone. They are named after their origina
 		}
 
 		&-description {
-			width: 30%;
+			width: 35%;
 			margin: 30px auto 0;
 
 			&__content {

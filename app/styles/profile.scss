@@ -1,28 +1,81 @@
 .profile {
-    background-color: #f7f7f7;
+    width: 1280px;
+    height: 640px;
+    background-color: #fff;
     position: fixed;
     left: 0;
+    right: 0;
     top: 64px;
-    width: 100%;
-    padding: 50px;
+    margin: 0 auto;
     z-index: 1;
-
-    &-photo {
-        float: left;
-        width: 100px;
-        height: 150px;
-    }
-
-    &-content {
-        padding-left: 30px;
-        overflow: hidden;
-
-        &__name {
+    
+    &-info {
+        position: relative;
+        width: 1120px;
+        height: 230px;
+        margin: 54px auto 0;
+        background-color: #f7f7f7;
+        
+        &-photo {
+            float: left;
+            width: 230px;
+            height: 230px;
         }
 
-        &-item {
-            display: inline-block;
-            padding-right: 20px;
+        &-content {
+            padding-left: 80px;
+            overflow: hidden;
+
+            &__name {
+                color: #2c2c2c;
+                font-size: 3em;
+                font-weight: bold;
+                padding: 30px 0 45px;
+            }
+
+            &-item {
+                display: inline-block;
+                padding: 0 20px;
+
+                &__header {
+                    margin: 0;
+                    color: #c5c5c5;
+                    font-size: 1.5em;
+                    font-weight: bold;
+                    padding-bottom: 10px;
+                }
+
+                &__value {
+                    margin: 0;
+                    color: #373737;
+                    font-size: 1.5em;
+                    font-weight: bold;
+                }
+
+                &:nth-child(2) {
+                    padding-left: 0;
+                    border-right: 1px solid #c5c5c5;
+                }
+            }
+        }
+
+        &-notes {
+            position: absolute;
+            right: 56px;
+            bottom: 64px;
+
+            &__link {
+                color: #fff;
+                background: #fd2828;
+                border: none;
+                font-weight: bold;
+                padding: 10px 20px;
+                transition: background 0.5s ease-in-out;
+
+                &:hover {
+                    background: #2c2c2c;
+                }
+            }
         }
     }
 }

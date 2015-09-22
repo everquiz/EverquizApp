@@ -1,5 +1,7 @@
 .video {
-	height: 700px;
+	width: 1280px;
+	height: 880px;
+	margin: 0 auto;
 	background: radial-gradient(#d9dad9, #727a7f);
 	
 	&-content {
@@ -27,7 +29,7 @@
 		}
 
 		&-description {
-			width: 30%;
+			width: 35%;
 			margin: 30px auto 0;
 
 			&__content {
