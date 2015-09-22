@@ -1,9 +1,9 @@
 .quizzes {
-	height:500px;
+	height: 700px;
 
 	&-header {
 		height: 50px;
-		margin: 30px 10%;
+		padding: 30px 10%;
 
 		&__title {
 			float: left;
@@ -58,6 +58,11 @@
 						color: #373737;
 						padding: 10px;
 						text-align: center;
+						transition: color 0.5s ease-in-out;
+
+						&:hover{
+							color: #fb3a3a;
+						}
 					}	
 				}
 			}
