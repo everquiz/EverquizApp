@@ -1,30 +1,32 @@
 <header class="header">
-	<div class="header-main">
-		<nav class="header-main-nav">
-			<ul class="header-main-nav-list">
-				<li class="header-main-nav-list-item">
-					<a href="" class="header-main-nav-list-item__home">E</a>
-				</li
-				><li class="header-main-nav-list-item">
-					<a href="" class="header-main-nav-list-item__video" onclick="smoothScroll('video');">VIDEO</a>
-				</li
-				><li class="header-main-nav-list-item">
-					<a href="" class="header-main-nav-list-item__quizzes" onclick="smoothScroll('quizzes');">QUIZZES</a>
-				</li
-				><li class="header-main-nav-list-item">
-					<a href="" class="header-main-nav-list-item__notes" onclick="smoothScroll('notes');">NOTES</a>
-				</li>
-			</ul>		
-		</nav>
-	</div>
-	<div class="header-profile">
-		<div class="header-profile-photo" ng-show="NavCtrl.isLoggedIn()" ng-click="NavCtrl.toggleProfile()">
-			<img src="../../i/profile-image.jpg" alt=""  class="header-profile-photo__user">
+	<div class="header-wrapper">
+		<div class="header-main">
+			<nav class="header-main-nav">
+				<ul class="header-main-nav-list">
+					<li class="header-main-nav-list-item">
+						<a href="" class="header-main-nav-list-item__home">E</a>
+					</li
+					><li class="header-main-nav-list-item">
+						<a href="" class="header-main-nav-list-item__video" onclick="smoothScroll('video');">VIDEO</a>
+					</li
+					><li class="header-main-nav-list-item">
+						<a href="" class="header-main-nav-list-item__quizzes" onclick="smoothScroll('quizzes');">QUIZZES</a>
+					</li
+					><li class="header-main-nav-list-item">
+						<a href="" class="header-main-nav-list-item__notes" onclick="smoothScroll('notes');">NOTES</a>
+					</li>
+				</ul>		
+			</nav>
 		</div>
-		<div class="header-profile-nav">
-			<a href="" class="header-profile-nav__logout" ng-click="NavCtrl.logOut()" ng-show="NavCtrl.isLoggedIn()">LOGOUT</a>
-			<a href="#/login" class="header-profile-nav__login" ng-hide="NavCtrl.isLoggedIn()">Log In</a>
-  			<a href="#/register" class="header-profile-nav__register" ng-hide="NavCtrl.isLoggedIn()">Register</a>
-		</div>	
-	</div>
+		<div class="header-profile">
+			<div class="header-profile-photo" ng-show="NavCtrl.isLoggedIn()" ng-click="NavCtrl.toggleProfile()">
+				<img src="../../i/profile-image.jpg" alt=""  class="header-profile-photo__user">
+			</div>
+			<div class="header-profile-nav">
+				<a href="" class="header-profile-nav__logout" ng-click="NavCtrl.logOut()" ng-show="NavCtrl.isLoggedIn()">LOGOUT</a>
+				<a href="#/login" class="header-profile-nav__login" ng-hide="NavCtrl.isLoggedIn()">Log In</a>
+	  			<a href="#/register" class="header-profile-nav__register" ng-hide="NavCtrl.isLoggedIn()">Register</a>
+			</div>	
+		</div>
+	</div>	
 </header>

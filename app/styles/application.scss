@@ -83,7 +83,6 @@ Icon classes can be used entirely standalone. They are named after their origina
 }
 
 .footer {
-	background: #1c2124;
 	height: 54px;
 	width: 1280px;
 	margin: 0 auto;
@@ -168,7 +167,6 @@ Icon classes can be used entirely standalone. They are named after their origina
 	width: 1280px;
 	height: 880px;
 	margin: 64px auto 0;
-	background: linear-gradient(to bottom, #b3c5cb, #cddcdf);
 
 	&-name {
 		float: left;
@@ -226,7 +224,8 @@ Icon classes can be used entirely standalone. They are named after their origina
 }
 .header{
 	height: 64px;
-	width: 1280px;
+	width: 100%;
+	min-width: 1280px;
 	margin: 0 auto;
 	background: #fff;
 	position: fixed;
@@ -234,6 +233,11 @@ Icon classes can be used entirely standalone. They are named after their origina
 	right: 0;
 	top: 0;
 	z-index: 2;
+
+	&-wrapper {
+		width: 1280px;
+		margin: 0 auto;
+	}
 
 	&-main {
 		float:left;
@@ -406,7 +410,6 @@ Icon classes can be used entirely standalone. They are named after their origina
 	width: 1280px;
 	height: 880px;
 	margin: 0 auto;
-	background: #edebda;
 
 	&-header{
 		padding: 10% 10% 0;
@@ -452,15 +455,16 @@ Icon classes can be used entirely standalone. They are named after their origina
 	}
 }
 .profile {
-    width: 1280px;
+    width: 100%;
+    min-width: 1280px;
     height: 640px;
-    background-color: #fff;
     position: fixed;
     left: 0;
     right: 0;
     top: 64px;
     margin: 0 auto;
-    border-top: 1px solid #e9e9e9;
+    background: #fff;
+    border: 1px solid #e9e9e9;
     z-index: 1;
     
     &-info {
@@ -942,7 +946,6 @@ Icon classes can be used entirely standalone. They are named after their origina
 .finish {
 	width: 1280px;
 	height: 880px;
-	background: linear-gradient(to bottom, #26292c, #34383b);
 	margin: 0 auto;
 	
 	&-content {
@@ -1003,7 +1006,6 @@ Icon classes can be used entirely standalone. They are named after their origina
 	width: 1280px;
 	height: 880px;
 	margin: 0 auto;
-	background: radial-gradient(#d9dad9, #727a7f);
 	
 	&-content {
 		padding-top: 300px;
