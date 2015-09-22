@@ -18,10 +18,16 @@
 			color: #fff;
 			background: transparent;
 			cursor: pointer;
+			transition: color 0.5s ease-in-out, border 0.5s ease-in-out;
+
+			&:hover {
+				color:#fb3a3a;
+				border-color: #fb3a3a;
+			}
 		}
 
 		&-description {
-			width: 35%;
+			width: 30%;
 			margin: 30px auto 0;
 
 			&__content {
@@ -32,7 +38,16 @@
 
 				&.is-important {
 					color: #fd2828;
-				}	
+					padding: 0 5px;
+					background: transparent;
+					cursor: pointer;
+					transition: color 0.5s ease-in-out, background 0.5s ease-in-out;
+
+					&:hover {
+						color: #fff;
+						background: #fb3a3a;
+					}
+				}
 			}
 		}
 	}	

@@ -15,7 +15,6 @@ var gulp = require('gulp'),
     templateCache = require('gulp-angular-templatecache'),
     spawn = require('child_process').spawn,
     spritesmith = require('gulp.spritesmith'),
-    merge = require('merge-stream'),
     imagemin = require ('gulp-imagemin'),
     node;
 
