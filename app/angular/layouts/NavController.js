@@ -15,6 +15,7 @@
     vm.logOut = logOut;
     vm.showProfile = showProfile;
     vm.showNotes = showNotes;
+    vm.isProfileVisible = profileFactory.isVisible;
     vm.toggleProfile = toggleProfile;
     vm.goHome = goHome;
 
