@@ -19,7 +19,7 @@
 			</nav>
 		</div>
 		<div class="header-profile">
-			<div class="header-profile-photo" ng-show="NavCtrl.isLoggedIn()" ng-click="NavCtrl.toggleProfile()">
+			<div class="header-profile-photo" ng-class="{'is-open': NavCtrl.isProfileVisible() }" ng-show="NavCtrl.isLoggedIn()" ng-click="NavCtrl.toggleProfile()">
 				<img src="../../i/profile-image.jpg" alt=""  class="header-profile-photo__user">
 			</div>
 			<div class="header-profile-nav">

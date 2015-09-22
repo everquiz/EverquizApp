@@ -12,25 +12,30 @@
     var notes = [];
     var isLoaded = false;
     var id = authFactory.currentUserId();
+    console.log("id", id);
     var display = false;
     if (id) display = true;
     var mainDisplay = true;
     var listDisplay = false;
 
     this.addNote = function(note) {
-      note.user = id;
+      note.user = id; //authFactory.currentUserId();
+      console.log("id", id);
       if (id)
       $http.post('/api/v1/Notes/', note).then(function(res) {
         notes.push(res.data);
+        console.log("addNotes", notes);
       });
     };
 
     this.getNotes = function() {
       //if (isLoaded) return notes;
       var id = authFactory.currentUserId();
+      console.log("id", id);
       if (id) {
         return $http.get('/api/v1/Notes?user=' + id).then(function (res) {
           notes = res.data;
+          console.log("getNotes", notes);
           //isLoaded = true;
           return notes;
         });
@@ -43,6 +48,7 @@
             notes.forEach(function(item, i, notes){
               if (item._id === note._id) {
                 notes[i] = note;
+                console.log("upadateNotes", notes);
                 return;
               }
             })
