@@ -4,13 +4,14 @@
 	</div>
 	
 	<div class="notes-wrapper">
-		<div class="notes-block" ng-click="NotesMainCtrl.onNoteClick(notes.id)" ng-repeat="note in NotesMainCtrl.notes  | limitTo:NotesMainCtrl.limit">
+		<div class="notes-block" ng-repeat="note in NotesMainCtrl.notes  | limitTo:NotesMainCtrl.limit">
 			<div class="notes-block__name">{{note.title}}</div>
 			<div class="notes-block__content">{{note.text}}</div>
 			<div class="notes-block__info">Note info</div>
 		</div>
-	</div>	
-	
+	</div>
+
+
 	<div class="notes-button">
 		<button ng-click="NotesMainCtrl.switchToList()" class="notes-button__show-all">VIEW ALL</button>
 	</div>

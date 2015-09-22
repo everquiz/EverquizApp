@@ -10,7 +10,7 @@
 
 
 		</div>
-		<div class="quiz-block-answer" ng-submit="PassingQuizCtrl.checkResult();" ng-style="{'margin-left': slide + 'px'}" >
+		<div class="quiz-block-answer" ng-style="{'margin-left': slide + 'px'}" >
 			<div class="quiz-block-answer__intro">{{PassingQuizCtrl.quiz.description}}</div>
 			<form action="" class="quiz-block-answer-form" ng-repeat="question in PassingQuizCtrl.quiz.questions">
 				<ul class="quiz-block-answer-form-list">
@@ -19,10 +19,13 @@
 				</ul>
 			</form>
 		</div>
-		<button class="quiz-block__submit" ng-init="buttonText = 'START QUIZ!'"
+		<button class="quiz-block__submit" ng-init="buttonText = 'START QUIZ!'" ng-show="questionCount != PassingQuizCtrl.quiz.questions.length"
                 ng-click="slide = slide - 1360; questionCount = questionCount + 1; startQuiz = true; buttonText = 'NEXT STEP'">
             {{buttonText}}
 		</button>
+		<input class="quiz-block__submit" type="submit"  value="SHOW RESULT"
+			   ng-click="PassingQuizCtrl.checkResult(); QuizzesContainerCtrl.quizService.activeQuiz = 'result'"
+			   ng-hide="questionCount != PassingQuizCtrl.quiz.questions.length">
 	</div>
 	<div class="quiz-counter" ng-show="startQuiz">
 		<span class="quiz-counter-indicator">

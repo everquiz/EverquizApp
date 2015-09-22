@@ -78,23 +78,17 @@
                             },
                             'notesList@home': {
                                 templateUrl: 'notes/_notes.list.html',
-                                controller: 'NotesListController as NotesListCtrl',
-                                resolve: {
-                                    notes: ['notesService',
-                                        function (notesService) {
-                                            return notesService.getNotes();
-                                        }]
-                                }
+                                controller: 'NotesListController as NotesListCtrl'
                             },
                             'notesMain@home': {
                                 templateUrl: 'notes/_notes.main.html',
-                                controller: 'NotesMainController as NotesMainCtrl',
-                                resolve: {
-                                    notes: ['notesService',
-                                        function (notesService) {
-                                            return notesService.getNotes();
-                                        }]
-                                }
+                                controller: 'NotesMainController as NotesMainCtrl'
+                                //resolve: {
+                                //    notes: ['notesService',
+                                //        function (notesService) {
+                                //            return notesService.getNotes();
+                                //        }]
+                                //}
                             },
                             'footer@home': {
                                 templateUrl: 'layouts/_footer.html'

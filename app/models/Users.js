@@ -50,7 +50,6 @@ NoteSchema.pre('save', function(next, done) {
   User.findById(note.user, function (err, user) {
     user.notes.push(note._id);
     user.save();
-    console.log(user);
   });
   next();
 });
