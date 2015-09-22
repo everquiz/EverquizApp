@@ -14,6 +14,9 @@ var gulp = require('gulp'),
     jshint = require('gulp-jshint'),
     templateCache = require('gulp-angular-templatecache'),
     spawn = require('child_process').spawn,
+    spritesmith = require('gulp.spritesmith'),
+    merge = require('merge-stream'),
+    imagemin = require ('gulp-imagemin'),
     node;
 
 //****************************************************************
@@ -39,6 +42,30 @@ gulp.task('vendor-js', function() {
         .pipe(gulp.dest('public/js'));
 });
 
+//****************************************************************
+//Image section
+gulp.task('sprite', function() {
+    var spriteData = gulp.src([
+            'app/i/icons/*.png',
+            '!app/i/icons/*.db'])
+        .pipe(spritesmith({
+            imgName: 'sprite.png',
+            cssName: 'sprite.css',
+            imgPath: '../i/sprite.png',
+        }));
+
+    spriteData.img.pipe(gulp.dest('app/i'));
+    spriteData.css.pipe(gulp.dest('app/styles'));
+});
+
+gulp.task('images', function() {
+    return gulp.src([
+            'app/i/*',
+            '!app/i/*.db',
+            '!app/i/icons/'])
+        .pipe(imagemin())
+        .pipe(gulp.dest('public/i'));
+});
 
 //****************************************************************
 //CSS section
@@ -53,9 +80,18 @@ gulp.task('vendor-css', ['normalize'], function(){
 });
 
 //Custom styles
-gulp.task('styles', function() {
+gulp.task('scss-concat',function () {
     return gulp.src([
+            'app/styles/sprite.css',
             'app/styles/**/*.scss',
+            '!app/styles/application.scss'])
+        .pipe(concat('application.scss'))
+        .pipe(gulp.dest('app/styles'));
+});
+
+gulp.task('styles', ['scss-concat'], function() {
+    return gulp.src([
+            'app/styles/application.scss',
             'app/styles/**/*.css'])
         .pipe(sass().on('error', sass.logError))
         .pipe(concat('application.min.css'))
@@ -71,7 +107,7 @@ gulp.task('vendors', ['vendor-css', 'vendor-js'], function () {
 
 //****************************************************************
 // watching scss/js/html files
-gulp.task('watch', ['vendors', 'scripts', 'styles', 'server'], function() {
+gulp.task('watch', ['sprite', 'images', 'vendors', 'scripts', 'styles', 'server'], function() {
     gulp.watch('app/styles/**/*.css', ['styles']);
     gulp.watch('app/styles/**/*.scss', ['styles']);
     gulp.watch([
@@ -121,7 +157,4 @@ gulp.task('default', ['watch'], function() {
 });
 
 // heroku task
-gulp.task('heroku:test', ['vendors', 'scripts', 'styles']);
-
-
-
+gulp.task('heroku:test', ['sprite', 'images', 'vendors', 'scripts', 'styles']);

@@ -62,16 +62,15 @@
                                     quizzes: ['quizService',
                                         function (quizService) {
                                             return quizService.getQuizzes();
-                                        }],
-                                    history: ['historyService',
-                                        function (historyService) {
-                                            return historyService.getHistory();
                                         }]
                                 }
                             },
                             'quiz@home': {
                                 templateUrl: 'quizzes/single/_quiz.html',
                                 controller: 'PassingQuizController as PassingQuizCtrl'
+                            },
+                            'result@home': {
+                                templateUrl: 'quizzes/result/_result.html'
                             },
                             'notes@home': {
                                 templateUrl: 'notes/_notes.html',
@@ -90,9 +89,6 @@
                                 //            return notesService.getNotes();
                                 //        }]
                                 //}
-                            },
-                            'getFail@home': {
-                                templateUrl: 'home/_getFail.html'
                             },
                             'footer@home': {
                                 templateUrl: 'layouts/_footer.html'
