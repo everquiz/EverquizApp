@@ -1,2 +1,3 @@
 <div ui-view="list" ng-if="!QuizzesContainerCtrl.quizService.activeQuiz"></div>
 <div ui-view="quiz" ng-if="QuizzesContainerCtrl.quizService.activeQuiz"></div>
+<div ui-view="result" ng-if="QuizzesContainerCtrl.quizService.activeQuiz === 'result'"></div>
