@@ -85,6 +85,8 @@ Icon classes can be used entirely standalone. They are named after their origina
 .footer {
 	background: #1c2124;
 	height: 54px;
+	width: 1280px;
+	margin: 0 auto;
 	font-size: 18px;
 	line-height: 54px;
 	text-align: center;
@@ -163,14 +165,15 @@ Icon classes can be used entirely standalone. They are named after their origina
 	}	
 }
 .about-container {
+	width: 1280px;
+	height: 880px;
+	margin: 64px auto 0;
 	background: linear-gradient(to bottom, #b3c5cb, #cddcdf);
-	height: 500px;
-	padding: 100px 0;
-	margin-top: 64px;
 
 	&-name {
 		float: left;
-		margin-left: 30%;
+		margin-left: 17.5%;
+		padding-top: 150px;
 
 		&__vertical {
 			display: inline-block;
@@ -178,6 +181,7 @@ Icon classes can be used entirely standalone. They are named after their origina
 			text-align: center;
 			margin-left: 20px;
 			font-size: 3em;
+			line-height: 1.5em;
 			font-weight: bold;
 			width: 1em;
 			color: #fff;
@@ -186,17 +190,21 @@ Icon classes can be used entirely standalone. They are named after their origina
 
 	&-info {
 		overflow: hidden;
-		padding-left: 20%;
-		width: 135px;
+		padding-left: 17.5%;
+		padding-top: 150px;
+		width: 190px;
 
 		&__heading {
 			font-weight: bold;
-			margin-bottom: 30px;
+			font-size: 26px;
+			line-height: 28px;
+			margin:15px 0 30px;
 			color: #3c3c3c;
 		}
 
 		&__content {
-			font-size: 16px;
+			font-size: 18px;
+			line-height: 22px;
 			margin-bottom: 30px;
 			color: #626363;
 		}
@@ -204,23 +212,32 @@ Icon classes can be used entirely standalone. They are named after their origina
 		&__start {
 			background: #fd2828;
 			border: none;
-			padding: 5px 20px;
+			padding: 10px 20px;
 			color: #fff;
+			cursor: pointer;
+			font-weight: bold;
+			transition: background 0.5s ease-in-out;
+
+			&:hover {
+				background: #2c2c2c;
+			}
 		}
 	}
 }
 .header{
-	width: 100%;
 	height: 64px;
+	width: 1280px;
+	margin: 0 auto;
 	background: #fff;
 	position: fixed;
 	left: 0;
-	top:0;
-	z-index:1;
+	right: 0;
+	top: 0;
+	z-index: 2;
 
 	&-main {
 		float:left;
-		margin-left:20%;
+		margin-left: 80px;
 
 		&-nav {
 			&-list {
@@ -230,8 +247,9 @@ Icon classes can be used entirely standalone. They are named after their origina
 				&-item {
 					display: inline-block;
 					line-height: 64px;
+					height: 64px;
 					vertical-align: top;
-					font-size: 14px;
+					font-size: 18px;
 					font-weight: bold;
 
 					&__home {
@@ -248,7 +266,7 @@ Icon classes can be used entirely standalone. They are named after their origina
 
 						&:hover {
 							text-decoration: none;
-							background-color: #000;
+							background-color: #2c2c2c;
 						}
 					}
 					
@@ -256,9 +274,11 @@ Icon classes can be used entirely standalone. They are named after their origina
 						margin-left: 60px;
 						color: #373737;
 						text-decoration: none;
+						transition: color 0.5s ease-in-out;
 
 						&:hover {
 							text-decoration: none;
+							color: #fb3a3a;
 						}
 					}
 
@@ -266,9 +286,11 @@ Icon classes can be used entirely standalone. They are named after their origina
 						margin-left: 30px;
 						color: #373737;
 						text-decoration: none;
+						transition: color 0.5s ease-in-out;
 
 						&:hover {
 							text-decoration: none;
+							color: #fb3a3a;
 						}
 					}
 
@@ -276,19 +298,11 @@ Icon classes can be used entirely standalone. They are named after their origina
 						margin-left: 30px;
 						color: #373737;
 						text-decoration: none;
+						transition: color 0.5s ease-in-out;
 
 						&:hover {
 							text-decoration: none;
-						}
-					}
-
-					&__parallax {
-						margin-left: 30px;
-						color: #373737;
-						text-decoration: none;
-
-						&:hover {
-							text-decoration: none;
+							color: #fb3a3a;
 						}
 					}
 				}
@@ -298,23 +312,42 @@ Icon classes can be used entirely standalone. They are named after their origina
 
 	&-profile {
 		float: right;
-		margin-right: 20%;
+		margin-right: 80px;
 
 		&-photo{
 			display: inline-block;
-			line-height: 64px;
-			height: 64px;
-			padding-top: 8px;
+			line-height: 48px;
+			height: 48px;
+			padding: 8px;
 			vertical-align: top;
 			cursor: pointer;
-		}
 
-		&__popup {
-			display: inline-block;
-			line-height: 64px;
-			vertical-align: top;
-			font-size: 12px;
-			cursor: pointer;
+			&:after {
+				content: '\25BC';
+				color: #373737;
+				display: inline-block;
+				line-height: 48px;
+				vertical-align: top;
+				font-size: 12px;
+				transition: color 0.5s ease-in-out;
+			}
+
+			&:hover {
+
+				&:after {
+					color: #fb3a3a;
+				}
+			}
+
+			&.is-open {
+				border-bottom: 1px solid #fff;
+				border-left: 1px solid #e9e9e9;
+				border-right: 1px solid #e9e9e9;
+
+				&:after {
+					content: '\25B2';
+				}
+			}
 		}
 		
 		&-nav {
@@ -325,51 +358,58 @@ Icon classes can be used entirely standalone. They are named after their origina
 				line-height: 64px;
 				color: #acacac;
 				vertical-align: top;
-				margin-left: 20px;
-				font-size: 14px;
+				margin-left: 40px;
+				font-size: 18px;
 				font-weight: bold;
 				text-decoration: none;
+				transition: color 0.5s ease-in-out;
 
-				:hover{
+				&:hover{
 					text-decoration: none;
+					color: #373737;
 				}
 			}
 
 			&__login {
 				line-height: 64px;
 				color: #acacac;
-				margin-left: 20px;
-				font-size: 14px;
+				margin-left: 40px;
+				font-size: 18px;
 				font-weight: bold;
 				text-decoration: none;
+				transition: color 0.5s ease-in-out;
 
-				:hover{
+				&:hover{
 					text-decoration: none;
+					color: #373737;
 				}
 			}
 
 			&__register {
 				line-height: 64px;
 				color: #acacac;
-				margin-left: 20px;
-				font-size: 14px;
+				margin-left: 40px;
+				font-size: 18px;
 				font-weight: bold;
 				text-decoration: none;
+				transition: color 0.5s ease-in-out;
 
-				:hover{
+				&:hover{
 					text-decoration: none;
+					color: #373737;
 				}
 			}
 		}
 	}
 }
 .notes {
-	height: 700px;
-	padding: 30px 10% 0;
+	width: 1280px;
+	height: 880px;
+	margin: 0 auto;
 	background: #edebda;
 
 	&-header{
-		padding: 50px 0 25px;
+		padding: 10% 10% 0;
 
 		&__title {
 			color: #2c2c2c;
@@ -379,219 +419,388 @@ Icon classes can be used entirely standalone. They are named after their origina
 	}
 
 	&-wrapper {
+		margin: 5%;
 		overflow: hidden;
 	}
 
 	&-block {
 		float: left;
 		width: 15%;
-		margin: 0 5% 5% 0;
+		margin: 0 2.5% 5%;
 		padding: 5% 0 5% 5%;
 		background: #fff;
 	}
 
 	&-button {
 		clear: left;
-		width: 100px;
+		width: 120px;
 		margin: 50px auto;
 
 		&__show-all {
 			background: #fd2828;
-			width: 100px;
+			font-weight: bold;
 			color: #fff;
 			border: none;
-			padding: 10px 10px;
+			padding: 10px 20px;
+			cursor: pointer;
+			transition: background 0.5s ease-in-out;
+
+			&:hover {
+				background: #2c2c2c;
+			}
 		}
 	}
 }
 .profile {
-    background-color: #f7f7f7;
+    width: 1280px;
+    height: 640px;
+    background-color: #fff;
     position: fixed;
     left: 0;
+    right: 0;
     top: 64px;
-    width: 100%;
-    padding: 50px;
+    margin: 0 auto;
+    border-top: 1px solid #e9e9e9;
     z-index: 1;
+    
+    &-info {
+        position: relative;
+        width: 1120px;
+        height: 200px;
+        margin: 56px auto 0;
+        background-color: #f7f7f7;
+        
+        &-photo {
+            float: left;
+            width: 200px;
+            height: 200px;
+        }
 
-    &-photo {
-        float: left;
-        width: 100px;
-        height: 150px;
+        &-content {
+            padding-left: 80px;
+            overflow: hidden;
+
+            &__name {
+                color: #2c2c2c;
+                font-size: 3em;
+                font-weight: bold;
+                padding: 20px 0 30px;
+            }
+
+            &-item {
+                display: inline-block;
+                padding: 0 20px;
+
+                &__header {
+                    margin: 0;
+                    color: #c5c5c5;
+                    font-size: 1.5em;
+                    font-weight: bold;
+                    padding-bottom: 10px;
+                }
+
+                &__value {
+                    margin: 0;
+                    color: #373737;
+                    font-size: 1.5em;
+                    font-weight: bold;
+                }
+
+                &:nth-child(2) {
+                    padding-left: 0;
+                    border-right: 1px solid #c5c5c5;
+                }
+            }
+        }
+
+        &-notes {
+            position: absolute;
+            right: 56px;
+            bottom: 64px;
+
+            &__link {
+                color: #fff;
+                background: #fd2828;
+                border: none;
+                font-weight: bold;
+                padding: 10px 20px;
+                transition: background 0.5s ease-in-out;
+
+                &:hover {
+                    background: #2c2c2c;
+                }
+            }
+        }
     }
 
-    &-content {
-        padding-left: 30px;
-        overflow: hidden;
+    &-additional {
+        width: 1120px;
+        margin: 0 auto;
+        padding-top: 64px;
 
-        &__name {
+        &-actions {
+            float: left;
+            width: 520px;
+
+            &__title {
+                font-size: 1.5em;
+                font-weight: bold;
+                color: #2c2c2c;
+            }
+
+            &-content {
+                margin-top: 36px;
+
+                &-list {
+                    margin: 0;
+                    padding: 0;
+                    list-style: none;
+
+                    &-item {
+                        line-height: 58px;
+                        margin-top: 3px;
+                        font-size: 20px;
+                        font-weight: bold;
+                        padding-left: 20px;
+
+                        &__date {
+                            letter-spacing: 1px;
+                            color: #a3aaac;
+                        }
+
+                        &__title {
+                            color: #373737;
+                        }
+
+                        &.is-quiz {
+                            background: #e8f1f2;
+                        }
+
+                        &.is-note {
+                            background: #f4f3e7;
+                        }
+                    }
+                }
+            }
         }
 
-        &-item {
-            display: inline-block;
-            padding-right: 20px;
+        &-recommendations {
+            float: right;
+            width: 520px;
+
+            &__title {
+                font-size: 1.5em;
+                font-weight: bold;
+                color: #2c2c2c;
+            }
+
+            &-content {
+                margin-top: 36px;
+
+                &-list {
+                    margin: 0;
+                    padding: 0;
+                    list-style: none;
+
+                    &-item {
+                        line-height: 58px;
+                        margin-top: 3px;
+                        font-size: 20px;
+                        font-weight: bold;
+                        padding-left: 20px;
+                        background: #f4f3e7;
+
+                        &__date {
+                            letter-spacing: 1px;
+                            color: #a3aaac;
+                        }
+
+                        &__title {
+                            color: #373737;
+                        }
+
+                        &.is-action {
+                            background: #e8f1f2;
+                        }
+                    }
+                }
+            }
         }
+    }
+
+    &:after {
+        content: '';
+        position: absolute;
+        top: 100%;
+        display: block;
+        width: 1280px;
+        height: 40px;
+        background: linear-gradient(to bottom, #fff, transparent);
     }
 }
 .quiz {
-    height: 700px;
     width: 1280px;
+    height: 880px;
+    margin: 0 auto;
     overflow: hidden;
     position: relative;
     background: white;
     z-index: 0;
-        &__title {
-            position: absolute;
-            top: 85px;
-            left: 80px;
+
+    &__title {
+        position: absolute;
+        top: 85px;
+        left: 80px;
+        font-size: 30px;
+        font-family: Roboto;
+        color: #fb3a3a;
+        font-weight: bold;
+    }
+
+    &-block {
+        height: 880px;
+        width: 25600px;
+        position: absolute;
+        display: inline-block;
+        overflow: hidden;
+
+        &__intro {
+            display: table-cell;
+            width: 1280px;
+            padding-right: 320px;
             font-size: 30px;
             font-family: Roboto;
-            color: #fb3a3a;
+            color: #2c2c2c;
             font-weight: bold;
-        }
-        &-block {
-            height: 700px;
-            width: 90000px;
-            position: absolute;
-            display: inline-block;
-            overflow: hidden;
-            &__intro {
-                    display: table-cell;
-                    width: 1280px;
-                    padding-right: 320px;
-                    font-size: 30px;
-                    font-family: Roboto;
-                    color: #2c2c2c;
-                    font-weight: bold;
-                    padding: 120px 0 0 80px;
-                    &_slide {
-                        transition:all cubic-bezier(1, 0, 0, 1) 0.5s;
-                    
-                    }
-                }
-            &-question {
-                display: table-cell;
-                font-size: 30px;
-                font-family: Roboto;
-                color: #2c2c2c;
-                font-weight: bold;
-                width: 1280px;
-                height: 130px;
-                padding: 120px 0 0 80px;
+            padding: 120px 0 0 80px;
 
-                &__title {
-                    transition:all cubic-bezier(1, 0, 0, 1) 0.5s;
-                    width: 1040px;
-                    padding-right: 320px;
-                }
+            &_slide {
+               transition: margin 0.5s cubic-bezier(1, 0, 0, 1);
             }
+        }
+            
+        &-question {
+            display: table-cell;
+            font-size: 30px;
+            font-family: Roboto;
+            color: #2c2c2c;
+            font-weight: bold;
+            width: 1280px;
+            height: 130px;
+            padding: 120px 0 0 80px;
+
+            &__title {
+                transition: margin 0.5s cubic-bezier(1, 0, 0, 1);
+                width: 1040px;
+                padding-right: 320px;
+            }
+        }
             
                 
-            &-answer {
-                overflow: hidden;
-                padding: 0 0 0 240px;
-                transition:all cubic-bezier(1, 0, 0, 1) 2s;
-                &__intro {
+        &-answer {
+            overflow: hidden;
+            padding: 0 0 0 240px;
+            transition: margin 0.5s cubic-bezier(1, 0, 0, 1) 0.1s;
+            
+            &__intro {  
+                display: table-cell;
+                width: 800px;
+                padding-right: 560px; 
+                font-size: 20px;
+                font-family: Roboto;
+                padding-bottom: 10px;
+                color: #373737;
+            }
+    
+            &-form {
+                display: table-cell;
+                width: 1040px;
+                padding-right: 320px;            
                     
-                    display: table-cell;
-                    width: 800px;
-                    padding-right: 560px; 
-                    font-size: 20px;
-                    font-family: Roboto;
-                    padding-bottom: 10px;
-                    color: #373737;
-                }
-                &-form {
-                    display: table-cell;
-                    width: 1040px;
-                    padding-right: 320px;
-                    
-                    
-                    &-list {
+                &-list {
+                    list-style-type: none;
+
+                    &-item {
+                        font-size: 20px;
+                        font-family: Roboto;
+                        padding-bottom: 10px;
+                        color: #373737;
                         list-style-type: none;
-
-                        &-item {
-                            font-size: 20px;
-                            font-family: Roboto;
-                            padding-bottom: 10px;
-                            color: #373737;
-                            list-style-type: none;
                             
-                            &__title {
-                                
-                                cursor: pointer;
-                                &:before {
-                                    @extend .icon-checkbox_not_checked;
-                                    content: "";
-                                    display: inline-block;
-                                    margin: 0 25px 0 0;
-                                    vertical-align: middle;
-
-                                }
+                        &__title {
+                            cursor: pointer;
+                            
+                            &:before {
+                                @extend .icon-checkbox_not_checked;
+                                content: "";
+                                display: inline-block;
+                                margin: 0 25px 0 0;
+                                vertical-align: middle;
                             }
-                        }    
+                        }
                     }    
-                    &-list-item__checkbox:checked + &-list-item__title:before {
-                        @extend .icon-checkbox_checked;
-                    }
+                }    
+            
+                &-list-item__checkbox:checked + &-list-item__title:before {
+                    @extend .icon-checkbox_checked;
                 }
             }
+        }
             
-            &__submit {
-                position: absolute;
-                left: 640px;
-                top: 600px;
-                background-color: #fb3a3a;
-                color: white;
-                font-family: ProximaNova;
-                font-weight: bold;
-                border: none;
-                width: 140px;
-                height: 42px;
-                font-size: 18px;
-            }
-        }
-        &-counter {
+        &__submit {
             position: absolute;
-            top: 250px;
-            width: 200px;
-            height: 300px;
-            background-color: white;
-            text-align: right;
-            vertical-align: top;
-            &-indicator {
-                font-size: 60px;
-                color: #b9bdbe;
-                font-family: ProximaNova, sans-serif;
-                font-weight: bold;
-            }
+            left: 640px;
+            top: 600px;
+            background-color: #fb3a3a;
+            color: white;
+            font-family: ProximaNova;
+            font-weight: bold;
+            border: none;
+            width: 140px;
+            height: 42px;
+            font-size: 18px;
         }
-        &-back {
-            position: absolute;
-            right: 80px;
-            top: 80px;
-            &__title {
-                font-size: 18px;
-                font-family: ProximaNova, sans-serif;
-                font-weight: bold;
-                color: #b9bdbe;
-                text-decoration: none;
-            }
-            
+    }
+
+    &-counter {
+        position: absolute;
+        top: 250px;
+        width: 200px;
+        height: 300px;
+        background-color: white;
+        text-align: right;
+        vertical-align: top;
+    
+        &-indicator {
+            font-size: 60px;
+            color: #b9bdbe;
+            font-family: ProximaNova, sans-serif;
+            font-weight: bold;
         }
+    }
+    
+    &-back {
+        position: absolute;
+        right: 80px;
+        top: 80px;
+        
+        &__title {
+            font-size: 18px;
+            font-family: ProximaNova, sans-serif;
+            font-weight: bold;
+            color: #b9bdbe;
+            text-decoration: none;
+        }    
+    }
 }
-
-@font-face {
-    font-family: Roboto; 
-    src: url(../fonts/Roboto.ttf); 
-   }
-
-
 .quizzes {
-	height:500px;
+	width: 1280px;
+	height: 880px;
+	margin: 0 auto;
 
 	&-header {
 		height: 50px;
-		margin: 30px 10%;
+		padding: 30px 10%;
 
 		&__title {
 			float: left;
@@ -615,11 +824,14 @@ Icon classes can be used entirely standalone. They are named after their origina
 	}
 
 	&-selection {
+		position: relative;
+		height: 700px;
+
 		&-table {
+			width: 1120px;
 			border-top: 1px solid #e0e2e2;
 			border-spacing: 0;
-			width: 90%;
-			margin: 0 auto 50px;
+			margin: 0 auto 16px;
 			
 			&-row {
 				&-heading {
@@ -646,15 +858,92 @@ Icon classes can be used entirely standalone. They are named after their origina
 						color: #373737;
 						padding: 10px;
 						text-align: center;
+						transition: color 0.5s ease-in-out;
+
+						&:hover{
+							color: #fb3a3a;
+						}
 					}	
+				}
+			}
+		}
+		&-pagination {
+			position: absolute;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			margin: 0 auto;
+			width: 1120px;
+			text-align: center;
+
+			ul {
+				padding-left: 0; 
+				margin-top: 0;
+				display: inline-block;
+				margin-left: 0;
+				margin-bottom: 0;
+				-webkit-border-radius: 4px;
+				-moz-border-radius: 4px;
+				border-radius: 4px;
+				-webkit-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+				-moz-box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+				box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+				&>.disabled>a {
+					color: #999999;
+					background-color: transparent;
+					cursor: default;
+				}
+				&>.active>a {
+					color: #999999;
+					cursor: default;
+					background-color: #f5f5f5;
+				}
+
+				li {
+					display: inline;
+					line-height: 20px;
+					a {
+						float: left;
+						padding: 4px 12px;
+						line-height: 20px;
+						text-decoration: none;
+						background-color: #ffffff;
+						border: 1px solid #dddddd;
+						border-left-width: 0;
+						color: #0088cc;
+						text-decoration: none;
+						&:hover, &:focus {
+							background-color: #f5f5f5;
+						}
+					}
+
+					&:first-child>a {
+						-webkit-border-top-left-radius: 3px;
+						-moz-border-radius-topleft: 3px;
+						border-top-left-radius: 3px;
+						-webkit-border-bottom-left-radius: 3px;
+						-moz-border-radius-bottomleft: 3px;
+						border-bottom-left-radius: 3px;
+						border: 1px solid #ddd;
+					}
+					&:last-child>a {
+						-webkit-border-top-right-radius: 3px;
+						-moz-border-radius-topright: 3px;
+						border-top-right-radius: 3px;
+						-webkit-border-bottom-right-radius: 3px;
+						-moz-border-radius-bottomright: 3px;
+						border-bottom-right-radius: 3px;
+					}
 				}
 			}
 		}
 	}
 }
 .finish {
-	height: 700px;
+	width: 1280px;
+	height: 880px;
 	background: linear-gradient(to bottom, #26292c, #34383b);
+	margin: 0 auto;
 	
 	&-content {
 		padding-top: 200px;
@@ -681,30 +970,39 @@ Icon classes can be used entirely standalone. They are named after their origina
 
 		&-action {
 			padding-top: 100px;
+
 			&-call {
 				&__title {
 					color: #fff;
-					font-size: 18px;
+					font-size: 24px;
 					font-weight: bold;
-					margin-bottom: 20px;
 				}
 			}
 
 			&__link{
 				text-decoration: none;
+				display: inline-block;
+				margin: 10px;
+				padding: 5px 10px;
 				color: #fd2828;
-				font-size: 18px;
+				background: transparent;
+				font-size: 24px;
 				font-weight: bold;
+				transition: color 0.5s ease-in-out, background 0.5s ease-in-out;
 
 				&:hover {
 					text-decoration: none;
+					color: #fff;
+					background: #fb3a3a;
 				}
 			}
 		}
 	}
 }
 .video {
-	height: 700px;
+	width: 1280px;
+	height: 880px;
+	margin: 0 auto;
 	background: radial-gradient(#d9dad9, #727a7f);
 	
 	&-content {
@@ -723,6 +1021,12 @@ Icon classes can be used entirely standalone. They are named after their origina
 			color: #fff;
 			background: transparent;
 			cursor: pointer;
+			transition: color 0.5s ease-in-out, border 0.5s ease-in-out;
+
+			&:hover {
+				color:#fb3a3a;
+				border-color: #fb3a3a;
+			}
 		}
 
 		&-description {
@@ -737,7 +1041,16 @@ Icon classes can be used entirely standalone. They are named after their origina
 
 				&.is-important {
 					color: #fd2828;
-				}	
+					padding: 0 5px;
+					background: transparent;
+					cursor: pointer;
+					transition: color 0.5s ease-in-out, background 0.5s ease-in-out;
+
+					&:hover {
+						color: #fff;
+						background: #fb3a3a;
+					}
+				}
 			}
 		}
 	}	

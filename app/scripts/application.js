@@ -6,3 +6,12 @@ myEvent(chkevent, function(e) { // For >=IE7, Chrome, Firefox
     (e || window.event).returnValue = confirmationMessage;
     return confirmationMessage;
 });
+
+Array.prototype.diff = function(a) {
+    return this.filter(function(i) {return a.indexOf(i) < 0;});
+};
+Array.prototype.diffInvers = function(a) {
+    return this.filter(function(i) {return a.indexOf(i) >= 0;});
+};
+Object.defineProperty(Array.prototype, 'diff', { enumerable: false });
+Object.defineProperty(Array.prototype, 'diffInvers', { enumerable: false });

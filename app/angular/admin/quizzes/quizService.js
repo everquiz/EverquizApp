@@ -19,6 +19,12 @@
 
         self.activeQuiz = null;
 
+        self.difficulties = [
+            {_id: 0, title: 'Novice'},
+            {_id: 1, title: 'Advanced'},
+            {_id: 2, title: 'Expert'}
+        ];
+
         /**
          * For user section
          */
@@ -36,8 +42,9 @@
                     headers: {Authorization: 'Bearer ' + authFactory.getToken()}
                 })
                 .then(function (res) {
-                return res.data;
-            });
+                    return res.data;
+                   
+                });
         }
 
         this.getQuestions = function (id) {
@@ -125,6 +132,17 @@
                 });
         };
 
+        this.getDifficulties = function () {
+            return self.difficulties;
+        };
+
+        this.getComplexity = function(complexity) {
+            for (var i = self.difficulties.length - 1; i >= 0; i--) {
+                if (self.difficulties[i]._id === complexity) {
+                    return self.difficulties[i].title;
+                }
+            }
+        }
 
     }
 

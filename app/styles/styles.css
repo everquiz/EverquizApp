@@ -5,6 +5,11 @@
     src: url(../font/proximanova.otf);
 }
 
+@font-face {
+    font-family: Roboto; 
+    src: url(../fonts/Roboto.ttf); 
+}
+
 /*Styles*/
 
 body {

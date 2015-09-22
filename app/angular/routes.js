@@ -122,7 +122,7 @@
                         resolve: {
                             quizzes: ['quizService',
                                 function (quizService) {
-                                    return quizService.getAll();
+                                    return quizService.getQuizzes();
                                 }]
                         }
                     })
