@@ -13,6 +13,7 @@
     vm.addCategory = addCategory;
     vm.editCategory = editCategory;
     vm.removeCategory = removeCategory;
+    vm.formTitle = 'Add new category';
 
     function addCategory() {
       if ((!vm.category.title || vm.category.title === '')
@@ -26,15 +27,19 @@
         categoryService.update(vm.category);
       }
       vm.category = {};
+      vm.formTitle = 'Add new category';
     };
 
     function editCategory(category) {
       vm.category = category;
+      vm.formTitle = 'Edit category';
     };
 
     function removeCategory(category) {
       if (confirm('Do you want to delete this category?')) {
         categoryService.remove(category);
+        vm.category = {};
+        vm.formTitle = 'Add new category';
       };
     };
   }
