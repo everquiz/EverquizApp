@@ -56,7 +56,6 @@
 
         function updateQuizzes() {
             var category, complexity, status, query;
-            console.log(vm.selectedCategory);
             if (vm.selectedCategory === -1) {
                 category = '!=-11111111111111111111111';
             } else {
@@ -67,14 +66,30 @@
             } else {
                 complexity = vm.selectedComplexity;
             }
-
             query = 'category=' + category + '&complexity=' + complexity;
             quizService.getQuizzesByQuery(query).then(function (data) {
                 vm.quizzes = data;
                 vm.updateFilteredQuizzes();
+                var quizzesByStatus = [];
+                
+                if (vm.selectedStatus != -1) {
+                    for (var i = vm.quizzes.length - 1; i >= 0; i--) {
+                        if (historyService.getBestResult(vm.quizzes[i]) >= 0.7) {
+                            quizzesByStatus.push(vm.quizzes[i]);
+                        };
+                    };
+                    if (!vm.selectedStatus) {
+                        console.log('passed');
+
+                    } else {
+                        console.log('not passed');
+                        console.log(vm.quizzes.diff( quizzesByStatus )); 
+                    }
+                    console.log(quizzesByStatus);
+
+                };
             });
         }
-
 
         function getComplexity(complexity) {
             for (var i = vm.difficulties.length - 1; i >= 0; i--) {
@@ -100,7 +115,6 @@
             var begin = (($scope.currentPage - 1) * vm.numPerPage)
                 , end = begin + vm.numPerPage;
             vm.filteredQuizzes = vm.quizzes.slice(begin, end);
-            console.log(vm.filteredQuizzes);
         }
     }
 })();
