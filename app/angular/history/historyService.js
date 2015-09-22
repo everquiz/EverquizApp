@@ -34,7 +34,7 @@
                 }
             }
 
-            return sum / count ? sum / count : 0;
+            return sum / count ? Math.round((sum / count) * 100) : 0;
         }
 
         function getBestResult(quiz) {
@@ -47,7 +47,7 @@
                 }
             }
 
-            return max;
+            return Math.round(max * 100);
         }
 
         function getTotalPassing(quiz) {
