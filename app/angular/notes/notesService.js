@@ -10,12 +10,12 @@
   function notesService($http, authFactory) {
 
     var notes = [];
+    var isLoaded = false;
     var id = authFactory.currentUserId();
     var display = false;
+    if (id) display = true;
     var mainDisplay = true;
     var listDisplay = false;
-    var limit = 8;
-    if (id) display = true;
 
     this.addNote = function(note) {
       note.user = id;
@@ -26,18 +26,38 @@
     };
 
     this.getNotes = function() {
+      //if (isLoaded) return notes;
       var id = authFactory.currentUserId();
       if (id) {
-        return $http.get('/api/v1/Notes?user=' + id + '&limit=' + limit).then(function (res) {
-          notes = notes.concat(res.data);
+        return $http.get('/api/v1/Notes?user=' + id).then(function (res) {
+          notes = res.data;
+          //isLoaded = true;
           return notes;
         });
+        //}
       }
     }
 
-    this.deleteNote = function(id) {
-      $http.delete('/api/v1/Notes/:' + id).then(function (res) {
-            console.log(res.data);
+    this.updateNote = function(note) {
+      $http.put('/api/v1/Notes/' + note._id, note).then(function (res) {
+            notes.forEach(function(item, i, notes){
+              if (item._id === note._id) {
+                notes[i] = note;
+                return;
+              }
+            })
+          }
+      )
+    }
+
+    this.deleteNote = function(note) {
+      $http.delete('/api/v1/Notes/' + note._id).then(function (res) {
+            notes.forEach(function(item, i, notes){
+              if (item._id === note._id) {
+                notes.splice(i, 1);
+                return;
+              }
+            })
           }
       )
     }
@@ -54,9 +74,9 @@
       return display;
     }
 
-    this.setLimit = function(newLimit) {
-      limit = newLimit;
-    }
+    //this.setLimit = function(newLimit) {
+    //  limit = newLimit;
+    //}
 
     this.isMain = function() {
       return mainDisplay;

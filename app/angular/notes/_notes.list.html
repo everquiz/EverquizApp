@@ -1,5 +1,28 @@
-<div>
-    <form ng-submit="NotesListCtrl.addNote(NotesListCtrl.newNote)">
+ <div class="quizzes-selection">
+        <table class="quizzes-selection-table">
+            <tr class="quizzes-selection-table-row-heading">
+                <th class="quizzes-selection-table-row-heading__title">Title</th>
+                <th class="quizzes-selection-table-row-heading__title">Category</th>
+                <th class="quizzes-selection-table-row-heading__title">Edit</th>
+                <th class="quizzes-selection-table-row-heading__title">Delete</th>
+            </tr>
+            <tr ng-repeat="note in NotesListCtrl.notes" ng-show="NotesListCtrl.paginatorCheck($index)">
+                <td class="quizzes-selection-table-row-content__title">{{note.title}}</td>
+                <td class="quizzes-selection-table-row-content__title">Javascript</td>
+                <th ng-click="NotesListCtrl.editInit(note)" class="quizzes-selection-table-row-content__title">E</th>
+                <td class="quizzes-selection-table-row-content__title" ng-click="NotesListCtrl.onNoteClick(note)">x</td>
+            </tr>
+        </table>
+     <div data-temp="pagination">
+         <button ng-click="NotesListCtrl.previousPage()">Prev page</button>
+         <div>{{NotesListCtrl.page + 1}}</div>
+         <button ng-click="NotesListCtrl.nextPage()">Next page</button>
+     </div>
+
+     <div data-temp="create-form">
+     <button class="notes-button__show-all" ng-show="!NotesListCtrl.createMenuActive" ng-click="NotesListCtrl.showCreate()">Create new note</button>
+
+    <form ng-show="NotesListCtrl.createMenuActive" ng-submit="NotesListCtrl.addNote(NotesListCtrl.newNote)">
         <div><h2>Create note</h2></div>
         <div>Add title</div>
         <textarea ng-model="NotesListCtrl.newNote.title" placeholder="Title"></textarea><br/>
@@ -8,9 +31,24 @@
         <textarea ng-model="NotesListCtrl.newNote.text" placeholder="Text"></textarea><br/>
 
         <div>
-            <input type="submit" value="Submit" />
+            <input ng-click="NotesListCtrl.toggleCreate()" type="submit" value="Submit" />
         </div>
     </form>
+     </div>
 
-    <button ng-click="NotesListCtrl.switchToMain()">Back to main</button>
+     <div data-temp="edit-form">
+         <form ng-show="NotesListCtrl.editMenuActive" ng-submit="NotesListCtrl.updateNote(NotesListCtrl.editNote)">
+             <div><h2>Edit note</h2></div>
+             <div>Edit title</div>
+             <textarea ng-model="NotesListCtrl.editNote.title" placeholder="Title"></textarea><br/>
+
+             <div>Edit text</div>
+             <textarea ng-model="NotesListCtrl.editNote.text" placeholder="Text"></textarea><br/>
+
+             <div>
+                 <input ng-click="NotesListCtrl.hideEdit()" type="submit" value="Submit" />
+             </div>
+         </form>
+     </div>
+    <button class="notes-button__show-all" ng-click="NotesListCtrl.switchToMain()">Back to main</button>
 </div>

@@ -43,7 +43,6 @@
           quizService.update(quiz);
           for (var i = question.answers.length - 1; i >= 0; i--) {
             var answer = question.answers[i];
-            console.log(answer);
             $http.delete('/api/v1/Answers/' + answer, {
               headers: {Authorization: 'Bearer ' + authFactory.getToken()}
             });
