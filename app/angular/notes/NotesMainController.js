@@ -5,14 +5,18 @@
       .module('everquizApp')
       .controller('NotesMainController', NotesMainController);
 
-    NotesMainController.$inject = ['notes', 'notesService'];
+    NotesMainController.$inject = ['notesService'];
 
-  function NotesMainController(notes, notesService) {
+  function NotesMainController(notesService) {
 
       var vm = this;
       vm.switchToList = notesService.switchToList;
-      vm.onNoteClick = notesService.deleteNote;
-      vm.notes = notes;
+
+      notesService.getNotes().then(function(res) {
+          vm.notes = res;
+          console.log(vm.notes);
+      });
+
       vm.limit = 8;
   }
   
