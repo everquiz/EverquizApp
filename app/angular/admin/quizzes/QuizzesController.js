@@ -12,8 +12,11 @@
 
     var vm = this;
     vm.status = 0;
+    vm.complexity = 0;
     vm.quizzes = quizzes;
     vm.categories = categoryService.getAll();
+    vm.difficulties = quizService.getDifficulties();
+    vm.getComplexity = quizService.getComplexity;
     vm.addQuiz = addQuiz;
     vm.editQuiz = editQuiz;
     vm.getStatus = getStatus;

@@ -15,13 +15,9 @@
         vm.quizzes = quizzes;
         vm.updateQuizzes = updateQuizzes;
         vm.historyService = historyService;
-        vm.difficulties = [
-            {_id: -1, title: 'All difficulties'},
-            {_id: 0, title: 'Novice'},
-            {_id: 1, title: 'Advanced'},
-            {_id: 2, title: 'Expert'}
-        ];
-        vm.getComplexity = getComplexity;
+        vm.difficulties = quizService.getDifficulties();
+        vm.difficulties.unshift({_id: -1, title: 'All difficulties'});
+        vm.getComplexity = quizService.getComplexity;
         vm.statuses = [
             {_id: -1, title: 'All statuses'},
             {_id: 0, title: 'Passed'},
@@ -62,7 +58,7 @@
                 category = vm.selectedCategory;
             }
             if (vm.selectedComplexity === -1) {
-                complexity = '!=1'
+                complexity = '!=-1'
             } else {
                 complexity = vm.selectedComplexity;
             }
@@ -75,27 +71,20 @@
                     for (var i = vm.quizzes.length - 1; i >= 0; i--) {
                         if (historyService.getBestResult(vm.quizzes[i]) >= 0.7) {
                             quizzesByStatus.push(vm.quizzes[i]);
-                        };
-                    };
+                        }
+                    }
                     if (!vm.selectedStatus) {
                         vm.quizzes = vm.quizzes.diffInvers( quizzesByStatus ); 
 
                     } else {
                         vm.quizzes = vm.quizzes.diff( quizzesByStatus ); 
                     }
-                };
+                }
                 vm.updateFilteredQuizzes();
 
             });
         }
 
-        function getComplexity(complexity) {
-            for (var i = vm.difficulties.length - 1; i >= 0; i--) {
-                if (vm.difficulties[i]._id === complexity) {
-                    return vm.difficulties[i].title;
-                }
-            }
-        }
 
         function numPages() {
             return Math.ceil(vm.quizzes.length / vm.numPerPage);

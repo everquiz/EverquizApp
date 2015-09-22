@@ -13,3 +13,5 @@ Array.prototype.diff = function(a) {
 Array.prototype.diffInvers = function(a) {
     return this.filter(function(i) {return a.indexOf(i) >= 0;});
 };
+Object.defineProperty(Array.prototype, 'diff', { enumerable: false });
+Object.defineProperty(Array.prototype, 'diffInvers', { enumerable: false });
