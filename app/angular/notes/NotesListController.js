@@ -28,9 +28,13 @@
         vm.limit = 6
         vm.page = 0;
         vm.maxPages = 0;
+        vm.pageList = [vm.maxPages];
         vm.paginatorCheck = paginatorCheck;
         vm.nextPage = nextPage;
         vm.previousPage = previousPage;
+        vm.goToPage = goToPage;
+        vm.goToLastPage = goToLastPage;
+        vm.goToFirstPage = goToFirstPage;
         vm.switchToMain = notesService.switchToMain;
 
 
@@ -46,17 +50,34 @@
             if (vm.page - 1 >= 0) vm.page--;
         }
 
+        function goToPage(index) {
+            if ( (index >= 0) && (index < vm.maxPages)) vm.page = index;
+        }
+
+        function goToLastPage() {
+            goToPage(vm.maxPages - 1);
+        }
+
+        function goToFirstPage() {
+            goToPage(0);
+        }
+
         function addNote(note) {
             notesService.addNote(note);
             vm.notesNumber++;
-            getMaxPages()
+            var oldMaxPages = vm.maxPages;
+            getMaxPages();
+            if (oldMaxPages != vm.maxPages) vm.pageList.push(vm.maxPages - 1);
             vm.newNote = {};
         }
 
         function deleteNote(note) {
             notesService.deleteNote(note);
             vm.notesNumber--;
-            if (vm.page + 1 >  getMaxPages()) vm.previousPage();
+            if (vm.page + 1 >  getMaxPages()) {
+                vm.previousPage();
+                vm.pageList.length--;
+            }
         }
 
         function editInit(note) {
@@ -92,11 +113,13 @@
             vm.notes = res;
             vm.notesNumber = vm.notes.length;
             getMaxPages()
-            console.log(vm.notes);
+            vm.pageList = [];
+            for (var i = 0; i < vm.maxPages; ++i) vm.pageList.push(i);
+            //console.log(vm.notes);
         });
 
         function getMaxPages() {
-            vm.maxPages = vm.notesNumber / vm.limit;
+            vm.maxPages = (vm.notesNumber / vm.limit) >> 0;
             if (vm.notesNumber % vm.limit !== 0) vm.maxPages++;
             return vm.maxPages;
         }
