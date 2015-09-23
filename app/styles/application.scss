@@ -82,6 +82,65 @@ Icon classes can be used entirely standalone. They are named after their origina
   height: 24px;
 }
 
+.about-container {
+	width: 1280px;
+	height: 880px;
+	margin: 64px auto 0;
+
+	&-name {
+		float: left;
+		margin-left: 17.5%;
+		padding-top: 150px;
+
+		&__vertical {
+			display: inline-block;
+			vertical-align: top;
+			text-align: center;
+			margin-left: 20px;
+			font-size: 3em;
+			line-height: 1.5em;
+			font-weight: bold;
+			width: 1em;
+			color: #fff;
+		}
+	}
+
+	&-info {
+		overflow: hidden;
+		padding-left: 17.5%;
+		padding-top: 150px;
+		width: 190px;
+
+		&__heading {
+			font-weight: bold;
+			font-size: 26px;
+			line-height: 28px;
+			margin:15px 0 30px;
+			color: #3c3c3c;
+		}
+
+		&__content {
+			font-size: 18px;
+			line-height: 22px;
+			margin-bottom: 30px;
+			color: #626363;
+		}
+
+		&__start {
+			background: #fd2828;
+			border: none;
+			padding: 10px 20px;
+			color: #fff;
+			cursor: pointer;
+			font-weight: bold;
+			transition: background 0.5s ease-in-out;
+
+			&:hover {
+				background: #2c2c2c;
+			}
+		}
+	}
+}
 .footer {
 	height: 54px;
 	width: 1280px;
@@ -162,65 +221,6 @@ Icon classes can be used entirely standalone. They are named after their origina
 		float:right;
 		margin-right: 10%;
 	}	
-}
-.about-container {
-	width: 1280px;
-	height: 880px;
-	margin: 64px auto 0;
-
-	&-name {
-		float: left;
-		margin-left: 17.5%;
-		padding-top: 150px;
-
-		&__vertical {
-			display: inline-block;
-			vertical-align: top;
-			text-align: center;
-			margin-left: 20px;
-			font-size: 3em;
-			line-height: 1.5em;
-			font-weight: bold;
-			width: 1em;
-			color: #fff;
-		}
-	}
-
-	&-info {
-		overflow: hidden;
-		padding-left: 17.5%;
-		padding-top: 150px;
-		width: 190px;
-
-		&__heading {
-			font-weight: bold;
-			font-size: 26px;
-			line-height: 28px;
-			margin:15px 0 30px;
-			color: #3c3c3c;
-		}
-
-		&__content {
-			font-size: 18px;
-			line-height: 22px;
-			margin-bottom: 30px;
-			color: #626363;
-		}
-
-		&__start {
-			background: #fd2828;
-			border: none;
-			padding: 10px 20px;
-			color: #fff;
-			cursor: pointer;
-			font-weight: bold;
-			transition: background 0.5s ease-in-out;
-
-			&:hover {
-				background: #2c2c2c;
-			}
-		}
-	}
 }
 .header{
 	height: 64px;
@@ -437,8 +437,8 @@ Icon classes can be used entirely standalone. They are named after their origina
 
 	&-button {
 		clear: left;
-		width: 120px;
-		margin: 50px auto;
+		text-align: center;
+		margin: 50px 80px;
 
 		&__show-all {
 			background: #fd2828;
@@ -940,10 +940,19 @@ Icon classes can be used entirely standalone. They are named after their origina
 	margin: 0 auto;
 	
 	&-content {
-		padding-top: 200px;
+		padding-top: 100px;
 		width: 20%;
 		text-align: center;
 		margin: 0 auto;
+
+		&-random {
+			&__title {
+				color: #fff;
+				font-size: 18px;
+				font-weight: bold;
+				margin-bottom: 56px;
+			}
+		}
 
 		&-summary {
 			&__title {
@@ -959,11 +968,10 @@ Icon classes can be used entirely standalone. They are named after their origina
 				font-weight: bold;
 				margin-bottom: 20px;
 			}
-		}
-		
+		}		
 
 		&-action {
-			padding-top: 100px;
+			padding-top: 250px;
 
 			&-call {
 				&__title {
@@ -1005,7 +1013,7 @@ Icon classes can be used entirely standalone. They are named after their origina
 			display: block;
 			width: 100px;
 			height: 100px;
-			padding: 0 0 0 5px;
+			padding: 0 0 0 7px;
 			margin: auto;
 			text-align: center;
 			border-radius: 100px;
