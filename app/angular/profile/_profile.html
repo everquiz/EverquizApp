@@ -28,7 +28,7 @@
             <header class="profile-additional-actions__title">LAST ACTIONS</header>
             <div class="profile-additional-actions-content">
                 <ul class="profile-additional-actions-content-list">
-                    <li class="profile-additional-actions-content-list-item is-quiz" ng-repeat="action in ProfileCtrl.lastActions">
+                    <li class="profile-additional-actions-content-list-item is-quiz" ng-repeat="action in ProfileCtrl.profile.lastActions">
                         <span class="profile-additional-actions-content-list-item__date">
                             {{action.createdAt | date:'dd/MM/yyyy'}}        
                         </span>
