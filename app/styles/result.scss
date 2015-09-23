@@ -4,10 +4,19 @@
 	margin: 0 auto;
 	
 	&-content {
-		padding-top: 200px;
+		padding-top: 100px;
 		width: 20%;
 		text-align: center;
 		margin: 0 auto;
+
+		&-random {
+			&__title {
+				color: #fff;
+				font-size: 18px;
+				font-weight: bold;
+				margin-bottom: 56px;
+			}
+		}
 
 		&-summary {
 			&__title {
@@ -23,11 +32,10 @@
 				font-weight: bold;
 				margin-bottom: 20px;
 			}
-		}
-		
+		}		
 
 		&-action {
-			padding-top: 100px;
+			padding-top: 250px;
 
 			&-call {
 				&__title {

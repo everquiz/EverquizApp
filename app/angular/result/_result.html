@@ -5,8 +5,8 @@
             <span class="finish-content-summary__result">{{ResultCtrl.quizService.lastResult}} %</span>
         </div>
 
-        <div class="finish-content-summary" ng-if="ResultCtrl.quizService.lastResult === null">
-            <p class="finish-content-summary__title">{{ResultCtrl.getRandomPhrase()}}</p>
+        <div class="finish-content-random" ng-if="ResultCtrl.quizService.lastResult === null">
+            <p class="finish-content-random__title">{{ResultCtrl.getRandomPhrase()}}</p>
         </div>
 
         <div class="finish-content-action">
