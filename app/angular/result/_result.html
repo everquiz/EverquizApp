@@ -6,7 +6,7 @@
         </div>
 
         <div class="finish-content-summary" ng-if="ResultCtrl.quizService.lastResult === null">
-            <p class="finish-content-summary__title">It is a good day for passing new Quiz!</p>
+            <p class="finish-content-summary__title">{{ResultCtrl.getRandomPhrase()}}</p>
         </div>
 
         <div class="finish-content-action">
