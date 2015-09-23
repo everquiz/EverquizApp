@@ -14,6 +14,7 @@
         vm.currentUser = authFactory.currentUser;
         vm.logOut = logOut;
         vm.showProfile = showProfile;
+        vm.hideProfile = hideProfile;
         vm.showNotes = showNotes;
         vm.isProfileVisible = profileFactory.isVisible;
         vm.toggleProfile = toggleProfile;
@@ -32,6 +33,10 @@
 
         function showProfile() {
             profileFactory.showProfile();
+        }
+
+        function hideProfile() {
+            profileFactory.hideProfile();
         }
 
         function toggleProfile() {
