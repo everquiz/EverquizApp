@@ -104,7 +104,7 @@
              dnd-effect-allowed="move">
              <div>{{note.title}}</div>
              <div>Javascript</div>
-             <idv ng-click="NotesListCtrl.editInit(note)">E</idv>
+             <div ng-click="NotesListCtrl.editInit(note)">E</div>
              <div ng-click="NotesListCtrl.onNoteClick(note)">x</div>
          </li>
      </ul>
@@ -151,8 +151,16 @@
     <button class="notes-button__show-all" ng-click="NotesListCtrl.switchToMain()">Back to main</button>
 
     <div class="trashcan">
-    <ul dnd-list="NotesListCtrl.deletedList" dnd-drop="NotesListCtrl.onRecycleDrop(item)">
-        <li>Recycle bin</li>
+    <ul dnd-list="NotesListCtrl.deletedList" >
+        <li ng-click="NotesListCtrl.RecycleCleanUp()">trashcan clean</li>
+        <li ng-repeat="deletedNote in NotesListCtrl.deletedList"
+            dnd-draggable="deletedNote"
+            dnd-moved="NotesListCtrl.onDeletedMove($index)"
+            dnd-effect-allowed="move">
+            <div>{{deletedNote.title}}</div>
+            <div>Javascript</div>
+            <div ng-click="NotesListCtrl.onNoteClick(note)">x</div>
+        </li>
     </ul>
     </div>
 </div>

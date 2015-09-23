@@ -37,19 +37,37 @@
         vm.goToFirstPage = goToFirstPage;
         vm.switchToMain = notesService.switchToMain;
 
+        notesService.getNotes().then(function(res) {
+            vm.notes = res;
+            vm.notesNumber = vm.notes.length;
+            getMaxPages()
+            vm.pageList = [];
+            for (var i = 0; i < vm.maxPages; ++i) vm.pageList.push(i);
+            //console.log(vm.notes);
+        });
+
         //Drag-and-drop
         vm.deletedList = [];
         vm.onMove = onMove;
-        vm.onRecycleDrop = onRecycleDrop;
+        vm.onDeletedMove = onDeletedMove;
+        vm.RecycleCleanUp = RecycleCleanUp;
 
         function onMove(index) {
             vm.notes.splice(index, 1)
             console.log(vm.notes);
         }
 
-        function onRecycleDrop(item) {
-            deleteNote(item);
-            return true;
+        function onDeletedMove(index) {
+            vm.deletedList.splice(index, 1)
+            console.log(vm.deletedList);
+        }
+
+        function RecycleCleanUp() {
+            vm.deletedList.forEach(function(item, i, arr) {
+                console.log(item);
+                deleteNote(item);
+            });
+            vm.deletedList = [];
         }
 
 
@@ -124,15 +142,6 @@
             vm.editMenuActive = true;
             vm.hideCreate();
         }
-
-        notesService.getNotes().then(function(res) {
-            vm.notes = res;
-            vm.notesNumber = vm.notes.length;
-            getMaxPages()
-            vm.pageList = [];
-            for (var i = 0; i < vm.maxPages; ++i) vm.pageList.push(i);
-            //console.log(vm.notes);
-        });
 
         function getMaxPages() {
             vm.maxPages = (vm.notesNumber / vm.limit) >> 0;
