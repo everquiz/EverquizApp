@@ -40,10 +40,6 @@
                                     profile: ['profileFactory',
                                         function (profileFactory) {
                                             return profileFactory.updateProfile();
-                                        }],
-                                    lastActions: ['profileFactory',
-                                        function (profileFactory) {
-                                            return profileFactory.lastActions();
                                         }]
                                 }
                             },

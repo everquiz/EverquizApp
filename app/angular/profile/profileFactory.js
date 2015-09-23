@@ -16,8 +16,7 @@
             showProfile: showProfile,
             hideProfile: hideProfile,
             toggleProfile: toggleProfile,
-            isVisible: isVisible,
-            lastActions: getLastActions
+            isVisible: isVisible
         };
 
         return service;
@@ -31,6 +30,10 @@
                     var result = getQuizStatistic(profile.history);
                     profile.averageResult = result.averageResult;
                     profile.quizCompleted = result.quizCompleted;
+                    getLastActions().then(function (res) {
+                        profile.lastActions = res;
+                    });
+                    console.log(profile);
                     return profile;
                 });
             }
@@ -78,38 +81,36 @@
 
         function getLastActions () {
             var id = authFactory.currentUserId();
-            if (id) {
-                return $q.all([
-                    notesService.getLastThree(), 
-                    historyService.getLastThree()
-                    ])
-                .then(function(result) {
-                    var lastActions = [],
-                        resultLastActions = [];
-                    angular.forEach(result, function(response) {
-                        lastActions.push(response.data);
-                    });
-                    lastActions = lastActions[0].concat(lastActions[1])
-                    lastActions = lastActions.sortBy('createdAt');
-                    angular.forEach(lastActions, function(response) {
-                        if (response.quiz) {
-                            resultLastActions.push({
-                                createdAt: response.createdAt, 
-                                title: response.quiz.title,
-                                result: (response.result * 100),
-                                type: 'quiz'
-                            });
-                        } else if (response.title) {
-                            resultLastActions.push({
-                                createdAt: response.createdAt, 
-                                title: response.title,
-                                type: 'note'
-                            });
-                        }
-                    });
-                    return resultLastActions.splice(0, 3);
+            return $q.all([
+                notesService.getLastThree(), 
+                historyService.getLastThree()
+                ])
+            .then(function(result) {
+                var lastActions = [],
+                    resultLastActions = [];
+                angular.forEach(result, function(response) {
+                    lastActions.push(response.data);
                 });
-            };
+                lastActions = lastActions[0].concat(lastActions[1])
+                lastActions = lastActions.sortBy('-createdAt');
+                angular.forEach(lastActions, function(response) {
+                    if (response.quiz) {
+                        resultLastActions.push({
+                            createdAt: response.createdAt, 
+                            title: response.quiz.title,
+                            result: (response.result * 100),
+                            type: 'quiz'
+                        });
+                    } else if (response.title) {
+                        resultLastActions.push({
+                            createdAt: response.createdAt, 
+                            title: response.title,
+                            type: 'note'
+                        });
+                    }
+                });
+                return resultLastActions.splice(0, 3);
+            });
         }
     }
 })();
