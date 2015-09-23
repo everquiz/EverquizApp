@@ -43,11 +43,13 @@
                                         }]
                                 }
                             },
-                            'getStarted@home': {
-                                templateUrl: 'home/_getStarted.html'
+                            'about@home': {
+                                templateUrl: 'about/_about.html',
+                                controller: 'AboutController as AboutCtrl'
                             },
                             'video@home': {
-                                templateUrl: 'video/_video.html'
+                                templateUrl: 'video/_video.html',
+                                controller: 'VideoController as VideoCtrl'
                             },
                             'quizzes@home': {
                                 templateUrl: 'quizzes/_quizzes.html',
