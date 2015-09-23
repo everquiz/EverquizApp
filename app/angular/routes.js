@@ -70,7 +70,8 @@
                                 controller: 'PassingQuizController as PassingQuizCtrl'
                             },
                             'result@home': {
-                                templateUrl: 'quizzes/result/_result.html'
+                                templateUrl: 'quizzes/result/_result.html',
+                                controller: 'ResultController as ResultCtrl'
                             },
                             'notes@home': {
                                 templateUrl: 'notes/_notes.html',

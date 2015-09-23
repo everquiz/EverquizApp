@@ -1,5 +1,5 @@
 (function () {
-    'use strict'
+    'use strict';
 
     angular
         .module('everquizApp')
@@ -14,12 +14,12 @@
         this.quizzes = _quizzes;
 
         // For user
-        var self = {};
-        self.quizzes = [];
+        var vm = this;
+        vm.lastResult = null;
+        vm.quizzes = [];
 
-        self.activeQuiz = null;
-
-        self.difficulties = [
+        vm.activeQuiz = null;
+        vm.difficulties = [
             {_id: 0, title: 'Novice'},
             {_id: 1, title: 'Advanced'},
             {_id: 2, title: 'Expert'}
@@ -28,54 +28,56 @@
         /**
          * For user section
          */
+
         this.getQuizzes = function () {
             return $http.get('/api/v1/Quizzes?populate=category&status=1', {
-                    headers: {Authorization: 'Bearer ' + authFactory.getToken()}
-                })
+                headers: {Authorization: 'Bearer ' + authFactory.getToken()}
+            })
                 .then(function (res) {
-                return res.data;
-            });
-        }
+                    return res.data;
+                });
+        };
 
         this.getQuizzesByQuery = function (query) {
             return $http.get('/api/v1/Quizzes?populate=category&' + query, {
-                    headers: {Authorization: 'Bearer ' + authFactory.getToken()}
-                })
+                headers: {Authorization: 'Bearer ' + authFactory.getToken()}
+            })
                 .then(function (res) {
                     return res.data;
-                   
+
                 });
-        }
+        };
 
         this.getQuestions = function (id) {
             return $http.get('/api/v1/Questions?quiz=' + id + '&populate=answers', {
                 headers: {Authorization: 'Bearer ' + authFactory.getToken()}
             })
                 .then(function (res) {
-                return res.data;
-            });
-        }
+                    return res.data;
+                });
+        };
 
         this.checkResult = function (result) {
             return $http.put('/checkresult', result, {
                 headers: {Authorization: 'Bearer ' + authFactory.getToken()}
             })
                 .then(function (res) {
-                return res.data;
-            })
-        }
+                    vm.lastResult = Math.round(res.data.result * 100);
+                    return res.data;
+                })
+        };
 
         /**
          * For admin section
          */
         this.getAll = function () {
             $http.get('/api/v1/Quizzes?populate=category&select=category._id,category.title', {
-                    headers: {Authorization: 'Bearer ' + authFactory.getToken()}
-                })
+                headers: {Authorization: 'Bearer ' + authFactory.getToken()}
+            })
                 .then(function (res) {
-                    angular.copy(res.data, self.quizzes);
+                    angular.copy(res.data, vm.quizzes);
                 });
-            return self.quizzes;
+            return vm.quizzes;
         };
 
         this.get = function (id) {
@@ -89,17 +91,17 @@
 
         this.create = function (quiz) {
             return $http.post('/api/v1/Quizzes', quiz, {
-                    headers: {Authorization: 'Bearer ' + authFactory.getToken()}
-                }).success(function (data) {
+                headers: {Authorization: 'Bearer ' + authFactory.getToken()}
+            }).success(function (data) {
+                console.log(data);
+                categoryService.get(data.category).then(function (res) {
+                    console.log(res);
+                    data.category = res;
                     console.log(data);
-                    categoryService.get(data.category).then(function (res) {
-                        console.log(res);
-                        data.category = res;
-                        console.log(data);
-                        self.quizzes.push(data);
-                    });
-                    
+                    vm.quizzes.push(data);
                 });
+
+            });
         };
 
         this.unactive = function (quiz) {
@@ -118,22 +120,20 @@
 
         this.update = function (quiz) {
             return $http.put('/api/v1/Quizzes/' + quiz._id, quiz, {
-                    headers: {Authorization: 'Bearer ' + authFactory.getToken()}
-                });
+                headers: {Authorization: 'Bearer ' + authFactory.getToken()}
+            });
         };
 
         this.getDifficulties = function () {
-            return self.difficulties;
+            return vm.difficulties;
         };
 
-        this.getComplexity = function(complexity) {
-            for (var i = self.difficulties.length - 1; i >= 0; i--) {
-                if (self.difficulties[i]._id === complexity) {
-                    return self.difficulties[i].title;
+        this.getComplexity = function (complexity) {
+            for (var i = vm.difficulties.length - 1; i >= 0; i--) {
+                if (vm.difficulties[i]._id === complexity) {
+                    return vm.difficulties[i].title;
                 }
             }
         }
-
     }
-
 })();

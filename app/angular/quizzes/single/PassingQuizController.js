@@ -10,7 +10,6 @@
     function PassingQuizController(quizService) {
 
         var vm = this;
-        vm.quizService = quizService;
         vm.checkResult = checkResult;
 
         quizService.get(quizService.activeQuiz).then(
@@ -22,14 +21,10 @@
                     }
                 )
             }
-        )
+        );
 
         function checkResult() {
-            quizService.checkResult(vm.quiz).then(
-                function (data) {
-                    vm.result = data.result;
-                }
-            )
+            quizService.checkResult(vm.quiz);
         }
     }
 })();
