@@ -1,5 +1,5 @@
 (function () {
-    'use strict'
+    'use strict';
     angular
         .module('everquizApp')
         .config([
@@ -13,7 +13,6 @@
                         alert('You have to login');
                         $state.go('/login');
                     }
-                    ;
                 };
 
                 var accessAdmin = function (authFactory, $state) {
@@ -21,7 +20,6 @@
                         alert('You have to be admin to be here');
                         $state.go('/login');
                     }
-                    ;
                 };
 
                 $stateProvider
@@ -70,7 +68,7 @@
                                 controller: 'PassingQuizController as PassingQuizCtrl'
                             },
                             'result@home': {
-                                templateUrl: 'quizzes/result/_result.html',
+                                templateUrl: 'result/_result.html',
                                 controller: 'ResultController as ResultCtrl'
                             },
                             'notes@home': {

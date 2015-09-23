@@ -4,18 +4,18 @@
 			<nav class="header-main-nav">
 				<ul class="header-main-nav-list">
 					<li class="header-main-nav-list-item">
-						<a href="" class="header-main-nav-list-item__home">E</a>
+						<a href="" class="header-main-nav-list-item__home" ng-click="NavCtrl.goToElement('getStarted');">E</a>
 					</li
 					><li class="header-main-nav-list-item">
-						<a href="" class="header-main-nav-list-item__video" onclick="smoothScroll('video');">VIDEO</a>
+						<a href="" class="header-main-nav-list-item__video" ng-click="NavCtrl.goToElement('video');">VIDEO</a>
 					</li
 					><li class="header-main-nav-list-item">
-						<a href="" class="header-main-nav-list-item__quizzes" onclick="smoothScroll('quizzes');">QUIZZES</a>
+						<a href="" class="header-main-nav-list-item__quizzes" ng-click="NavCtrl.goToElement('quizzes');">QUIZZES</a>
 					</li
 					><li class="header-main-nav-list-item">
-						<a href="" class="header-main-nav-list-item__notes" onclick="smoothScroll('notes');">NOTES</a>
+						<a href="" class="header-main-nav-list-item__notes" ng-click="NavCtrl.goToElement('notes');">NOTES</a>
 					</li>
-				</ul>		
+				</ul>
 			</nav>
 		</div>
 		<div class="header-profile">
@@ -26,7 +26,7 @@
 				<a href="" class="header-profile-nav__logout" ng-click="NavCtrl.logOut()" ng-show="NavCtrl.isLoggedIn()">LOGOUT</a>
 				<a href="#/login" class="header-profile-nav__login" ng-hide="NavCtrl.isLoggedIn()">Log In</a>
 	  			<a href="#/register" class="header-profile-nav__register" ng-hide="NavCtrl.isLoggedIn()">Register</a>
-			</div>	
+			</div>
 		</div>
-	</div>	
+	</div>
 </header>
