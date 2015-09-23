@@ -14,7 +14,7 @@
 
       notesService.getNotes().then(function(res) {
           vm.notes = res;
-          console.log(vm.notes);
+          //console.log(vm.notes);
       });
 
       vm.limit = 8;

@@ -14,9 +14,11 @@
             </tr>
         </table>
      <div data-temp="pagination">
+         <button ng-click="NotesListCtrl.goToFirstPage()">First page</button>
          <button ng-click="NotesListCtrl.previousPage()">Prev page</button>
-         <div>{{NotesListCtrl.page + 1}}</div>
+         <div ng-click="NotesListCtrl.goToPage(page)" ng-repeat="page in NotesListCtrl.pageList">{{page + 1}}</div>
          <button ng-click="NotesListCtrl.nextPage()">Next page</button>
+         <button ng-click="NotesListCtrl.goToLastPage()">Last page</button>
      </div>
 
      <div data-temp="create-form">
