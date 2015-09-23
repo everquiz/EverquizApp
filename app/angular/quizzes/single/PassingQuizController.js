@@ -5,13 +5,13 @@
         .module('everquizApp')
         .controller('PassingQuizController', PassingQuizController);
 
-    PassingQuizController.$inject = ['quizService'];
+    PassingQuizController.$inject = ['quizService', 'scrollFactory'];
 
-    function PassingQuizController(quizService) {
+    function PassingQuizController(quizService, scrollFactory) {
 
         var vm = this;
-        vm.quizService = quizService;
         vm.checkResult = checkResult;
+        vm.goToElement = goToElement;
 
         quizService.get(quizService.activeQuiz).then(
             function (data) {
@@ -22,14 +22,14 @@
                     }
                 )
             }
-        )
+        );
 
         function checkResult() {
-            quizService.checkResult(vm.quiz).then(
-                function (data) {
-                    vm.result = data.result;
-                }
-            )
+            quizService.checkResult(vm.quiz);
+        }
+
+        function goToElement (elemID) {
+            scrollFactory.scroll(elemID);
         }
     }
 })();
