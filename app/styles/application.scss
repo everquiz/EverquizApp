@@ -940,10 +940,19 @@ Icon classes can be used entirely standalone. They are named after their origina
 	margin: 0 auto;
 	
 	&-content {
-		padding-top: 200px;
+		padding-top: 100px;
 		width: 20%;
 		text-align: center;
 		margin: 0 auto;
+
+		&-random {
+			&__title {
+				color: #fff;
+				font-size: 18px;
+				font-weight: bold;
+				margin-bottom: 56px;
+			}
+		}
 
 		&-summary {
 			&__title {
@@ -959,11 +968,10 @@ Icon classes can be used entirely standalone. They are named after their origina
 				font-weight: bold;
 				margin-bottom: 20px;
 			}
-		}
-		
+		}		
 
 		&-action {
-			padding-top: 100px;
+			padding-top: 250px;
 
 			&-call {
 				&__title {
@@ -1005,7 +1013,7 @@ Icon classes can be used entirely standalone. They are named after their origina
 			display: block;
 			width: 100px;
 			height: 100px;
-			padding: 0 0 0 5px;
+			padding: 0 0 0 7px;
 			margin: auto;
 			text-align: center;
 			border-radius: 100px;
