@@ -11,7 +11,7 @@
         };
 
         function randomPhrase() {
-            var phrases = ['hello', 'hi', 'good morning', 'welcome'];
+            var phrases = ['Hello!', 'Hi!', 'Good Morning!', 'Welcome!'];
             return phrases[Math.floor(Math.random() * phrases.length)];
         }
     }

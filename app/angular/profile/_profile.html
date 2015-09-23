@@ -28,28 +28,15 @@
             <header class="profile-additional-actions__title">LAST ACTIONS</header>
             <div class="profile-additional-actions-content">
                 <ul class="profile-additional-actions-content-list">
-                    <li class="profile-additional-actions-content-list-item is-quiz">
+                    <li class="profile-additional-actions-content-list-item is-quiz" ng-repeat="action in ProfileCtrl.lastActions">
                         <span class="profile-additional-actions-content-list-item__date">
-                            21/09/15        
+                            {{action.createdAt | date:'dd/MM/yyyy'}}        
                         </span>
-                        <span class="profile-additional-actions-content-list-item__title">
-                            You passed "HTML Basics" quiz by 73%
+                        <span class="profile-additional-actions-content-list-item__title" ng-if="action.type === 'quiz'">
+                            You have passed {{action.title}} quiz by {{action.result}}%
                         </span>
-                    </li>
-                    <li class="profile-additional-actions-content-list-item is-note">
-                        <span class="profile-additional-actions-content-list-item__date">
-                            21/09/14
-                        </span>
-                        <span class="profile-additional-actions-content-list-item__title">
-                            You createnew note: "Note name"
-                        </span>
-                    </li>
-                    <li class="profile-additional-actions-content-list-item is-quiz">
-                        <span class="profile-additional-actions-content-list-item__date">
-                            20/09/15
-                        </span>
-                        <span class="profile-additional-actions-content-list-item__title">
-                            You passed "JS Prototypes" quiz by 36%
+                        <span class="profile-additional-actions-content-list-item__title" ng-if="action.type === 'note'">
+                            You have created new note: {{action.title}}
                         </span>
                     </li>
                 </ul>

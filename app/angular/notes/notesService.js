@@ -43,6 +43,12 @@
       }
     }
 
+    this.getLastThree = function() {
+        if (id) {
+            return $http.get('/api/v1/Notes?user=' + id + '&sort=-createdAt&limit=3');
+        }
+    }
+
     this.updateNote = function(note) {
       $http.put('/api/v1/Notes/' + note._id, note).then(function (res) {
             notes.forEach(function(item, i, notes){
