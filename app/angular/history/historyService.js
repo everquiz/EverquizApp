@@ -13,6 +13,7 @@
         vm.getAverageResult = getAverageResult;
         vm.getBestResult = getBestResult;
         vm.getTotalPassing = getTotalPassing;
+        vm.getLastThree = getLastThree;
 
         function getHistory() {
             var id = authFactory.currentUserId();
@@ -59,6 +60,13 @@
             }
 
             return count;
+        }
+
+        function getLastThree() {
+            var id = authFactory.currentUserId();
+            if (id) {
+                return $http.get('/api/v1/Histories?populate=quiz&user=' + id + '&sort=-createdAt&limit=3');
+            }
         }
     }
 })();
