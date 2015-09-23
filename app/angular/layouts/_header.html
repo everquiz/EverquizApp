@@ -4,22 +4,27 @@
 			<nav class="header-main-nav">
 				<ul class="header-main-nav-list">
 					<li class="header-main-nav-list-item">
-						<a href="" class="header-main-nav-list-item__home" ng-click="NavCtrl.goToElement('getStarted');">E</a>
+						<a href="" class="header-main-nav-list-item__home"
+						   ng-click="NavCtrl.goToElement('getStarted'); NavCtrl.hideProfile();">E</a>
 					</li
 					><li class="header-main-nav-list-item">
-						<a href="" class="header-main-nav-list-item__video" ng-click="NavCtrl.goToElement('video');">VIDEO</a>
+						<a href="" class="header-main-nav-list-item__video"
+						   ng-click="NavCtrl.goToElement('video'); NavCtrl.hideProfile();">VIDEO</a>
 					</li
 					><li class="header-main-nav-list-item">
-						<a href="" class="header-main-nav-list-item__quizzes" ng-click="NavCtrl.goToElement('quizzes');">QUIZZES</a>
+						<a href="" class="header-main-nav-list-item__quizzes"
+						   ng-click="NavCtrl.goToElement('quizzes'); NavCtrl.hideProfile();">QUIZZES</a>
 					</li
 					><li class="header-main-nav-list-item">
-						<a href="" class="header-main-nav-list-item__notes" ng-click="NavCtrl.goToElement('notes');">NOTES</a>
+						<a href="" class="header-main-nav-list-item__notes"
+                           ng-click="NavCtrl.goToElement('notes'); NavCtrl.hideProfile();">NOTES</a>
 					</li>
 				</ul>
 			</nav>
 		</div>
 		<div class="header-profile">
-			<div class="header-profile-photo" ng-class="{'is-open': NavCtrl.isProfileVisible() }" ng-show="NavCtrl.isLoggedIn()" ng-click="NavCtrl.toggleProfile()">
+			<div class="header-profile-photo" ng-class="{'is-open': NavCtrl.isProfileVisible() }"
+                 ng-show="NavCtrl.isLoggedIn()" ng-click="NavCtrl.toggleProfile()">
 				<img src="../../i/profile-image.jpg" alt=""  class="header-profile-photo__user">
 			</div>
 			<div class="header-profile-nav">
