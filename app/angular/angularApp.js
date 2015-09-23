@@ -1,1 +1,1 @@
-angular.module('everquizApp', ['ui.router', 'templates', 'ui.bootstrap']);
+angular.module('everquizApp', ['ui.router', 'templates', 'ui.bootstrap', 'dndLists']);

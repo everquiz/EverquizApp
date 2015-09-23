@@ -43,6 +43,11 @@
         "./ui-bootstrap-tpls.min.js"
       ]
     },
+    "angular-drag-and-drop-lists": {
+      "main": [
+        "./angular-drag-and-drop-lists.min.js"
+      ]
+    },
     "normalize.css": {
       "main": [
         "normalize.css"

@@ -37,6 +37,22 @@
         vm.goToFirstPage = goToFirstPage;
         vm.switchToMain = notesService.switchToMain;
 
+        //Drag-and-drop
+        vm.deletedList = [];
+        vm.onMove = onMove;
+        vm.onRecycleDrop = onRecycleDrop;
+
+        function onMove(index) {
+            vm.notes.splice(index, 1)
+            console.log(vm.notes);
+        }
+
+        function onRecycleDrop(item) {
+            deleteNote(item);
+            return true;
+        }
+
+
 
         function paginatorCheck(index) {
             return ( (vm.page * vm.limit <= index) && (index < vm.page * vm.limit + vm.limit));
