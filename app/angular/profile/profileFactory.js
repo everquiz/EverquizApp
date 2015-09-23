@@ -77,36 +77,39 @@
         }
 
         function getLastActions () {
-            return $q.all([
-                notesService.getLastThree(), 
-                historyService.getLastThree()
-                ])
-            .then(function(result) {
-                var lastActions = [],
-                    resultLastActions = [];
-                angular.forEach(result, function(response) {
-                    lastActions.push(response.data);
+            var id = authFactory.currentUserId();
+            if (id) {
+                return $q.all([
+                    notesService.getLastThree(), 
+                    historyService.getLastThree()
+                    ])
+                .then(function(result) {
+                    var lastActions = [],
+                        resultLastActions = [];
+                    angular.forEach(result, function(response) {
+                        lastActions.push(response.data);
+                    });
+                    lastActions = lastActions[0].concat(lastActions[1])
+                    lastActions = lastActions.sortBy('createdAt');
+                    angular.forEach(lastActions, function(response) {
+                        if (response.quiz) {
+                            resultLastActions.push({
+                                createdAt: response.createdAt, 
+                                title: response.quiz.title,
+                                result: (response.result * 100),
+                                type: 'quiz'
+                            });
+                        } else if (response.title) {
+                            resultLastActions.push({
+                                createdAt: response.createdAt, 
+                                title: response.title,
+                                type: 'note'
+                            });
+                        }
+                    });
+                    return resultLastActions.splice(0, 3);
                 });
-                lastActions = lastActions[0].concat(lastActions[1])
-                lastActions = lastActions.sortBy('createdAt');
-                angular.forEach(lastActions, function(response) {
-                    if (response.quiz) {
-                        resultLastActions.push({
-                            createdAt: response.createdAt, 
-                            title: response.quiz.title,
-                            result: (response.result * 100),
-                            type: 'quiz'
-                        });
-                    } else if (response.title) {
-                        resultLastActions.push({
-                            createdAt: response.createdAt, 
-                            title: response.title,
-                            type: 'note'
-                        });
-                    }
-                });
-                return resultLastActions.splice(0, 3);
-            });
+            };
         }
     }
 })();
