@@ -963,6 +963,11 @@ Icon classes can be used entirely standalone. They are named after their origina
             font-weight: bold;
             color: #b9bdbe;
             text-decoration: none;
+            transition: color .5s ease-in-out;
+            &:hover {
+            color: #373737;
+
+            }
         }    
     }
 }
