@@ -14,6 +14,7 @@
         vm.hideProfile = hideProfile;
         vm.goToElement = goToElement;
 
+
         function hideProfile() {
             profileFactory.hideProfile();
         }

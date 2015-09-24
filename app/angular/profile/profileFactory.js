@@ -5,9 +5,9 @@
         .module('everquizApp')
         .factory('profileFactory', profileFactory);
 
-    profileFactory.$inject = ['$http', 'authFactory'];
+    profileFactory.$inject = ['$http', 'authFactory', 'historyService', 'notesService', '$q'];
 
-    function profileFactory($http, authFactory) {
+    function profileFactory($http, authFactory, historyService, notesService, $q) {
         var profile = {};
         var display = false;
 
@@ -30,6 +30,10 @@
                     var result = getQuizStatistic(profile.history);
                     profile.averageResult = result.averageResult;
                     profile.quizCompleted = result.quizCompleted;
+                    getLastActions().then(function (res) {
+                        profile.lastActions = res;
+                    });
+                    console.log(profile);
                     return profile;
                 });
             }
@@ -73,6 +77,40 @@
 
         function toggleProfile() {
             display = !display;
+        }
+
+        function getLastActions () {
+            var id = authFactory.currentUserId();
+            return $q.all([
+                notesService.getLastThree(), 
+                historyService.getLastThree()
+                ])
+            .then(function(result) {
+                var lastActions = [],
+                    resultLastActions = [];
+                angular.forEach(result, function(response) {
+                    lastActions.push(response.data);
+                });
+                lastActions = lastActions[0].concat(lastActions[1])
+                lastActions = lastActions.sortBy('-createdAt');
+                angular.forEach(lastActions, function(response) {
+                    if (response.quiz) {
+                        resultLastActions.push({
+                            createdAt: response.createdAt, 
+                            title: response.quiz.title,
+                            result: (response.result * 100),
+                            type: 'quiz'
+                        });
+                    } else if (response.title) {
+                        resultLastActions.push({
+                            createdAt: response.createdAt, 
+                            title: response.title,
+                            type: 'note'
+                        });
+                    }
+                });
+                return resultLastActions.splice(0, 3);
+            });
         }
     }
 })();

@@ -1,17 +1,49 @@
-var myEvent = window.attachEvent || window.addEventListener;
-var chkevent = window.attachEvent ? 'onbeforeunload' : 'beforeunload'; /// make IE7, IE8 compatable
+;(function() {
+  /*
+  Confirm message on reload or go back from site
+   */
+  var myEvent = window.attachEvent || window.addEventListener;
+  var chkevent = window.attachEvent ? 'onbeforeunload' : 'beforeunload'; /// make IE7, IE8 compatable
 
-myEvent(chkevent, function(e) { // For >=IE7, Chrome, Firefox
-    var confirmationMessage = ' If you continue you will lose all unsaved information!';  // a space
-    (e || window.event).returnValue = confirmationMessage;
-    return confirmationMessage;
-});
+  myEvent(chkevent, function(e) { // For >=IE7, Chrome, Firefox
+      var confirmationMessage = ' If you continue you will lose all unsaved information!';  // a space
+      (e || window.event).returnValue = confirmationMessage;
+      return confirmationMessage;
+  });
 
-Array.prototype.diff = function(a) {
-    return this.filter(function(i) {return a.indexOf(i) < 0;});
-};
-Array.prototype.diffInvers = function(a) {
-    return this.filter(function(i) {return a.indexOf(i) >= 0;});
-};
-Object.defineProperty(Array.prototype, 'diff', { enumerable: false });
-Object.defineProperty(Array.prototype, 'diffInvers', { enumerable: false });
+  /*
+  Compare two arrays
+   */
+  Array.prototype.diff = function(a) {
+      return this.filter(function(i) {return a.indexOf(i) < 0;});
+  };
+  Array.prototype.diffInvers = function(a) {
+      return this.filter(function(i) {return a.indexOf(i) >= 0;});
+  };
+  Object.defineProperty(Array.prototype, 'diff', { enumerable: false });
+  Object.defineProperty(Array.prototype, 'diffInvers', { enumerable: false });
+
+
+
+  /*
+  Sorting array
+   */
+  function dynamicSort(property) {
+      var sortOrder = 1;
+      if(property[0] === "-") {
+          sortOrder = -1;
+          property = property.substr(1);
+      }
+      return function (a,b) {
+          var result = (a[property] < b[property]) ? -1 : (a[property] > b[property]) ? 1 : 0;
+          return result * sortOrder;
+      }
+  }
+  Object.defineProperty(Array.prototype, "sortBy", {
+      enumerable: false,
+      writable: true,
+      value: function() {
+          return this.sort(dynamicSort.apply(null, arguments));
+      }
+  });
+})();

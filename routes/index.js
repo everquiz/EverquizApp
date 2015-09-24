@@ -110,7 +110,7 @@ function checkResult(quiz, result) {
         wrongAnswers = 0;
         trueVariants = 0;
     }
-    return sum / (quiz.questions.length - 1);
+    return sum / (quiz.questions.length);
 }
 
 module.exports = router;
