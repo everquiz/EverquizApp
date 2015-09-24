@@ -98,7 +98,7 @@
                         resultLastActions.push({
                             createdAt: response.createdAt, 
                             title: response.quiz.title,
-                            result: (response.result * 100),
+                            result: Math.round(response.result * 100),
                             type: 'quiz'
                         });
                     } else if (response.title) {
