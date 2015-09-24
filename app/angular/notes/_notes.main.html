@@ -5,9 +5,19 @@
 	
 	<div class="notes-wrapper">
 		<div class="notes-block" ng-repeat="note in NotesMainCtrl.notes  | limitTo:NotesMainCtrl.limit">
-			<div class="notes-block__name">{{note.title}}</div>
-			<div class="notes-block__content">{{note.text}}</div>
-			<div class="notes-block__info">Note info</div>
+			<div class="notes-block__name">
+				{{note.title}}
+			</div>
+			<div class="notes-block__content">
+				{{note.text}}
+			</div>
+			<div class="notes-block-info">
+				<span class="notes-block-info__category">Note info</span>
+				<div class="notes-block-info-controls">
+					<span class="notes-block-info-controls__favourite"></span>
+					<span class="notes-block-info-controls__delete"></span>
+				</div>
+			</div>
 		</div>
 	</div>
 

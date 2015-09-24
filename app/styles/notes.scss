@@ -1,33 +1,103 @@
 .notes {
+	position: relative;
 	width: 1280px;
 	height: 880px;
 	margin: 0 auto;
 
 	&-header{
-		padding: 10% 10% 0;
+		padding: 100px 80px 50px;
 
 		&__title {
 			color: #2c2c2c;
-			font-size: 24px;
+			font-size: 3em;
 			font-weight: bold;
 		}
 	}
 
 	&-wrapper {
-		margin: 5%;
+		width: 1154px;
+		margin: 0 auto;
 		overflow: hidden;
 	}
 
 	&-block {
+		position: relative;
 		float: left;
-		width: 15%;
-		margin: 0 2.5% 5%;
-		padding: 5% 0 5% 5%;
+		width: 255px;
+		height: 240px;
+		margin: 0 16px 34px 17px;
 		background: #fff;
+
+		&__name {
+			color: #5b5a5a;
+			font-size: 20px;
+			padding: 24px 42px 0 18px;
+		}
+
+		&__content {
+			color: #5b5a5a;
+			font-size: 16px;
+			padding: 18px 42px 18px 18px;
+
+		}
+
+		&-info {
+			position: absolute;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			padding: 12px 18px 12px 18px;
+			border-top: 1px solid #f0eede;
+
+			&__category {
+				color: #b9bdbe;
+				font-size: 16px;
+			}
+		
+			&-controls {
+				float: right;
+
+				&__favourite {
+					@extend .icon-favourite_false;
+					display: inline-block;
+					vertical-align: top;
+					margin-left: 10px;
+					cursor: pointer;
+
+					&.is-true {
+						@extend .icon-favourite_true;
+
+						&:hover {
+							@extend .icon-favourite_hover;
+						}
+					}
+
+					&:hover {
+						@extend .icon-favourite_hover;
+					}
+				}
+
+				&__delete {
+					@extend .icon-delete;
+					display: inline-block;
+					vertical-align: top;
+					margin-left: 10px;
+					cursor: pointer;
+
+					&:hover {
+						@extend .icon-delete_hover;
+					}
+				}
+			}
+		}	
 	}
 
 	&-button {
 		clear: left;
+		position: absolute;
+		left: 0;
+		right: 0;
+		bottom: 0;
 		text-align: center;
 		margin: 50px 80px;
 
