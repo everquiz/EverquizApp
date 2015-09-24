@@ -1,5 +1,5 @@
 (function () {
-    'use strict'
+    'use strict';
     angular
         .module('everquizApp')
         .config([
@@ -13,7 +13,6 @@
                         alert('You have to login');
                         $state.go('/login');
                     }
-                    ;
                 };
 
                 var accessAdmin = function (authFactory, $state) {
@@ -21,7 +20,6 @@
                         alert('You have to be admin to be here');
                         $state.go('/login');
                     }
-                    ;
                 };
 
                 $stateProvider
@@ -45,11 +43,13 @@
                                         }]
                                 }
                             },
-                            'getStarted@home': {
-                                templateUrl: 'home/_getStarted.html'
+                            'about@home': {
+                                templateUrl: 'about/_about.html',
+                                controller: 'AboutController as AboutCtrl'
                             },
                             'video@home': {
-                                templateUrl: 'video/_video.html'
+                                templateUrl: 'video/_video.html',
+                                controller: 'VideoController as VideoCtrl'
                             },
                             'quizzes@home': {
                                 templateUrl: 'quizzes/_quizzes.html',
@@ -70,7 +70,8 @@
                                 controller: 'PassingQuizController as PassingQuizCtrl'
                             },
                             'result@home': {
-                                templateUrl: 'quizzes/result/_result.html'
+                                templateUrl: 'result/_result.html',
+                                controller: 'ResultController as ResultCtrl'
                             },
                             'notes@home': {
                                 templateUrl: 'notes/_notes.html',

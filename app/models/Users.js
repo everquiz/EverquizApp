@@ -10,7 +10,6 @@ var UserSchema = new mongoose.Schema({
   hash: String,
   salt: String,
   status: {type: String, default: 'active' },
-  notes: [ { type: mongoose.Schema.Types.ObjectId, ref: 'Note'  } ],
   history: [ { type: mongoose.Schema.Types.ObjectId, ref: 'History'  } ],
   createAt: { type: Date, default: new Date },
   roles: { type: [String], default: "user" }
@@ -45,14 +44,6 @@ UserSchema.methods.generateJWT = function() {
 
 var User = mongoose.model('User', UserSchema);
 
-NoteSchema.pre('save', function(next, done) {
-  var note = this;
-  User.findById(note.user, function (err, user) {
-    user.notes.push(note._id);
-    user.save();
-  });
-  next();
-});
 
 HistorySchema.pre('save', function(next, done) {
   var history = this;

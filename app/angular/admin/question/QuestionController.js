@@ -16,6 +16,8 @@
     vm.addAnswer = addAnswer;
     vm.editAnswer = editAnswer;
     vm.removeAnswer = removeAnswer;
+    vm.formTitle = 'Add new answer';
+
 
     function addAnswer() {
       if (vm.answer.correct == undefined) {
@@ -30,15 +32,19 @@
         answerService.update(vm.answer);
       }
       vm.answer = '';
+      vm.formTitle = 'Add new answer';
     };
 
     function editAnswer(answer) {
       vm.answer = answer;
+      vm.formTitle = 'Edit answer';
     };
 
     function removeAnswer(answer) {
       if (confirm('Do you want to delete this answer?')) {
         answerService.remove(answer, question);
+        vm.answer = '';
+        vm.formTitle = 'Add new answer';
       };
     };
   }

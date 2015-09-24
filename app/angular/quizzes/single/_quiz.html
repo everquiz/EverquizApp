@@ -3,18 +3,31 @@
 		{{PassingQuizCtrl.quiz.title}}
 	</div>
 	<div class="quiz-block">
-		<div class="quiz-block__intro" ><div class="quiz-block__intro_slide" ng-style="{'margin-left': slide + 'px'}">About this quiz</div></div>
+		<div class="quiz-block__intro" >
+            <div class="quiz-block__intro_slide" ng-style="{'margin-left': slide + 'px'}">
+                About this quiz
+            </div>
+        </div>
 		<div class="quiz-block-question" ng-repeat="question in PassingQuizCtrl.quiz.questions" >
 
-		<div class="quiz-block-question__title" ng-style="{'margin-left': slide + 'px'}">{{question.text}}</div>
+		<div class="quiz-block-question__title" ng-style="{'margin-left': slide + 'px'}">
+            {{question.text}}
+        </div>
 
 
 		</div>
 		<div class="quiz-block-answer" ng-style="{'margin-left': slide + 'px'}" >
-			<div class="quiz-block-answer__intro">{{PassingQuizCtrl.quiz.description}}</div>
+			<div class="quiz-block-answer__intro">
+                {{PassingQuizCtrl.quiz.description}}
+            </div>
 			<form action="" class="quiz-block-answer-form" ng-repeat="question in PassingQuizCtrl.quiz.questions">
 				<ul class="quiz-block-answer-form-list">
-					<li class="quiz-block-answer-form-list-item" ng-repeat="answer in question.answers"><input ng-model="answer.userResult" id="{{answer._id}}" type="checkbox" class="quiz-block-answer-form-list-item__checkbox" hidden><label for="{{answer._id}}" class="quiz-block-answer-form-list-item__title">{{answer.text}}</label>
+					<li class="quiz-block-answer-form-list-item" ng-repeat="answer in question.answers">
+						<input ng-model="answer.userResult" id="{{answer._id}}" type="checkbox"
+							   class="quiz-block-answer-form-list-item__checkbox" hidden>
+						<label for="{{answer._id}}" class="quiz-block-answer-form-list-item__title">
+							{{answer.text}}
+						</label>
 					</li>
 				</ul>
 			</form>
@@ -24,7 +37,7 @@
             {{buttonText}}
 		</button>
 		<input class="quiz-block__submit" type="submit"  value="SHOW RESULT"
-			   ng-click="PassingQuizCtrl.checkResult(); QuizzesContainerCtrl.quizService.activeQuiz = 'result'"
+			   ng-click="PassingQuizCtrl.checkResult(); QuizzesContainerCtrl.quizService.activeQuiz = null; PassingQuizCtrl.goToElement('result')"
 			   ng-hide="questionCount != PassingQuizCtrl.quiz.questions.length">
 	</div>
 	<div class="quiz-counter" ng-show="startQuiz">

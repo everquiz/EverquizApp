@@ -13,6 +13,7 @@
         vm.getAverageResult = getAverageResult;
         vm.getBestResult = getBestResult;
         vm.getTotalPassing = getTotalPassing;
+        vm.getLastThree = getLastThree;
 
         function getHistory() {
             var id = authFactory.currentUserId();
@@ -34,7 +35,7 @@
                 }
             }
 
-            return sum / count ? sum / count : 0;
+            return sum / count ? Math.round((sum / count) * 100) : 0;
         }
 
         function getBestResult(quiz) {
@@ -47,7 +48,7 @@
                 }
             }
 
-            return max;
+            return Math.round(max * 100);
         }
 
         function getTotalPassing(quiz) {
@@ -59,6 +60,13 @@
             }
 
             return count;
+        }
+
+        function getLastThree() {
+            var id = authFactory.currentUserId();
+            if (id) {
+                return $http.get('/api/v1/Histories?populate=quiz&user=' + id + '&sort=-createdAt&limit=3');
+            }
         }
     }
 })();

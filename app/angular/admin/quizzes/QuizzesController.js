@@ -11,9 +11,13 @@
     // $scope.quizzes = quizService.quizzes;
 
     var vm = this;
+    vm.formTitle = 'Add new quiz';
     vm.status = 0;
+    vm.complexity = 0;
     vm.quizzes = quizzes;
     vm.categories = categoryService.getAll();
+    vm.difficulties = quizService.getDifficulties();
+    vm.getComplexity = quizService.getComplexity;
     vm.addQuiz = addQuiz;
     vm.editQuiz = editQuiz;
     vm.getStatus = getStatus;
@@ -49,6 +53,7 @@
           vm.quiz.category = element;
         };
       });
+      vm.formTitle = 'Edit quiz';
     };
 
     function addQuiz() {
@@ -56,14 +61,6 @@
           || (!vm.quiz.description || vm.quiz.description === '')) {
         return;
       }
-      // if (!vm.quiz.category || vm.quiz.category === '') {
-      //   vm.categories.forEach(function(element, index){
-      //     if (vm.quiz.category._id === element._id) {
-      //       vm.quiz.category = element;
-      //     };
-      //   });
-      // }
-      // 
       
       if (!vm.quiz._id || vm.quiz._id === '') {
         quizService.create(vm.quiz);
@@ -72,6 +69,7 @@
         quizService.update(vm.quiz);
       }
       vm.quiz = {};
+      vm.formTitle = 'Add new quiz';
     };
   };
 

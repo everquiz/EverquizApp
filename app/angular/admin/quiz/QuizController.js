@@ -16,6 +16,8 @@
       vm.addQuestion = addQuestion;
       vm.editQuestion = editQuestion;
       vm.removeQuestion = removeQuestion;
+      vm.formTitle = 'Add new question';
+
 
       function addQuestion() {
         if((!vm.question.text || vm.question.text === '')) { return; }
@@ -27,15 +29,19 @@
           questionService.update(vm.question);
         }
         vm.question = "";
+        vm.formTitle = 'Add new question';
       };
 
       function editQuestion(question) {
         vm.question = question;
+        vm.formTitle = 'Edit question';
       };
 
       function removeQuestion(question) {
         if (confirm('Do you want to delete this question?')) {
           questionService.remove(question, quiz);
+          vm.question = "";
+          vm.formTitle = 'Add new question';
         };
       };
   };

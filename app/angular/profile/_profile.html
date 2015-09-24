@@ -1,18 +1,72 @@
 <div class="profile" ng-show="ProfileCtrl.isVisible()">
-    <div class="profile-photo">
-        <div class="profile-photo__image-outer">
-            <img class="profile-photo__image" src="i/profile-avatar.jpg" alt="Image">
+     <div class="profile-info">
+        <div class="profile-info-photo">
+            <div class="profile-info-photo__image-outer">
+                <img class="profile-info-photo__image" src="i/profile-avatar.jpg" alt="Image">
+            </div>
         </div>
-    </div>
-    <div class="profile-content">
-        <h1 class="profile-content__name">{{ProfileCtrl.profile.name}}</h1>
-        <div class="profile-content-item">
-            <span class="profile-content-item__header">Total Passing:</span>
-            <span class="profile-content-item__value">{{ProfileCtrl.profile.quizCompleted}}</span>
+
+        <div class="profile-info-content">
+            <header class="profile-info-content__name">{{ProfileCtrl.profile.name}}</header>
+            <div class="profile-info-content-item">
+                <p class="profile-info-content-item__header">Total passing</p>
+                <p class="profile-info-content-item__value">{{ProfileCtrl.profile.quizCompleted}}</p>
+            </div>
+            <div class="profile-info-content-item">
+                <p class="profile-info-content-item__header">Average result</p>
+                <p class="profile-info-content-item__value">{{ProfileCtrl.profile.averageResult}}</p>
+            </div>
         </div>
-        <div class="profile-content-item">
-            <span class="profile-content-item__header">Average result:</span>
-            <span class="profile-content-item__value">{{ProfileCtrl.profile.averageResult}}</span>
+
+        <div class="profile-info-notes">
+            <button class="profile-info-notes__link" ng-click="ProfileCtrl.hideProfile(); ProfileCtrl.goToElement('notes')">GO TO MY NOTES</button>
+        </div>
+     </div>   
+        
+    <div class="profile-additional">
+        <div class="profile-additional-actions">
+            <header class="profile-additional-actions__title">LAST ACTIONS</header>
+            <div class="profile-additional-actions-content">
+                <ul class="profile-additional-actions-content-list">
+                    <li class="profile-additional-actions-content-list-item is-quiz" ng-repeat="action in ProfileCtrl.profile.lastActions">
+                        <span class="profile-additional-actions-content-list-item__date">
+                            {{action.createdAt | date:'dd/MM/yyyy'}}        
+                        </span>
+                        <span class="profile-additional-actions-content-list-item__title" ng-if="action.type === 'quiz'">
+                            You have passed {{action.title}} quiz by {{action.result}}%
+                        </span>
+                        <span class="profile-additional-actions-content-list-item__title" ng-if="action.type === 'note'">
+                            You have created new note: {{action.title}}
+                        </span>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="profile-additional-recommendations">
+            <header class="profile-additional-recommendations__title">RECOMMENDATIONS</header>
+            <div class="profile-additional-recommendations-content">
+                <ul class="profile-additional-recommendations-content-list">
+                    <li class="profile-additional-recommendations-content-list-item">
+                        <span class="profile-additional-recommendations-content-list-item__title">
+                            We reccomend you to learn more about JS
+                        </span>
+                    </li>
+                    <li class="profile-additional-recommendations-content-list-item is-action">
+                        <span class="profile-additional-recommendations-content-list-item__date">
+                            21/09/15
+                        </span>
+                        <span class="profile-additional-recommendations-content-list-item__title">
+                            You passed "HTML Basics" quiz by 73%
+                        </span>
+                    </li>
+                    <li class="profile-additional-recommendations-content-list-item">
+                        <span class="profile-additional-recommendations-content-list-item__title">
+                            Try next level difficulty on HTML category
+                        </span>
+                    </li>
+                </ul>
+            </div>
         </div>
     </div>
 </div>

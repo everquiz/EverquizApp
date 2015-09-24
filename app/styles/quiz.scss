@@ -1,153 +1,155 @@
 .quiz {
-    height: 700px;
     width: 1280px;
+    height: 880px;
+    margin: 0 auto;
     overflow: hidden;
     position: relative;
     background: white;
     z-index: 0;
-        &__title {
-            position: absolute;
-            top: 85px;
-            left: 80px;
+
+    &__title {
+        position: absolute;
+        top: 85px;
+        left: 80px;
+        font-size: 30px;
+        font-family: Roboto;
+        color: #fb3a3a;
+        font-weight: bold;
+    }
+
+    &-block {
+        height: 880px;
+        width: 25600px;
+        position: absolute;
+        display: inline-block;
+        overflow: hidden;
+
+        &__intro {
+            display: table-cell;
+            width: 1280px;
+            padding-right: 320px;
             font-size: 30px;
             font-family: Roboto;
-            color: #fb3a3a;
+            color: #2c2c2c;
             font-weight: bold;
-        }
-        &-block {
-            height: 700px;
-            width: 90000px;
-            position: absolute;
-            display: inline-block;
-            overflow: hidden;
-            &__intro {
-                    display: table-cell;
-                    width: 1280px;
-                    padding-right: 320px;
-                    font-size: 30px;
-                    font-family: Roboto;
-                    color: #2c2c2c;
-                    font-weight: bold;
-                    padding: 120px 0 0 80px;
-                    &_slide {
-                        transition:all cubic-bezier(1, 0, 0, 1) 0.5s;
-                    
-                    }
-                }
-            &-question {
-                display: table-cell;
-                font-size: 30px;
-                font-family: Roboto;
-                color: #2c2c2c;
-                font-weight: bold;
-                width: 1280px;
-                height: 130px;
-                padding: 120px 0 0 80px;
+            padding: 120px 0 0 80px;
 
-                &__title {
-                    transition:all cubic-bezier(1, 0, 0, 1) 0.5s;
-                    width: 1040px;
-                    padding-right: 320px;
-                }
+            &_slide {
+               transition: margin 0.5s cubic-bezier(1, 0, 0, 1);
             }
+        }
+            
+        &-question {
+            display: table-cell;
+            font-size: 30px;
+            font-family: Roboto;
+            color: #2c2c2c;
+            font-weight: bold;
+            width: 1280px;
+            height: 130px;
+            padding: 120px 0 0 80px;
+
+            &__title {
+                transition: margin 0.5s cubic-bezier(1, 0, 0, 1);
+                width: 1040px;
+                padding-right: 320px;
+            }
+        }
             
                 
-            &-answer {
-                overflow: hidden;
-                padding: 0 0 0 240px;
-                transition:all cubic-bezier(1, 0, 0, 1) 2s;
-                &__intro {
+        &-answer {
+            overflow: hidden;
+            padding: 0 0 0 240px;
+            transition: margin 0.5s cubic-bezier(1, 0, 0, 1) 0.1s;
+            
+            &__intro {  
+                display: table-cell;
+                width: 800px;
+                padding-right: 560px; 
+                font-size: 20px;
+                font-family: Roboto;
+                padding-bottom: 10px;
+                color: #373737;
+            }
+    
+            &-form {
+                display: table-cell;
+                width: 1040px;
+                padding-right: 320px;            
                     
-                    display: table-cell;
-                    width: 800px;
-                    padding-right: 560px; 
-                    font-size: 20px;
-                    font-family: Roboto;
-                    padding-bottom: 10px;
-                    color: #373737;
-                }
-                &-form {
-                    display: table-cell;
-                    width: 1040px;
-                    padding-right: 320px;
-                    
-                    
-                    &-list {
+                &-list {
+                    list-style-type: none;
+
+                    &-item {
+                        font-size: 20px;
+                        font-family: Roboto;
+                        padding-bottom: 10px;
+                        color: #373737;
                         list-style-type: none;
-
-                        &-item {
-                            font-size: 20px;
-                            font-family: Roboto;
-                            padding-bottom: 10px;
-                            color: #373737;
-                            list-style-type: none;
                             
-                            &__title {
-                                
-                                cursor: pointer;
-                                &:before {
-                                    @extend .icon-checkbox_not_checked;
-                                    content: "";
-                                    display: inline-block;
-                                    margin: 0 25px 0 0;
-                                    vertical-align: middle;
-
-                                }
+                        &__title {
+                            cursor: pointer;
+                            
+                            &:before {
+                                @extend .icon-checkbox_not_checked;
+                                content: "";
+                                display: inline-block;
+                                margin: 0 25px 0 0;
+                                vertical-align: middle;
                             }
-                        }    
+                        }
                     }    
-                    &-list-item__checkbox:checked + &-list-item__title:before {
-                        @extend .icon-checkbox_checked;
-                    }
+                }    
+            
+                &-list-item__checkbox:checked + &-list-item__title:before {
+                    @extend .icon-checkbox_checked;
                 }
             }
+        }
             
-            &__submit {
-                position: absolute;
-                left: 640px;
-                top: 600px;
-                background-color: #fb3a3a;
-                color: white;
-                font-family: ProximaNova;
-                font-weight: bold;
-                border: none;
-                width: 140px;
-                height: 42px;
-                font-size: 18px;
-            }
-        }
-        &-counter {
+        &__submit {
             position: absolute;
-            top: 250px;
-            width: 200px;
-            height: 300px;
-            background-color: white;
-            text-align: right;
-            vertical-align: top;
-            &-indicator {
-                font-size: 60px;
-                color: #b9bdbe;
-                font-family: ProximaNova, sans-serif;
-                font-weight: bold;
-            }
+            left: 640px;
+            top: 600px;
+            background-color: #fb3a3a;
+            color: white;
+            font-family: ProximaNova;
+            font-weight: bold;
+            border: none;
+            width: 140px;
+            height: 42px;
+            font-size: 18px;
         }
-        &-back {
-            position: absolute;
-            right: 80px;
-            top: 80px;
-            &__title {
-                font-size: 18px;
-                font-family: ProximaNova, sans-serif;
-                font-weight: bold;
-                color: #b9bdbe;
-                text-decoration: none;
-            }
-            
+    }
+
+    &-counter {
+        position: absolute;
+        top: 250px;
+        width: 200px;
+        height: 300px;
+        background-color: white;
+        text-align: right;
+        vertical-align: top;
+    
+        &-indicator {
+            font-size: 60px;
+            color: #b9bdbe;
+            font-family: ProximaNova, sans-serif;
+            font-weight: bold;
         }
+    }
+    
+    &-back {
+        position: absolute;
+        right: 80px;
+        top: 80px;
+        
+        &__title {
+            font-size: 18px;
+            font-family: ProximaNova, sans-serif;
+            font-weight: bold;
+            color: #b9bdbe;
+            text-decoration: none;
+        }    
+    }
 }
-
-@font-face {
-    font-family: Roboto; 
-    src: url(../fonts/Roboto.ttf); 
-   }
-

@@ -1,0 +1,19 @@
+<div class="finish">
+    <div class="finish-content">
+        <div class="finish-content-summary" ng-if="ResultCtrl.quizService.lastResult !== null">
+            <p class="finish-content-summary__title">Your result is:</p>
+            <span class="finish-content-summary__result">{{ResultCtrl.quizService.lastResult}} %</span>
+        </div>
+
+        <div class="finish-content-random" ng-if="ResultCtrl.quizService.lastResult === null">
+            <p class="finish-content-random__title">{{ResultCtrl.getRandomPhrase()}}</p>
+        </div>
+
+        <div class="finish-content-action">
+            <div class="finish-content-action-call">
+                <span class="finish-content-action-call__title">GET FAIL</span>
+            </div>
+            <a href="" class="finish-content-action__link" ng-click="ResultCtrl.goToElement('quizzes')">TRY AGAIN?</a>
+        </div>
+    </div>
+</div>
