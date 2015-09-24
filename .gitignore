@@ -28,10 +28,8 @@ node_modules
 bower_components
 .idea/
 
-#minified css and js
-public/css
-public/js
-public/i
+#public directory
+public/
 
 #templatecache
 /app/angular/templates.js

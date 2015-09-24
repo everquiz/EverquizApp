@@ -68,6 +68,13 @@ gulp.task('images', function() {
 
 //****************************************************************
 //CSS section
+
+//External fonts
+gulp.task('font', function() {
+	return gulp.src('app/styles/font/*')
+		.pipe(gulp.dest('public/font'));
+});
+
 //External styles
 gulp.task('normalize', function() {
     return gulp.src(mainBowerFiles('**/*.css'))
@@ -75,7 +82,7 @@ gulp.task('normalize', function() {
         .pipe(gulp.dest('public/css'));
 });
 
-gulp.task('vendor-css', ['normalize'], function(){
+gulp.task('vendor-css', ['normalize', 'font'], function(){
 });
 
 //Custom styles
