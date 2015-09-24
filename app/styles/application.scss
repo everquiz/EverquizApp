@@ -449,6 +449,84 @@ Icon classes can be used entirely standalone. They are named after their origina
 		}
 	}
 }
+.login {
+	margin: 130px auto;
+	width: 400px;
+	height: 500px;
+
+&-logo {
+					display: inline-block;
+					line-height: 64px;
+					vertical-align: middle;
+					font-size: 14px;
+					font-weight: bold;
+
+					&__home {
+						display: inline-block;
+						color: #fff;
+						text-align: center;
+						background-color: #fd2828;
+						height: 64px;
+						width: 64px;
+						font-size: 48px;
+						font-weight: bold;
+						text-decoration: none;
+						transition: background 0.5s ease-in-out;
+
+						&:hover {
+							text-decoration: none;
+							background-color: #000;
+						}
+					}
+				}	
+					&-page-header {
+						display: inline-block;
+						margin-left: 30px;
+						color: #373737;
+						font-size: 30px;
+						font-family: sans-serif;
+					}
+	&-form {
+		color: #373737;
+		font-size: 20px;
+		font-family: sans-serif;
+		text-align: center;
+		margin-left: 5px;
+		&-control {
+			width: 60%;
+			border: 1px solid #cacaca;
+			border-radius: 2px;
+			font-size: 20px;
+			padding: 5px;
+			margin-bottom: 10px;
+		}
+	}
+
+					
+					
+				
+}			
+.alert {
+	font-size: 24px;
+	color: red;
+	margin-left: 100px;
+	margin-top: 10px;
+	&__message {
+		font-weight: bold;
+		font-family: sans-serif;
+	}
+}
+.btn {
+                background-color: #fb3a3a;
+                color: white;
+                font-family: ProximaNova;
+                font-weight: bold;
+                border: none;
+                width: 140px;
+                height: 42px;
+                font-size: 18px;
+                margin-top: 20px;
+}
 .notes {
 	position: relative;
 	width: 1280px;
@@ -897,6 +975,11 @@ Icon classes can be used entirely standalone. They are named after their origina
             font-weight: bold;
             color: #b9bdbe;
             text-decoration: none;
+            transition: color .5s ease-in-out;
+            &:hover {
+            color: #373737;
+
+            }
         }    
     }
 }
@@ -1039,6 +1122,64 @@ Icon classes can be used entirely standalone. They are named after their origina
 		}
 	}
 }
+.register {
+	margin: 130px auto;
+	width: 400px;
+	height: 500px;
+
+&-logo {
+					display: inline-block;
+					line-height: 64px;
+					vertical-align: middle;
+					font-size: 14px;
+					font-weight: bold;
+
+					&__home {
+						display: inline-block;
+						color: #fff;
+						text-align: center;
+						background-color: #fd2828;
+						height: 64px;
+						width: 64px;
+						font-size: 48px;
+						font-weight: bold;
+						text-decoration: none;
+						transition: background 0.5s ease-in-out;
+
+						&:hover {
+							text-decoration: none;
+							background-color: #000;
+						}
+					}
+				}	
+					&-page-header {
+						display: inline-block;
+						margin-left: 30px;
+						color: #373737;
+						font-size: 30px;
+						font-family: sans-serif;
+					}
+	&-form {
+		color: #373737;
+		font-size: 20px;
+		font-family: sans-serif;
+		text-align: center;
+		margin-left: 5px;
+		&-control {
+			width: 60%;
+			border: 1px solid #cacaca;
+			border-radius: 2px;
+			font-size: 20px;
+			padding: 5px;
+			margin-bottom: 10px;
+		}
+	}
+
+					
+					
+				
+}			
+
 .finish {
 	width: 1280px;
 	height: 880px;

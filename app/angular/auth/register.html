@@ -1,26 +1,29 @@
-<div class="page-header">
-  <h1>Registration template</h1>
-</div>
+<div class="register">
+<div class="register-logo" ><a href="../" class="login-logo__home">E</a> 
+    <div class="register-page-header">Create an Account
+    </div>
+  </div>
 
 <div ng-show="AuthCtrl.error" class="alert alert-danger row">
   <span>{{ AuthCtrl.error.message }}</span>
 </div>
 
 <form ng-submit="AuthCtrl.register()"
-  style="margin-top:30px;">
+  class="register-form">
   <h3>Register</h3>
 
-  <div class="form-group">
-    <input type="text"
-    class="form-control"
+  <div class="register-form-group">
+    <input type="email"
+    class="register-form-control"
     placeholder="email"
-    ng-model="AuthCtrl.user.email"></input>
+    ng-model="AuthCtrl.user.email" autofocus required></input>
   </div>
-  <div class="form-group">
+  <div class="register-form-group">
     <input type="password"
-    class="form-control"
+    class="register-form-control"
     placeholder="Password"
-    ng-model="AuthCtrl.user.password"></input>
+    ng-model="AuthCtrl.user.password" required></input>
   </div>
   <button type="submit" class="btn btn-primary">Register</button>
 </form>
+</div>
