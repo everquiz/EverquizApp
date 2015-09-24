@@ -49,7 +49,6 @@
                     dnd-moved="NotesListCtrl.onDeletedMove($index)"
                     dnd-effect-allowed="move">
                     <div>{{deletedNote.title}}</div>
-                    <div>Javascript</div>
                     <div ng-click="NotesListCtrl.onNoteClick(note)">x</div>
                 </li>
             </ul>
@@ -63,33 +62,57 @@
             <span ng-click="NotesListCtrl.goToLastPage()">Last</span>
         </div>
 
-        <div data-temp="create-form">
-            <form ng-show="NotesListCtrl.createMenuActive" ng-submit="NotesListCtrl.addNote(NotesListCtrl.newNote)">
-                <h2>Create note</h2>
-                <div>Add title</div>
-                <textarea ng-model="NotesListCtrl.newNote.title" placeholder="Title"></textarea><br/>
+        <div class="notes-list-form" data-temp="create-form">
+            <form class="notes-list-form-create" ng-show="NotesListCtrl.createMenuActive" ng-submit="NotesListCtrl.addNote(NotesListCtrl.newNote)">
+                <fieldset class="notes-list-form-create-content">    
+                    <legend class="notes-list-form-create-content__header">Create note</legend>
+                    <label class="notes-list-form-create-content__title">
+                        Add title
+                        <input class="notes-list-form-create-content__input" type="text" ng-model="NotesListCtrl.newNote.title" placeholder="Title">
+                    </label>
 
-                <div>Add text</div>
-                <textarea ng-model="NotesListCtrl.newNote.text" placeholder="Text"></textarea><br/>
+                    <label class="notes-list-form-create-content__text">
+                        Add text
+                        <input class="notes-list-form-create-content__input" type="text" ng-model="NotesListCtrl.newNote.text" placeholder="Text">
+                    </label>
+                    
+                    <div class="notes-list-form-create-content-controls">
+                        <button class="notes-list-form-create-content-controls__submit" ng-click="NotesListCtrl.toggleCreate()">
+                            CREATE
+                        </button>
 
-                <div>
-                    <input ng-click="NotesListCtrl.toggleCreate()" type="submit" value="Submit" />
-                </div>
+                        <button class="notes-list-form-create-content-controls__cancel">
+                            CANCEL
+                        </button>
+                    </div>      
+                </fieldset>    
             </form>
         </div>
 
-        <div data-temp="edit-form">
-            <form ng-show="NotesListCtrl.editMenuActive" ng-submit="NotesListCtrl.updateNote(NotesListCtrl.editNote)">
-                <h2>Edit note</h2>
-                <div>Edit title</div>
-                <textarea ng-model="NotesListCtrl.editNote.title" placeholder="Title"></textarea><br/>
+        <div class="notes-list-form" data-temp="edit-form">
+            <form class="notes-list-form-edit" ng-show="NotesListCtrl.editMenuActive" ng-submit="NotesListCtrl.updateNote(NotesListCtrl.editNote)">
+                <fieldset class="notes-list-form-edit-content">
+                    <legend class="notes-list-form-edit-content__header">Edit note</legend>
+                    <label class="notes-list-form-edit-content__title">
+                        Edit title
+                        <input class="notes-list-form-edit-content__input" type="text" ng-model="NotesListCtrl.editNote.title" placeholder="Title">
+                    </label>
 
-                <div>Edit text</div>
-                <textarea ng-model="NotesListCtrl.editNote.text" placeholder="Text"></textarea><br/>
+                    <label  class="notes-list-form-edit-content__text">
+                        Edit text
+                        <input class="notes-list-form-edit-content__input" type="text" ng-model="NotesListCtrl.editNote.text" placeholder="Text">
+                    </label>
 
-                <div>
-                    <input ng-click="NotesListCtrl.hideEdit()" type="submit" value="Submit" />
-                </div>
+                    <div class="notes-list-form-edit-content-controls">
+                        <button class="notes-list-form-edit-content-controls__submit" ng-click="NotesListCtrl.toggleCreate()">
+                            EDIT
+                        </button>
+
+                        <button class="notes-list-form-edit-content-controls__cancel">
+                            CANCEL
+                        </button>
+                    </div>  
+                </fieldset>
             </form>
         </div>
 

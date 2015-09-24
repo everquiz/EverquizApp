@@ -25,7 +25,7 @@
         vm.onNoteClick = deleteNote;
         vm.updateNote = notesService.updateNote;
         vm.setLimit = notesService.setLimit;
-        vm.limit = 6
+        vm.limit = 15;
         vm.page = 0;
         vm.maxPages = 0;
         vm.pageList = [vm.maxPages];
