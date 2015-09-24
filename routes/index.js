@@ -13,16 +13,14 @@ var express = require('express'),
 
 
 router.post('/register', function (req, res, next) {
-    console.log('req.body');
-    console.log(req.body);
-    if (!req.body.email || !req.body.password) {
+    if (!req.body.name || !req.body.email || !req.body.password) {
         return res.status(400).json({message: 'Please fill out all fields'});
     }
 
     var user = new User();
 
+    user.name = req.body.name;
     user.email = req.body.email;
-
     user.setPassword(req.body.password);
 
     user.save(function (err) {
