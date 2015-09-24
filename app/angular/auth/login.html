@@ -1,26 +1,29 @@
-<div class="page-header">
-  <h1>Login template</h1>
-</div>
+<div class="login">
+  <div class="login-logo" ><a href="../" class="login-logo__home">E</a> 
+    <div class="login-page-header">Welcome back!
+    </div>
+  </div>
+
 
 <div ng-show="AuthCtrl.error" class="alert alert-danger row">
-  <span>{{ AuthCtrl.error.message }}</span>
+  <span class="alert__message">{{ AuthCtrl.error.message }}</span>
 </div>
 
-<form ng-submit="AuthCtrl.logIn()"
-  style="margin-top:30px;">
-  <h3>Log In</h3>
+<form ng-submit="AuthCtrl.logIn()" class="login-form">
+  <h3>Log in</h3>
 
-  <div class="form-group">
-    <input type="text"
-    class="form-control"
+  <div class="login-form-group">
+    <input type="email"
+    class="login-form-control"
     placeholder="email"
-    ng-model="AuthCtrl.user.email"></input>
+    ng-model="AuthCtrl.user.email" autofocus required></input>
   </div>
   <div class="form-group">
     <input type="password"
-    class="form-control"
+    class="login-form-control"
     placeholder="Password"
-    ng-model="AuthCtrl.user.password"></input>
+    ng-model="AuthCtrl.user.password" required></input>
   </div>
-  <button type="submit" class="btn btn-primary">Log In</button>
+  <button type="submit" class="btn btn-primary">Log in</button>
 </form>
+</div>
