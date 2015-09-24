@@ -1,19 +1,34 @@
-(function() {
+(function () {
     'use strict';
 
     angular
         .module('everquizApp')
         .controller('VideoController', VideoController);
 
-    VideoController.$inject = ['scrollFactory'];
+    VideoController.$inject = ['$scope', 'scrollFactory'];
 
-    function VideoController (scrollFactory) {
+    function VideoController($scope, scrollFactory) {
 
         var vm = this;
         vm.goToElement = goToElement;
-        
-        function goToElement (elemID) {
+        vm.videoOpened = false;
+        vm.showVideo = showVideo;
+        window.onclick = hideVideo;
+
+        function goToElement(elemID) {
             scrollFactory.scroll(elemID);
+        }
+
+        function showVideo(event) {
+            vm.videoOpened = true;
+            event.stopPropagation();
+        }
+
+        function hideVideo() {
+            if (vm.videoOpened) {
+                vm.videoOpened = false;
+                $scope.$apply();
+            }
         }
     }
 })();

@@ -11,79 +11,91 @@ Icon classes can be used entirely standalone. They are named after their origina
 */
 .icon-checkbox_checked {
   background-image: url(../i/sprite.png);
-  background-position: -70px 0px;
+  background-position: -32px -50px;
   width: 29px;
   height: 29px;
 }
 .icon-checkbox_not_checked {
   background-image: url(../i/sprite.png);
-  background-position: 0px -50px;
+  background-position: -61px -50px;
   width: 29px;
   height: 29px;
 }
 .icon-delete {
   background-image: url(../i/sprite.png);
-  background-position: -88px -79px;
+  background-position: -48px -106px;
   width: 16px;
   height: 16px;
 }
 .icon-delete_hover {
   background-image: url(../i/sprite.png);
-  background-position: -72px -79px;
+  background-position: -32px -106px;
+  width: 16px;
+  height: 16px;
+}
+.icon-edit {
+  background-image: url(../i/sprite.png);
+  background-position: -16px -106px;
+  width: 16px;
+  height: 16px;
+}
+.icon-edit_hover {
+  background-image: url(../i/sprite.png);
+  background-position: 0px -106px;
   width: 16px;
   height: 16px;
 }
 .icon-facebook {
   background-image: url(../i/sprite.png);
-  background-position: -29px -50px;
+  background-position: -102px 0px;
   width: 24px;
   height: 24px;
 }
 .icon-facebook_hover {
   background-image: url(../i/sprite.png);
-  background-position: -53px -50px;
+  background-position: -102px -24px;
   width: 24px;
   height: 24px;
 }
 .icon-favourite_false {
   background-image: url(../i/sprite.png);
-  background-position: -77px -50px;
+  background-position: -86px -32px;
   width: 16px;
   height: 16px;
 }
 .icon-favourite_hover {
   background-image: url(../i/sprite.png);
-  background-position: -70px -29px;
+  background-position: -70px -32px;
   width: 16px;
   height: 16px;
 }
 .icon-favourite_true {
   background-image: url(../i/sprite.png);
-  background-position: -104px -79px;
+  background-position: -64px -106px;
   width: 16px;
   height: 16px;
 }
 .icon-googleplus {
   background-image: url(../i/sprite.png);
-  background-position: 0px -79px;
+  background-position: -48px -82px;
   width: 24px;
   height: 24px;
 }
 .icon-googleplus_hover {
   background-image: url(../i/sprite.png);
-  background-position: -24px -79px;
+  background-position: -72px -82px;
   width: 24px;
   height: 24px;
 }
 .icon-linkedin {
   background-image: url(../i/sprite.png);
-  background-position: -48px -79px;
+  background-position: -96px -82px;
   width: 24px;
   height: 24px;
 }
 .icon-linkedin_hover {
   background-image: url(../i/sprite.png);
-  background-position: -99px -24px;
+  background-position: 0px -82px;
   width: 24px;
   height: 24px;
 }
@@ -99,15 +111,27 @@ Icon classes can be used entirely standalone. They are named after their origina
   width: 70px;
   height: 25px;
 }
+.icon-trash {
+  background-image: url(../i/sprite.png);
+  background-position: 0px -50px;
+  width: 32px;
+  height: 32px;
+}
+.icon-trash_hover {
+  background-image: url(../i/sprite.png);
+  background-position: -70px 0px;
+  width: 32px;
+  height: 32px;
+}
 .icon-twitter {
   background-image: url(../i/sprite.png);
-  background-position: -99px 0px;
+  background-position: -102px -48px;
   width: 24px;
   height: 24px;
 }
 .icon-twitter_hover {
   background-image: url(../i/sprite.png);
-  background-position: -99px -48px;
+  background-position: -24px -82px;
   width: 24px;
   height: 24px;
 }
@@ -171,6 +195,48 @@ Icon classes can be used entirely standalone. They are named after their origina
 		}
 	}
 }
+ul[dnd-list],
+
+    /**
+     * The dnd-list should always have a min-height,
+     * otherwise you can't drop to it once it's empty
+     */
+    ul[dnd-list] {
+        min-height: 42px;
+    }
+
+    /**
+     * The dndDraggingSource class will be applied to
+     * the source element of a drag operation. It makes
+     * sense to hide it to give the user the feeling
+     * that he's actually moving it.
+     */
+    ul[dnd-list] .dndDraggingSource {
+        display: none;
+    }
+
+    /**
+     * An element with .dndPlaceholder class will be
+     * added to the dnd-list while the user is dragging
+     * over it.
+     */
+    ul[dnd-list] .dndPlaceholder {
+        display: block;
+        background-color: #ddd;
+        min-height: 42px;
+    }
+
+    /**
+     * Show selected elements in green
+     */
+    ul[dnd-list] li.selected {
+        background-color: #dff0d8;
+        color: #3c763d;
+    }
+
+     .trashcan .dndPlaceholder {
+        display: none;
+    }
 .footer {
 	height: 54px;
 	width: 1280px;
@@ -515,6 +581,163 @@ Icon classes can be used entirely standalone. They are named after their origina
                 font-size: 18px;
                 margin-top: 20px;
 }
+.notes-list {
+	position: relative;
+	width: 1280px;
+	height: 880px;
+	margin: 0 auto;
+
+	&-wrapper {
+		width: 1120px;
+		margin: 0 auto;
+	}
+
+	&-container {
+		width: 800px;
+		height: 620px;
+		float: left;
+		padding: 0;
+		margin: 100px 0 0 0;
+		list-style: none;
+
+		&-item {
+			position: relative;
+			background: #fff;
+
+			&__name {
+				color: #5b5a5a;
+				font-size: 20px;
+				padding: 24px 42px 0 18px;
+			}
+
+			&__content {
+				color: #5b5a5a;
+				font-size: 16px;
+			}
+
+			&__category {
+				color: #b9bdbe;
+				font-size: 16px;
+			}
+
+			&-controls {
+				float: right;
+
+				&__edit {
+					@extend .icon-edit;
+					display: inline-block;
+					vertical-align: top;
+					margin-left: 10px;
+					cursor: pointer;
+
+					&:hover {
+						@extend .icon-edit_hover;
+					}
+				}
+
+				&__favourite {
+					@extend .icon-favourite_false;
+					display: inline-block;
+					vertical-align: top;
+					margin-left: 10px;
+					cursor: pointer;
+
+					&.is-true {
+						@extend .icon-favourite_true;
+
+						&:hover {
+							@extend .icon-favourite_hover;
+						}
+					}
+
+					&:hover {
+						@extend .icon-favourite_hover;
+					}
+				}
+
+				&__delete {
+					@extend .icon-delete;
+					display: inline-block;
+					vertical-align: top;
+					margin-left: 10px;
+					cursor: pointer;
+
+					&:hover {
+						@extend .icon-delete_hover;
+					}
+				}
+			}
+		}	
+	}
+
+	&-trash {
+		width: 300px;
+		height: 620px;
+		margin: 100px 0 0 0;
+		position: relative;
+		float: right;
+		background: #edebda;
+		border: 1px solid #373737;
+
+		&__icon {
+			@extend .icon-trash;
+			position: absolute;
+			z-index: -1;
+			left: 0;
+			right: 0;
+			margin: 0 auto;
+
+		}
+	}
+
+	&-pagination {
+		clear: both;
+		position: absolute;
+		left: 0;
+		right: 0;
+		bottom: 80px;
+		height: 20px;
+		text-align: center;
+		margin: 30px 80px;
+	}
+
+	&-button {
+		position: absolute;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		text-align: center;
+		margin: 0 80px 50px;
+
+		&__new-note {
+			background: #fd2828;
+			font-weight: bold;
+			color: #fff;
+			border: none;
+			padding: 10px 20px;
+			cursor: pointer;
+			transition: background 0.5s ease-in-out;
+
+			&:hover {
+				background: #2c2c2c;
+			}
+		}
+
+		&__back-to-main {
+			background: #fd2828;
+			font-weight: bold;
+			color: #fff;
+			border: none;
+			padding: 10px 20px;
+			cursor: pointer;
+			transition: background 0.5s ease-in-out;
+
+			&:hover {
+				background: #2c2c2c;
+			}
+		}
+	}
+}
 .notes {
 	position: relative;
 	width: 1280px;
@@ -534,7 +757,6 @@ Icon classes can be used entirely standalone. They are named after their origina
 	&-wrapper {
 		width: 1154px;
 		margin: 0 auto;
-		overflow: hidden;
 	}
 
 	&-block {

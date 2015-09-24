@@ -1,0 +1,157 @@
+.notes-list {
+	position: relative;
+	width: 1280px;
+	height: 880px;
+	margin: 0 auto;
+
+	&-wrapper {
+		width: 1120px;
+		margin: 0 auto;
+	}
+
+	&-container {
+		width: 800px;
+		height: 620px;
+		float: left;
+		padding: 0;
+		margin: 100px 0 0 0;
+		list-style: none;
+
+		&-item {
+			position: relative;
+			background: #fff;
+
+			&__name {
+				color: #5b5a5a;
+				font-size: 20px;
+				padding: 24px 42px 0 18px;
+			}
+
+			&__content {
+				color: #5b5a5a;
+				font-size: 16px;
+			}
+
+			&__category {
+				color: #b9bdbe;
+				font-size: 16px;
+			}
+
+			&-controls {
+				float: right;
+
+				&__edit {
+					@extend .icon-edit;
+					display: inline-block;
+					vertical-align: top;
+					margin-left: 10px;
+					cursor: pointer;
+
+					&:hover {
+						@extend .icon-edit_hover;
+					}
+				}
+
+				&__favourite {
+					@extend .icon-favourite_false;
+					display: inline-block;
+					vertical-align: top;
+					margin-left: 10px;
+					cursor: pointer;
+
+					&.is-true {
+						@extend .icon-favourite_true;
+
+						&:hover {
+							@extend .icon-favourite_hover;
+						}
+					}
+
+					&:hover {
+						@extend .icon-favourite_hover;
+					}
+				}
+
+				&__delete {
+					@extend .icon-delete;
+					display: inline-block;
+					vertical-align: top;
+					margin-left: 10px;
+					cursor: pointer;
+
+					&:hover {
+						@extend .icon-delete_hover;
+					}
+				}
+			}
+		}	
+	}
+
+	&-trash {
+		width: 300px;
+		height: 620px;
+		margin: 100px 0 0 0;
+		position: relative;
+		float: right;
+		background: #edebda;
+		border: 1px solid #373737;
+
+		&__icon {
+			@extend .icon-trash;
+			position: absolute;
+			z-index: -1;
+			left: 0;
+			right: 0;
+			margin: 0 auto;
+
+		}
+	}
+
+	&-pagination {
+		clear: both;
+		position: absolute;
+		left: 0;
+		right: 0;
+		bottom: 80px;
+		height: 20px;
+		text-align: center;
+		margin: 30px 80px;
+	}
+
+	&-button {
+		position: absolute;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		text-align: center;
+		margin: 0 80px 50px;
+
+		&__new-note {
+			background: #fd2828;
+			font-weight: bold;
+			color: #fff;
+			border: none;
+			padding: 10px 20px;
+			cursor: pointer;
+			transition: background 0.5s ease-in-out;
+
+			&:hover {
+				background: #2c2c2c;
+			}
+		}
+
+		&__back-to-main {
+			background: #fd2828;
+			font-weight: bold;
+			color: #fff;
+			border: none;
+			padding: 10px 20px;
+			cursor: pointer;
+			transition: background 0.5s ease-in-out;
+
+			&:hover {
+				background: #2c2c2c;
+			}
+		}
+	}
+}
