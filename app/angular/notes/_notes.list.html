@@ -1,166 +1,104 @@
-<style type="text/css">
-    ul[dnd-list],
-    ul[dnd-list] > li {
-        position: relative;
-    }
+<div class="notes-list">
+    <div class="notes-list-wrapper">
+        <!--<ul dnd-list="list">-->
+               <!--<li ng-repeat="item in list"-->
+                   <!--dnd-draggable="item"-->
+                   <!--dnd-moved="list.splice($index, 1)"-->
+                   <!--dnd-effect-allowed="move"-->
+                   <!--dnd-selected="NoteCtrl.models.selected = item"-->
+                   <!--ng-class="{'selected': NoteCtrl.models.selected === item}"-->
+                   <!--ng-show="NotesListCtrl.paginatorCheck($index)">-->
+                   <!--&lt;!&ndash;<div>{{note.title}}</div>&ndash;&gt;-->
+                   <!--<div>Javascript</div>-->
+                   <!--<div ng-click="NotesListCtrl.editInit(note)">E</div>-->
+                   <!--<div ng-click="NotesListCtrl.onNoteClick(note)">x</div>-->
+               <!--</li>-->
+        <!--</ul>-->
 
-    /**
-     * The dnd-list should always have a min-height,
-     * otherwise you can't drop to it once it's empty
-     */
-    ul[dnd-list] {
-        min-height: 42px;
-        padding-left: 0px;
-    }
+        <ul class="notes-list-container" dnd-list="NotesListCtrl.notes">
+            <li class="notes-list-container-item" ng-repeat="note in NotesListCtrl.notes" ng-show="NotesListCtrl.paginatorCheck($index)"
+                dnd-draggable="note"
+                dnd-moved="NotesListCtrl.onMove($index)"
+                dnd-effect-allowed="move">
+                <span class="notes-list-container-item__title">
+                    {{note.title}}
+                </span>
 
-    /**
-     * The dndDraggingSource class will be applied to
-     * the source element of a drag operation. It makes
-     * sense to hide it to give the user the feeling
-     * that he's actually moving it.
-     */
-    ul[dnd-list] .dndDraggingSource {
-        display: none;
-    }
+                <span class="notes-list-container-item__content">
+                    {{note.text}}
+                </span>
 
-    /**
-     * An element with .dndPlaceholder class will be
-     * added to the dnd-list while the user is dragging
-     * over it.
-     */
-    ul[dnd-list] .dndPlaceholder {
-        display: block;
-        background-color: #ddd;
-        min-height: 42px;
-    }
+                <span class="notes-list-container-item__category">
+                    Javascript
+                </span>
 
-    /**
-     * The dnd-lists's child elements currently MUST have
-     * position: relative. Otherwise we can not determine
-     * whether the mouse pointer is in the upper or lower
-     * half of the element we are dragging over. In other
-     * browsers we can use event.offsetY for this.
-     */
-    ul[dnd-list] li {
-        background-color: #fff;
-        border: 1px solid #ddd;
-        border-top-right-radius: 4px;
-        border-top-left-radius: 4px;
-        display: block;
-        padding: 10px 15px;
-        margin-bottom: -1px;
-    }
+                <div class="notes-list-container-item-controls">
+                    <span class="notes-list-container-item-controls__edit" ng-click="NotesListCtrl.editInit(note)"></span>
+                    <span class="notes-list-container-item-controls__favourite"></span>
+                    <span class="notes-list-container-item-controls__delete" ng-click="NotesListCtrl.onNoteClick(note)"></span>
+                </div>
+            </li>
+        </ul>
 
-    /**
-     * Show selected elements in green
-     */
-    ul[dnd-list] li.selected {
-        background-color: #dff0d8;
-        color: #3c763d;
-    }
-
-     .trashcan .dndPlaceholder {
-        display: none;
-    }
-
-    .trashcan ul {
-        list-style: none;
-        padding-left: 0px;
-    }
-
-</style>
-
-
-<div class="quizzes-selection">
-        <table class="quizzes-selection-table">
-            <tr class="quizzes-selection-table-row-heading">
-                <th class="quizzes-selection-table-row-heading__title">Title</th>
-                <th class="quizzes-selection-table-row-heading__title">Category</th>
-                <th class="quizzes-selection-table-row-heading__title">Edit</th>
-                <th class="quizzes-selection-table-row-heading__title">Delete</th>
-            </tr>
-        </table>
-
-
-     <!--<ul dnd-list="list">-->
-            <!--<li ng-repeat="item in list"-->
-                <!--dnd-draggable="item"-->
-                <!--dnd-moved="list.splice($index, 1)"-->
-                <!--dnd-effect-allowed="move"-->
-                <!--dnd-selected="NoteCtrl.models.selected = item"-->
-                <!--ng-class="{'selected': NoteCtrl.models.selected === item}"-->
-                <!--ng-show="NotesListCtrl.paginatorCheck($index)">-->
-                <!--&lt;!&ndash;<div>{{note.title}}</div>&ndash;&gt;-->
-                <!--<div>Javascript</div>-->
-                <!--<div ng-click="NotesListCtrl.editInit(note)">E</div>-->
-                <!--<div ng-click="NotesListCtrl.onNoteClick(note)">x</div>-->
-            <!--</li>-->
-     <!--</ul>-->
-
-     <ul dnd-list="NotesListCtrl.notes">
-         <li ng-repeat="note in NotesListCtrl.notes" ng-show="NotesListCtrl.paginatorCheck($index)"
-             dnd-draggable="note"
-             dnd-moved="NotesListCtrl.onMove($index)"
-             dnd-effect-allowed="move">
-             <div>{{note.title}}</div>
-             <div>Javascript</div>
-             <div ng-click="NotesListCtrl.editInit(note)">E</div>
-             <div ng-click="NotesListCtrl.onNoteClick(note)">x</div>
-         </li>
-     </ul>
-
-     <div data-temp="pagination">
-         <button ng-click="NotesListCtrl.goToFirstPage()">First page</button>
-         <button ng-click="NotesListCtrl.previousPage()">Prev page</button>
-         <div ng-click="NotesListCtrl.goToPage(page)" ng-repeat="page in NotesListCtrl.pageList">{{page + 1}}</div>
-         <button ng-click="NotesListCtrl.nextPage()">Next page</button>
-         <button ng-click="NotesListCtrl.goToLastPage()">Last page</button>
-     </div>
-
-     <div data-temp="create-form">
-     <button class="notes-button__show-all" ng-show="!NotesListCtrl.createMenuActive" ng-click="NotesListCtrl.showCreate()">Create new note</button>
-
-    <form ng-show="NotesListCtrl.createMenuActive" ng-submit="NotesListCtrl.addNote(NotesListCtrl.newNote)">
-        <div><h2>Create note</h2></div>
-        <div>Add title</div>
-        <textarea ng-model="NotesListCtrl.newNote.title" placeholder="Title"></textarea><br/>
-
-        <div>Add text</div>
-        <textarea ng-model="NotesListCtrl.newNote.text" placeholder="Text"></textarea><br/>
-
-        <div>
-            <input ng-click="NotesListCtrl.toggleCreate()" type="submit" value="Submit" />
+        <div class="notes-list-trash">
+            <span class="notes-list-trash__icon"></span>
+            <ul dnd-list="NotesListCtrl.deletedList" >
+                <li ng-click="NotesListCtrl.RecycleCleanUp()">trashcan clean</li>
+                <li ng-repeat="deletedNote in NotesListCtrl.deletedList"
+                    dnd-draggable="deletedNote"
+                    dnd-moved="NotesListCtrl.onDeletedMove($index)"
+                    dnd-effect-allowed="move">
+                    <div>{{deletedNote.title}}</div>
+                    <div>Javascript</div>
+                    <div ng-click="NotesListCtrl.onNoteClick(note)">x</div>
+                </li>
+            </ul>
         </div>
-    </form>
-     </div>
 
-     <div data-temp="edit-form">
-         <form ng-show="NotesListCtrl.editMenuActive" ng-submit="NotesListCtrl.updateNote(NotesListCtrl.editNote)">
-             <div><h2>Edit note</h2></div>
-             <div>Edit title</div>
-             <textarea ng-model="NotesListCtrl.editNote.title" placeholder="Title"></textarea><br/>
+        <div class="notes-list-pagination" data-temp="pagination">
+            <span ng-click="NotesListCtrl.goToFirstPage()">First</span>
+            <span ng-click="NotesListCtrl.previousPage()">&laquo;</span>
+            <span ng-click="NotesListCtrl.goToPage(page)" ng-repeat="page in NotesListCtrl.pageList">{{page + 1}}</span>
+            <span ng-click="NotesListCtrl.nextPage()">&raquo;</span>
+            <span ng-click="NotesListCtrl.goToLastPage()">Last</span>
+        </div>
 
-             <div>Edit text</div>
-             <textarea ng-model="NotesListCtrl.editNote.text" placeholder="Text"></textarea><br/>
+        <div data-temp="create-form">
+            <form ng-show="NotesListCtrl.createMenuActive" ng-submit="NotesListCtrl.addNote(NotesListCtrl.newNote)">
+                <h2>Create note</h2>
+                <div>Add title</div>
+                <textarea ng-model="NotesListCtrl.newNote.title" placeholder="Title"></textarea><br/>
 
-             <div>
-                 <input ng-click="NotesListCtrl.hideEdit()" type="submit" value="Submit" />
-             </div>
-         </form>
-     </div>
-    <button class="notes-button__show-all" ng-click="NotesListCtrl.switchToMain()">Back to main</button>
+                <div>Add text</div>
+                <textarea ng-model="NotesListCtrl.newNote.text" placeholder="Text"></textarea><br/>
 
-    <div class="trashcan">
-    <ul dnd-list="NotesListCtrl.deletedList" >
-        <li ng-click="NotesListCtrl.RecycleCleanUp()">trashcan clean</li>
-        <li ng-repeat="deletedNote in NotesListCtrl.deletedList"
-            dnd-draggable="deletedNote"
-            dnd-moved="NotesListCtrl.onDeletedMove($index)"
-            dnd-effect-allowed="move">
-            <div>{{deletedNote.title}}</div>
-            <div>Javascript</div>
-            <div ng-click="NotesListCtrl.onNoteClick(note)">x</div>
-        </li>
-    </ul>
+                <div>
+                    <input ng-click="NotesListCtrl.toggleCreate()" type="submit" value="Submit" />
+                </div>
+            </form>
+        </div>
+
+        <div data-temp="edit-form">
+            <form ng-show="NotesListCtrl.editMenuActive" ng-submit="NotesListCtrl.updateNote(NotesListCtrl.editNote)">
+                <h2>Edit note</h2>
+                <div>Edit title</div>
+                <textarea ng-model="NotesListCtrl.editNote.title" placeholder="Title"></textarea><br/>
+
+                <div>Edit text</div>
+                <textarea ng-model="NotesListCtrl.editNote.text" placeholder="Text"></textarea><br/>
+
+                <div>
+                    <input ng-click="NotesListCtrl.hideEdit()" type="submit" value="Submit" />
+                </div>
+            </form>
+        </div>
+
+        <div class="notes-list-button">
+            <button class="notes-list-button__new-note" ng-show="!NotesListCtrl.createMenuActive" ng-click="NotesListCtrl.showCreate()">
+                CREATE NEW NOTE
+            </button>
+
+            <button class="notes-list-button__back-to-main" ng-click="NotesListCtrl.switchToMain()">BACK TO MAIN</button>
+        </div>
     </div>
-</div>
+</div>    
