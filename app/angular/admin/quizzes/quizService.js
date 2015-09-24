@@ -39,7 +39,7 @@
         };
 
         this.getQuizzesByQuery = function (query) {
-            return $http.get('/api/v1/Quizzes?populate=category&status=1&' + query, {
+            return $http.get('/api/v1/Quizzes?populate=category&status=1' + query, {
                 headers: {Authorization: 'Bearer ' + authFactory.getToken()}
             })
                 .then(function (res) {
