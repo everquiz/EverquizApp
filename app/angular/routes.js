@@ -93,9 +93,6 @@
                             },
                             'footer@home': {
                                 templateUrl: 'layouts/_footer.html'
-                            },
-                            'addQuiz@home': {
-                                templateUrl: 'quizzes/_addQuiz.html'
                             }
                         }
                     })
