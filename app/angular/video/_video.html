@@ -1,8 +1,15 @@
 <div class="video">
-	<div class="video-content">
-		<button class="video-content__start">&#9654</button>
-		<div class="video-content-description">
-			<p class="video-content-description__content">WATCH VIDEO ABOUT MY LIFE AND WILL BE READY TO <span class="video-content-description__content is-important" ng-click="VideoCtrl.goToElement('quizzes')">PASS TESTS</span></p>
-		</div>
-	</div>
+    <div class="video-content">
+        <button class="video-content__start" ng-click="VideoCtrl.showVideo($event);">&#9654</button>
+        <div class="video-content-description">
+            <p class="video-content-description__content">WATCH VIDEO ABOUT MY LIFE AND WILL BE READY TO <span
+                    class="video-content-description__content is-important" ng-click="VideoCtrl.goToElement('quizzes')">PASS TESTS</span>
+            </p>
+        </div>
+    </div>
+    <div ng-if="VideoCtrl.videoOpened;">
+        <iframe width="853" height="480" src="https://www.youtube.com/embed/9PnOG67flRA?list=RDJtH68PJIQLE&autoplay=1"
+                frameborder="0" allowfullscreen>
+        </iframe>
+    </div>
 </div>
