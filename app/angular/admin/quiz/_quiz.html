@@ -1,7 +1,16 @@
 <div class="quizzes-header">
     <div class="quizzes-header__title">Questions</div>
 </div>
-<h3>{{QuizCtrl.quiz.title}}</h3>
+
+<h3 class="center ">{{QuizCtrl.quiz.title}}</h3>
+
+<form class="login-form">
+  <h3>Search question</h3>
+  </div>
+  <div class="form-group">
+    <input type="text" class="login-form-control" ng-model="QuizCtrl.search" placeholder="Search"/>
+  </div>
+</form>
 
 <div class="quizzes-selection height-auto">
     <table class="quizzes-selection-table">
@@ -13,7 +22,7 @@
             <th class="quizzes-selection-table-row-heading__title">Total Answers</th>
             <th class="quizzes-selection-table-row-heading__title">Actions</th>
         </tr>
-        <tr class="quizzes-selection-table-row-content" ng-repeat="question in QuizCtrl.quiz.questions">
+        <tr class="quizzes-selection-table-row-content" ng-repeat="question in QuizCtrl.quiz.questions | filter : QuizCtrl.search">
             <td class="quizzes-selection-table-row-content__title"  ui-sref="admin.question({ id: question._id})">{{$index}}</td>
             <td class="quizzes-selection-table-row-content__title"  ui-sref="admin.question({ id: question._id})">{{question._id}}</td>
             <td class="quizzes-selection-table-row-content__title" ui-sref="admin.question({ id: question._id})">{{question.text | limitTo:20 }}{{question.text.length > 20 ? '...' : ''}}</td>
