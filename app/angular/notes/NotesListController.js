@@ -18,6 +18,7 @@
         vm.toggleCreate = toggleCreate;
         vm.hideEdit = hideEdit;
         vm.showEdit = showEdit;
+        vm.toggleEdit = toggleEdit;
         vm.editInit = editInit;
         vm.newNote = {};
         vm.editNote = {};
@@ -132,6 +133,10 @@
         function showCreate() {
             vm.createMenuActive = true;
             vm.hideEdit();
+        }
+
+        function toggleEdit() {
+            vm.editMenuActive = !vm.editMenuActive;
         }
 
         function hideEdit() {
