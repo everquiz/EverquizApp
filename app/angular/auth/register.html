@@ -1,5 +1,5 @@
 <div class="register">
-<div class="register-logo" ><a href="../" class="login-logo__home">E</a> 
+<div class="register-logo" ><a href="../#/"  class="login-logo__home">E</a> 
     <div class="register-page-header">Create an Account
     </div>
   </div>
@@ -13,10 +13,16 @@
   <h3>Register</h3>
 
   <div class="register-form-group">
+    <input type="text"
+    class="register-form-control"
+    placeholder="Your name"
+    ng-model="ProfileCtrl.profile.name" autofocus required></input>
+  </div>
+  <div class="register-form-group">
     <input type="email"
     class="register-form-control"
-    placeholder="email"
-    ng-model="AuthCtrl.user.email" autofocus required></input>
+    placeholder="Your email"
+    ng-model="AuthCtrl.user.email" required></input>
   </div>
   <div class="register-form-group">
     <input type="password"
