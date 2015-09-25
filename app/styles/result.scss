@@ -68,12 +68,12 @@
 
 .parallax {
 	position: relative;
-	.parallax-bullet-1 {
+	#parallax-bullet-1 {
 		position: absolute;
 		right: 0;
 		top: 5%;
 	}
-	.parallax-bullet-2 {
+	#parallax-bullet-2 {
 		position: absolute;
 		left: 0;
 		top: 25%;
