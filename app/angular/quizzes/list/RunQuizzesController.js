@@ -16,7 +16,9 @@
         vm.updateQuizzes = updateQuizzes;
         vm.historyService = historyService;
         vm.difficulties = quizService.getDifficulties();
-        vm.difficulties.unshift({_id: -1, title: 'All difficulties'});
+        if (vm.difficulties[0]._id != -1) {
+            vm.difficulties.unshift({_id: -1, title: 'All difficulties'});
+        };
         vm.getComplexity = quizService.getComplexity;
         vm.statuses = [
             {_id: -1, title: 'All statuses'},
