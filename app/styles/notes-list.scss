@@ -106,7 +106,33 @@
 			right: 0;
 			top: 50%;
 			margin: 0 auto;
+		}
 
+		&__clean {
+			width: 100%;
+			background: #fd2828;
+			font-style: 10px;
+			color: #fff;
+			border: none;
+			padding: 5px 10px;
+			cursor: pointer;
+			transition: background 0.5s ease-in-out;
+
+			&:hover {
+				background: #2c2c2c;
+			}
+		}
+
+		&-list {
+			width: 290px;
+			height: 565px;
+			padding: 5px;
+			margin: 0;
+			list-style: none;
+
+			&-item {
+				background: #fff;
+			}
 		}
 	}
 

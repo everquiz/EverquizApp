@@ -44,14 +44,13 @@
 
         <div class="notes-list-trash">
             <span class="notes-list-trash__icon"></span>
-            <div ng-click="NotesListCtrl.RecycleCleanUp()">trashcan clean</div>
-            <ul dnd-list="NotesListCtrl.deletedList" >
-                <li ng-repeat="deletedNote in NotesListCtrl.deletedList"
+            <button class="notes-list-trash__clean" ng-click="NotesListCtrl.RecycleCleanUp()">CLEAN</button>
+            <ul  class="notes-list-trash-list"dnd-list="NotesListCtrl.deletedList" >
+                <li class="notes-list-trash-list-item" ng-repeat="deletedNote in NotesListCtrl.deletedList"
                     dnd-draggable="deletedNote"
                     dnd-moved="NotesListCtrl.onDeletedMove($index)"
                     dnd-effect-allowed="move">
-                    <div>{{deletedNote.title}}</div>
-                    <div ng-click="NotesListCtrl.onNoteClick(note)">x</div>
+                    <span class="notes-list-trash-list-item__title">{{deletedNote.title}}</span>
                 </li>
             </ul>
         </div>
