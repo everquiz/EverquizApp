@@ -95,6 +95,10 @@
 		}
 
 		&.is-empty {
+			& .notes-block-info {
+				display: none;
+			}
+
 			& .notes-block-empty {
 				display: block;
 				position: absolute;
