@@ -14,6 +14,8 @@
     vm.editCategory = editCategory;
     vm.removeCategory = removeCategory;
     vm.formTitle = 'Add new category';
+    vm.resetTitle = resetTitle;
+
 
     function addCategory() {
       if ((!vm.category.title || vm.category.title === '')
@@ -42,5 +44,10 @@
         vm.formTitle = 'Add new category';
       };
     };
+    
+    function resetTitle () {
+      vm.category = {};
+      vm.formTitle = 'Add new category';
+    }
   }
 })();

@@ -13,6 +13,9 @@
     vm.users = userService.users;
     vm.addUser = addUser;
     vm.editUser = editUser;
+    vm.formTitle = 'Add new user';
+    vm.resetTitle = resetTitle;
+
 
     function addUser() {
       if((!vm.user.name || vm.user.name === '')
@@ -22,7 +25,6 @@
         userService.create(vm.user);
       } else {
         userService.update(vm.user);
-
       }
       vm.user = {};
       vm.formTitle = 'Add new user';
@@ -34,6 +36,12 @@
       vm.formTitle = 'Edit user';
       vm.user.emailDis = true;
     };
+
+    function resetTitle () {
+      vm.user = {};
+      vm.formTitle = 'Add new user';
+      vm.user.emailDis = false;
+    }
   }
 
 })();
