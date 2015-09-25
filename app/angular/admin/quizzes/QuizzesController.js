@@ -31,6 +31,7 @@
       title: 'Active'
     }]
 
+
     function activateQuiz(quiz) {
       quizService.active(quiz);
     };

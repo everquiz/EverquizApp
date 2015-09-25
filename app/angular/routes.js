@@ -35,13 +35,7 @@
                             },
                             'profile@home': {
                                 templateUrl: 'profile/_profile.html',
-                                controller: 'ProfileController as ProfileCtrl',
-                                resolve: {
-                                    profile: ['profileFactory',
-                                        function (profileFactory) {
-                                            return profileFactory.updateProfile();
-                                        }]
-                                }
+                                controller: 'ProfileController as ProfileCtrl'
                             },
                             'about@home': {
                                 templateUrl: 'about/_about.html',

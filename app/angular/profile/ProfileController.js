@@ -5,14 +5,23 @@
         .module('everquizApp')
         .controller('ProfileController', ProfileController);
 
-    ProfileController.$inject = ['profile', 'profileFactory', 'scrollFactory'];
+    ProfileController.$inject = ['profileFactory', 'scrollFactory'];
 
-    function ProfileController(profile, profileFactory, scrollFactory) {
+    function ProfileController(profileFactory, scrollFactory) {
         var vm = this;
-        vm.profile = profile;
-        vm.isVisible = profileFactory.isVisible;
         vm.hideProfile = hideProfile;
         vm.goToElement = goToElement;
+        vm.isVisible = profileFactory.isVisible;
+
+        function profileInit() {
+            vm.profile = profileFactory.getProfile();
+            console.log('init');
+        };
+
+
+        console.log(vm.profile);
+        profileFactory.registerObserverCallback(profileInit);
+        profileFactory.updateProfile();
 
 
         function hideProfile() {
