@@ -5,29 +5,29 @@
         .module('everquizApp')
         .service('quizService', quizService);
 
-    quizService.$inject = ['$http', 'authFactory', 'categoryService'];
+    quizService.$inject = ['$http', 'authFactory', 'profileFactory', 'categoryService'];
 
-    function quizService($http, authFactory, categoryService) {
+    function quizService($http, authFactory, profileFactory, categoryService) {
 
-        var vm = this;
-        vm.lastResult = null;
-        vm.quizzes = [];
-        vm.activeQuiz = null;
+        var self = this;
+        self.lastResult = null;
+        self.quizzes = [];
+        self.activeQuiz = null;
 
-        vm.checkResult = checkResult;
-        vm.get = get;
-        vm.getQuizzes = getQuizzes;
-        vm.getQuizzesByQuery = getQuizzesByQuery;
-        vm.getQuestions = getQuestions;
-        vm.getAll = getAll;
-        vm.create = create;
-        vm.unactive = unactive;
-        vm.active = active;
-        vm.update = update;
-        vm.getDifficulties = getDifficulties;
-        vm.getComplexity = getComplexity;
+        self.checkResult = checkResult;
+        self.get = get;
+        self.getQuizzes = getQuizzes;
+        self.getQuizzesByQuery = getQuizzesByQuery;
+        self.getQuestions = getQuestions;
+        self.getAll = getAll;
+        self.create = create;
+        self.unactive = unactive;
+        self.active = active;
+        self.update = update;
+        self.getDifficulties = getDifficulties;
+        self.getComplexity = getComplexity;
 
-        vm.difficulties = [
+        self.difficulties = [
             {_id: 0, title: 'Novice'},
             {_id: 1, title: 'Advanced'},
             {_id: 2, title: 'Expert'}
@@ -70,7 +70,8 @@
                 headers: {Authorization: 'Bearer ' + authFactory.getToken()}
             })
                 .then(function (res) {
-                    vm.lastResult = Math.round(res.data.result * 100);
+                    self.lastResult = Math.round(res.data.result * 100);
+                    profileFactory.updateProfile();
                     return res.data;
                 })
         }
@@ -83,9 +84,9 @@
                 headers: {Authorization: 'Bearer ' + authFactory.getToken()}
             })
                 .then(function (res) {
-                    angular.copy(res.data, vm.quizzes);
+                    angular.copy(res.data, self.quizzes);
                 });
-            return vm.quizzes;
+            return self.quizzes;
         }
 
         function get(id) {
@@ -103,7 +104,7 @@
             }).success(function (data) {
                 categoryService.get(data.category).then(function (res) {
                     data.category = res;
-                    vm.quizzes.push(data);
+                    self.quizzes.push(data);
                 });
 
             });
@@ -130,13 +131,13 @@
         }
 
         function getDifficulties() {
-            return vm.difficulties;
+            return self.difficulties;
         }
 
         function getComplexity(complexity) {
-            for (var i = vm.difficulties.length - 1; i >= 0; i--) {
-                if (vm.difficulties[i]._id === complexity) {
-                    return vm.difficulties[i].title;
+            for (var i = self.difficulties.length - 1; i >= 0; i--) {
+                if (self.difficulties[i]._id === complexity) {
+                    return self.difficulties[i].title;
                 }
             }
         }

@@ -17,6 +17,8 @@
       vm.editQuestion = editQuestion;
       vm.removeQuestion = removeQuestion;
       vm.formTitle = 'Add new question';
+      vm.resetTitle = resetTitle;
+
 
 
       function addQuestion() {
@@ -43,7 +45,11 @@
           vm.question = "";
           vm.formTitle = 'Add new question';
         };
-      };
+      }
+      function resetTitle () {
+        vm.question = {};
+        vm.formTitle = 'Add new question';
+      }
   };
 
 })(); 

@@ -29,7 +29,9 @@
     }, {
       id: 1,
       title: 'Active'
-    }]
+    }];
+    vm.resetTitle = resetTitle;
+
 
     function activateQuiz(quiz) {
       quizService.active(quiz);
@@ -71,6 +73,11 @@
       vm.quiz = {};
       vm.formTitle = 'Add new quiz';
     };
+
+    function resetTitle () {
+      vm.quiz = {};
+      vm.formTitle = 'Add new quiz';
+    }
   };
 
 
