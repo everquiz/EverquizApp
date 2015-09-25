@@ -5,9 +5,9 @@
         .module('everquizApp')
         .service('quizService', quizService);
 
-    quizService.$inject = ['$http', 'authFactory', 'categoryService'];
+    quizService.$inject = ['$http', 'authFactory', 'profileFactory', 'categoryService'];
 
-    function quizService($http, authFactory, categoryService) {
+    function quizService($http, authFactory, profileFactory, categoryService) {
 
         var vm = this;
         vm.lastResult = null;
@@ -71,6 +71,7 @@
             })
                 .then(function (res) {
                     vm.lastResult = Math.round(res.data.result * 100);
+                    profileFactory.updateProfile();
                     return res.data;
                 })
         }
