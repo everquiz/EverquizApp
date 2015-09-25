@@ -65,3 +65,77 @@
 		}
 	}
 }
+
+
+// Magic parallax mixins
+
+$parallax-perspective : 1 !default;
+$parallax-element     : "body" !default;
+$parallax-ios         : true !default;
+
+@mixin parallax-init(
+  $perspective  : $parallax-perspective,
+  $element      : $parallax-element,
+  $parallax-ios : $parallax-ios
+  ) {
+  @if $element == "body" {
+    html, body {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+    }
+  }
+  #{$element} {
+    overflow: auto;
+    perspective: $perspective * 1px;
+    transform-style: preserve-3d;
+    // Allows for smooth scrolling but disables parallax effects.
+    @if $parallax-ios == false {
+      -webkit-overflow-scrolling: touch;
+    }
+    // Preserve 3D
+    &, * {
+      transform-style: preserve-3d;
+    }
+  }
+}
+
+@mixin parallax(
+  $distance    : 0,
+  $perspective : $parallax-perspective
+  ) {
+  transform:
+    translateZ($distance * $perspective * 1px)
+    scale(abs($distance - 1))
+  ;
+  z-index: $distance * 1000;
+}
+
+// End of magic parallax mixins
+
+$primary: #1586D1;
+
+@include parallax-init;
+
+.parallax {
+  .finish-content-summary {
+    @include parallax(-.4);
+  }
+  .finish-content-random {
+    @include parallax(.2);
+  }
+  .parallax-bullet-1 {
+    @include parallax(.3);
+  	right: 17%;
+  	top: 20%;
+  	position: absolute;
+  }
+	.parallax-bullet-2 {
+    @include parallax(.5);
+  	left: 28%;
+  	bottom: 28%;
+  	position: absolute;
+  }
+}
