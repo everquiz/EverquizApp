@@ -28,6 +28,9 @@ node_modules
 bower_components
 .idea/
 
+#concated .scss
+app/styles/application.scss
+
 #public directory
 public/
 
