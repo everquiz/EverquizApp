@@ -4,6 +4,8 @@ var UserModel = require('./Users');
 var NoteSchema = new mongoose.Schema({
     title: String,
     text: String,
+    favourite: {type: Boolean, default: false},
+    rating: {type: Number, default: 0},
     createdAt: {type: Date},
     editedAt: {type: Date},
     user: {type: mongoose.Schema.Types.ObjectId, ref: 'User'}

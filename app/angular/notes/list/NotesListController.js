@@ -37,8 +37,14 @@
         vm.goToLastPage = goToLastPage;
         vm.goToFirstPage = goToFirstPage;
         vm.switchToMain = notesService.switchToMain;
+        vm.toggleFavourite = toggleFavourite;
 
-        notesService.getNotes().then(function(res) {
+        function toggleFavourite(note) {
+            note.favourite = !note.favourite;
+            vm.updateNote(note);
+        }
+
+        notesService.getNotesByRating().then(function(res) {
             vm.notes = res;
             vm.notesNumber = vm.notes.length;
             getMaxPages()
@@ -98,6 +104,7 @@
         }
 
         function addNote(note) {
+            note.rating = vm.notesNumber;
             notesService.addNote(note);
             vm.notesNumber++;
             var oldMaxPages = vm.maxPages;
