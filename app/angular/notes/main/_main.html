@@ -4,7 +4,7 @@
 	</div>
 	
 	<div class="notes-wrapper">
-		<div class="notes-block" ng-repeat="note in NotesMainCtrl.notes  | limitTo:NotesMainCtrl.limit">
+		<div class="notes-block" ng-class="{'is-empty': notes.empty}" ng-repeat="note in NotesMainCtrl.notes  | limitTo:NotesMainCtrl.limit">
 			<div class="notes-block__name">
 				{{note.title}}
 			</div>
@@ -14,8 +14,10 @@
 			<div class="notes-block-info">
 				<span class="notes-block-info__category">Note info</span>
 				<div class="notes-block-info-controls">
-					<span class="notes-block-info-controls__favourite"></span>
-					<span class="notes-block-info-controls__delete"></span>
+					<span class="notes-block-info-controls__favourite"
+						  ng-class="{'is-true': note.favourite}"></span>
+					<span class="notes-block-info-controls__delete"
+						  ng-click="NotesMainCtrl.deleteNote(note)"></span>
 				</div>
 			</div>
 			<div class="notes-block-empty">

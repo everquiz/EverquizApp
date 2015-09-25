@@ -13,11 +13,11 @@
 					</li
 					><li class="header-main-nav-list-item">
 						<a href="" class="header-main-nav-list-item__quizzes"
-						   ng-click="NavCtrl.goToElement('quizzes'); NavCtrl.hideProfile();">QUIZZES</a>
+						   ng-click="NavCtrl.goToElement('quizzes'); NavCtrl.hideProfile();" ng-if="NavCtrl.isLoggedIn();">QUIZZES</a>
 					</li
 					><li class="header-main-nav-list-item">
 						<a href="" class="header-main-nav-list-item__notes"
-                           ng-click="NavCtrl.goToElement('notes'); NavCtrl.hideProfile();">NOTES</a>
+                           ng-click="NavCtrl.goToElement('notes'); NavCtrl.hideProfile();" ng-if="NavCtrl.isLoggedIn();">NOTES</a>
 					</li>
 				</ul>
 			</nav>
