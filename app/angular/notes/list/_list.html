@@ -1,75 +1,3 @@
-<style>
-    .page-block {
-        display: inline;
-        font-family: 'Proxima Nova';
-        height: auto;
-        line-height: 20px;
-        list-style-type: disc;
-        text-align: center;
-        width: auto;
-    }
-    .page-active {
-        background-color: #f5f5f5;
-    }
-
-    .pagination-block {
-        border-bottom-left-radius: 4px;
-        border-bottom-right-radius: 4px;
-        border-top-left-radius: 4px;
-        border-top-right-radius: 4px;
-        box-shadow: rgba(0, 0, 0, 0.0470588) 0px 1px 2px 0px;
-        display: inline-block;
-        font-family: 'Proxima Nova';
-        height: 20px;
-        list-style-type: disc;
-        margin-bottom: 0px;
-        margin-left: 0px;
-        margin-right: 0px;
-        margin-top: 0px;
-        padding-bottom: 0px;
-        padding-left: 0px;
-        padding-right: 0px;
-        padding-top: 0px;
-        text-align: center;
-        width: 203.828px;
-    }
-
-        .page-content {
-            background-color: rgb(245, 245, 245);
-            border-bottom-color: rgb(221, 221, 221);
-            border-bottom-style: solid;
-            border-bottom-width: 1px;
-            border-image-outset: 0px;
-            border-image-repeat: stretch;
-            border-image-slice: 100%;
-            border-image-source: none;
-            border-image-width: 1;
-            border-left-color: rgb(221, 221, 221);
-            border-left-style: solid;
-            border-left-width: 0px;
-            border-right-color: rgb(221, 221, 221);
-            border-right-style: solid;
-            border-right-width: 1px;
-            border-top-color: rgb(221, 221, 221);
-            border-top-style: solid;
-            border-top-width: 1px;
-            color: rgb(153, 153, 153);
-            cursor: default;
-            display: inline;
-            font-family: 'Proxima Nova';
-            height: auto;
-            line-height: 20px;
-            list-style-type: disc;
-            padding-bottom: 4px;
-            padding-left: 12px;
-            padding-right: 12px;
-            padding-top: 4px;
-            text-align: center;
-            text-decoration: none;
-            width: auto;
-        }
-</style>
-
 <div class="notes-list">
     <div class="notes-list-wrapper">
         <!--<ul dnd-list="list">-->
@@ -129,12 +57,12 @@
 
         <div class="notes-list-pagination">
             <ul class="pagination-block" data-temp="pagination">
-                <li class="page-block" ng-click="NotesListCtrl.goToFirstPage()"><span class="page-content">First</span></li
+                <li class="page-block" ng-click="NotesListCtrl.goToFirstPage()"><span class="page-content first">First</span></li
                         ><li class="page-block" ng-click="NotesListCtrl.previousPage()"><span class="page-content">&laquo;</span></li
                     ><li class="page-block page-active" ng-click="NotesListCtrl.goToPage(page)"
                            ng-repeat="page in NotesListCtrl.pageList" ng-class="{'page-active': NotesListCtrl.page === page}"><span class="page-content">{{page + 1}}</span></li
                     ><li class="page-block" ng-click="NotesListCtrl.nextPage()"><span class="page-content">&raquo;</span></li
-                    ><li class="page-block" ng-click="NotesListCtrl.goToLastPage()"><span class="page-content">Last</span></li>
+                    ><li class="page-block" ng-click="NotesListCtrl.goToLastPage()"><span class="page-content last">Last</span></li>
             </ul>
         </div>
 
