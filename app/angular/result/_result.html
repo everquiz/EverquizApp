@@ -11,7 +11,7 @@
             <p class="finish-content-random__title">{{ResultCtrl.getRandomPhrase()}}</p>
         </div>
 
-        <div class="finish-content-action">
+        <div class="finish-content-action" ng-if="ResultCtrl.quizService.lastResult !== null">
             <div class="finish-content-action-call">
                 <span class="finish-content-action-call__title">GET FAIL</span>
             </div>
