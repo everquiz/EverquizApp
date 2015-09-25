@@ -62,7 +62,7 @@ p#paragraph1 {
 }
 
 .result-view-wrapper {
-	background: url(../i/bullet-far.png) no-repeat 95% 5%, url(../i/revolvers.png) no-repeat 50% 50%, url(../i/bullet-close.png) no-repeat 0% 95%, url(../i/snoop-dogg-logo.png) no-repeat 50% 90%, linear-gradient(to bottom, #26292c, #34383b);
+	background: /*url(../i/bullet-far.png) no-repeat 95% 5%,*/ url(../i/revolvers.png) no-repeat 50% 50%, /* url(../i/bullet-close.png) no-repeat 0% 95%,*/ url(../i/snoop-dogg-logo.png) no-repeat 50% 90%, linear-gradient(to bottom, #26292c, #34383b);
 }
 
 .footer-wrapper {

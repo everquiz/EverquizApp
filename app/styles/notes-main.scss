@@ -88,7 +88,38 @@
 					}
 				}
 			}
-		}	
+		}
+
+		&-empty {
+			display: none;
+		}
+
+		&.is-empty {
+			& .notes-block-info {
+				display: none;
+			}
+
+			& .notes-block-empty {
+				display: block;
+				position: absolute;
+				top: 35%;
+				left: 0;
+				right: 0;
+				width: 255px;
+				height: 240px;
+				text-align: center;
+
+				&__icon {
+					@extend .icon-new-note;
+					display: inline-block;
+					cursor: pointer;
+
+					&:hover {
+						@extend .icon-new-note_hover;
+					}
+				}
+			}
+		}
 	}
 
 	&-button {

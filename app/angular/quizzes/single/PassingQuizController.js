@@ -17,7 +17,7 @@
                 vm.quiz = data;
                 quizService.getQuestions(quizService.activeQuiz).then(
                     function (data) {
-                        vm.quiz.questions = data.shuffle(data).splice(0,10);
+                        vm.quiz.questions = data;
                     }
                 )
             }
