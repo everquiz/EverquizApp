@@ -18,6 +18,7 @@
         vm.toggleCreate = toggleCreate;
         vm.hideEdit = hideEdit;
         vm.showEdit = showEdit;
+        vm.toggleEdit = toggleEdit;
         vm.editInit = editInit;
         vm.newNote = {};
         vm.editNote = {};
@@ -25,7 +26,7 @@
         vm.onNoteClick = deleteNote;
         vm.updateNote = notesService.updateNote;
         vm.setLimit = notesService.setLimit;
-        vm.limit = 6
+        vm.limit = 15;
         vm.page = 0;
         vm.maxPages = 0;
         vm.pageList = [vm.maxPages];
@@ -132,6 +133,10 @@
         function showCreate() {
             vm.createMenuActive = true;
             vm.hideEdit();
+        }
+
+        function toggleEdit() {
+            vm.editMenuActive = !vm.editMenuActive;
         }
 
         function hideEdit() {

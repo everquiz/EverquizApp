@@ -5,9 +5,9 @@
       .module('everquizApp')
       .service('notesService', notesService);
 
-  notesService.$inject = ['$http', 'authFactory'];
+  notesService.$inject = ['$http', 'profileFactory', 'authFactory'];
 
-  function notesService($http, authFactory) {
+  function notesService($http, profileFactory, authFactory) {
 
     var notes = [];
     var isLoaded = false;
@@ -19,11 +19,13 @@
     var listDisplay = false;
 
     this.addNote = function(note) {
-      note.user = id; //authFactory.currentUserId();
+      id = authFactory.currentUserId();
+      note.user = id;
       //console.log("id", id);
       if (id)
       $http.post('/api/v1/Notes/', note).then(function(res) {
         notes.push(res.data);
+        profileFactory.updateProfile();
         //console.log("addNotes", notes);
       });
     };
@@ -39,14 +41,8 @@
           //isLoaded = true;
           return notes;
         });
-        //}
-      }
-    }
-
-    this.getLastThree = function() {
-        if (id) {
-            return $http.get('/api/v1/Notes?user=' + id + '&sort=-createdAt&limit=3');
         }
+      //}
     }
 
     this.updateNote = function(note) {

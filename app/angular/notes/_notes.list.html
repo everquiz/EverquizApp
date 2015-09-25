@@ -1,3 +1,75 @@
+<style>
+    .page-block {
+        display: inline;
+        font-family: 'Proxima Nova';
+        height: auto;
+        line-height: 20px;
+        list-style-type: disc;
+        text-align: center;
+        width: auto;
+    }
+    .page-active {
+        background-color: #f5f5f5;
+    }
+
+    .pagination-block {
+        border-bottom-left-radius: 4px;
+        border-bottom-right-radius: 4px;
+        border-top-left-radius: 4px;
+        border-top-right-radius: 4px;
+        box-shadow: rgba(0, 0, 0, 0.0470588) 0px 1px 2px 0px;
+        display: inline-block;
+        font-family: 'Proxima Nova';
+        height: 20px;
+        list-style-type: disc;
+        margin-bottom: 0px;
+        margin-left: 0px;
+        margin-right: 0px;
+        margin-top: 0px;
+        padding-bottom: 0px;
+        padding-left: 0px;
+        padding-right: 0px;
+        padding-top: 0px;
+        text-align: center;
+        width: 203.828px;
+    }
+
+        .page-content {
+            background-color: rgb(245, 245, 245);
+            border-bottom-color: rgb(221, 221, 221);
+            border-bottom-style: solid;
+            border-bottom-width: 1px;
+            border-image-outset: 0px;
+            border-image-repeat: stretch;
+            border-image-slice: 100%;
+            border-image-source: none;
+            border-image-width: 1;
+            border-left-color: rgb(221, 221, 221);
+            border-left-style: solid;
+            border-left-width: 0px;
+            border-right-color: rgb(221, 221, 221);
+            border-right-style: solid;
+            border-right-width: 1px;
+            border-top-color: rgb(221, 221, 221);
+            border-top-style: solid;
+            border-top-width: 1px;
+            color: rgb(153, 153, 153);
+            cursor: default;
+            display: inline;
+            font-family: 'Proxima Nova';
+            height: auto;
+            line-height: 20px;
+            list-style-type: disc;
+            padding-bottom: 4px;
+            padding-left: 12px;
+            padding-right: 12px;
+            padding-top: 4px;
+            text-align: center;
+            text-decoration: none;
+            width: auto;
+        }
+</style>
+
 <div class="notes-list">
     <div class="notes-list-wrapper">
         <!--<ul dnd-list="list">-->
@@ -42,54 +114,80 @@
 
         <div class="notes-list-trash">
             <span class="notes-list-trash__icon"></span>
+            <div ng-click="NotesListCtrl.RecycleCleanUp()">trashcan clean</div>
             <ul dnd-list="NotesListCtrl.deletedList" >
-                <li ng-click="NotesListCtrl.RecycleCleanUp()">trashcan clean</li>
                 <li ng-repeat="deletedNote in NotesListCtrl.deletedList"
                     dnd-draggable="deletedNote"
                     dnd-moved="NotesListCtrl.onDeletedMove($index)"
                     dnd-effect-allowed="move">
                     <div>{{deletedNote.title}}</div>
-                    <div>Javascript</div>
                     <div ng-click="NotesListCtrl.onNoteClick(note)">x</div>
                 </li>
             </ul>
         </div>
 
-        <div class="notes-list-pagination" data-temp="pagination">
-            <span ng-click="NotesListCtrl.goToFirstPage()">First</span>
-            <span ng-click="NotesListCtrl.previousPage()">&laquo;</span>
-            <span ng-click="NotesListCtrl.goToPage(page)" ng-repeat="page in NotesListCtrl.pageList">{{page + 1}}</span>
-            <span ng-click="NotesListCtrl.nextPage()">&raquo;</span>
-            <span ng-click="NotesListCtrl.goToLastPage()">Last</span>
+        <div class="notes-list-pagination">
+            <ul class="pagination-block" data-temp="pagination">
+                <li class="page-block" ng-click="NotesListCtrl.goToFirstPage()"><span class="page-content">First</span></li
+                        ><li class="page-block" ng-click="NotesListCtrl.previousPage()"><span class="page-content">&laquo;</span></li
+                    ><li class="page-block page-active" ng-click="NotesListCtrl.goToPage(page)"
+                           ng-repeat="page in NotesListCtrl.pageList" ng-class="{'page-active': NotesListCtrl.page === page}"><span class="page-content">{{page + 1}}</span></li
+                    ><li class="page-block" ng-click="NotesListCtrl.nextPage()"><span class="page-content">&raquo;</span></li
+                    ><li class="page-block" ng-click="NotesListCtrl.goToLastPage()"><span class="page-content">Last</span></li>
+            </ul>
         </div>
 
-        <div data-temp="create-form">
-            <form ng-show="NotesListCtrl.createMenuActive" ng-submit="NotesListCtrl.addNote(NotesListCtrl.newNote)">
-                <h2>Create note</h2>
-                <div>Add title</div>
-                <textarea ng-model="NotesListCtrl.newNote.title" placeholder="Title"></textarea><br/>
+        <div class="notes-list-form">
+            <form class="notes-list-form-create" name="note-create" ng-show="NotesListCtrl.createMenuActive" ng-submit="NotesListCtrl.addNote(NotesListCtrl.newNote)">
+                <fieldset class="notes-list-form-create-content">    
+                    <legend class="notes-list-form-create-content__header">Create note</legend>
+                    <label class="notes-list-form-create-content__title">
+                        Add title*
+                        <input class="notes-list-form-create-content__input" type="text" ng-model="NotesListCtrl.newNote.title" placeholder="Title" required>
+                    </label>
 
-                <div>Add text</div>
-                <textarea ng-model="NotesListCtrl.newNote.text" placeholder="Text"></textarea><br/>
+                    <label class="notes-list-form-create-content__text">
+                        Add text*
+                        <input class="notes-list-form-create-content__input" type="text" ng-model="NotesListCtrl.newNote.text" placeholder="Text"required>
+                    </label>
 
-                <div>
-                    <input ng-click="NotesListCtrl.toggleCreate()" type="submit" value="Submit" />
-                </div>
+                    <label class="notes-list-form-create-content__hint">
+                        * - Required fields
+                    </label>
+                    
+                    <div class="notes-list-form-create-content-controls">
+                        <input type="submit" value="CREATE" class="notes-list-form-create-content-controls__create" ng-click="NotesListCtrl.toggleCreate()">
+
+                        <input type="reset" value="CANCEL" class="notes-list-form-create-content-controls__cancel" ng-click="NotesListCtrl.hideCreate()">
+                    </div>      
+                </fieldset>    
             </form>
         </div>
 
-        <div data-temp="edit-form">
-            <form ng-show="NotesListCtrl.editMenuActive" ng-submit="NotesListCtrl.updateNote(NotesListCtrl.editNote)">
-                <h2>Edit note</h2>
-                <div>Edit title</div>
-                <textarea ng-model="NotesListCtrl.editNote.title" placeholder="Title"></textarea><br/>
+        <div class="notes-list-form">
+            <form class="notes-list-form-edit" name="note-edit" ng-show="NotesListCtrl.editMenuActive" ng-submit="NotesListCtrl.updateNote(NotesListCtrl.editNote)">
+                <fieldset class="notes-list-form-edit-content">
+                    <legend class="notes-list-form-edit-content__header">Edit note</legend>
+                    <label class="notes-list-form-edit-content__title">
+                        Edit title*
+                        <input class="notes-list-form-edit-content__input" type="text" ng-model="NotesListCtrl.editNote.title" placeholder="Title" required>
+                    </label>
 
-                <div>Edit text</div>
-                <textarea ng-model="NotesListCtrl.editNote.text" placeholder="Text"></textarea><br/>
+                    <label  class="notes-list-form-edit-content__text">
+                        Edit text*
+                        <input class="notes-list-form-edit-content__input" type="text" ng-model="NotesListCtrl.editNote.text" placeholder="Text" required>
+                    </label>
 
-                <div>
-                    <input ng-click="NotesListCtrl.hideEdit()" type="submit" value="Submit" />
-                </div>
+                    <label class="notes-list-form-edit-content__hint">
+                        * - Required fields
+                    </label>
+
+                    <div class="notes-list-form-edit-content-controls">
+                        <input type="submit" value="EDIT" class="notes-list-form-edit-content-controls__edit" ng-click="NotesListCtrl.toggleEdit()">
+
+                        <input type="reset" value="CANCEL" class="notes-list-form-edit-content-controls__cancel" ng-click="NotesListCtrl.hideEdit()">
+                    </div>  
+                </fieldset>
             </form>
         </div>
 
@@ -98,7 +196,9 @@
                 CREATE NEW NOTE
             </button>
 
-            <button class="notes-list-button__back-to-main" ng-click="NotesListCtrl.switchToMain()">BACK TO MAIN</button>
+            <button class="notes-list-button__back-to-main" ng-click="NotesListCtrl.switchToMain()">
+                BACK TO MAIN
+            </button>
         </div>
     </div>
 </div>    

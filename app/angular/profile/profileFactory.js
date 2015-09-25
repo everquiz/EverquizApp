@@ -5,13 +5,18 @@
         .module('everquizApp')
         .factory('profileFactory', profileFactory);
 
-    profileFactory.$inject = ['$http', 'authFactory', 'historyService', 'notesService', '$q'];
+    profileFactory.$inject = ['$http', 'authFactory', '$q'];
 
-    function profileFactory($http, authFactory, historyService, notesService, $q) {
+    function profileFactory($http, authFactory, $q) {
         var profile = {};
         var display = false;
+        var observerCallbacks = [];
 
-        var service = {
+
+        var factory = {
+            registerObserverCallback: registerObserverCallback,
+            notifyObservers: notifyObservers,
+            getProfile: getProfile,
             updateProfile: updateProfile,
             showProfile: showProfile,
             hideProfile: hideProfile,
@@ -19,7 +24,24 @@
             isVisible: isVisible
         };
 
-        return service;
+        return factory;
+
+
+        function registerObserverCallback(callback){
+            observerCallbacks.push(callback);
+        };
+
+        //call this when you know 'foo' has been changed
+        function notifyObservers(){
+            angular.forEach(observerCallbacks, function(callback){
+                callback();
+            });
+        };
+
+
+        function getProfile() {
+            return profile;
+        }
 
         function updateProfile() {
             var id = authFactory.currentUserId();
@@ -34,6 +56,7 @@
                         profile.lastActions = res;
                     });
                     console.log(profile);
+                    notifyObservers();
                     return profile;
                 });
             }
@@ -79,11 +102,24 @@
             display = !display;
         }
 
-        function getLastActions () {
+        function getLastThreeNotes() {
             var id = authFactory.currentUserId();
+            if (id) {
+                return $http.get('/api/v1/Notes?user=' + id + '&sort=-createdAt&limit=3');
+            }
+        }
+
+        function getLastThreeHistory() {
+            var id = authFactory.currentUserId();
+            if (id) {
+                return $http.get('/api/v1/Histories?populate=quiz&user=' + id + '&sort=-createdAt&limit=3');
+            }
+        }
+
+        function getLastActions () {
             return $q.all([
-                notesService.getLastThree(), 
-                historyService.getLastThree()
+                getLastThreeNotes(),
+                getLastThreeHistory()
                 ])
             .then(function(result) {
                 var lastActions = [],
@@ -98,7 +134,7 @@
                         resultLastActions.push({
                             createdAt: response.createdAt, 
                             title: response.quiz.title,
-                            result: (response.result * 100),
+                            result: Math.round(response.result * 100),
                             type: 'quiz'
                         });
                     } else if (response.title) {
