@@ -72,18 +72,12 @@
                                 controller: 'NotesContainerController as NotesContainerCtrl'
                             },
                             'notesList@home': {
-                                templateUrl: 'notes/_notes.list.html',
+                                templateUrl: 'notes/list/_list.html',
                                 controller: 'NotesListController as NotesListCtrl'
                             },
                             'notesMain@home': {
-                                templateUrl: 'notes/_notes.main.html',
+                                templateUrl: 'notes/main/_main.html',
                                 controller: 'NotesMainController as NotesMainCtrl'
-                                //resolve: {
-                                //    notes: ['notesService',
-                                //        function (notesService) {
-                                //            return notesService.getNotes();
-                                //        }]
-                                //}
                             },
                             'footer@home': {
                                 templateUrl: 'layouts/_footer.html'
