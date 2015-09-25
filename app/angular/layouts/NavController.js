@@ -16,12 +16,16 @@
         vm.showProfile = showProfile;
         vm.hideProfile = hideProfile;
         vm.showNotes = showNotes;
+        vm.showQuizzes = showQuizzes;
         vm.isProfileVisible = profileFactory.isVisible;
         vm.toggleProfile = toggleProfile;
         vm.goHome = goHome;
         vm.goToElement = goToElement;
 
-        if (vm.isLoggedIn()) vm.showNotes();
+        if (vm.isLoggedIn()) {
+            vm.showNotes();
+            vm.showQuizzes();
+        }
 
         function logOut() {
             profileFactory.hideProfile();
@@ -45,6 +49,10 @@
 
         function showNotes() {
             notesService.showNotes();
+        }
+
+        function showQuizzes(){
+            quizService.showQuizzes();
         }
 
         function goHome() {

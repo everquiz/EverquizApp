@@ -17,6 +17,7 @@
         self.id = authFactory.currentUserId();
         self.display = !!self.id;
         self.isVisible = isVisible;
+        self.showQuizzes = showQuizzes;
         self.hideQuizzes = hideQuizzes;
 
         self.checkResult = checkResult;
@@ -149,6 +150,10 @@
 
         function isVisible () {
             return self.display;
+        }
+
+        function showQuizzes() {
+            self.display = true;
         }
 
         function hideQuizzes() {
