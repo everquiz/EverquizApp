@@ -45,23 +45,23 @@ gulp.task('vendor-js', function() {
 //Image section
 gulp.task('sprite', function() {
     var spriteData = gulp.src([
-            'app/i/icons/*.png',
-            '!app/i/icons/*.db'])
+            'app/images/icons/*.png',
+            '!app/images/icons/*.db'])
         .pipe(spritesmith({
             imgName: 'sprite.png',
             cssName: 'sprite.css',
             imgPath: '../i/sprite.png',
         }));
 
-    spriteData.img.pipe(gulp.dest('app/i'));
+    spriteData.img.pipe(gulp.dest('app/images'));
     spriteData.css.pipe(gulp.dest('app/styles'));
 });
 
 gulp.task('images', function() {
     return gulp.src([
-            'app/i/*',
-            '!app/i/*.db',
-            '!app/i/icons/'])
+            'app/images/*',
+            '!app/images/*.db',
+            '!app/images/icons/'])
         .pipe(imagemin())
         .pipe(gulp.dest('public/i'));
 });
