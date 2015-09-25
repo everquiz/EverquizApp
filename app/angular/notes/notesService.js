@@ -19,7 +19,8 @@
     var listDisplay = false;
 
     this.addNote = function(note) {
-      note.user = id; //authFactory.currentUserId();
+      id = authFactory.currentUserId();
+      note.user = id;
       //console.log("id", id);
       if (id)
       $http.post('/api/v1/Notes/', note).then(function(res) {
@@ -40,8 +41,8 @@
           //isLoaded = true;
           return notes;
         });
-        //}
-      }
+        }
+      //}
     }
 
     this.updateNote = function(note) {
