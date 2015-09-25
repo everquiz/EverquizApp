@@ -124,15 +124,15 @@
             getMaxPages();
             if (oldMaxPages != vm.maxPages) vm.pageList.push(vm.maxPages - 1);
             vm.newNote = {};
+            vm.goToLastPage();
         }
 
         function deleteNote(note) {
             notesService.deleteNote(note);
             vm.notesNumber--;
-            if (vm.page + 1 >  getMaxPages()) {
-                vm.previousPage();
-                vm.pageList.length--;
-            }
+            var maxPages = getMaxPages();
+            if (vm.pageList.length > maxPages) vm.pageList.length--;
+            if (vm.page + 1 > maxPages) vm.previousPage();
         }
 
         function editInit(note) {
