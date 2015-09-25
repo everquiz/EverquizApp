@@ -56,16 +56,29 @@
         //Drag-and-drop
         vm.deletedList = [];
         vm.onMove = onMove;
+        //vm.onDrop = onDrop;
         vm.onDeletedMove = onDeletedMove;
         vm.RecycleCleanUp = RecycleCleanUp;
 
         function onMove(index) {
-            vm.notes.splice(index, 1)
+            vm.notes.splice(index, 1);
             console.log(vm.notes);
         }
 
+        //function onDrop(index, note) {
+        //    var noteDelta = Math.sign(index - note.rating);
+        //    note.rating = index;
+        //    var i = index + noteDelta;
+        //    while (i !== note.rating) {
+        //        vm.notes[i];
+        //        i += noteDelta;
+        //    }
+        //    console.log(noteDelta);
+        //    console.log(vm.notes);
+        //}
+
         function onDeletedMove(index) {
-            vm.deletedList.splice(index, 1)
+            vm.deletedList.splice(index, 1);
             console.log(vm.deletedList);
         }
 
@@ -111,15 +124,15 @@
             getMaxPages();
             if (oldMaxPages != vm.maxPages) vm.pageList.push(vm.maxPages - 1);
             vm.newNote = {};
+            vm.goToLastPage();
         }
 
         function deleteNote(note) {
             notesService.deleteNote(note);
             vm.notesNumber--;
-            if (vm.page + 1 >  getMaxPages()) {
-                vm.previousPage();
-                vm.pageList.length--;
-            }
+            var maxPages = getMaxPages();
+            if (vm.pageList.length > maxPages) vm.pageList.length--;
+            if (vm.page + 1 > maxPages) vm.previousPage();
         }
 
         function editInit(note) {

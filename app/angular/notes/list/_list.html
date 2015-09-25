@@ -18,8 +18,7 @@
         <ul class="notes-list-container" dnd-list="NotesListCtrl.notes">
             <li class="notes-list-container-item" ng-repeat="note in NotesListCtrl.notes" ng-show="NotesListCtrl.paginatorCheck($index)"
                 dnd-draggable="note"
-                dnd-moved="NotesListCtrl.onMove($index)"
-                dnd-effect-allowed="move">
+                dnd-moved="NotesListCtrl.onMove($index)">
                 <span class="notes-list-container-item__title">
                     {{note.title}}
                 </span>
@@ -59,7 +58,8 @@
             <ul class="pagination-block" data-temp="pagination">
                 <li class="page-block" ng-click="NotesListCtrl.goToFirstPage()"><span class="page-content first">First</span></li
                         ><li class="page-block" ng-click="NotesListCtrl.previousPage()"><span class="page-content">&laquo;</span></li
-                    ><li class="page-block page-active" ng-click="NotesListCtrl.goToPage(page)"
+                    ><li class="page-block
+                    " ng-click="NotesListCtrl.goToPage(page)"
                            ng-repeat="page in NotesListCtrl.pageList" ng-class="{'page-active': NotesListCtrl.page === page}"><span class="page-content">{{page + 1}}</span></li
                     ><li class="page-block" ng-click="NotesListCtrl.nextPage()"><span class="page-content">&raquo;</span></li
                     ><li class="page-block" ng-click="NotesListCtrl.goToLastPage()"><span class="page-content last">Last</span></li>
