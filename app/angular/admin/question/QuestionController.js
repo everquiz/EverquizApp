@@ -17,6 +17,8 @@
     vm.editAnswer = editAnswer;
     vm.removeAnswer = removeAnswer;
     vm.formTitle = 'Add new answer';
+    vm.resetTitle = resetTitle;
+    
 
 
     function addAnswer() {
@@ -47,6 +49,10 @@
         vm.formTitle = 'Add new answer';
       };
     };
+    function resetTitle () {
+      vm.answer = {};
+      vm.formTitle = 'Add new answer';
+    }
   }
   
 })();

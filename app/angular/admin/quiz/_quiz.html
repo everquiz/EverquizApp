@@ -33,15 +33,6 @@
     </table>
 </div>
 
-<!-- post template -->
-<!-- <form ng-submit="quizCtrl.addQuestion()"
-  style="margin-top:30px;">
-  <h3>Add new question</h3>
-
-  <input type="text" placeholder="Text of question" ng-model="question.text"></input><br/>
-  
-  <button type="submit">New question</button>
-</form> -->
 <form ng-submit="QuizCtrl.addQuestion()" style="margin: 30px auto 0;" class="form-container">
   <div class="form-title"><h2>{{QuizCtrl.formTitle}}</h2></div>
 
@@ -49,6 +40,7 @@
   <textarea class="form-field" ng-model="QuizCtrl.question.text" ng-model-options="{ updateOn: 'submit' }" placeholder="Text"></textarea><br/>
 
   <div class="submit-container">
-  <input class="submit-button" type="submit" value="Submit" />
+    <input class="submit-button" type="reset" value="Cancel" ng-click='QuizCtrl.resetTitle()' />
+    <input class="submit-button" type="submit" value="Submit" />
   </div>
 </form>
