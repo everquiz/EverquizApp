@@ -11,7 +11,6 @@
 
         var vm = this;
         vm.checkResult = checkResult;
-        vm.goToElement = goToElement;
 
         quizService.get(quizService.activeQuiz).then(
             function (data) {
@@ -26,6 +25,8 @@
 
         function checkResult() {
             quizService.checkResult(vm.quiz);
+            quizService.activeQuiz = null;
+            goToElement('result');
         }
 
         function goToElement (elemID) {

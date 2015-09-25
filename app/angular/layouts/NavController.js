@@ -24,11 +24,10 @@
         if (vm.isLoggedIn()) vm.showNotes();
 
         function logOut() {
-            console.log('log of');
             profileFactory.hideProfile();
             notesService.hideNotes();
             authFactory.logOut();
-            $state.go('home');
+            $state.go($state.current, {}, {reload: true});
         }
 
         function showProfile() {
@@ -51,7 +50,7 @@
             profileFactory.hideProfile();
         }
 
-        function goToElement (elemID) {
+        function goToElement(elemID) {
             scrollFactory.scroll(elemID);
         }
     }
