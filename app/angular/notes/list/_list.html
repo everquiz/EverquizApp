@@ -106,7 +106,9 @@
 
                 <div class="notes-list-container-item-controls">
                     <span class="notes-list-container-item-controls__edit" ng-click="NotesListCtrl.editInit(note)"></span>
-                    <span class="notes-list-container-item-controls__favourite"></span>
+                    <span class="notes-list-container-item-controls__favourite"
+                          ng-click="NotesListCtrl.toggleFavourite(note)"
+                          ng-class="{'is-true': note.favourite}"></span>
                     <span class="notes-list-container-item-controls__delete" ng-click="NotesListCtrl.onNoteClick(note)"></span>
                 </div>
             </li>

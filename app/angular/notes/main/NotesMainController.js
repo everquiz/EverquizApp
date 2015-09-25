@@ -13,12 +13,18 @@
       vm.limit = 8;
       vm.switchToList = notesService.switchToList;
       vm.deleteNote = deleteNote;
+      vm.toggleFavourite = toggleFavourite;
+      vm.updateNote = notesService.updateNote;
 
-      notesService.getNotes().then(function (res) {
+      notesService.getNotesByFavourite().then(function (res) {
           vm.notes = res;
           noteNormalize();
       });
 
+      function toggleFavourite(note) {
+          note.favourite = !note.favourite;
+          vm.updateNote(note);
+      }
       function deleteNote(note) {
           for (var i = 0; i < vm.notes.length - 1; ++i) {
               if (vm.notes[i]._id === note._id) break;
