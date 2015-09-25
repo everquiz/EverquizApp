@@ -1719,8 +1719,8 @@ $primary: #1586D1;
   	position: absolute;
   }
 	.parallax-bullet-2 {
-    @include parallax(.5);
-  	left: 28%;
+    @include parallax(.6);
+  	left: 23%;
   	bottom: 28%;
   	position: absolute;
   }
