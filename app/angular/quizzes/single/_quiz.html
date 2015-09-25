@@ -32,13 +32,14 @@
 				</ul>
 			</form>
 		</div>
-		<button class="quiz-block__submit" ng-init="buttonText = 'START QUIZ!'" ng-show="questionCount != PassingQuizCtrl.quiz.questions.length"
+		<button class="quiz-block__submit" ng-init="buttonText = 'START QUIZ!'"
+				ng-show="questionCount != PassingQuizCtrl.quiz.questions.length"
                 ng-click="slide = slide - 1360; questionCount = questionCount + 1; startQuiz = true; buttonText = 'NEXT STEP'">
             {{buttonText}}
 		</button>
 		<input class="quiz-block__submit" type="submit"  value="SHOW RESULT"
-			   ng-click="PassingQuizCtrl.checkResult(); QuizzesContainerCtrl.quizService.activeQuiz = null; PassingQuizCtrl.goToElement('result')"
-			   ng-hide="questionCount != PassingQuizCtrl.quiz.questions.length">
+			   ng-click="PassingQuizCtrl.checkResult();"
+			   ng-hide="questionCount != PassingQuizCtrl.quiz.questions.length;">
 	</div>
 	<div class="quiz-counter" ng-show="startQuiz">
 		<span class="quiz-counter-indicator">

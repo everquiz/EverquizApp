@@ -11,14 +11,13 @@
 
         var vm = this;
         vm.checkResult = checkResult;
-        vm.goToElement = goToElement;
 
         quizService.get(quizService.activeQuiz).then(
             function (data) {
                 vm.quiz = data;
                 quizService.getQuestions(quizService.activeQuiz).then(
                     function (data) {
-                        vm.quiz.questions = data.shuffle(data).splice(0,10);
+                        vm.quiz.questions = data;
                     }
                 )
             }
@@ -26,6 +25,8 @@
 
         function checkResult() {
             quizService.checkResult(vm.quiz);
+            quizService.activeQuiz = null;
+            goToElement('result');
         }
 
         function goToElement (elemID) {

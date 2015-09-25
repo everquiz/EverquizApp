@@ -1,5 +1,5 @@
-<img class="parallax-bullet-1" src="../i/bullet-far.png" alt="">
-<img class="parallax-bullet-2" src="../i/bullet-close.png" alt="">
+<img id="parallax-bullet-1" src="../i/bullet-far.png" alt="">
+<img id="parallax-bullet-2" src="../i/bullet-close.png" alt="">
 <div class="finish">
     <div class="finish-content">
         <div class="finish-content-summary" ng-if="ResultCtrl.quizService.lastResult !== null">
@@ -11,7 +11,7 @@
             <p class="finish-content-random__title">{{ResultCtrl.getRandomPhrase()}}</p>
         </div>
 
-        <div class="finish-content-action">
+        <div class="finish-content-action" ng-if="ResultCtrl.quizService.lastResult !== null">
             <div class="finish-content-action-call">
                 <span class="finish-content-action-call__title">GET FAIL</span>
             </div>
