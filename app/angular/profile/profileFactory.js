@@ -55,7 +55,6 @@
                     getLastActions().then(function (res) {
                         profile.lastActions = res;
                     });
-                    console.log(profile);
                     notifyObservers();
                     return profile;
                 });
