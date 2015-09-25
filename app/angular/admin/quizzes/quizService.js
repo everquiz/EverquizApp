@@ -14,6 +14,11 @@
         self.quizzes = [];
         self.activeQuiz = null;
 
+        self.id = authFactory.currentUserId();
+        self.display = !!self.id;
+        self.isVisible = isVisible;
+        self.hideQuizzes = hideQuizzes;
+
         self.checkResult = checkResult;
         self.get = get;
         self.getQuizzes = getQuizzes;
@@ -140,6 +145,14 @@
                     return self.difficulties[i].title;
                 }
             }
+        }
+
+        function isVisible () {
+            return self.display;
+        }
+
+        function hideQuizzes() {
+            self.display = false;
         }
     }
 })();

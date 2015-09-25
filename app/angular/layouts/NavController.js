@@ -5,9 +5,9 @@
         .module('everquizApp')
         .controller('NavController', NavController);
 
-    NavController.$inject = ['authFactory', 'profileFactory', 'notesService', '$state', 'scrollFactory'];
+    NavController.$inject = ['authFactory', 'profileFactory', 'notesService', 'quizService', '$state', 'scrollFactory'];
 
-    function NavController(authFactory, profileFactory, notesService, $state, scrollFactory) {
+    function NavController(authFactory, profileFactory, notesService, quizService, $state, scrollFactory) {
 
         var vm = this;
         vm.isLoggedIn = authFactory.isLoggedIn;
@@ -26,6 +26,7 @@
         function logOut() {
             profileFactory.hideProfile();
             notesService.hideNotes();
+            quizService.hideQuizzes();
             authFactory.logOut();
             $state.go($state.current, {}, {reload: true});
         }
