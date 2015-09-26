@@ -23,8 +23,7 @@ function parallax(){
       var bulletFarPosition = 50 - scrolledPercent * 3 + '%';
       var logoPosition = 110 - scrolledPercent * 2 + '%';
 
-      var backgroundPosition = '90% ' + bulletFarPosition + ', 50% ' + revolversPosition + ', 0% ' + bulletClosePosition + ', ' + '50% ' + logoPosition;
-      console.log(backgroundPosition);
+      var backgroundPosition = '50% ' + logoPosition + ', 90% ' + bulletFarPosition + ', 50% ' + revolversPosition + ', 0% ' + bulletClosePosition;
 
       document.getElementById('result').style.backgroundPosition = backgroundPosition;
 
