@@ -15,9 +15,19 @@ function parallax(){
   function parallaxbubbles(){
     var scrollOffsetForElem = document.getElementById('result').offsetTop - window.innerHeight;
     if (scrollOffsetForElem <= window.scrollY) {
-      var scrolltop = scrollOffsetForElem - window.scrollY; // get number of pixels document has scrolled vertically 
-      document.getElementById('parallax-bullet-1').style.top = -scrolltop * .2 + 'px'; // move bubble1 at 20% of scroll rate
-      document.getElementById('parallax-bullet-2').style.top = -scrolltop * .6 + 'px'; // move bubble2 at 50% of scroll rate
+      var scrollTop = window.scrollY - scrollOffsetForElem; // get number of pixels document has scrolled vertically 
+      var scrolledPercent = Math.round(scrollTop / 8.8) / 10;
+
+      var bulletClosePosition = 30 + scrolledPercent * 6 + '%';
+      var revolversPosition = 35 + scrolledPercent  * 2 + '%';
+      var bulletFarPosition = 50 - scrolledPercent * 3 + '%';
+      var logoPosition = 110 - scrolledPercent * 2 + '%';
+
+      var backgroundPosition = '90% ' + bulletFarPosition + ', 50% ' + revolversPosition + ', 0% ' + bulletClosePosition + ', ' + '50% ' + logoPosition;
+      console.log(backgroundPosition);
+
+      document.getElementById('result').style.backgroundPosition = backgroundPosition;
+
     };
     
   }
