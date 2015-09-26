@@ -4,6 +4,11 @@ document.onreadystatechange = function () {
       parallax();
   }
 }
+
+function scrollOffsetForElemById(elemId) {
+	return document.getElementById(elemId).offsetTop - window.innerHeight;
+}
+
 function parallax(){
   // Create cross browser requestAnimationFrame method:
   window.requestAnimationFrame = window.requestAnimationFrame
@@ -12,26 +17,36 @@ function parallax(){
    || window.msRequestAnimationFrame
    || function(f){setTimeout(f, 1000/60)}
    
-  function parallaxbubbles(){
-    var scrollOffsetForElem = document.getElementById('result').offsetTop - window.innerHeight;
-    if (scrollOffsetForElem <= window.scrollY) {
-      var scrollTop = window.scrollY - scrollOffsetForElem; // get number of pixels document has scrolled vertically 
-      var scrolledPercent = Math.round(scrollTop / 8.8) / 10;
+  function parallaxbubbles() {
+  	var notesScrollOffset = scrollOffsetForElemById('notes');
+    if (notesScrollOffset <= window.scrollY) {
+      var notesScrollTop = window.scrollY - notesScrollOffset;
+      var scrolledPercent = Math.round(notesScrollTop / 8.8) / 10;
+
+      var dollarPosition = 70 - scrolledPercent * 10 + '%';
+
+      var backgroundPosition = '100% ' + dollarPosition;
+
+      document.getElementById('notes').style.backgroundPosition = backgroundPosition;
+    }	    
+
+    var resultScrollOffset = scrollOffsetForElemById('result');
+    if (resultScrollOffset <= window.scrollY) {
+      var resultScrollTop = window.scrollY - resultScrollOffset;
+      var scrolledPercent = Math.round(resultScrollTop / 8.8) / 10;
 
       var bulletClosePosition = 30 + scrolledPercent * 6 + '%';
       var revolversPosition = 35 + scrolledPercent  * 2 + '%';
       var bulletFarPosition = 50 - scrolledPercent * 3 + '%';
       var logoPosition = 110 - scrolledPercent * 2 + '%';
 
-      var backgroundPosition = '50% ' + logoPosition + ', 90% ' + bulletFarPosition + ', 50% ' + revolversPosition + ', 0% ' + bulletClosePosition;
+      var resultBackgroundPosition = '50% ' + logoPosition + ', 90% ' + bulletFarPosition + ', 50% ' + revolversPosition + ', 0% ' + bulletClosePosition;
 
-      document.getElementById('result').style.backgroundPosition = backgroundPosition;
-
-    };
-    
+      document.getElementById('result').style.backgroundPosition = resultBackgroundPosition;
+    }
   }
    
   window.addEventListener('scroll', function(){ // on page scroll
    requestAnimationFrame(parallaxbubbles) // call parallaxbubbles() on next available screen paint
   }, false)
-};
+}
