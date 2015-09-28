@@ -7,17 +7,14 @@
 
     VideoController.$inject = ['$scope', 'scrollFactory'];
 
-    function VideoController($scope, scrollFactory) {
+    function VideoController($scope) {
 
         var vm = this;
-        vm.goToElement = goToElement;
+        var video = document.getElementById('video');
+
         vm.videoOpened = false;
         vm.showVideo = showVideo;
         window.onclick = hideVideo;
-
-        function goToElement(elemID) {
-            scrollFactory.scroll(elemID);
-        }
 
         function showVideo(event) {
             vm.videoOpened = true;
@@ -27,6 +24,7 @@
         function hideVideo() {
             if (vm.videoOpened) {
                 vm.videoOpened = false;
+                video.scrollIntoView();
                 $scope.$apply();
             }
         }
