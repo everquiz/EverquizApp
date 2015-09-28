@@ -9,19 +9,18 @@ function scrollOffsetForElemById(elemId) {
 	return document.getElementById(elemId).offsetTop - window.innerHeight;
 };
 
-function parallax(){
-  // Create cross browser requestAnimationFrame method:
+function parallax() {
   window.requestAnimationFrame = window.requestAnimationFrame
    || window.mozRequestAnimationFrame
    || window.webkitRequestAnimationFrame
    || window.msRequestAnimationFrame
-   || function(f){setTimeout(f, 1000/60)}
+   || function(f) {setTimeout(f, 1000/30)}
    
   function parallaxbubbles() {
   	var notesScrollOffset = scrollOffsetForElemById('notes');
     if (notesScrollOffset <= window.scrollY) {
       var notesScrollTop = window.scrollY - notesScrollOffset;
-      var scrolledPercent = Math.round(notesScrollTop / 8.8) / 10;
+      var scrolledPercent = Math.round(notesScrollTop / 0.88) / 100;
 
       var dollarPosition = 70 - scrolledPercent * 10 + '%';
 
@@ -33,7 +32,7 @@ function parallax(){
     var resultScrollOffset = scrollOffsetForElemById('result');
     if (resultScrollOffset <= window.scrollY) {
       var resultScrollTop = window.scrollY - resultScrollOffset;
-      var scrolledPercent = Math.round(resultScrollTop / 8.8) / 10;
+      var scrolledPercent = Math.round(resultScrollTop / 0.88) / 100;
 
       var bulletClosePosition = 30 + scrolledPercent * 6 + '%';
       var revolversPosition = 35 + scrolledPercent  * 2 + '%';
