@@ -23,8 +23,6 @@
   Object.defineProperty(Array.prototype, 'diff', { enumerable: false });
   Object.defineProperty(Array.prototype, 'diffInvers', { enumerable: false });
 
-
-
   /*
   Sorting array
    */

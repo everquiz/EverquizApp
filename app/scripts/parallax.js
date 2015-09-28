@@ -14,7 +14,7 @@ function parallax() {
    || window.mozRequestAnimationFrame
    || window.webkitRequestAnimationFrame
    || window.msRequestAnimationFrame
-   || function(f) {setTimeout(f, 1000/30)}
+   || function(f) {setTimeout(f, 1000/60)}
    
   function parallaxbubbles() {
   	var notesScrollOffset = scrollOffsetForElemById('notes');
