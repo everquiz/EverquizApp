@@ -64,7 +64,11 @@ body {
    width:300px;
 }
 
-form-control {
+.search {
+  text-align: center;
+}
+
+.search-input {
    width: 60%;
    border: 1px solid #cacaca;
    border-radius: 2px;
