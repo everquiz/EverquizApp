@@ -6,7 +6,7 @@ document.onreadystatechange = function () {
 };
 
 function scrollOffsetForElemById(elemId) {
-	return document.getElementById(elemId).offsetTop - window.innerHeight;
+	return document.getElementById(elemId).offsetTop - window.innerHeight || 0;
 };
 
 function parallax() {

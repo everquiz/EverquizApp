@@ -12,7 +12,7 @@
         top: 85px;
         left: 80px;
         font-size: 30px;
-        font-family: Roboto;
+        font-family: $roboto;
         color: #fb3a3a;
         font-weight: bold;
     }
@@ -29,7 +29,7 @@
             width: 1280px;
             padding-right: 320px;
             font-size: 30px;
-            font-family: Roboto;
+            font-family: $roboto;
             color: #2c2c2c;
             font-weight: bold;
             padding: 120px 0 0 80px;
@@ -42,7 +42,7 @@
         &-question {
             display: table-cell;
             font-size: 14px;
-            font-family: Roboto;
+            font-family: $roboto;
             color: #2c2c2c;
             font-weight: bold;
             width: 1280px;
@@ -77,7 +77,7 @@
                 // padding-right: 560px; 
                 padding-right: 55pc; // VN
                 font-size: 20px;
-                font-family: Roboto;
+                font-family: $roboto;
                 padding-bottom: 10px;
                 color: #373737;
             }
@@ -93,7 +93,7 @@
 
                     &-item {
                         font-size: 20px;
-                        font-family: Roboto;
+                        font-family: $roboto;
                         padding-bottom: 10px;
                         color: #373737;
                         list-style-type: none;
@@ -124,7 +124,7 @@
             top: 600px;
             background-color: #fb3a3a;
             color: white;
-            font-family: ProximaNova;
+            font-family: $proxima;
             font-weight: bold;
             border: none;
             width: 140px;
@@ -149,7 +149,7 @@
         &-indicator {
             font-size: 60px;
             color: #b9bdbe;
-            font-family: ProximaNova, sans-serif;
+            font-family: $proxima, sans-serif;
             font-weight: bold;
         }
     }
@@ -161,7 +161,7 @@
         
         &__title {
             font-size: 18px;
-            font-family: ProximaNova, sans-serif;
+            font-family: $proxima, sans-serif;
             font-weight: bold;
             color: #b9bdbe;
             text-decoration: none;

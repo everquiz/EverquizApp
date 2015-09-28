@@ -1,39 +1,24 @@
-<div class="register">
-    <div class="register-logo"><a href="../#/" class="login-logo__home">E</a>
-
-        <div class="register-page-header">Create an Account
-        </div>
+<div class="sign">
+    <div class="sign-logo">
+        <a href="../#/" class="sign-logo__home">E</a>
+        <div class="sign-header">Create an Account</div>
     </div>
 
-    <div ng-show="AuthCtrl.error" class="alert alert-danger row">
-        <span>{{ AuthCtrl.error.message }}</span>
+    <div ng-show="AuthCtrl.error" class="sign-alert">
+        <span class="sign-alert__message">{{ AuthCtrl.error.message }}</span>
     </div>
 
-    <form ng-submit="AuthCtrl.register()"
-          class="register-form">
+    <form ng-submit="AuthCtrl.register()" class="sign-form">
         <h3>Register</h3>
 
-        <div class="register-form-group">
-            <input type="text"
-                   class="register-form-control"
-                   placeholder="Your name"
-                   ng-model="AuthCtrl.user.name" autofocus required>
-        </div>
-        <div class="register-form-group">
-            <input type="email"
-                   class="register-form-control"
-                   placeholder="Your email"
-                   ng-model="AuthCtrl.user.email" required>
-        </div>
-        <div class="register-form-group">
-            <input type="password"
-                   class="register-form-control"
-                   placeholder="Password"
-                   ng-model="AuthCtrl.user.password" required>
-        </div>
-        <button type="submit" class="btn btn-primary">Register</button>
-        <a href="#/login">
-            <button class="btn btn-primary">Log in</button>
-        </a>
+        <input type="text" class="sign-form-input" placeholder="Your name" ng-model="AuthCtrl.user.name" autofocus required>
+
+        <input type="email" class="sign-form-input" placeholder="Your email" ng-model="AuthCtrl.user.email" required>
+
+        <input type="password" class="sign-form-input" placeholder="Password" ng-model="AuthCtrl.user.password" required>
+
+        <button type="submit" class="sign-form-submit">REGISTER</button>
+
+        <a class="sign-form-go" href="#/login">TO LOG IN</a>
     </form>
 </div>

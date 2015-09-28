@@ -31,8 +31,7 @@
 
 	&-info {
 		overflow: hidden;
-		padding-left: 17.5%;
-		padding-top: 150px;
+		padding: 150px 0 0 17.5%;
 		width: 190px;
 
 		&__heading {
@@ -47,7 +46,7 @@
 			font-size: 18px;
 			line-height: 22px;
 			margin-bottom: 30px;
-			color: #626363;
+			color: #5b5a5a;
 		}
 
 		&__start {
