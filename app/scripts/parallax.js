@@ -3,11 +3,11 @@ document.onreadystatechange = function () {
   if (state == 'complete') {
       parallax();
   }
-}
+};
 
 function scrollOffsetForElemById(elemId) {
 	return document.getElementById(elemId).offsetTop - window.innerHeight;
-}
+};
 
 function parallax(){
   // Create cross browser requestAnimationFrame method:
@@ -44,9 +44,9 @@ function parallax(){
 
       document.getElementById('result').style.backgroundPosition = resultBackgroundPosition;
     }
-  }
+  };
    
-  window.addEventListener('scroll', function(){ // on page scroll
-   requestAnimationFrame(parallaxbubbles) // call parallaxbubbles() on next available screen paint
+  window.addEventListener('scroll', function() {
+   requestAnimationFrame(parallaxbubbles)
   }, false)
-}
+};

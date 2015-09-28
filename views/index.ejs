@@ -17,6 +17,32 @@
   <script src="js/vendors.min.js"></script>
   <script src="js/application.min.js"></script>
   <script data-require="angular-ui-bootstrap@0.3.0" data-semver="0.3.0" src="http://angular-ui.github.io/bootstrap/ui-bootstrap-tpls-0.3.0.min.js"></script>
+
+  <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/TweenMax.min.js"></script>
+  <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/latest/plugins/ScrollToPlugin.min.js"></script>
+  <script>
+    $(function() {
+      var $window = $(window);
+      var scrollTime = 1;
+      var scrollDistance = 300;
+
+      $window.on("mousewheel", function(event){
+
+        event.preventDefault(); 
+
+        var delta = event.originalEvent.wheelDelta/100 || -event.originalEvent.detail/3;
+        var scrollTop = $window.scrollTop();
+        var finalScroll = scrollTop - parseInt(delta*scrollDistance);
+
+        TweenMax.to($window, scrollTime, {
+          scrollTo : { y: finalScroll, autoKill:true },
+            ease: Power1.easeOut,
+            overwrite: 0              
+          });
+      });
+    });
+  </script>
   
 
 </body>

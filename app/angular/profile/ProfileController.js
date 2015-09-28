@@ -15,14 +15,10 @@
 
         function profileInit() {
             vm.profile = profileFactory.getProfile();
-            console.log('init');
         };
 
-
-        console.log(vm.profile);
         profileFactory.registerObserverCallback(profileInit);
         profileFactory.updateProfile();
-
 
         function hideProfile() {
             profileFactory.hideProfile();

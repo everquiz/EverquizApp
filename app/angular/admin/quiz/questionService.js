@@ -12,7 +12,6 @@
     this.questions = _questions;
 
     this.get = function (id) {
-      console.log('get question');
       return $http.get('/api/v1/Questions/' + id + '?populate=answers', {
             headers: {Authorization: 'Bearer ' + authFactory.getToken()}
         }).then(function (res) {
@@ -31,7 +30,6 @@
     };
 
     this.remove = function (question, quiz) {
-      console.log(question);
       return $http.delete('/api/v1/Questions/' + question._id, question, {
             headers: {Authorization: 'Bearer ' + authFactory.getToken()}
         }).then(function (res) {
@@ -56,10 +54,6 @@
       //   questionUpdate.text = question.text;
       //   questionUpdate.editedAt = new Date;
       //   questionUpdate.answers = question.answers;
-      //   console.log('question');
-      //   console.log(question);
-      //   console.log('questionUpdate');
-      //   console.log(questionUpdate);
 
       //   // return $http.put('/api/v1/Questions/' + questionUpdate._id, questionUpdate).success(function(data) {
       //   //   // ToDo need to update _questions array

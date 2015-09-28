@@ -37,7 +37,6 @@
       function noteNormalize() {
           for (var i = 0; i <= 7; ++i)
               if (vm.notes[i] === undefined) vm.notes[i] = {empty: true};
-          console.log('normalize', vm.notes);
       }
   }
 })();

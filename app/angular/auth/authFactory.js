@@ -48,7 +48,6 @@
                 headers: {Authorization: 'Bearer ' + auth.getToken()}
             }).success(function (data) {
                 if (data === 'admin') {
-                    console.log(data);
                     return true;
                 } else {
                     return false;
@@ -62,8 +61,7 @@
                 var payload = JSON.parse($window.atob(token.split('.')[1]));
                 if (payload.roles[0] === 'admin') {
                     return true
-                }
-                ;
+                };
                 return false;
             }
         };
@@ -73,17 +71,12 @@
             if (token) {
                 var payload = JSON.parse($window.atob(token.split('.')[1]));
 
-                console.log('isUser()');
-
-
                 $http.get('/status', {
                     headers: {Authorization: 'Bearer ' + auth.getToken()}
                 }).success(function (data) {
                     if (data === 'user') {
-                        console.log(data);
                         return true;
-                    }
-                    ;
+                    };
                 })
             } else {
                 return false;

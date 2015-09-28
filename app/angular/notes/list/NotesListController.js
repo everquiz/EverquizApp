@@ -50,7 +50,6 @@
             getMaxPages()
             vm.pageList = [];
             for (var i = 0; i < vm.maxPages; ++i) vm.pageList.push(i);
-            //console.log(vm.notes);
         });
 
         //Drag-and-drop
@@ -62,7 +61,6 @@
 
         function onMove(index) {
             vm.notes.splice(index, 1);
-            console.log(vm.notes);
         }
 
         //function onDrop(index, note) {
@@ -73,18 +71,14 @@
         //        vm.notes[i];
         //        i += noteDelta;
         //    }
-        //    console.log(noteDelta);
-        //    console.log(vm.notes);
         //}
 
         function onDeletedMove(index) {
             vm.deletedList.splice(index, 1);
-            console.log(vm.deletedList);
         }
 
         function RecycleCleanUp() {
             vm.deletedList.forEach(function(item, i, arr) {
-                console.log(item);
                 deleteNote(item);
             });
             vm.deletedList = [];
