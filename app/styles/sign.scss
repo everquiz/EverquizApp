@@ -14,7 +14,7 @@
 			display: inline-block;
 			color: #fff;
 			text-align: center;
-			background-color: #fd2828;
+			background-color: $logo-background;
 			height: 64px;
 			width: 64px;
 			font-size: 48px;
@@ -24,7 +24,7 @@
 
 			&:hover {
 				text-decoration: none;
-				background-color: #000;
+				background-color: $logo-background-hover;
 			}
 		}
 	}	

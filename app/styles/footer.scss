@@ -10,7 +10,7 @@
 		float: left;
 		line-height: 54px;
 		height: 54px;
-		margin-left: 10%;
+		margin-left: 80px;
 
 		&__link {
 			@extend .icon-logo;
@@ -74,8 +74,8 @@
 	}
 
 	&-developed {
-		color: #a1a1a1;
+		color: $footer-text;
 		float:right;
-		margin-right: 10%;
+		margin-right: 80px;
 	}	
 }
