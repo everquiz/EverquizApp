@@ -167,8 +167,5 @@
             if (vm.notesNumber % vm.limit !== 0) vm.maxPages++;
             return vm.maxPages;
         }
-
-
     }
-
 })();
