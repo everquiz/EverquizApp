@@ -56,100 +56,11 @@ restify.serve(router, NoteModel);
 restify.serve(router, UserModel, {
     private: ['hash', 'salt']
 });
-//, {
-//  middleware: auth,
-//  prereq: function(req) {
-//    if (req.payload.roles[0] === 'admin') {
-//      return true;
-//    }
-//
-//    return false;
-//  },
-//  access: function(req) {
-//    console.log(req.payload);
-//
-//    if (req.payload.roles[0] === 'admin') {
-//      console.log(req.payload.roles[0] === 'admin');
-//      return 'public';
-//    } else {
-//      console.log(req.payload.roles[0]);
-//      console.log('else');
-//      return false;
-//    }
-//
-//  },
-//  private: 'email'
-//}
-//);
-restify.serve(router, QuizModel
-//     , {
-//     protected: ['__v'],
-//     private: ['description', 'status', 'editedAt', 'createAt', '__v'],
-//     middleware: auth,
-//     access: function (req) {
-//         if (req.payload === undefined) {
-//             return 'public';
-//         }
-//         if (req.payload.roles[0] === 'admin') {
-//             return 'private';
-//         }
-//         if (req.payload.roles[0] === 'user') {
-//             return 'protected';
-//         }
-//         return 'public';
-//     }
-// }
-);
+restify.serve(router, QuizModel);
 restify.serve(router, CategoryModel);
 restify.serve(router, HistoryModel);
-restify.serve(router, QuestionModel
-//     , {
-//     private: ['editedAt', 'createAt', '__v'],
-//     middleware: auth,
-//     access: function (req) {
-//         if (req.payload === undefined) {
-//             return 'public';
-//         }
-//         if (req.payload.roles[0] === 'admin') {
-//             return 'private';
-//         }
-//         return 'public';
-//     },
-//     prereq: function(req) {
-//         // TODO No token here, can't check if admin or not
-//         console.log(req.method);
-        
-//         if (req.payload.roles[0] === 'admin') {
-//             console.log('admin');
-//             return true;
-//         }
-//         console.log(req.method === 'DELETE');
-//         if (req.method === 'DELETE') {
-//             console.log('true');
-//             return true;
-//         }
-//         return false;
-//      }
-// }
-);
-restify.serve(router, AnswerModel
-//     , {
-//     private: ['correct', 'editedAt', 'createAt', '__v'],
-//     middleware: auth,
-//     access: function (req) {
-//         if (req.payload === undefined) {
-//             return 'public';
-//         }
-//         if (req.payload.roles[0] === 'admin') {
-//             return 'private';
-//         }
-//         if (req.payload.roles[0] === 'user') {
-//             return 'protected';
-//         }
-//         return 'public';
-//     }
-// }
-);
+restify.serve(router, QuestionModel);
+restify.serve(router, AnswerModel);
 app.use(router);
 
 app.use('/', routes);
