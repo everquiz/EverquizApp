@@ -11,12 +11,15 @@
   };
 
   function parallax() {
-    window.requestAnimationFrame = window.requestAnimationFrame
-     || window.mozRequestAnimationFrame
-     || window.webkitRequestAnimationFrame
-     || window.msRequestAnimationFrame
-     || function(f) {setTimeout(f, 1000/60)}
-     
+    window.requestAnimationFrame = (function () {
+        return  window.requestAnimationFrame ||
+                window.webkitRequestAnimationFrame ||
+                window.mozRequestAnimationFrame ||
+                window.oRequestAnimationFrame ||
+                window.msRequestAnimationFrame ||
+                function (f) {window.setTimeout(f, 1000 / 60);}; 
+    })();
+    
     function parallaxbubbles() {
     	var notesScrollOffset = scrollOffsetForElemById('notes');
       if (notesScrollOffset <= window.scrollY) {

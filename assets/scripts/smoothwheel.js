@@ -1,5 +1,5 @@
 (function ($) {
-    var self = this, container, running=false, currentY = 0, targetY = 0, oldY = 0, maxScrollTop= 0, minScrollTop, direction, onRenderCallback=null,
+    var self = this, container, running=false, currentY = 0, targetY = 0, oldY = 0, maxScrollTop= document.body.scrollHeight, minScrollTop, direction, onRenderCallback=null,
             fricton = 0.95,
             vy = 0,
             stepAmt = 1,
@@ -58,9 +58,7 @@
                 window.mozRequestAnimationFrame ||
                 window.oRequestAnimationFrame ||
                 window.msRequestAnimationFrame ||
-                function (callback) {
-                    window.setTimeout(callback, 1000 / 60);
-                }; 
+                function (f) {window.setTimeout(f, 1000 / 60);}; 
     })();
 
     var normalizeWheelDelta = function () {
