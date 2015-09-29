@@ -3,6 +3,7 @@
 	height: 880px;
 	margin: 0 auto;
 	position: relative;
+
 	&-content {
 		padding-top: 300px;
 
@@ -14,39 +15,39 @@
 			margin: auto;
 			text-align: center;
 			border-radius: 100px;
-			border: 5px solid #fff;
+			border: 5px solid $video-start-button;
 			font-size: 50px;
-			color: #fff;
+			color: $video-start-button;
 			background: transparent;
 			cursor: pointer;
 			transition: color 0.5s ease-in-out, border 0.5s ease-in-out;
 
 			&:hover {
-				color:#fb3a3a;
-				border-color: #fb3a3a;
+				color: $video-start-button-hover;
+				border-color: $video-start-button-hover;
 			}
 		}
 
 		&-description {
-			width: 35%;
-			margin: 30px auto 0;
+			text-align: center;
+			margin: 30px 0 0;
 
 			&__content {
-				color: #fff;
+				color: $video-text;
 				font-weight: bold;
 				font-size: 24px;
 				text-align: center;
 
 				&.is-important {
-					color: #fd2828;
+					color: $video-action-text;
 					padding: 0 5px;
-					background: transparent;
+					background: $video-action-background;
 					cursor: pointer;
 					transition: color 0.5s ease-in-out, background 0.5s ease-in-out;
 
 					&:hover {
-						color: #fff;
-						background: #fb3a3a;
+						color: $video-action-text-hover;
+						background: $video-action-background-hover;
 					}
 				}
 			}
@@ -59,11 +60,9 @@
 		min-height: 100%;
 		width: 100%;
 		height: 100%;
-		overflow: hidden;
 		top: 0;
-		bottom: 0;
 		left: 0;
-		right: 0;
+		overflow: hidden;
 		z-index: 3;
 
 		&__close {
@@ -72,7 +71,7 @@
 			z-index: 4;
 			top: 14px;
 			right: 14px;
-			color: #fff;
+			color: $video-close-button-color;
 			font-size: 28px;
 			font-weight: bold;
 			cursor: pointer;
