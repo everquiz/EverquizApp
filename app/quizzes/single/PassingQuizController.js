@@ -39,7 +39,7 @@
         }
 
         function nextQuestion () {
-            vm.slide = vm.slide - 1360; 
+            vm.slide = vm.slide - 1360;
             vm.questionCount = vm.questionCount + 1; 
             vm.startQuiz = true; 
             vm.buttonText = 'NEXT STEP';
