@@ -12,8 +12,8 @@
         var vm = this;
         vm.checkResult = checkResult;
         vm.nextQuestion = nextQuestion;
-        $scope.buttonText = 'START QUIZ!';
-        $scope.slide = 0;
+        vm.buttonText = 'START QUIZ!';
+        vm.slide = 0;
 
         quizService.get(quizService.activeQuiz).then(
             function (data) {
@@ -38,10 +38,10 @@
 
         function nextQuestion () {
             console.log('nextQuestion');
-            $scope.slide = $scope.slide - 1360; 
-            $scope.questionCount = $scope.questionCount + 1; 
-            $scope.startQuiz = true; 
-            $scope.buttonText = 'NEXT STEP';
+            vm.slide = vm.slide - 1360; 
+            vm.questionCount = vm.questionCount + 1; 
+            vm.startQuiz = true; 
+            vm.buttonText = 'NEXT STEP';
         }
     }
 })();
