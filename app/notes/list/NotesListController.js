@@ -55,23 +55,19 @@
         //Drag-and-drop
         vm.deletedList = [];
         vm.onMove = onMove;
-        //vm.onDrop = onDrop;
+        vm.onDragStyle = false;
         vm.onDeletedMove = onDeletedMove;
         vm.RecycleCleanUp = RecycleCleanUp;
+        vm.toggleDragStyle = toggleDragStyle;
+
+        function toggleDragStyle() {
+            vm.onDragStyle = !vm.onDragStyle;
+            return vm.onDragStyle;
+        }
 
         function onMove(index) {
             vm.notes.splice(index, 1);
         }
-
-        //function onDrop(index, note) {
-        //    var noteDelta = Math.sign(index - note.rating);
-        //    note.rating = index;
-        //    var i = index + noteDelta;
-        //    while (i !== note.rating) {
-        //        vm.notes[i];
-        //        i += noteDelta;
-        //    }
-        //}
 
         function onDeletedMove(index) {
             vm.deletedList.splice(index, 1);
