@@ -9,22 +9,25 @@
 
     function PassingQuizController(quizService, scrollFactory) {
 
-        var vm = this;
+        var vm = this,
+            localQuiz = localStorage.getItem('quiz');
         vm.checkResult = checkResult;
         vm.nextQuestion = nextQuestion;
-        vm.buttonText = 'START QUIZ!';
-        vm.slide = 0;
-
-        quizService.get(quizService.activeQuiz).then(
-            function (data) {
-                vm.quiz = data;
-                quizService.getQuestions(quizService.activeQuiz).then(
-                    function (data) {
-                        vm.quiz.questions = data;
-                    }
-                )
-            }
-        );
+        
+        if(localQuiz){
+            vm.quiz = JSON.parse(localQuiz);
+        } else {
+            quizService.get(quizService.activeQuiz).then(
+                function (data) {
+                    vm.quiz = data;
+                    quizService.getQuestions(quizService.activeQuiz).then(
+                        function (data) {
+                            vm.quiz.questions = data;
+                        }
+                    )
+                }
+            );
+        }
 
         function checkResult() {
             quizService.checkResult(vm.quiz);
@@ -39,15 +42,15 @@
         }
 
         function nextQuestion () {
-            vm.slide = vm.slide - 1360; 
-            vm.questionCount = vm.questionCount + 1; 
-            vm.startQuiz = true; 
-            vm.buttonText = 'NEXT STEP';
+            quizService.margin = quizService.margin - 1360; 
+            quizService.questionCount = quizService.questionCount + 1; 
+            quizService.startQuiz = true; 
+            quizService.buttonText = 'NEXT STEP';
             var slide = {
-                margin: vm.slide,
-                questionCount: vm.questionCount,
-                startQuiz: vm.startQuiz,
-                buttonText: vm.buttonText
+                margin: quizService.margin,
+                questionCount: quizService.questionCount,
+                startQuiz: quizService.startQuiz,
+                buttonText: quizService.buttonText
             };
             localStorage.setItem('quiz', JSON.stringify(vm.quiz));
             localStorage.setItem('slide', JSON.stringify(slide));
