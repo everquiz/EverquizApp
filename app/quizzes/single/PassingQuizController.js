@@ -5,9 +5,9 @@
         .module('everquizApp')
         .controller('PassingQuizController', PassingQuizController);
 
-    PassingQuizController.$inject = ['quizService', 'scrollFactory', '$scope'];
+    PassingQuizController.$inject = ['quizService', 'scrollFactory'];
 
-    function PassingQuizController(quizService, scrollFactory, $scope) {
+    function PassingQuizController(quizService, scrollFactory) {
 
         var vm = this;
         vm.checkResult = checkResult;
@@ -37,11 +37,18 @@
         }
 
         function nextQuestion () {
-            console.log('nextQuestion');
             vm.slide = vm.slide - 1360; 
             vm.questionCount = vm.questionCount + 1; 
             vm.startQuiz = true; 
             vm.buttonText = 'NEXT STEP';
+            var slide = {
+                margin: vm.slide,
+                questionCount: vm.questionCount,
+                startQuiz: vm.startQuiz,
+                buttonText: vm.buttonText
+            };
+            localStorage.setItem('quiz', JSON.stringify(vm.quiz));
+            localStorage.setItem('slide', JSON.stringify(slide));
         }
     }
 })();
