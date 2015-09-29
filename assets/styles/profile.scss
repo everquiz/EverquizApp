@@ -7,8 +7,8 @@
     right: 0;
     top: 64px;
     margin: 0 auto;
-    background: #fff;
-    border: 1px solid #e9e9e9;
+    background: $profile-background;
+    border: 1px solid $profile-border-color;
     z-index: 1;
     
     &-info {
@@ -16,7 +16,7 @@
         width: 1120px;
         height: 200px;
         margin: 56px auto 0;
-        background-color: #f7f7f7;
+        background-color: $profile-info-background;
         
         &-photo {
             float: left;
@@ -29,7 +29,7 @@
             overflow: hidden;
 
             &__name {
-                color: #2c2c2c;
+                color: $profile-name-text;
                 font-size: 3em;
                 font-weight: bold;
                 padding: 20px 0 30px;
@@ -41,7 +41,7 @@
 
                 &__header {
                     margin: 0;
-                    color: #c5c5c5;
+                    color: $profile-info-text;
                     font-size: 1.5em;
                     font-weight: bold;
                     padding-bottom: 10px;
@@ -49,14 +49,14 @@
 
                 &__value {
                     margin: 0;
-                    color: #373737;
+                    color: $profile-info-value-text;
                     font-size: 1.5em;
                     font-weight: bold;
                 }
 
                 &:nth-child(2) {
                     padding-left: 0;
-                    border-right: 1px solid #c5c5c5;
+                    border-right: 1px solid $profile-info-separator;
                 }
             }
         }
@@ -67,15 +67,15 @@
             bottom: 64px;
 
             &__link {
-                color: #fff;
-                background: #fd2828;
+                color: $profile-button-text;
+                background: $profile-button-color;
                 border: none;
                 font-weight: bold;
                 padding: 10px 20px;
                 transition: background 0.5s ease-in-out;
 
                 &:hover {
-                    background: #2c2c2c;
+                    background: $profile-button-color-hover;
                 }
             }
         }
@@ -93,7 +93,7 @@
             &__title {
                 font-size: 1.5em;
                 font-weight: bold;
-                color: #2c2c2c;
+                color: $profile-additional-header-text;
             }
 
             &-content {
@@ -113,19 +113,19 @@
 
                         &__date {
                             letter-spacing: 1px;
-                            color: #a3aaac;
+                            color: $profile-additional-date-text;
                         }
 
                         &__title {
-                            color: #373737;
+                            color: $profile-additional-text;
                         }
 
                         &.is-quiz {
-                            background: #e8f1f2;
+                            background: $profile-additional-quiz-background;
                         }
 
                         &.is-note {
-                            background: #f4f3e7;
+                            background: $profile-additional-note-background;
                         }
                     }
                 }
@@ -139,7 +139,7 @@
             &__title {
                 font-size: 1.5em;
                 font-weight: bold;
-                color: #2c2c2c;
+                color: $profile-additional-header-text;
             }
 
             &-content {
@@ -156,19 +156,15 @@
                         font-size: 20px;
                         font-weight: bold;
                         padding-left: 20px;
-                        background: #f4f3e7;
+                        background: $profile-additional-recomendation-background;
 
                         &__date {
                             letter-spacing: 1px;
-                            color: #a3aaac;
+                            color: $profile-additional-date-text-text;
                         }
 
                         &__title {
-                            color: #373737;
-                        }
-
-                        &.is-action {
-                            background: #e8f1f2;
+                            color: $profile-additional-text;
                         }
                     }
                 }
