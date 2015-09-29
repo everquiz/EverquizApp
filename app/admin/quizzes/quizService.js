@@ -63,7 +63,7 @@
         }
 
         function getQuestions(id) {
-            return $http.get('/api/v1/Questions?quiz=' + id + '&populate=answers', {
+            return $http.get('/api/v1/Questions?quiz=' + id + '&populate=answers&select=answers.text', {
                 headers: {Authorization: 'Bearer ' + authFactory.getToken()}
             })
                 .then(function (res) {
