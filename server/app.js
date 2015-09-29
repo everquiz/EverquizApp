@@ -16,13 +16,13 @@ var express = require('express'),
  */
 require('./config/db');
 
-var UserModel = require('./app/models/Users');
-var NoteModel = require('./app/models/Notes');
-var QuizModel = require('./app/models/Quizzes');
-var CategoryModel = require('./app/models/Categories');
-var HistoryModel = require('./app/models/Histories');
-var QuestionModel = require('./app/models/Questions');
-var AnswerModel = require('./app/models/Answers');
+var UserModel = require('./models/Users');
+var NoteModel = require('./models/Notes');
+var QuizModel = require('./models/Quizzes');
+var CategoryModel = require('./models/Categories');
+var HistoryModel = require('./models/Histories');
+var QuestionModel = require('./models/Questions');
+var AnswerModel = require('./models/Answers');
 
 
 
@@ -32,10 +32,10 @@ require('./config/passport');
  Routes
  */
 var routes = require('./routes/index');
-var users = require('./routes/users');
+// var users = require('./routes/users');
 
 var app = express();
-app.use(favicon(path.join(__dirname,'public','i','favicon.ico')));
+app.use(favicon(path.join(__dirname,'../public','i','favicon.ico')));
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
@@ -44,7 +44,7 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended: false}));
 app.use(methodOverride());
 
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.static(path.join(__dirname, '../public')));
 
 app.use(cookieParser());
 
@@ -153,7 +153,7 @@ restify.serve(router, AnswerModel
 app.use(router);
 
 app.use('/', routes);
-app.use('/users', users);
+// app.use('/users', users);
 
 app.use(auth);
 

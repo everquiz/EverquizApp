@@ -22,8 +22,8 @@ var gulp = require('gulp'),
 //JavaScripts section
 gulp.task('scripts', ['template'], function() {
     return gulp.src([
-            'app/angular/**/*.js',
-            'app/scripts/**/*.js'])
+            'app/**/*.js',
+            'assets/scripts/**/*.js'])
         .pipe(plumber())
         .pipe(sourcemaps.init())
         .pipe(ngAnnotate())
@@ -45,23 +45,23 @@ gulp.task('vendor-js', function() {
 //Image section
 gulp.task('sprite', function() {
     var spriteData = gulp.src([
-            'app/images/icons/*.png',
-            '!app/images/icons/*.db'])
+            'assets/images/icons/*.png',
+            '!assets/images/icons/*.db'])
         .pipe(spritesmith({
             imgName: 'sprite.png',
             cssName: 'sprite.css',
             imgPath: '../i/sprite.png',
         }));
 
-    spriteData.img.pipe(gulp.dest('app/images'));
-    spriteData.css.pipe(gulp.dest('app/styles'));
+    spriteData.img.pipe(gulp.dest('assets/images'));
+    spriteData.css.pipe(gulp.dest('assets/styles'));
 });
 
 gulp.task('images', function() {
     return gulp.src([
-            'app/images/*',
-            '!app/images/*.db',
-            '!app/images/icons/'])
+            'assets/images/*',
+            '!assets/images/*.db',
+            '!assets/images/icons/'])
         .pipe(imagemin())
         .pipe(gulp.dest('public/i'));
 });
@@ -71,7 +71,7 @@ gulp.task('images', function() {
 
 //External fonts
 gulp.task('font', function() {
-	return gulp.src('app/styles/font/*')
+	return gulp.src('assets/styles/font/*')
 		.pipe(gulp.dest('public/font'));
 });
 
@@ -88,17 +88,17 @@ gulp.task('vendor-css', ['normalize', 'font'], function(){
 //Custom styles
 gulp.task('scss-concat',function () {
     return gulp.src([
-            'app/styles/sprite.css',
-            'app/styles/**/*.scss',
-            '!app/styles/application.scss'])
+            'assets/styles/sprite.css',
+            'assets/styles/**/*.scss',
+            '!assets/styles/application.scss'])
         .pipe(concat('application.scss'))
-        .pipe(gulp.dest('app/styles'));
+        .pipe(gulp.dest('assets/styles'));
 });
 
 gulp.task('styles', ['scss-concat'], function() {
     return gulp.src([
-            'app/styles/application.scss',
-            'app/styles/**/*.css'])
+            'assets/styles/application.scss',
+            'assets/styles/**/*.css'])
         .pipe(sass().on('error', sass.logError))
         .pipe(concat('application.min.css'))
         .pipe(minifyCss({compatibility: 'ie8'}))
@@ -114,28 +114,25 @@ gulp.task('vendors', ['vendor-css', 'vendor-js'], function () {
 //****************************************************************
 // watching scss/js/html files
 gulp.task('watch', ['sprite', 'images', 'vendors', 'scripts', 'styles', 'server'], function() {
-    gulp.watch('app/styles/**/*.css', ['styles']);
-    gulp.watch('app/styles/**/*.scss', ['styles']);
+    gulp.watch('assets/styles/**/*.css', ['styles']);
+    gulp.watch('assets/styles/**/*.scss', ['styles']);
     gulp.watch([
-        'app/scripts/**/*.js',
-        'app/angular/**/*.js'
+        'assets/scripts/**/*.js',
+        'app/**/*.js'
         ], ['scripts']);
-    gulp.watch('app/angular/**/*.html', ['template']);
+    gulp.watch('app/**/*.html', ['template']);
     gulp.watch([
-        'config/*.js',
-        'routes/*.js',
-        'views/*.ejs',
-        'app.js',
-        'app/models/*.js'
+        'server/**/*.js',
+        'server/**/*.ejs'
         ], ['server']);
 });
 
 //****************************************************************
 // Angular templates
 gulp.task('template', function() {
-    return gulp.src('app/angular/**/*.html')
+    return gulp.src('app/**/*.html')
         .pipe(templateCache('templates.js', {standalone:true}))
-        .pipe(gulp.dest('app/angular'));
+        .pipe(gulp.dest('app'));
 });
 
 //****************************************************************
@@ -145,7 +142,7 @@ gulp.task('template', function() {
  */
 gulp.task('server', function() {
   if (node) node.kill()
-  node = spawn('node', ['./bin/www'], {stdio: 'inherit'})
+  node = spawn('node', ['./server/bin/www'], {stdio: 'inherit'})
   node.on('close', function (code) {
     if (code === 8) {
       gulp.log('Error detected, waiting for changes...');
