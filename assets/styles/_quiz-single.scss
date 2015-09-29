@@ -4,7 +4,7 @@
     margin: 0 auto;
     overflow: hidden;
     position: relative;
-    background: white;
+    background: $white;
     z-index: 0;
 
     &__title {
@@ -13,7 +13,7 @@
         left: 80px;
         font-size: 30px;
         font-family: $roboto;
-        color: #fb3a3a;
+        color: $quiz-title;
         font-weight: bold;
     }
 
@@ -30,7 +30,7 @@
             padding-right: 320px;
             font-size: 30px;
             font-family: $roboto;
-            color: #2c2c2c;
+            color: $quiz-text-color;
             font-weight: bold;
             padding: 120px 0 0 80px;
 
@@ -43,7 +43,7 @@
             display: table-cell;
             font-size: 14px;
             font-family: $roboto;
-            color: #2c2c2c;
+            color: $quiz-text-color;
             font-weight: bold;
             width: 1280px;
             height: 130px;
@@ -58,6 +58,9 @@
 
             &__text {
                 white-space: pre-wrap; // VN
+                font-family: $roboto;
+                color: $quiz-text-color;
+                font-weight: bold;
             }
         }
             
@@ -79,7 +82,7 @@
                 font-size: 20px;
                 font-family: $roboto;
                 padding-bottom: 10px;
-                color: #373737;
+                color: $quiz-answers-text;
             }
     
             &-form {
@@ -95,7 +98,7 @@
                         font-size: 20px;
                         font-family: $roboto;
                         padding-bottom: 10px;
-                        color: #373737;
+                        color: $quiz-answers-text;
                         list-style-type: none;
                             
                         &__title {
@@ -123,7 +126,7 @@
             left: 640px;
             top: 600px;
             background-color: #fb3a3a;
-            color: white;
+            color: $white;
             font-family: $proxima;
             font-weight: bold;
             border: none;
@@ -148,7 +151,7 @@
     
         &-indicator {
             font-size: 60px;
-            color: #b9bdbe;
+            color: $quiz-indicator;
             font-family: $proxima, sans-serif;
             font-weight: bold;
         }
@@ -163,11 +166,11 @@
             font-size: 18px;
             font-family: $proxima, sans-serif;
             font-weight: bold;
-            color: #b9bdbe;
+            color: $quiz-back;
             text-decoration: none;
             transition: color .5s ease-in-out;
             &:hover {
-            color: #373737;
+            color: $quiz-back-hover;
 
             }
         }    
