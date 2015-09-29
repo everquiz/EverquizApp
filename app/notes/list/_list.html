@@ -1,9 +1,11 @@
 <div class="notes-list">
     <div class="notes-list-wrapper">
-        <ul class="notes-list-container" dnd-list="NotesListCtrl.notes">
+        <ul class="notes-list-container" dnd-list="NotesListCtrl.notes" ng-class="{'on-drag':NotesListCtrl.onDragStyle}">
             <li class="notes-list-container-item" ng-repeat="note in NotesListCtrl.notes" ng-show="NotesListCtrl.paginatorCheck($index)"
                 dnd-draggable="note"
-                dnd-moved="NotesListCtrl.onMove($index)">
+                dnd-moved="NotesListCtrl.onMove($index)"
+                dnd-dragstart="NotesListCtrl.toggleDragStyle()"
+                dnd-dragend="NotesListCtrl.toggleDragStyle()">
                 <span class="notes-list-container-item__title">
                     {{note.title}}
                 </span>
@@ -32,10 +34,12 @@
                 <span class="notes-list-trash-clean__icon"></span>
             </div>
             
-            <ul  class="notes-list-trash-list"dnd-list="NotesListCtrl.deletedList" >
+            <ul  class="notes-list-trash-list" dnd-list="NotesListCtrl.deletedList" ng-class="{'on-drag':NotesListCtrl.onDragStyle}">
                 <li class="notes-list-trash-list-item" ng-repeat="deletedNote in NotesListCtrl.deletedList"
                     dnd-draggable="deletedNote"
                     dnd-moved="NotesListCtrl.onDeletedMove($index)"
+                    dnd-dragstart="NotesListCtrl.toggleDragStyle()"
+                    dnd-dragend="NotesListCtrl.toggleDragStyle()"
                     dnd-effect-allowed="move">
                     <span class="notes-list-trash-list-item__title">{{deletedNote.title}}</span>
                 </li>
