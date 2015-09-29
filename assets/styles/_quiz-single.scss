@@ -134,6 +134,20 @@
             height: 42px;
             font-size: 18px;
         }
+
+        &__save-to-note {
+            position: absolute;
+            left: 200px;
+            top: 600px;
+            background-color: #fb3a3a;
+            color: $white;
+            font-family: $proxima;
+            font-weight: bold;
+            border: none;
+            width: 140px;
+            height: 42px;
+            font-size: 18px;
+        }
     }
 
     &-counter {
