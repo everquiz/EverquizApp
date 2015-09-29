@@ -4,19 +4,19 @@
 	</div>
 	<div class="quiz-block">
 		<div class="quiz-block__intro" >
-            <div class="quiz-block__intro_slide" ng-style="{'margin-left': slide + 'px'}">
+            <div class="quiz-block__intro_slide" ng-style="{'margin-left': PassingQuizCtrl.slide + 'px'}">
                 About this quiz
             </div>
         </div>
 		<div class="quiz-block-question" ng-repeat="question in PassingQuizCtrl.quiz.questions" >
 
-		<div class="quiz-block-question__title" ng-style="{'margin-left': slide + 'px'}">
+		<div class="quiz-block-question__title" ng-style="{'margin-left': PassingQuizCtrl.slide + 'px'}">
             <pre class="quiz-block-question__text">{{question.text}}</pre>
         </div>
 
 
 		</div>
-		<div class="quiz-block-answer" ng-style="{'margin-left': slide + 'px'}" >
+		<div class="quiz-block-answer" ng-style="{'margin-left': PassingQuizCtrl.slide + 'px'}" >
 			<div class="quiz-block-answer__intro">
                 {{PassingQuizCtrl.quiz.description}}
             </div>
@@ -32,18 +32,18 @@
 				</ul>
 			</form>
 		</div>
-		<button class="quiz-block__submit" ng-init="buttonText = 'START QUIZ!'"
-				ng-show="questionCount != PassingQuizCtrl.quiz.questions.length"
-                ng-click="slide = slide - 1360; questionCount = questionCount + 1; startQuiz = true; buttonText = 'NEXT STEP'">
-            {{buttonText}}
+		<button class="quiz-block__submit"
+				ng-show="PassingQuizCtrl.questionCount != PassingQuizCtrl.quiz.questions.length"
+        ng-click="PassingQuizCtrl.nextQuestion()">
+        {{PassingQuizCtrl.buttonText}}
 		</button>
 		<input class="quiz-block__submit" type="submit"  value="SHOW RESULT"
 			   ng-click="PassingQuizCtrl.checkResult();"
-			   ng-hide="questionCount != PassingQuizCtrl.quiz.questions.length;">
+			   ng-hide="PassingQuizCtrl.questionCount != PassingQuizCtrl.quiz.questions.length;">
 	</div>
-	<div class="quiz-counter" ng-show="startQuiz">
+	<div class="quiz-counter" ng-show="PassingQuizCtrl.startQuiz">
 		<span class="quiz-counter-indicator">
-			<span class="quiz-counter-indicator__current" ng-init="questionCount=0">{{questionCount}}</span
+			<span class="quiz-counter-indicator__current" ng-init="PassingQuizCtrl.questionCount=0">{{PassingQuizCtrl.questionCount}}</span
 			><span class="quiz-counter-indicator__separator">/</span
 			><span class="quiz-counter-indicator__total">{{PassingQuizCtrl.quiz.questions.length}}</span>
 		</span>
