@@ -15,32 +15,32 @@
 		float: left;
 		padding: 0;
 		margin: 95px 0 25px;
-		border: 5px dashed transparent;
+		border: 5px dashed $notes-list-border;
 		border-radius: 5px;
 		list-style: none;
 
 		&-item {
 			position: relative;
-			background: #fff;
+			background: $notes-list-item-background;
 			height: 23px;
 			margin-top: 4px;
 			padding: 6px 12px 6px 12px;
 			line-height: 23px;
 
 			&__title {
-				color: #5b5a5a;
+				color: $notes-list-text;
 				font-size: 20px;
 				margin: 0 12px;
 			}
 
 			&__content {
-				color: #5b5a5a;
+				color: $notes-list-text;
 				font-size: 16px;
 				margin-right: 0 12px;
 			}
 
 			&__category {
-				color: #b9bdbe;
+				color: $notes-list-category-text;
 				font-size: 16px;
 			}
 
@@ -100,14 +100,14 @@
 		& .dndPlaceholder {
 		    height: 35px;
 		    margin-top: 4px;
-		    background: transparent;
+		    background: $notes-list-placeholder-background;
 		}
 
 		&.on-drag {			
-			border-color: #acacac;
+			border-color: $notes-list-border-on-drag;
 				
 			&.dndDragover {
-				background: rgba(255,255,255,0.6);
+				background: $notes-list-background-on-drag;
 			}
 		}	
 	}
@@ -129,7 +129,7 @@
 		}
 
 		&-clean {
-			background: #fd2828;
+			background: $notes-list-clean-color;
 			height: 23px;
 			padding: 6px 12px;
 			text-align: center;
@@ -142,7 +142,7 @@
 			}
 
 			&:hover {
-				background: #2c2c2c;
+				background: $notes-list-clean-color-hover;
 			}
 		}
 
@@ -151,22 +151,22 @@
 			height: 590px;
 			padding: 0 5px;
 			margin: 0;
-			border: 5px dashed transparent;
+			border: 5px dashed $notes-list-border;
 			border-radius: 5px;
 			list-style: none;
 
 			&-item {
 				position: relative;
-				background: #fff;
+				background: $notes-list-item-background;
 				height: 23px;
 				margin-top: 4px;
 				padding: 6px 12px 6px 12px;
 				line-height: 23px;
 				text-align: center;
-				box-shadow: 0 0 10px #fd2828;
+				box-shadow: 0 0 10px $notes-list-trash-item-alert-shadow-color;
 
 				&__title {
-					color: #5b5a5a;
+					color: $notes-list-text;
 					font-size: 20px;
 					margin: 0 12px;
 				}
@@ -179,14 +179,14 @@
 			& .dndPlaceholder {
 			    height: 35px;
 			    margin-top: 4px;
-			    background: transparent;
+			    background: $notes-list-placeholder-background;
 			}
 
 			&.on-drag {
-				border-color: #acacac;
+				border-color: $notes-list-border-on-drag;
 				
 				&.dndDragover {
-					background: rgba(255,255,255,0.6);
+					background: $notes-list-background-on-drag;
 				}
 			}
 		}
@@ -201,15 +201,17 @@
 		margin: 0 auto;
 
 		&-create {
-			box-shadow: 0 10px 20px -10px #373737;
+			box-shadow: 0 10px 20px -10px $notes-list-form-shadow-color;
 
 			&-content {
-				background: #fff;
+				background: $notes-list-form-background;
+				border: 3px solid $notes-list-form-border-color;
+				margin: 0;
 
 				&__header {
 					font-size: 2em;
 					font-weight: bold;
-					color: #2c2c2c;
+					color: $notes-list-form-legend-text;
 					text-align: center;
 				}
 
@@ -218,7 +220,7 @@
 					margin: 10px 0;
 					font-size: 20px;
 					font-weight: bold;
-					color: #373737;
+					color: $notes-list-form-text;
 					text-align: center;
 				}
 
@@ -227,13 +229,13 @@
 					margin: 10px 0;
 					font-size: 20px;
 					font-weight: bold;
-					color: #373737;
+					color: $notes-list-form-text;
 					text-align: center;
 				}
 
 				&__input {
 					font-size: 16px;
-					color: #373737;
+					color: $notes-list-form-text;
 				}
 
 				&__hint {
@@ -241,7 +243,7 @@
 					margin: 10px 0;
 					font-size: 16px;
 					font-style: italic;
-					color: #b9bdbe;
+					color: $notes-list-form-hint-text;
 					text-align: center;
 				}
 				
@@ -249,30 +251,30 @@
 					text-align: center;
 
 					&__create {
-						background: #fd2828;
+						background: $notes-list-form-controls-color;
 						font-weight: bold;
-						color: #fff;
+						color: $notes-list-form-controls-text;
 						border: none;
 						padding: 5px 10px;
 						cursor: pointer;
 						transition: background 0.5s ease-in-out;
 
 						&:hover {
-							background: #2c2c2c;
+							background: $notes-list-form-controls-color-hover;
 						}
 					}
 
 					&__cancel {
-						background: #fd2828;
+						background: $notes-list-form-controls-color;
 						font-weight: bold;
-						color: #fff;
+						color: $notes-list-form-controls-text;
 						border: none;
 						padding: 5px 10px;
 						cursor: pointer;
 						transition: background 0.5s ease-in-out;
 
 						&:hover {
-							background: #2c2c2c;
+							background: $notes-list-form-controls-color-hover;
 						}
 					}
 				}	
@@ -280,15 +282,17 @@
 		}
 
 		&-edit {
-			box-shadow: 0 10px 20px -10px #373737;
+			box-shadow: 0 10px 20px -10px $notes-list-form-shadow-color;
 
 			&-content {
-				background: #fff;
+				background: $notes-list-form-background;
+				border: 3px solid $notes-list-form-border-color;
+				margin: 0;
 
 				&__header {
 					font-size: 2em;
 					font-weight: bold;
-					color: #2c2c2c;
+					color: $notes-list-form-legend-text;
 					text-align: center;
 				}
 
@@ -297,7 +301,7 @@
 					margin: 10px 0;
 					font-size: 20px;
 					font-weight: bold;
-					color: #373737;
+					color: $notes-list-form-text;
 					text-align: center;
 				}
 
@@ -306,13 +310,13 @@
 					margin: 10px 0;
 					font-size: 20px;
 					font-weight: bold;
-					color: #373737;
+					color: $notes-list-form-text;
 					text-align: center;
 				}
 
 				&__input {
 					font-size: 16px;
-					color: #373737;
+					color: $notes-list-form-text;
 				}
 
 				&__hint {
@@ -320,7 +324,7 @@
 					margin: 10px 0;
 					font-size: 16px;
 					font-style: italic;
-					color: #b9bdbe;
+					color: $notes-list-form-hint-text;
 					text-align: center;
 				}
 				
@@ -328,30 +332,30 @@
 					text-align: center;
 
 					&__edit {
-						background: #fd2828;
+						background: $notes-list-form-controls-color;
 						font-weight: bold;
-						color: #fff;
+						color: $notes-list-form-controls-text;
 						border: none;
 						padding: 5px 10px;
 						cursor: pointer;
 						transition: background 0.5s ease-in-out;
 
 						&:hover {
-							background: #2c2c2c;
+							background: $notes-list-form-controls-color-hover;
 						}
 					}
 
 					&__cancel {
-						background: #fd2828;
+						background: $notes-list-form-controls-color;
 						font-weight: bold;
-						color: #fff;
+						color: $notes-list-form-controls-text;
 						border: none;
 						padding: 5px 10px;
 						cursor: pointer;
 						transition: background 0.5s ease-in-out;
 
 						&:hover {
-							background: #2c2c2c;
+							background: $notes-list-form-controls-color-hover;
 						}
 					}
 				}	
@@ -378,20 +382,20 @@
 		    	display: inline;
 
 				&.is-active &__title {
-			    	background: #f5f5f5;
+			    	background: $notes-list-pagination-active-background;
 				}
 
 				&__title {
-					border: 1px solid #b9bdbe;
+					border: 1px solid $notes-list-pagination-border;
 				    border-left-width: 0;
-					color: #b9bdbe;
+					color: $notes-list-pagination-text;
 					font-size: 16px;
 					cursor: pointer;
 					padding: 4px 12px 4px 12px;
-					background: #fff;
+					background: $notes-list-pagination-background;
 
 					&:hover {
-				   		background: #f5f5f5;
+				   		background: $notes-list-pagination-background-hover;
 				    }
 
 					&.is-first {
@@ -418,30 +422,30 @@
 		margin: 0 80px 50px;
 
 		&__new-note {
-			background: #fd2828;
+			background: $notes-list-button-color;
 			font-weight: bold;
-			color: #fff;
+			color: $notes-list-button-text;
 			border: none;
 			padding: 10px 20px;
 			cursor: pointer;
 			transition: background 0.5s ease-in-out;
 
 			&:hover {
-				background: #2c2c2c;
+				background: $notes-list-button-color-hover;
 			}
 		}
 
 		&__back-to-main {
-			background: #fd2828;
+			background: $notes-list-button-color;
 			font-weight: bold;
-			color: #fff;
+			color: $notes-list-button-text;
 			border: none;
 			padding: 10px 20px;
 			cursor: pointer;
 			transition: background 0.5s ease-in-out;
 
 			&:hover {
-				background: #2c2c2c;
+				background: $notes-list-button-color-hover;
 			}
 		}
 	}

@@ -8,7 +8,7 @@
 		padding: 100px 80px 50px;
 
 		&__title {
-			color: #2c2c2c;
+			color: $notes-main-header-text;
 			font-size: 3em;
 			font-weight: bold;
 		}
@@ -25,16 +25,16 @@
 		width: 255px;
 		height: 240px;
 		margin: 0 16px 34px 17px;
-		background: #fff;
+		background: $notes-main-block-background;
 
 		&__name {
-			color: #5b5a5a;
+			color: $notes-main-block-text;
 			font-size: 20px;
 			padding: 24px 42px 0 18px;
 		}
 
 		&__content {
-			color: #5b5a5a;
+			color: $notes-main-block-text;
 			font-size: 16px;
 			padding: 18px 42px 18px 18px;
 
@@ -46,10 +46,10 @@
 			right: 0;
 			bottom: 0;
 			padding: 12px 18px 12px 18px;
-			border-top: 1px solid #f0eede;
+			border-top: 1px solid $notes-main-block-separator;
 
 			&__category {
-				color: #b9bdbe;
+				color: $notes-main-block-category-text;
 				font-size: 16px;
 			}
 		
@@ -132,16 +132,16 @@
 		margin: 50px 80px;
 
 		&__show-all {
-			background: #fd2828;
+			background: $notes-button-color;
 			font-weight: bold;
-			color: #fff;
+			color: $notes-button-text;
 			border: none;
 			padding: 10px 20px;
 			cursor: pointer;
 			transition: background 0.5s ease-in-out;
 
 			&:hover {
-				background: #2c2c2c;
+				background: $notes-button-color-hover;
 			}
 		}
 	}
