@@ -32,6 +32,7 @@
 				</ul>
 			</form>
 		</div>
+        <button class="quiz-block__save-to-note" ng-click="PassingQuizCtrl.saveToNote(QuizzesContainerCtrl.quizService.questionCount)">Save to new note</button>
 		<button class="quiz-block__submit"
 				ng-show="QuizzesContainerCtrl.quizService.questionCount != PassingQuizCtrl.quiz.questions.length"
         ng-click="PassingQuizCtrl.nextQuestion()">
