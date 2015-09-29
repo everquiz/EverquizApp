@@ -19,6 +19,10 @@
         self.isVisible = isVisible;
         self.showQuizzes = showQuizzes;
         self.hideQuizzes = hideQuizzes;
+        self.margin = 0;
+        self.questionCount = 0;
+        self.buttonText = 'START QUIZ!';
+        self.startQuiz = false; 
 
         self.checkResult = checkResult;
         self.get = get;

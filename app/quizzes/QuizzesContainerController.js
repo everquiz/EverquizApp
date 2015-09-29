@@ -17,6 +17,12 @@
         if (localQuiz) {
             vm.quizService.activeQuiz = JSON.parse(localQuiz)._id;
             var slide = JSON.parse(localStorage.getItem('slide'));
+            if(slide){
+                vm.quizService.margin = slide.margin; 
+                vm.quizService.questionCount = slide.questionCount; 
+                vm.quizService.startQuiz = slide.startQuiz; 
+                vm.quizService.buttonText = slide.buttonText;
+            }
         };
 
         function backToAllQuizzes () {
