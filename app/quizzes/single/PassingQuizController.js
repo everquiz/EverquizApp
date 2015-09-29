@@ -29,6 +29,8 @@
         function checkResult() {
             quizService.checkResult(vm.quiz);
             quizService.activeQuiz = null;
+            localStorage.removeItem('quiz');
+            localStorage.removeItem('slide');
             goToElement('result');
         }
 
@@ -50,5 +52,7 @@
             localStorage.setItem('quiz', JSON.stringify(vm.quiz));
             localStorage.setItem('slide', JSON.stringify(slide));
         }
+
+
     }
 })();

@@ -11,12 +11,19 @@
 
         var vm = this,
             localQuiz = localStorage.getItem('quiz');
+        vm.backToAllQuizzes = backToAllQuizzes;
         vm.quizService = quizService;
         vm.isVisible = quizService.isVisible;
         if (localQuiz) {
             vm.quizService.activeQuiz = JSON.parse(localQuiz)._id;
-            var slide = JSON.parse(slide);
+            var slide = JSON.parse(localStorage.getItem('slide'));
         };
+
+        function backToAllQuizzes () {
+            vm.quizService.activeQuiz = null;
+            localStorage.removeItem('quiz');
+            localStorage.removeItem('slide');
+        }
     }
 
 })();
