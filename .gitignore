@@ -40,3 +40,6 @@ public/
 
 #templatecache
 /app/templates.js
+
+# Karma html report
+tests/units.html

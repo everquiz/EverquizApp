@@ -32,8 +32,13 @@ module.exports = function(config) {
       // test results reporter to use
       // possible values: 'dots', 'progress'
       // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-      reporters: ['progress'],
+      reporters: ['progress', 'html'],
 
+
+      // the default configuration 
+      htmlReporter: {
+        outputFile: 'tests/units.html'
+      },
 
       // enable / disable colors in the output (reporters and logs)
       colors: true,
@@ -60,7 +65,8 @@ module.exports = function(config) {
       plugins: [
           'karma-chrome-launcher',
           'karma-mocha',
-          'karma-chai'
+          'karma-chai',
+          'karma-htmlfile-reporter'
       ]
   })
   };
