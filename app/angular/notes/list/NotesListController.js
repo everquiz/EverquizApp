@@ -61,6 +61,7 @@
         vm.RecycleCleanUp = RecycleCleanUp;
 
         function onMove(index) {
+            //var noteDelta = Math.sign(index - note.rating);
             vm.notes.splice(index, 1);
             console.log(vm.notes);
         }
