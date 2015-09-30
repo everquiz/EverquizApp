@@ -19,7 +19,9 @@ module.exports = function(config) {
       './bower_components/angular-mocks/angular-mocks.js',
       './src/**/*.js',
       './tests/**/*.js',
-      './app/**/*.spec.js'
+      './app/**/*.spec.js',
+      './app/achievments/test.specs.js',
+      './tests/test.specs.js'
     ],
 
 
@@ -39,17 +41,14 @@ module.exports = function(config) {
     reporters: ['progress'],
 
 
-    // web server port
-    port: 9876,
-
 
     // enable / disable colors in the output (reporters and logs)
     colors: true,
 
 
-    // level of logging
-    // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
-    logLevel: config.LOG_INFO,
+    // // level of logging
+    // // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
+    // logLevel: config.LOG_INFO,
 
 
     // enable / disable watching file and executing tests whenever any file changes
@@ -63,6 +62,18 @@ module.exports = function(config) {
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
+<<<<<<< HEAD
     singleRun: false
   });
 };
+=======
+    singleRun: false,
+
+    plugins : [
+            'karma-chrome-launcher',
+            'karma-mocha',
+            'karma-chai'
+            ],
+  })
+}
+>>>>>>> fe3c153817bac823eab152d4f8df320ca9a155c3
