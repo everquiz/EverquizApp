@@ -18,15 +18,15 @@ module.exports = function(config) {
       './bower_components/angular/angular.js',
       './bower_components/angular-mocks/angular-mocks.js',
       './src/**/*.js',
-      './tests/**/*.js'
+      './tests/**/*.js',
+      './app/**/*.spec.js'
     ],
 
 
     // list of files to exclude
     exclude: [
     ],
-
-
+      
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
