@@ -15,16 +15,13 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      'app/**/*.js',
-      'tests/*.spec.js'
+      'app/**/*.spec.js'
     ],
 
 
     // list of files to exclude
     exclude: [
     ],
-
-    reporters: ['progress'],
 
     // preprocess matching files before serving them to the browser
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
