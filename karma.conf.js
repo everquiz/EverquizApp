@@ -15,8 +15,7 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      'app/achievments/test.specs.js',
-      'tests/test.specs.js'
+      'tests/*.js'
     ],
 
 
