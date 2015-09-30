@@ -1,7 +1,9 @@
 var mongoose = require('mongoose');
 
 var AchievmentsSchema = new mongoose.Schema({
-    user: {type: mongoose.Schema.Types.ObjectId, ref: 'User'}
+    description: String,
+    picture: { data: Buffer, contentType: String },
+    title: String
 });
 
 module.exports = mongoose.model('Achievments', AchievmentsSchema);
