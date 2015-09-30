@@ -28,11 +28,15 @@ node_modules
 bower_components
 .idea/
 
+#image Thumbs.db
+assets/images/Thumbs.db
+assets/images/icons/Thumbs.db
+
 #concated .scss
-app/styles/application.scss
+assets/styles/application.scss
 
 #public directory
 public/
 
 #templatecache
-/app/angular/templates.js
+/app/templates.js

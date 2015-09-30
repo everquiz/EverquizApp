@@ -1,0 +1,148 @@
+.notes {
+	position: relative;
+	width: 1280px;
+	height: 880px;
+	margin: 0 auto;
+
+	&-header{
+		padding: 100px 80px 50px;
+
+		&__title {
+			color: $notes-main-header-text;
+			font-size: 3em;
+			font-weight: bold;
+		}
+	}
+
+	&-wrapper {
+		width: 1154px;
+		margin: 0 auto;
+	}
+
+	&-block {
+		position: relative;
+		float: left;
+		width: 255px;
+		height: 240px;
+		margin: 0 16px 34px 17px;
+		background: $notes-main-block-background;
+
+		&__name {
+			color: $notes-main-block-text;
+			font-size: 20px;
+			padding: 24px 42px 0 18px;
+		}
+
+		&__content {
+			color: $notes-main-block-text;
+			font-size: 16px;
+			padding: 18px 42px 18px 18px;
+
+		}
+
+		&-info {
+			position: absolute;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			padding: 12px 18px 12px 18px;
+			border-top: 1px solid $notes-main-block-separator;
+
+			&__category {
+				color: $notes-main-block-category-text;
+				font-size: 16px;
+			}
+		
+			&-controls {
+				float: right;
+
+				&__favourite {
+					@extend .icon-favourite_false;
+					display: inline-block;
+					vertical-align: top;
+					margin-left: 10px;
+					cursor: pointer;
+
+					&.is-true {
+						@extend .icon-favourite_true;
+
+						&:hover {
+							@extend .icon-favourite_hover;
+						}
+					}
+
+					&:hover {
+						@extend .icon-favourite_hover;
+					}
+				}
+
+				&__delete {
+					@extend .icon-delete;
+					display: inline-block;
+					vertical-align: top;
+					margin-left: 10px;
+					cursor: pointer;
+
+					&:hover {
+						@extend .icon-delete_hover;
+					}
+				}
+			}
+		}
+
+		&-empty {
+			display: none;
+		}
+
+		&.is-empty {
+			& .notes-block-info {
+				display: none;
+			}
+
+			& .notes-block-empty {
+				display: block;
+				position: absolute;
+				top: 35%;
+				left: 0;
+				right: 0;
+				width: 255px;
+				height: 240px;
+				text-align: center;
+
+				&__icon {
+					@extend .icon-new-note;
+					display: inline-block;
+					cursor: pointer;
+
+					&:hover {
+						@extend .icon-new-note_hover;
+					}
+				}
+			}
+		}
+	}
+
+	&-button {
+		clear: left;
+		position: absolute;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		text-align: center;
+		margin: 50px 80px;
+
+		&__show-all {
+			background: $notes-button-color;
+			font-weight: bold;
+			color: $notes-button-text;
+			border: none;
+			padding: 10px 20px;
+			cursor: pointer;
+			transition: background 0.5s ease-in-out;
+
+			&:hover {
+				background: $notes-button-color-hover;
+			}
+		}
+	}
+}

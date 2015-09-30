@@ -1,0 +1,43 @@
+<div class="quizzes-header">
+    <div class="quizzes-header__title">Questions</div>
+</div>
+
+<h3 class="center ">{{QuizCtrl.quiz.title}}</h3>
+
+<form class="search">
+  <h3>Search question</h3>
+  <input type="text" class="search-input" ng-model="QuizzesCtrl.search" placeholder="Search"/>
+</form>
+
+<div class="quizzes-selection height-auto">
+    <table class="quizzes-selection-table">
+        <tr class="quizzes-selection-table-row-heading">
+            <th class="quizzes-selection-table-row-heading__title">Index</th>
+            <th class="quizzes-selection-table-row-heading__title">ID</th>
+            <th class="quizzes-selection-table-row-heading__title">Text</th>
+            <th class="quizzes-selection-table-row-heading__title">createAt</th>
+            <th class="quizzes-selection-table-row-heading__title">Total Answers</th>
+            <th class="quizzes-selection-table-row-heading__title">Actions</th>
+        </tr>
+        <tr class="quizzes-selection-table-row-content" ng-repeat="question in QuizCtrl.quiz.questions | filter : QuizCtrl.search">
+            <td class="quizzes-selection-table-row-content__title"  ui-sref="admin.question({ id: question._id})">{{$index}}</td>
+            <td class="quizzes-selection-table-row-content__title"  ui-sref="admin.question({ id: question._id})">{{question._id}}</td>
+            <td class="quizzes-selection-table-row-content__title" ui-sref="admin.question({ id: question._id})">{{question.text | limitTo:20 }}{{question.text.length > 20 ? '...' : ''}}</td>
+            <td class="quizzes-selection-table-row-content__title">{{question.createAt | date:'dd/MM/yyyy'}}</td>
+            <td class="quizzes-selection-table-row-content__title">{{question.answers.length}}</td>
+            <td class="quizzes-selection-table-row-content__title"><i class="fa fa-trash-o"  ng-click='QuizCtrl.removeQuestion(question)'></i><i class="fa fa-wrench" ng-click='QuizCtrl.editQuestion(question)'></i></td>
+        </tr>
+    </table>
+</div>
+
+<form ng-submit="QuizCtrl.addQuestion()" style="margin: 30px auto 0;" class="form-container">
+  <div class="form-title"><h2>{{QuizCtrl.formTitle}}</h2></div>
+
+  <div class="form-title">Text</div>
+  <textarea class="form-field" ng-model="QuizCtrl.question.text" ng-model-options="{ updateOn: 'submit' }" placeholder="Text"></textarea><br/>
+
+  <div class="submit-container">
+    <input class="submit-button" type="reset" value="Cancel" ng-click='QuizCtrl.resetTitle()' />
+    <input class="submit-button" type="submit" value="Submit" />
+  </div>
+</form>

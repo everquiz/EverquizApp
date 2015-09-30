@@ -1,0 +1,175 @@
+.header{
+	height: 64px;
+	width: 100%;
+	min-width: 1280px;
+	margin: 0 auto;
+	background: $header-background;
+	position: fixed;
+	left: 0;
+	right: 0;
+	top: 0;
+	z-index: 2;
+
+	&-wrapper {
+		width: 1280px;
+		margin: 0 auto;
+	}
+
+	&-main {
+		float:left;
+		margin-left: 80px;
+
+		&-nav {
+			&-list {
+				margin: 0;
+				padding: 0;
+
+				&-item {
+					display: inline-block;
+					line-height: 64px;
+					height: 64px;
+					vertical-align: top;
+					font-size: 18px;
+					font-weight: bold;
+
+					&__home {
+						display: inline-block;
+						color: $header-logo-text;
+						text-align: center;
+						background-color: $header-logo-background;
+						height: 64px;
+						width: 64px;
+						font-size: 48px;
+						font-weight: bold;
+						text-decoration: none;
+						transition: background 0.5s ease-in-out;
+
+						&:hover {
+							background-color: $header-logo-background-hover;
+						}
+					}
+					
+					&__video {
+						margin-left: 60px;
+						color: $header-nav-text;
+						text-decoration: none;
+						transition: color 0.5s ease-in-out;
+
+						&:hover {
+							color: $header-nav-text-hover;
+						}
+					}
+
+					&__quizzes {
+						margin-left: 30px;
+						color: $header-nav-text;
+						text-decoration: none;
+						transition: color 0.5s ease-in-out;
+
+						&:hover {
+							color: $header-nav-text-hover;
+						}
+					}
+
+					&__notes {
+						margin-left: 30px;
+						color: $header-nav-text;
+						text-decoration: none;
+						transition: color 0.5s ease-in-out;
+
+						&:hover {
+							color: $header-nav-text-hover;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	&-profile {
+		float: right;
+		margin-right: 80px;
+
+		&-photo{
+			display: inline-block;
+			line-height: 48px;
+			height: 48px;
+			padding: 8px;
+			vertical-align: top;
+			cursor: pointer;
+
+			&:after {
+				content: '\25BC';
+				color: $header-nav-text;
+				display: inline-block;
+				line-height: 48px;
+				vertical-align: top;
+				font-size: 12px;
+				transition: color 0.5s ease-in-out;
+			}
+
+			&:hover:after {
+				color: $header-nav-text-hover;
+			}
+
+			&.is-open {
+				border-bottom: 1px solid $header-background;
+				border-left: 1px solid $header-border-color;
+				border-right: 1px solid $header-border-color;
+				margin-right: -1px;
+
+				&:after {
+					content: '\25B2';
+				}
+			}
+		}
+		
+		&-nav {
+			float: right;
+			
+			&__logout {
+				display: inline-block;
+				line-height: 64px;
+				color: $header-log-text;
+				vertical-align: top;
+				margin-left: 40px;
+				font-size: 18px;
+				font-weight: bold;
+				text-decoration: none;
+				transition: color 0.5s ease-in-out;
+
+				&:hover{
+					color: $header-log-text-hover;
+				}
+			}
+
+			&__login {
+				line-height: 64px;
+				color: $header-log-text;
+				margin-left: 40px;
+				font-size: 18px;
+				font-weight: bold;
+				text-decoration: none;
+				transition: color 0.5s ease-in-out;
+
+				&:hover{
+					color: $header-log-text-hover;
+				}
+			}
+
+			&__register {
+				line-height: 64px;
+				color: $header-log-text;
+				margin-left: 40px;
+				font-size: 18px;
+				font-weight: bold;
+				text-decoration: none;
+				transition: color 0.5s ease-in-out;
+
+				&:hover{
+					color: $header-log-text-hover;
+				}
+			}
+		}
+	}
+}

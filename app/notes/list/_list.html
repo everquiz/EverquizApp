@@ -1,0 +1,133 @@
+<div class="notes-list">
+    <div class="notes-list-wrapper">
+        <ul class="notes-list-container" dnd-list="NotesListCtrl.notes" ng-class="{'on-drag':NotesListCtrl.onDragStyle}">
+            <li class="notes-list-container-item" ng-repeat="note in NotesListCtrl.notes" ng-show="NotesListCtrl.paginatorCheck($index)"
+                dnd-draggable="note"
+                dnd-moved="NotesListCtrl.onMove($index)"
+                dnd-dragstart="NotesListCtrl.toggleDragStyle()"
+                dnd-dragend="NotesListCtrl.toggleDragStyle()">
+                <span class="notes-list-container-item__title">
+                    {{note.title}}
+                </span>
+
+                <span class="notes-list-container-item__content">
+                    {{note.text}}
+                </span>
+
+                <span class="notes-list-container-item__category">
+                    Javascript
+                </span>
+
+                <div class="notes-list-container-item-controls">
+                    <span class="notes-list-container-item-controls__edit" ng-click="NotesListCtrl.editInit(note)"></span>
+                    <span class="notes-list-container-item-controls__favourite"
+                          ng-click="NotesListCtrl.toggleFavourite(note)"
+                          ng-class="{'is-true': note.favourite}"></span>
+                    <span class="notes-list-container-item-controls__delete" ng-click="NotesListCtrl.onNoteClick(note)"></span>
+                </div>
+            </li>
+        </ul>
+
+        <div class="notes-list-trash">
+            <span class="notes-list-trash__icon"></span>
+            <div class="notes-list-trash-clean" ng-click="NotesListCtrl.RecycleCleanUp()">
+                <span class="notes-list-trash-clean__icon"></span>
+            </div>
+            
+            <ul  class="notes-list-trash-list" dnd-list="NotesListCtrl.deletedList" ng-class="{'on-drag':NotesListCtrl.onDragStyle}">
+                <li class="notes-list-trash-list-item" ng-repeat="deletedNote in NotesListCtrl.deletedList"
+                    dnd-draggable="deletedNote"
+                    dnd-moved="NotesListCtrl.onDeletedMove($index)"
+                    dnd-dragstart="NotesListCtrl.toggleDragStyle()"
+                    dnd-dragend="NotesListCtrl.toggleDragStyle()"
+                    dnd-effect-allowed="move">
+                    <span class="notes-list-trash-list-item__title">{{deletedNote.title}}</span>
+                </li>
+            </ul>
+        </div>
+
+        <div class="notes-list-pagination">
+            <ul class="notes-list-pagination-buttonset" data-temp="pagination">
+                <li class="notes-list-pagination-buttonset-item" ng-click="NotesListCtrl.goToFirstPage()">
+                    <span class="notes-list-pagination-buttonset-item__title is-first">First</span>
+                </li>
+                <li class="notes-list-pagination-buttonset-item" ng-click="NotesListCtrl.previousPage()">
+                    <span class="notes-list-pagination-buttonset-item__title">&laquo;</span>
+                </li>
+                <li class="notes-list-pagination-buttonset-item" ng-click="NotesListCtrl.goToPage(page)" ng-repeat="page in NotesListCtrl.pageList" ng-class="{'is-active': NotesListCtrl.page === page}">
+                    <span class="notes-list-pagination-buttonset-item__title">{{page + 1}}</span>
+                </li>
+                <li class="notes-list-pagination-buttonset-item" ng-click="NotesListCtrl.nextPage()">
+                    <span class="notes-list-pagination-buttonset-item__title">&raquo;</span>
+                </li>
+                <li class="notes-list-pagination-buttonset-item" ng-click="NotesListCtrl.goToLastPage()">
+                    <span class="notes-list-pagination-buttonset-item__title is-last">Last</span>
+                </li>
+            </ul>
+        </div>
+
+        <div class="notes-list-form">
+            <form class="notes-list-form-create" name="note-create" ng-show="NotesListCtrl.createMenuActive" ng-submit="NotesListCtrl.addNote(NotesListCtrl.newNote)">
+                <fieldset class="notes-list-form-create-content">    
+                    <legend class="notes-list-form-create-content__header">Create note</legend>
+                    <label class="notes-list-form-create-content__title">
+                        Add title*
+                        <input class="notes-list-form-create-content__input" type="text" ng-model="NotesListCtrl.newNote.title" placeholder="Title" required>
+                    </label>
+
+                    <label class="notes-list-form-create-content__text">
+                        Add text*
+                        <input class="notes-list-form-create-content__input" type="text" ng-model="NotesListCtrl.newNote.text" placeholder="Text"required>
+                    </label>
+
+                    <label class="notes-list-form-create-content__hint">
+                        * - Required fields
+                    </label>
+                    
+                    <div class="notes-list-form-create-content-controls">
+                        <input type="submit" value="CREATE" class="notes-list-form-create-content-controls__create" ng-click="NotesListCtrl.toggleCreate()">
+
+                        <input type="reset" value="CANCEL" class="notes-list-form-create-content-controls__cancel" ng-click="NotesListCtrl.hideCreate()">
+                    </div>      
+                </fieldset>    
+            </form>
+        </div>
+
+        <div class="notes-list-form">
+            <form class="notes-list-form-edit" name="note-edit" ng-show="NotesListCtrl.editMenuActive" ng-submit="NotesListCtrl.updateNote(NotesListCtrl.editNote)">
+                <fieldset class="notes-list-form-edit-content">
+                    <legend class="notes-list-form-edit-content__header">Edit note</legend>
+                    <label class="notes-list-form-edit-content__title">
+                        Edit title*
+                        <input class="notes-list-form-edit-content__input" type="text" ng-model="NotesListCtrl.editNote.title" placeholder="Title" required>
+                    </label>
+
+                    <label  class="notes-list-form-edit-content__text">
+                        Edit text*
+                        <input class="notes-list-form-edit-content__input" type="text" ng-model="NotesListCtrl.editNote.text" placeholder="Text" required>
+                    </label>
+
+                    <label class="notes-list-form-edit-content__hint">
+                        * - Required fields
+                    </label>
+
+                    <div class="notes-list-form-edit-content-controls">
+                        <input type="submit" value="EDIT" class="notes-list-form-edit-content-controls__edit" ng-click="NotesListCtrl.toggleEdit()">
+
+                        <input type="reset" value="CANCEL" class="notes-list-form-edit-content-controls__cancel" ng-click="NotesListCtrl.hideEdit()">
+                    </div>  
+                </fieldset>
+            </form>
+        </div>
+
+        <div class="notes-list-button">
+            <button class="notes-list-button__new-note" ng-show="!NotesListCtrl.createMenuActive" ng-click="NotesListCtrl.showCreate()">
+                CREATE NEW NOTE
+            </button>
+
+            <button class="notes-list-button__back-to-main" ng-click="NotesListCtrl.switchToMain()">
+                BACK TO MAIN
+            </button>
+        </div>
+    </div>
+</div>    

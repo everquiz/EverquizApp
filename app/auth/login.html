@@ -1,0 +1,22 @@
+<div class="sign">
+    <div class="sign-logo">
+        <a href="../#/" class="sign-logo__home">E</a>
+        <div class="sign-header">Welcome back!</div>
+    </div>
+
+    <div ng-show="AuthCtrl.error" class="sign-alert">
+        <span class="sign-alert__message">{{ AuthCtrl.error.message }}</span>
+    </div>
+
+    <form ng-submit="AuthCtrl.logIn()" class="sign-form">
+        <h3>Log in</h3>
+
+        <input type="email" class="sign-form-input" placeholder="Email" ng-model="AuthCtrl.user.email" autofocus required>
+
+        <input type="password" class="sign-form-input" placeholder="Password" ng-model="AuthCtrl.user.password" required>
+
+        <button class="sign-form-submit">LOG IN</button>
+       
+        <a class="sign-form-go" href="#/register">TO REGISTER</a>
+    </form>
+</div>

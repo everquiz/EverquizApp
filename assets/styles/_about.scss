@@ -1,0 +1,66 @@
+.about-container {
+	width: 1280px;
+	height: 880px;
+	margin: 64px auto 0;
+	overflow: hidden;
+
+	&-name {
+		float: left;
+		margin: 150px 0 0 17.5%;
+		transition-property: transform, opacity;
+		transition-duration: 2s;
+		transition-timing-function: cubic-bezier(1, 0, 0, 1);
+
+		&__vertical {
+			display: inline-block;
+			vertical-align: top;
+			text-align: center;
+			margin-left: 20px;
+			font-size: 3em;
+			line-height: 1.5em;
+			font-weight: bold;
+			width: 1em;
+			color: $about-vertical-text;
+		}
+
+		&:hover {
+			transform: scale(4, 4);
+			opacity: 0;
+		}
+	}
+
+	&-info {
+		overflow: hidden;
+		padding: 150px 0 0 17.5%;
+		width: 190px;
+
+		&__heading {
+			font-weight: bold;
+			font-size: 26px;
+			line-height: 28px;
+			margin:15px 0 30px;
+			color: $about-info-header-text;
+		}
+
+		&__content {
+			font-size: 18px;
+			line-height: 22px;
+			margin-bottom: 30px;
+			color: $about-info-text;
+		}
+
+		&__start {
+			background: $about-button-color;
+			border: none;
+			padding: 10px 20px;
+			color: $about-button-text;
+			cursor: pointer;
+			font-weight: bold;
+			transition: background 0.5s ease-in-out;
+
+			&:hover {
+				background: $about-button-color-hover;
+			}
+		}
+	}
+}

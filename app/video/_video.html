@@ -1,0 +1,16 @@
+<div class="video">
+    <div class="video-content">
+        <button class="video-content__start" ng-click="VideoCtrl.showVideo($event);">&#9654</button>
+        <div class="video-content-description">
+            <p class="video-content-description__content">WATCH VIDEO ABOUT MY LIFE AND<br> WILL BE READY TO <span
+                    class="video-content-description__content is-important" ng-click="VideoCtrl.goToElement('quizzes')">PASS TESTS</span>
+            </p>
+        </div>
+    </div>
+    <div ng-if="VideoCtrl.videoOpened;" class="video-frame">
+        <div class="video-frame__close" ng-click=" VideoCtrl.hideVideo()">X</div>
+        <iframe  class="video-frame__item" src="https://www.youtube.com/embed/_CL6n0FJZpk?start=12&autoplay=1&controls=0&iv_load_policy=3&modestbranding=1&autohide=0&showinfo=0" 
+                frameborder="0" allowfullscreen>
+        </iframe>
+    </div>
+</div>

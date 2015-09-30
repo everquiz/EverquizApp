@@ -1,0 +1,94 @@
+.video {
+	width: 1280px;
+	height: 880px;
+	margin: 0 auto;
+	position: relative;
+
+	&-content {
+		padding-top: 300px;
+
+		&__start {
+			display: block;
+			width: 100px;
+			height: 100px;
+			padding: 0 0 5px 7px;
+			margin: auto;
+			text-align: center;
+			border-radius: 100px;
+			border: 5px solid $video-start-button;
+			font-size: 50px;
+			color: $video-start-button;
+			background: transparent;
+			cursor: pointer;
+			transition: color 0.5s ease-in-out, border 0.5s ease-in-out;
+
+			&:hover {
+				color: $video-start-button-hover;
+				border-color: $video-start-button-hover;
+			}
+		}
+
+		&-description {
+			text-align: center;
+			margin: 30px 0 0;
+
+			&__content {
+				color: $video-text;
+				font-weight: bold;
+				font-size: 24px;
+				text-align: center;
+
+				&.is-important {
+					color: $video-action-text;
+					padding: 0 5px;
+					background: $video-action-background;
+					cursor: pointer;
+					transition: color 0.5s ease-in-out, background 0.5s ease-in-out;
+
+					&:hover {
+						color: $video-action-text-hover;
+						background: $video-action-background-hover;
+					}
+				}
+			}
+		}
+	}
+
+	&-frame {
+		position: fixed;
+		min-width: 100%;
+		min-height: 100%;
+		width: 100%;
+		height: 100%;
+		top: 0;
+		left: 0;
+		overflow: hidden;
+		z-index: 3;
+
+		&__close {
+			opacity: 0.3;
+			position: absolute;
+			z-index: 4;
+			top: 14px;
+			right: 14px;
+			color: $video-close-button-color;
+			font-size: 28px;
+			font-weight: bold;
+			cursor: pointer;
+			transition: opacity 0.5s ease-in-out;
+
+			&:hover {
+				opacity: 1;
+			}
+		}
+
+		&__item {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			
+		}
+	}	
+}

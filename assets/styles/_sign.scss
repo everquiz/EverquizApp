@@ -1,0 +1,106 @@
+.sign {
+	margin: 130px auto;
+	width: 400px;
+	height: 500px;
+
+	&-logo {
+		display: inline-block;
+		line-height: 64px;
+		vertical-align: middle;
+		font-size: 14px;
+		font-weight: bold;
+
+		&__home {
+			display: inline-block;
+			color: $logo-text;
+			text-align: center;
+			background-color: $logo-background;
+			height: 64px;
+			width: 64px;
+			font-size: 48px;
+			font-weight: bold;
+			text-decoration: none;
+			transition: background 0.5s ease-in-out;
+
+			&:hover {
+				text-decoration: none;
+				background-color: $logo-background-hover;
+			}
+		}
+	}	
+
+	&-header {
+		display: inline-block;
+		margin-left: 30px;
+		color: $text-color;
+		font-size: 30px;
+	}
+
+	&-alert {
+		font-size: 24px;
+		color: $alert-text-color;
+		margin-left: 10px 0 0 100px;
+
+		&__message {
+			font-weight: bold;
+		}
+	}
+
+	&-form {
+		color: $text-color;
+		font-size: 20px;
+		margin-left: 5px;
+		text-align: center;
+
+		&-input {
+			width: 60%;
+			display: block;
+			border: 1px solid $border-color;
+			border-radius: 2px;
+			font-size: 20px;
+			padding: 5px;
+			margin: 0 auto 10px;
+		}
+
+		&-submit {
+			display: block;
+		    background-color: $submit-background;
+		    color: $submit-text;
+		    font-weight: bold;
+		    font-family: $proxima;
+		    border: none;
+		    width: 140px;
+		    height: 42px;
+		    font-size: 18px;
+		    margin: 20px auto 0;
+		    cursor: pointer;
+		   	transition: background 0.5s ease-in-out;
+
+		    &:hover {
+		    	background: $submit-background-hover;
+		    }
+		}
+
+		&-go {
+			display: block;
+			text-decoration: none;
+		    background-color: $go-background;
+		    color: $go-text;
+		    font-weight: bold;
+		    border: 1px solid $go-border-color;
+		    width: 140px;
+		    height: 42px;
+		    line-height: 42px;
+		    font-size: 18px;
+		    margin: 10px auto;
+		    cursor: pointer;
+		   	transition: background 0.5s ease-in-out;
+
+		    &:hover {
+		    	color: $go-text-hover;
+		    	border-color: $go-border-color-hover;
+		    	background: $go-background-hover;
+		    }
+		}
+	}
+}	

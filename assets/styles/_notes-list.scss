@@ -1,0 +1,452 @@
+.notes-list {
+	position: relative;
+	width: 1280px;
+	height: 880px;
+	margin: 0 auto;
+
+	&-wrapper {
+		width: 1120px;
+		margin: 0 auto;
+	}
+
+	&-container {
+		width: 790px;
+		height: 590px;
+		float: left;
+		padding: 0;
+		margin: 95px 0 25px;
+		border: 5px dashed $notes-list-border;
+		border-radius: 5px;
+		list-style: none;
+
+		&-item {
+			position: relative;
+			background: $notes-list-item-background;
+			height: 23px;
+			margin-top: 4px;
+			padding: 6px 12px 6px 12px;
+			line-height: 23px;
+
+			&__title {
+				color: $notes-list-text;
+				font-size: 20px;
+				margin: 0 12px;
+			}
+
+			&__content {
+				color: $notes-list-text;
+				font-size: 16px;
+				margin-right: 0 12px;
+			}
+
+			&__category {
+				color: $notes-list-category-text;
+				font-size: 16px;
+			}
+
+			&-controls {
+				float: right;
+
+				&__edit {
+					@extend .icon-edit;
+					display: inline-block;
+					vertical-align: middle;
+					margin-left: 10px;
+					cursor: pointer;
+
+					&:hover {
+						@extend .icon-edit_hover;
+					}
+				}
+
+				&__favourite {
+					@extend .icon-favourite_false;
+					display: inline-block;
+					vertical-align: middle;
+					margin-left: 10px;
+					cursor: pointer;
+
+					&.is-true {
+						@extend .icon-favourite_true;
+
+						&:hover {
+							@extend .icon-favourite_hover;
+						}
+					}
+
+					&:hover {
+						@extend .icon-favourite_hover;
+					}
+				}
+
+				&__delete {
+					@extend .icon-delete;
+					display: inline-block;
+					vertical-align: middle;
+					margin-left: 10px;
+					cursor: pointer;
+
+					&:hover {
+						@extend .icon-delete_hover;
+					}
+				}
+			}
+
+			&.dndDraggingSource {
+				display: none;
+			}
+		}
+
+		& .dndPlaceholder {
+		    height: 35px;
+		    margin-top: 4px;
+		    background: $notes-list-placeholder-background;
+		}
+
+		&.on-drag {
+			border-color: $notes-list-border-on-drag;
+				
+			&.dndDragover {
+				background: $notes-list-background-on-drag;
+			}
+		}	
+	}
+
+	&-trash {
+		width: 300px;
+		height: 600px;
+		margin: 60px 0 25px;
+		position: relative;
+		float: right;
+
+		&__icon {
+			@extend .icon-trash;
+			position: absolute;
+			left: 0;
+			right: 0;
+			top: 50%;
+			margin: 0 auto;
+		}
+
+		&-clean {
+			background: $notes-list-clean-color;
+			height: 23px;
+			padding: 6px 12px;
+			text-align: center;
+			cursor: pointer;
+			transition: background 0.5s ease-in-out;
+
+			&__icon {
+				@extend .icon-trash-clean;
+				display: inline-block;
+			}
+
+			&:hover {
+				background: $notes-list-clean-color-hover;
+			}
+		}
+
+		&-list {
+			width: 280px;
+			height: 590px;
+			padding: 0 5px;
+			margin: 0;
+			border: 5px dashed $notes-list-border;
+			border-radius: 5px;
+			list-style: none;
+
+			&-item {
+				position: relative;
+				background: $notes-list-item-background;
+				height: 23px;
+				margin-top: 4px;
+				padding: 6px 12px 6px 12px;
+				line-height: 23px;
+				text-align: center;
+				box-shadow: 0 0 10px $notes-list-trash-item-alert-shadow-color;
+
+				&__title {
+					color: $notes-list-text;
+					font-size: 20px;
+					margin: 0 12px;
+				}
+
+				&.dndDraggingSource {
+					display: none;
+				}
+			}
+
+			& .dndPlaceholder {
+			    height: 35px;
+			    margin-top: 4px;
+			    background: $notes-list-placeholder-background;
+			}
+
+			&.on-drag {
+				border-color: $notes-list-border-on-drag;
+				
+				&.dndDragover {
+					background: $notes-list-background-on-drag;
+				}
+			}
+		}
+	}
+
+	&-form {
+		position: absolute;
+		width: 300px;
+		top: 30%;
+		left: 0;
+		right: 0;
+		margin: 0 auto;
+
+		&-create {
+			box-shadow: 0 10px 20px -10px $notes-list-form-shadow-color;
+
+			&-content {
+				background: $notes-list-form-background;
+				border: 3px solid $notes-list-form-border-color;
+				margin: 0;
+
+				&__header {
+					font-size: 2em;
+					font-weight: bold;
+					color: $notes-list-form-legend-text;
+					text-align: center;
+				}
+
+				&__title {
+					display: block;
+					margin: 10px 0;
+					font-size: 20px;
+					font-weight: bold;
+					color: $notes-list-form-text;
+					text-align: center;
+				}
+
+				&__text {
+					display: block;
+					margin: 10px 0;
+					font-size: 20px;
+					font-weight: bold;
+					color: $notes-list-form-text;
+					text-align: center;
+				}
+
+				&__input {
+					font-size: 16px;
+					color: $notes-list-form-text;
+				}
+
+				&__hint {
+					display: block;
+					margin: 10px 0;
+					font-size: 16px;
+					font-style: italic;
+					color: $notes-list-form-hint-text;
+					text-align: center;
+				}
+				
+				&-controls {
+					text-align: center;
+
+					&__create {
+						background: $notes-list-form-controls-color;
+						font-weight: bold;
+						color: $notes-list-form-controls-text;
+						border: none;
+						padding: 5px 10px;
+						cursor: pointer;
+						transition: background 0.5s ease-in-out;
+
+						&:hover {
+							background: $notes-list-form-controls-color-hover;
+						}
+					}
+
+					&__cancel {
+						background: $notes-list-form-controls-color;
+						font-weight: bold;
+						color: $notes-list-form-controls-text;
+						border: none;
+						padding: 5px 10px;
+						cursor: pointer;
+						transition: background 0.5s ease-in-out;
+
+						&:hover {
+							background: $notes-list-form-controls-color-hover;
+						}
+					}
+				}	
+			}
+		}
+
+		&-edit {
+			box-shadow: 0 10px 20px -10px $notes-list-form-shadow-color;
+
+			&-content {
+				background: $notes-list-form-background;
+				border: 3px solid $notes-list-form-border-color;
+				margin: 0;
+
+				&__header {
+					font-size: 2em;
+					font-weight: bold;
+					color: $notes-list-form-legend-text;
+					text-align: center;
+				}
+
+				&__title {
+					display: block;
+					margin: 10px 0;
+					font-size: 20px;
+					font-weight: bold;
+					color: $notes-list-form-text;
+					text-align: center;
+				}
+
+				&__text {
+					display: block;
+					margin: 10px 0;
+					font-size: 20px;
+					font-weight: bold;
+					color: $notes-list-form-text;
+					text-align: center;
+				}
+
+				&__input {
+					font-size: 16px;
+					color: $notes-list-form-text;
+				}
+
+				&__hint {
+					display: block;
+					margin: 10px 0;
+					font-size: 16px;
+					font-style: italic;
+					color: $notes-list-form-hint-text;
+					text-align: center;
+				}
+				
+				&-controls {
+					text-align: center;
+
+					&__edit {
+						background: $notes-list-form-controls-color;
+						font-weight: bold;
+						color: $notes-list-form-controls-text;
+						border: none;
+						padding: 5px 10px;
+						cursor: pointer;
+						transition: background 0.5s ease-in-out;
+
+						&:hover {
+							background: $notes-list-form-controls-color-hover;
+						}
+					}
+
+					&__cancel {
+						background: $notes-list-form-controls-color;
+						font-weight: bold;
+						color: $notes-list-form-controls-text;
+						border: none;
+						padding: 5px 10px;
+						cursor: pointer;
+						transition: background 0.5s ease-in-out;
+
+						&:hover {
+							background: $notes-list-form-controls-color-hover;
+						}
+					}
+				}	
+			}
+		}
+	}
+
+	&-pagination {
+		position: absolute;
+		left: 0;
+		right: 0;
+		bottom: 80px;
+		height: 20px;
+		text-align: center;
+		margin: 30px 80px;
+
+		&-buttonset {
+		    display: inline-block;
+		    margin: 0;
+		    padding: 0;
+		    font-size: 0;
+
+		    &-item {
+		    	display: inline;
+
+				&.is-active &__title {
+			    	background: $notes-list-pagination-active-background;
+				}
+
+				&__title {
+					border: 1px solid $notes-list-pagination-border;
+				    border-left-width: 0;
+					color: $notes-list-pagination-text;
+					font-size: 16px;
+					cursor: pointer;
+					padding: 4px 12px 4px 12px;
+					background: $notes-list-pagination-background;
+
+					&:hover {
+				   		background: $notes-list-pagination-background-hover;
+				    }
+
+					&.is-first {
+						border-top-left-radius: 3px;
+						border-bottom-left-radius: 3px;
+						border-left-width: 1px;
+					}
+
+					&.is-last {
+						border-top-right-radius: 3px;
+						border-bottom-right-radius: 3px;
+					}
+				}
+		    }
+		}
+	}
+
+	&-button {
+		position: absolute;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		text-align: center;
+		margin: 0 80px 50px;
+
+		&__new-note {
+			background: $notes-list-button-color;
+			font-weight: bold;
+			color: $notes-list-button-text;
+			border: none;
+			padding: 10px 20px;
+			cursor: pointer;
+			transition: background 0.5s ease-in-out;
+
+			&:hover {
+				background: $notes-list-button-color-hover;
+			}
+		}
+
+		&__back-to-main {
+			background: $notes-list-button-color;
+			font-weight: bold;
+			color: $notes-list-button-text;
+			border: none;
+			padding: 10px 20px;
+			cursor: pointer;
+			transition: background 0.5s ease-in-out;
+
+			&:hover {
+				background: $notes-list-button-color-hover;
+			}
+		}
+	}
+}
