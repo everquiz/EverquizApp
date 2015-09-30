@@ -33,6 +33,10 @@
         function checkResult() {
             quizService.checkResult(vm.quiz);
             quizService.activeQuiz = null;
+            quizService.margin = 0; 
+            quizService.questionCount = 0; 
+            quizService.startQuiz = false; 
+            quizService.buttonText = 'START QUIZ!';
             localStorage.removeItem('quiz');
             localStorage.removeItem('slide');
             goToElement('result');
