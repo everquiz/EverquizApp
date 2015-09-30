@@ -86,19 +86,8 @@ gulp.task('vendor-css', ['normalize', 'font'], function(){
 });
 
 //Custom styles
-gulp.task('scss-concat',function () {
-    return gulp.src([
-            'assets/styles/sprite.css',
-            'assets/styles/**/*.scss',
-            '!assets/styles/application.scss'])
-        .pipe(concat('application.scss'))
-        .pipe(gulp.dest('assets/styles'));
-});
-
-gulp.task('styles', ['scss-concat'], function() {
-    return gulp.src([
-            'assets/styles/application.scss',
-            'assets/styles/**/*.css'])
+gulp.task('styles', function() {
+    return gulp.src('assets/styles/main.scss')
         .pipe(sass().on('error', sass.logError))
         .pipe(concat('application.min.css'))
         .pipe(minifyCss({compatibility: 'ie8'}))
