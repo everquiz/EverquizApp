@@ -21,7 +21,8 @@ module.exports = function(config) {
       './tests/**/*.js',
       './app/**/*.spec.js',
       './app/achievments/test.specs.js',
-      './tests/test.specs.js'
+      './tests/test.specs.js',
+      './tests/*.js'
     ],
 
 
