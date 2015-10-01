@@ -1,12 +1,11 @@
 <h1>Statistics chart</h1>
 
-<canvas id="line" class="chart chart-line" chart-data="data"
-        chart-labels="labels" chart-legend="true" chart-series="series"
-        chart-click="onClick"
-        chart-colours="colours">
-</canvas>
-
-<canvas id="line1" class="chart chart-line" chart-data="data"
-        chart-labels="labels" chart-legend="true" chart-series="series"
-        chart-click="onClick" >
+<!--<select name="category" id="category" class="quiz-list-header-selector-item"-->
+        <!--ng-model="" ng-options=""-->
+        <!--ng-change="">-->
+<!--</select>-->
+<canvas id="line" class="chart chart-line" chart-data="ChartCtrl.data"
+        chart-labels="ChartCtrl.labels" chart-legend="true" chart-series="ChartCtrl.series"
+        chart-click="ChartCtrl.onClick"
+        chart-colours="ChartCtrl.colours">
 </canvas>
