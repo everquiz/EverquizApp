@@ -125,7 +125,7 @@
             position: absolute;
             left: 640px;
             top: 600px;
-            background-color: #fb3a3a;
+            background-color: $quiz-button;
             color: $white;
             font-family: $proxima;
             font-weight: bold;
@@ -133,13 +133,20 @@
             width: 140px;
             height: 42px;
             font-size: 18px;
+            cursor: pointer;
+            transition: background 0.5s ease-in-out;
+
+                &:hover {
+                    background-color: $quiz-button-hover;
+                }
         }
 
         &__save-to-note {
+
             position: absolute;
-            left: 200px;
+            left: 485px;
             top: 600px;
-            background-color: #fb3a3a;
+            background-color: $quiz-button;
             color: $white;
             font-family: $proxima;
             font-weight: bold;
@@ -147,6 +154,13 @@
             width: 140px;
             height: 42px;
             font-size: 18px;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: background 0.5s ease-in-out;
+
+                &:hover {
+                    background-color: $quiz-button-hover;
+                }
         }
     }
 
