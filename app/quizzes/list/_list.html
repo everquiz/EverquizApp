@@ -1,46 +1,49 @@
-<div class="quizzes">
-    <div class="quizzes-header">
-        <span class="quizzes-header__title">Quizzes</span>
+<div class="quiz-list">
+    <div class="quiz-list-header">
+        <span class="quiz-list-header__title">Quizzes</span>
 
-        <form class="quizzes-header-selector" method="get" action="">
-            <select name="category" id="category" class="quizzes-header-selector-item"
+        <form class="quiz-list-header-selector" method="get" action="">
+            <select name="category" id="category" class="quiz-list-header-selector-item"
                     ng-model="RunQuizzesCtrl.selectedCategory" ng-options="o._id as o.title for o in RunQuizzesCtrl.categories"
                     ng-change="RunQuizzesCtrl.updateQuizzes()">
             </select>
-            <select name="difficulty" id="difficulty" class="quizzes-header-selector-item"
+            <select name="difficulty" id="difficulty" class="quiz-list-header-selector-item"
                     ng-model="RunQuizzesCtrl.selectedComplexity" ng-options="o._id as o.title for o in RunQuizzesCtrl.difficulties"
                     ng-change="RunQuizzesCtrl.updateQuizzes()">
             </select>
-            <select name="status" id="status" class="quizzes-header-selector-item" ng-model="RunQuizzesCtrl.selectedStatus"
+            <select name="status" id="status" class="quiz-list-header-selector-item" ng-model="RunQuizzesCtrl.selectedStatus"
                     ng-options="o._id as o.title for o in RunQuizzesCtrl.statuses" ng-change="RunQuizzesCtrl.updateQuizzes()">
             </select>
         </form>
     </div>
 
-    <div class="quizzes-selection">
-        <table class="quizzes-selection-table">
-            <tr class="quizzes-selection-table-row-heading">
-                <th class="quizzes-selection-table-row-heading__title">Category</th>
-                <th class="quizzes-selection-table-row-heading__title">Name</th>
-                <th class="quizzes-selection-table-row-heading__title">Difficulty</th>
-                <th class="quizzes-selection-table-row-heading__title">Avrg</th>
-                <th class="quizzes-selection-table-row-heading__title">Best</th>
-                <th class="quizzes-selection-table-row-heading__title">Total passing</th>
+    <div class="quiz-list-selection">
+        <table class="quiz-list-selection-table">
+            <tr class="quiz-list-selection-table-row-heading">
+                <th class="quiz-list-selection-table-row-heading__title">Category</th>
+                <th class="quiz-list-selection-table-row-heading__title">Name</th>
+                <th class="quiz-list-selection-table-row-heading__title">Difficulty</th>
+                <th class="quiz-list-selection-table-row-heading__title">Avrg</th>
+                <th class="quiz-list-selection-table-row-heading__title">Best</th>
+                <th class="quiz-list-selection-table-row-heading__title">Total passing</th>
             </tr>
-            <tr class="quizzes-selection-table-row-content" ng-repeat="quiz in RunQuizzesCtrl.filteredQuizzes"
-                ng-click="QuizzesContainerCtrl.quizFactory.activeQuiz = quiz._id; QuizzesContainerCtrl.quizFactory.setLastResult(null);">
-                <td class="quizzes-selection-table-row-content__title">{{quiz.category.title}}</td>
-                <td class="quizzes-selection-table-row-content__title">{{quiz.title}}</td>
-                <td class="quizzes-selection-table-row-content__title">{{RunQuizzesCtrl.getComplexity(quiz.complexity)}}</td>
-                <td class="quizzes-selection-table-row-content__title">{{RunQuizzesCtrl.statistics.getAverageResult(quiz)}} %</td>
-                <td class="quizzes-selection-table-row-content__title">{{RunQuizzesCtrl.statistics.getBestResult(quiz)}} %</td>
-                <td class="quizzes-selection-table-row-content__title">{{RunQuizzesCtrl.statistics.getTotalPassing(quiz)}}</td>
+            <tr class="quiz-list-selection-table-row-content" ng-repeat="quiz in RunQuizzesCtrl.quizzes"
+                ng-click="QuizzesContainerCtrl.quizFactory.activeQuiz = quiz._id; QuizzesContainerCtrl.quizFactory.setLastResult(null);"
+                    ng-show="pageFilter($index)">
+                <td class="quiz-list-selection-table-row-content__title">{{quiz.category.title}}</td>
+                <td class="quiz-list-selection-table-row-content__title">{{quiz.title}}</td>
+                <td class="quiz-list-selection-table-row-content__title">{{RunQuizzesCtrl.getComplexity(quiz.complexity)}}</td>
+                <td class="quiz-list-selection-table-row-content__title">{{RunQuizzesCtrl.statistics.getAverageResult(quiz)}} %</td>
+                <td class="quiz-list-selection-table-row-content__title">{{RunQuizzesCtrl.statistics.getBestResult(quiz)}} %</td>
+                <td class="quiz-list-selection-table-row-content__title">{{RunQuizzesCtrl.statistics.getTotalPassing(quiz)}}</td>
             </tr>
         </table>
-        
-        <pagination class="quizzes-selection-pagination" data-num-pages="RunQuizzesCtrl.numPages()" 
-              data-current-page="currentPage" data-max-size="maxSize"  
-              data-boundary-links="true" data-previous-text="&laquo;" data-next-text="&raquo;">
-        </pagination>
+
+
+        <eq-pagination view-list="RunQuizzesCtrl.quizzes" limit="3"></eq-pagination>
+        <!--<pagination class="quiz-list-selection-pagination" data-num-pages="RunQuizzesCtrl.numPages()" -->
+              <!--data-current-page="currentPage" data-max-size="maxSize"  -->
+              <!--data-boundary-links="true" data-previous-text="&laquo;" data-next-text="&raquo;">-->
+        <!--</pagination>-->
     </div>
 </div>

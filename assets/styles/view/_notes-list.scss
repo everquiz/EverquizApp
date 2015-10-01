@@ -26,22 +26,39 @@
 			margin-top: 4px;
 			padding: 6px 12px 6px 12px;
 			line-height: 23px;
+			white-space: nowrap;
 
 			&__title {
+				display: inline-block;
+				vertical-align: middle;
+				max-width: 150px;
+				overflow: hidden;
+				text-overflow: ellipsis;
 				color: $notes-list-text;
 				font-size: 20px;
-				margin: 0 12px;
+				margin-left: 10px;
 			}
 
 			&__content {
+				display: inline-block;
+				vertical-align: middle;
+				max-width: 400px;
+				overflow: hidden;
+				text-overflow: ellipsis;
 				color: $notes-list-text;
 				font-size: 16px;
-				margin-right: 0 12px;
+				margin-left: 10px;
 			}
 
 			&__category {
+				display: inline-block;
+				vertical-align: middle;
+				max-width: 99px;
+				overflow: hidden;
+				text-overflow: ellipsis;
 				color: $notes-list-category-text;
 				font-size: 16px;
+				margin-left: 10px;
 			}
 
 			&-controls {

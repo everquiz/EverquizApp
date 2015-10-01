@@ -98,18 +98,28 @@ $video-action-background-hover: #fd2828;
 $video-close-button-color: #fff;
 
 /* Quiz-list */
+$quiz-list-selector-text: #fff;
+$quiz-list-title: #2c2c2c;
+$quiz-list-table: #e0e2e2;
+$quiz-list-table-row-heading-title: #bec1c2;
+$quiz-list-table-row-background: #e8f1f2;
+$quiz-list-table-row-background-hover: #d5e4e6;
+$quiz-list-table-row-title: #373737;
+$quiz-list-table-row-title-hover: #fb3a3a;
+$quiz-list-pagination: #999;
+$quiz-list-pagination-active-background: #f5f5f5;
+$quiz-list-pagination-background: #fff;
 
 /* Quiz-single */
-$white: #fff;
-$quiz-title: #fb3a3a;
-$quiz-text-color: #2c2c2c;
-$quiz-answers-text: #373737;
-$quiz-indicator: #b9bdbe;
-$quiz-back: #b9bdbe;
-$quiz-back-hover: #373737;
-
-
-
+$quiz-single-title: #fb3a3a;
+$quiz-single-text-color: #2c2c2c;
+$quiz-single-answers-text: #373737;
+$quiz-single-indicator: #b9bdbe;
+$quiz-single-back: #b9bdbe;
+$quiz-single-back-hover: #373737;
+$quiz-single-button-text: #fff;
+$quiz-single-button: #fb3a3a;
+$quiz-single-button-hover: #2c2c2c;
 
 /* Notes-main */
 $notes-main-header-text: #2c2c2c;

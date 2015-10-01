@@ -49,12 +49,12 @@ gulp.task('sprite', function() {
             '!assets/images/icons/*.db'])
         .pipe(spritesmith({
             imgName: 'sprite.png',
-            cssName: 'sprite.css',
+            cssName: '_sprite.css',
             imgPath: '../i/sprite.png',
         }));
 
     spriteData.img.pipe(gulp.dest('assets/images'));
-    spriteData.css.pipe(gulp.dest('assets/styles'));
+    spriteData.css.pipe(gulp.dest('assets/styles/inc'));
 });
 
 gulp.task('images', function() {
