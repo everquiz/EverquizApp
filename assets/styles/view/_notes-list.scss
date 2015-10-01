@@ -16,6 +16,7 @@
 		padding: 0;
 		margin: 95px 0 25px;
 		border: 5px dashed $notes-list-border;
+		background: $notes-list-background;
 		border-radius: 5px;
 		list-style: none;
 
@@ -169,6 +170,7 @@
 			padding: 0 5px;
 			margin: 0;
 			border: 5px dashed $notes-list-border;
+			background: $notes-list-background;
 			border-radius: 5px;
 			list-style: none;
 
@@ -180,9 +182,13 @@
 				padding: 6px 12px 6px 12px;
 				line-height: 23px;
 				text-align: center;
+				white-space: nowrap;
 				box-shadow: 0 0 10px $notes-list-trash-item-alert-shadow-color;
 
 				&__title {
+					display: block;
+					overflow: hidden;
+					text-overflow: ellipsis;
 					color: $notes-list-text;
 					font-size: 20px;
 					margin: 0 12px;

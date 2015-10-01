@@ -138,7 +138,8 @@ $notes-button-color-hover: #2c2c2c;
 /* Notes-list */
 $notes-list-border: transparent;
 $notes-list-border-on-drag: #acacac;
-$notes-list-background-on-drag: rgba( 255, 255, 255, 0.6); 
+$notes-list-background: rgba( 255, 255, 255, 0.6);
+$notes-list-background-on-drag: rgba( 0, 0, 0, 0.3); 
 $notes-list-placeholder-background: transparent;
 
 $notes-list-item-background: #fff;
