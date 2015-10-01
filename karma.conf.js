@@ -17,7 +17,12 @@ module.exports = function(config) {
       files: [
           'bower_components/angular/angular.js',
           'bower_components/angular-mocks/angular-mocks.js',
-          'tests/*.js'
+          'bower_components/angular-ui-router/release/angular-ui-router.js',
+          'bower_components/angular-bootstrap/ui-bootstrap.js',
+          'bower_components/angular-drag-and-drop-lists/angular-drag-and-drop-lists.js',
+          'bower_components/angular-animate/angular-animate.js',
+          'app/angularApp.js',
+          'tests/**/*.js'
       ],
 
 
@@ -26,7 +31,14 @@ module.exports = function(config) {
 
       // preprocess matching files before serving them to the browser
       // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
-      preprocessors: {},
+      preprocessors: {
+        'app/**/*.html': ['ng-html2js']
+      },
+
+      ngHtml2JsPreprocessor: {
+        // we want all templates to be loaded in the same module called 'templates'
+        moduleName: 'templates'
+      },
 
 
       // test results reporter to use
@@ -55,7 +67,7 @@ module.exports = function(config) {
 
       // start these browsers
       // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-      browsers: ['Chrome'],
+      browsers: ['PhantomJS'],
 
 
       // Continuous Integration mode
@@ -63,10 +75,11 @@ module.exports = function(config) {
       singleRun: false,
 
       plugins: [
-          'karma-chrome-launcher',
+          'karma-phantomjs-launcher',
           'karma-mocha',
           'karma-chai',
-          'karma-htmlfile-reporter'
+          'karma-htmlfile-reporter',
+          'karma-ng-html2js-preprocessor'
       ]
   })
   };
