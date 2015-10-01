@@ -1,4 +1,4 @@
-.quizzes {
+.quiz-list {
 	width: 1280px;
 	height: 880px;
 	margin: 0 auto;
@@ -24,7 +24,7 @@
 				height: 30px;
 				background: #2c2c2c;
 				margin-left: 5%;
-				color: $white;
+				color: $quiz-list-selector-text;
 				padding-left: 10px;
 				cursor: pointer;
 			}
@@ -37,14 +37,14 @@
 
 		&-table {
 			width: 1120px;
-			border-top: 1px solid $quizzes-table;
+			border-top: 1px solid $quiz-list-table;
 			border-spacing: 0;
 			margin: 0 auto 34px;
 			
 			&-row {
 				&-heading {
 					&__title{
-						color: $quizzes-table-row-heading-title;
+						color: $quiz-list-table-row-heading-title;
 						padding: 10px;
 						text-align: center;
 						cursor: default;
@@ -55,21 +55,21 @@
 					cursor: pointer;
 
 					&:nth-child(2n) {
-						background:  $quizzes-table-row-background;
+						background:  $quiz-list-table-row-background;
 					}
 
 					&:hover {
-						background: $quizzes-table-row-background-hover;
+						background: $quiz-list-table-row-background-hover;
 					}
 
 					&__title {
-						color: $quizzes-table-row-title;
+						color: $quiz-list-table-row-title;
 						padding: 10px;
 						text-align: center;
 						transition: color 0.5s ease-in-out;
 
 						&:hover{
-							color: $quizzes-table-row-title-hover;
+							color: $quiz-list-table-row-title-hover;
 						}
 					}	
 				}
@@ -92,15 +92,15 @@
 				box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
 
 				&>.disabled>a {
-					color: $pagination;
+					color: $quiz-list-pagination;
 					background-color: transparent;
 					cursor: default;
 				}
 
 				&>.active>a {
-					color: $pagination;
+					color: $quiz-list-pagination;
 					cursor: default;
-					background-color: $pagination-active-bg;
+					background-color: $quiz-list-pagination-active-background;
 				}
 
 				li {
@@ -111,7 +111,7 @@
 						padding: 4px 12px;
 						line-height: 20px;
 						text-decoration: none;
-						background-color: $white;
+						background-color: $quiz-list-pagination-background;
 						border: 1px solid #ddd;
 						border-left-width: 0;
 						color: #08c;

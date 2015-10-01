@@ -10,145 +10,145 @@ Icon classes can be used entirely standalone. They are named after their origina
 ```
 */
 .icon-checkbox_checked {
-  background-image: url(../i/sprite.png);
+  background-image: url(sprite.png);
   background-position: -128px -64px;
   width: 29px;
   height: 29px;
 }
 .icon-checkbox_not_checked {
-  background-image: url(../i/sprite.png);
+  background-image: url(sprite.png);
   background-position: 0px -114px;
   width: 29px;
   height: 29px;
 }
 .icon-delete {
-  background-image: url(../i/sprite.png);
+  background-image: url(sprite.png);
   background-position: -64px -143px;
   width: 16px;
   height: 16px;
 }
 .icon-delete_hover {
-  background-image: url(../i/sprite.png);
+  background-image: url(sprite.png);
   background-position: -48px -143px;
   width: 16px;
   height: 16px;
 }
 .icon-edit {
-  background-image: url(../i/sprite.png);
+  background-image: url(sprite.png);
   background-position: -32px -143px;
   width: 16px;
   height: 16px;
 }
 .icon-edit_hover {
-  background-image: url(../i/sprite.png);
+  background-image: url(sprite.png);
   background-position: -16px -143px;
   width: 16px;
   height: 16px;
 }
 .icon-facebook {
-  background-image: url(../i/sprite.png);
+  background-image: url(sprite.png);
   background-position: -29px -114px;
   width: 24px;
   height: 24px;
 }
 .icon-facebook_hover {
-  background-image: url(../i/sprite.png);
+  background-image: url(sprite.png);
   background-position: -101px -114px;
   width: 24px;
   height: 24px;
 }
 .icon-favourite_false {
-  background-image: url(../i/sprite.png);
+  background-image: url(sprite.png);
   background-position: 0px -143px;
   width: 16px;
   height: 16px;
 }
 .icon-favourite_hover {
-  background-image: url(../i/sprite.png);
+  background-image: url(sprite.png);
   background-position: -144px -93px;
   width: 16px;
   height: 16px;
 }
 .icon-favourite_true {
-  background-image: url(../i/sprite.png);
+  background-image: url(sprite.png);
   background-position: -128px -93px;
   width: 16px;
   height: 16px;
 }
 .icon-googleplus {
-  background-image: url(../i/sprite.png);
+  background-image: url(sprite.png);
   background-position: -94px -89px;
   width: 24px;
   height: 24px;
 }
 .icon-googleplus_hover {
-  background-image: url(../i/sprite.png);
+  background-image: url(sprite.png);
   background-position: -125px -114px;
   width: 24px;
   height: 24px;
 }
 .icon-linkedin {
-  background-image: url(../i/sprite.png);
+  background-image: url(sprite.png);
   background-position: -53px -114px;
   width: 24px;
   height: 24px;
 }
 .icon-linkedin_hover {
-  background-image: url(../i/sprite.png);
+  background-image: url(sprite.png);
   background-position: -77px -114px;
   width: 24px;
   height: 24px;
 }
 .icon-logo {
-  background-image: url(../i/sprite.png);
+  background-image: url(sprite.png);
   background-position: 0px -89px;
   width: 70px;
   height: 25px;
 }
 .icon-logo_hover {
-  background-image: url(../i/sprite.png);
+  background-image: url(sprite.png);
   background-position: 0px -64px;
   width: 70px;
   height: 25px;
 }
 .icon-new-note {
-  background-image: url(../i/sprite.png);
+  background-image: url(sprite.png);
   background-position: -64px 0px;
   width: 64px;
   height: 64px;
 }
 .icon-new-note_hover {
-  background-image: url(../i/sprite.png);
+  background-image: url(sprite.png);
   background-position: 0px 0px;
   width: 64px;
   height: 64px;
 }
 .icon-trash-clean {
-  background-image: url(../i/sprite.png);
+  background-image: url(sprite.png);
   background-position: -70px -89px;
   width: 24px;
   height: 24px;
 }
 .icon-trash {
-  background-image: url(../i/sprite.png);
+  background-image: url(sprite.png);
   background-position: -128px -32px;
   width: 32px;
   height: 32px;
 }
 .icon-trash_hover {
-  background-image: url(../i/sprite.png);
+  background-image: url(sprite.png);
   background-position: -128px 0px;
   width: 32px;
   height: 32px;
 }
 .icon-twitter {
-  background-image: url(../i/sprite.png);
+  background-image: url(sprite.png);
   background-position: -94px -64px;
   width: 24px;
   height: 24px;
 }
 .icon-twitter_hover {
-  background-image: url(../i/sprite.png);
+  background-image: url(sprite.png);
   background-position: -70px -64px;
   width: 24px;
   height: 24px;
