@@ -23,6 +23,7 @@ var CategoryModel = require('./models/Categories');
 var HistoryModel = require('./models/Histories');
 var QuestionModel = require('./models/Questions');
 var AnswerModel = require('./models/Answers');
+var AchievementModel = require('./models/Achievements');
 
 
 
@@ -61,6 +62,8 @@ restify.serve(router, CategoryModel);
 restify.serve(router, HistoryModel);
 restify.serve(router, QuestionModel);
 restify.serve(router, AnswerModel);
+restify.serve(router, AchievementModel);
+
 app.use(router);
 
 app.use('/', routes);

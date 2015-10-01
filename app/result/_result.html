@@ -1,15 +1,15 @@
 <div class="finish">
     <div class="finish-content">
-        <div class="finish-content-summary" ng-if="ResultCtrl.quizService.lastResult !== null">
+        <div class="finish-content-summary" ng-if="ResultCtrl.quizFactory.getLastResult() !== null">
             <p class="finish-content-summary__title">Your result is:</p>
-            <span class="finish-content-summary__result">{{ResultCtrl.quizService.lastResult}} %</span>
+            <span class="finish-content-summary__result">{{ResultCtrl.quizFactory.getLastResult()}} %</span>
         </div>
 
-        <div class="finish-content-random" ng-if="ResultCtrl.quizService.lastResult === null">
+        <div class="finish-content-random" ng-if="ResultCtrl.quizFactory.getLastResult() === null">
             <p class="finish-content-random__title">{{ResultCtrl.getRandomPhrase()}}</p>
         </div>
 
-        <div class="finish-content-action" ng-if="ResultCtrl.quizService.lastResult !== null">
+        <div class="finish-content-action" ng-if="ResultCtrl.quizFactory.getLastResult() !== null">
             <div class="finish-content-action-call">
                 <span class="finish-content-action-call__title">GET FAIL?</span>
             </div>

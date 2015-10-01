@@ -61,6 +61,25 @@
             }
         }
 
+        &-chart {
+            position: absolute;
+            right: 100px;
+            top: 18px;
+
+            &__link {
+                @extend .icon-chart;
+                border: none;
+                background-color: transparent;
+                display: inline-block;
+                vertical-align: middle;
+                cursor: pointer;
+
+                &:hover {
+                    @extend .icon-chart_hover;
+                }
+            } 
+        }
+
         &-notes {
             position: absolute;
             right: 56px;
@@ -77,21 +96,6 @@
                 &:hover {
                     background: $profile-button-color-hover;
                 }
-            }
-        }
-
-        &-chart {
-            position: absolute;
-            right: 56px;
-            top: 10px;
-            @extend .icon-chart;
-            display: inline-block;
-            vertical-align: middle;
-            margin-left: 10px;
-            cursor: pointer;
-
-            &__link {
-
             }
         }
     }

@@ -1,5 +1,5 @@
-<div class="quizzes-header">
-    <div class="quizzes-header__title">Users</div>
+<div class="quiz-list-header">
+    <div class="quiz-list-header__title">Users</div>
 </div>
 
 <form class="search">
@@ -7,29 +7,29 @@
   <input type="text" class="search-input" ng-model="QuizzesCtrl.search" placeholder="Search"/>
 </form>
 
-<div class="quizzes-selection height-auto">
-    <table class="quizzes-selection-table">
-        <tr class="quizzes-selection-table-row-heading">
-            <th class="quizzes-selection-table-row-heading__title">Index</th>
-            <th class="quizzes-selection-table-row-heading__title">ID</th>
-            <th class="quizzes-selection-table-row-heading__title">Name</th>
-            <th class="quizzes-selection-table-row-heading__title">Email</th>
-            <th class="quizzes-selection-table-row-heading__title">createAt</th>
-            <th class="quizzes-selection-table-row-heading__title">editedAt</th>
-            <th class="quizzes-selection-table-row-heading__title">Total notes</th>
-            <th class="quizzes-selection-table-row-heading__title">Total quizzes passed</th>
-            <th class="quizzes-selection-table-row-heading__title">Actions</th>
+<div class="quiz-list-selection height-auto">
+    <table class="quiz-list-selection-table">
+        <tr class="quiz-list-selection-table-row-heading">
+            <th class="quiz-list-selection-table-row-heading__title">Index</th>
+            <th class="quiz-list-selection-table-row-heading__title">ID</th>
+            <th class="quiz-list-selection-table-row-heading__title">Name</th>
+            <th class="quiz-list-selection-table-row-heading__title">Email</th>
+            <th class="quiz-list-selection-table-row-heading__title">createAt</th>
+            <th class="quiz-list-selection-table-row-heading__title">editedAt</th>
+            <th class="quiz-list-selection-table-row-heading__title">Total notes</th>
+            <th class="quiz-list-selection-table-row-heading__title">Total quizzes passed</th>
+            <th class="quiz-list-selection-table-row-heading__title">Actions</th>
         </tr>
-        <tr class="quizzes-selection-table-row-content" ng-repeat="user in UsersCtrl.users | filter : UsersCtrl.search">
-            <td class="quizzes-selection-table-row-content__title">{{$index}}</td>
-            <td class="quizzes-selection-table-row-content__title">{{user._id}}</td>
-            <td class="quizzes-selection-table-row-content__title">{{user.name}}</td>
-            <td class="quizzes-selection-table-row-content__title">{{user.email}}</td>
-            <td class="quizzes-selection-table-row-content__title">{{user.createAt | date:'dd/MM/yyyy'}}</td>
-            <td class="quizzes-selection-table-row-content__title">{{user.editedAt | date:'dd/MM/yyyy'}}</td>
-            <td class="quizzes-selection-table-row-content__title">{{user.notes.length}}</td>
-            <td class="quizzes-selection-table-row-content__title">{{user.history.length}}</td>
-            <td class="quizzes-selection-table-row-content__title"><i class="fa fa-wrench" ng-click='UsersCtrl.editUser(user)'></i></td>
+        <tr class="quiz-list-selection-table-row-content" ng-repeat="user in UsersCtrl.users | filter : UsersCtrl.search">
+            <td class="quiz-list-selection-table-row-content__title">{{$index}}</td>
+            <td class="quiz-list-selection-table-row-content__title">{{user._id}}</td>
+            <td class="quiz-list-selection-table-row-content__title">{{user.name}}</td>
+            <td class="quiz-list-selection-table-row-content__title">{{user.email}}</td>
+            <td class="quiz-list-selection-table-row-content__title">{{user.createAt | date:'dd/MM/yyyy'}}</td>
+            <td class="quiz-list-selection-table-row-content__title">{{user.editedAt | date:'dd/MM/yyyy'}}</td>
+            <td class="quiz-list-selection-table-row-content__title">{{user.notes.length}}</td>
+            <td class="quiz-list-selection-table-row-content__title">{{user.history.length}}</td>
+            <td class="quiz-list-selection-table-row-content__title"><i class="fa fa-wrench" ng-click='UsersCtrl.editUser(user)'></i></td>
         </tr>
     </table>
 </div>
