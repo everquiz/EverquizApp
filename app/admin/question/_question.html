@@ -1,6 +1,6 @@
 
-<div class="quizzes-header">
-    <div class="quizzes-header__title">Answers</div>
+<div class="quiz-list-header">
+    <div class="quiz-list-header__title">Answers</div>
 </div>
 <h3 class="center">{{QuestionCtrl.question.text}}</h3>
 
@@ -9,21 +9,21 @@
   <input type="text" class="search-input" ng-model="QuizzesCtrl.search" placeholder="Search"/>
 </form>
 
-<div class="quizzes-selection height-auto">
-    <table class="quizzes-selection-table">
-        <tr class="quizzes-selection-table-row-heading">
-            <th class="quizzes-selection-table-row-heading__title">Text</th>
-            <th class="quizzes-selection-table-row-heading__title">ID</th>
-            <th class="quizzes-selection-table-row-heading__title">createAt</th>
-            <th class="quizzes-selection-table-row-heading__title">Correct</th>
-            <th class="quizzes-selection-table-row-heading__title">Actions</th>
+<div class="quiz-list-selection height-auto">
+    <table class="quiz-list-selection-table">
+        <tr class="quiz-list-selection-table-row-heading">
+            <th class="quiz-list-selection-table-row-heading__title">Text</th>
+            <th class="quiz-list-selection-table-row-heading__title">ID</th>
+            <th class="quiz-list-selection-table-row-heading__title">createAt</th>
+            <th class="quiz-list-selection-table-row-heading__title">Correct</th>
+            <th class="quiz-list-selection-table-row-heading__title">Actions</th>
         </tr>
-        <tr class="quizzes-selection-table-row-content" ng-repeat="answer in QuestionCtrl.question.answers | filter : QuestionCtrl.search">
-            <td class="quizzes-selection-table-row-content__title">{{answer.text}}</td>
-            <td class="quizzes-selection-table-row-content__title">{{answer._id}}</td>
-            <td class="quizzes-selection-table-row-content__title">{{answer.createAt}}</td>
-            <td class="quizzes-selection-table-row-content__title">{{answer.correct}}</td>
-            <td class="quizzes-selection-table-row-content__title"><i class="fa fa-trash-o" ng-click='QuestionCtrl.removeAnswer(answer)'></i><i class="fa fa-wrench" ng-click='QuestionCtrl.editAnswer(answer)'></i></td>
+        <tr class="quiz-list-selection-table-row-content" ng-repeat="answer in QuestionCtrl.question.answers | filter : QuestionCtrl.search">
+            <td class="quiz-list-selection-table-row-content__title">{{answer.text}}</td>
+            <td class="quiz-list-selection-table-row-content__title">{{answer._id}}</td>
+            <td class="quiz-list-selection-table-row-content__title">{{answer.createAt}}</td>
+            <td class="quiz-list-selection-table-row-content__title">{{answer.correct}}</td>
+            <td class="quiz-list-selection-table-row-content__title"><i class="fa fa-trash-o" ng-click='QuestionCtrl.removeAnswer(answer)'></i><i class="fa fa-wrench" ng-click='QuestionCtrl.editAnswer(answer)'></i></td>
         </tr>
     </table>
 </div>

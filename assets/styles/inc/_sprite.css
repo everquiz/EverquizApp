@@ -15,33 +15,39 @@ Icon classes can be used entirely standalone. They are named after their origina
   width: 64px;
   height: 64px;
 }
-.icon-checkbox_checked {
+.icon-chart_hover {
   background-image: url(../i/sprite.png);
-  background-position: -157px -82px;
-  width: 29px;
-  height: 29px;
+  background-position: -64px -64px;
+  width: 64px;
+  height: 64px;
 }
-.icon-checkbox_not_checked {
+.icon-checkbox_checked {
   background-image: url(../i/sprite.png);
   background-position: -128px -82px;
   width: 29px;
   height: 29px;
 }
+.icon-checkbox_not_checked {
+  background-image: url(../i/sprite.png);
+  background-position: -157px -82px;
+  width: 29px;
+  height: 29px;
+}
 .icon-delete {
   background-image: url(../i/sprite.png);
-  background-position: -64px -112px;
+  background-position: -56px -152px;
   width: 16px;
   height: 16px;
 }
 .icon-delete_hover {
   background-image: url(../i/sprite.png);
-  background-position: -112px -88px;
+  background-position: -40px -152px;
   width: 16px;
   height: 16px;
 }
 .icon-edit {
   background-image: url(../i/sprite.png);
-  background-position: -112px -64px;
+  background-position: -24px -152px;
   width: 16px;
   height: 16px;
 }
@@ -53,13 +59,13 @@ Icon classes can be used entirely standalone. They are named after their origina
 }
 .icon-facebook {
   background-image: url(../i/sprite.png);
-  background-position: -88px -88px;
+  background-position: -72px -128px;
   width: 24px;
   height: 24px;
 }
 .icon-facebook_hover {
   background-image: url(../i/sprite.png);
-  background-position: -72px -128px;
+  background-position: -168px -128px;
   width: 24px;
   height: 24px;
 }
@@ -83,25 +89,25 @@ Icon classes can be used entirely standalone. They are named after their origina
 }
 .icon-googleplus {
   background-image: url(../i/sprite.png);
-  background-position: -96px -128px;
+  background-position: 0px -152px;
   width: 24px;
   height: 24px;
 }
 .icon-googleplus_hover {
   background-image: url(../i/sprite.png);
-  background-position: 0px -128px;
+  background-position: -96px -128px;
   width: 24px;
   height: 24px;
 }
 .icon-linkedin {
   background-image: url(../i/sprite.png);
-  background-position: -24px -128px;
+  background-position: -120px -128px;
   width: 24px;
   height: 24px;
 }
 .icon-linkedin_hover {
   background-image: url(../i/sprite.png);
-  background-position: -48px -128px;
+  background-position: -144px -128px;
   width: 24px;
   height: 24px;
 }
@@ -131,7 +137,7 @@ Icon classes can be used entirely standalone. They are named after their origina
 }
 .icon-trash-clean {
   background-image: url(../i/sprite.png);
-  background-position: -64px -88px;
+  background-position: -48px -128px;
   width: 24px;
   height: 24px;
 }
@@ -149,13 +155,13 @@ Icon classes can be used entirely standalone. They are named after their origina
 }
 .icon-twitter {
   background-image: url(../i/sprite.png);
-  background-position: -88px -64px;
+  background-position: -24px -128px;
   width: 24px;
   height: 24px;
 }
 .icon-twitter_hover {
   background-image: url(../i/sprite.png);
-  background-position: -64px -64px;
+  background-position: 0px -128px;
   width: 24px;
   height: 24px;
 }
