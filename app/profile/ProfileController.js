@@ -32,7 +32,8 @@
         function clickToOpen() {
             ngDialog.open({
                 template: "charts/chart.html",
-                controller: 'ChartController'
+                controller: 'ChartController',
+                controllerAs: 'ChartCtrl'
             });
         };
     }
