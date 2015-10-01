@@ -64,7 +64,7 @@
             } else {
                 complexity = vm.selectedComplexity;
             }
-            query = 'category=' + category + '&complexity=' + complexity;
+            query = '&category=' + category + '&complexity=' + complexity;
             quizService.getQuizzesByQuery(query).then(function (data) {
                 vm.quizzes = data;
                 var quizzesByStatus = [];
