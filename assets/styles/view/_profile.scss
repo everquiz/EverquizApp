@@ -128,7 +128,10 @@
                         margin-top: 3px;
                         font-size: 20px;
                         font-weight: bold;
-                        padding-left: 20px;
+                        padding: 0 15px;
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
 
                         &__date {
                             letter-spacing: 1px;
@@ -174,7 +177,10 @@
                         margin-top: 3px;
                         font-size: 20px;
                         font-weight: bold;
-                        padding-left: 20px;
+                        padding: 0 15px;
+                        white-space: nowrap;
+                        overflow: hidden;
+                        text-overflow: ellipsis;
                         background: $profile-additional-recomendation-background;
 
                         &__date {
