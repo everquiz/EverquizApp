@@ -22,6 +22,11 @@ module.exports = function(config) {
           'bower_components/angular-drag-and-drop-lists/angular-drag-and-drop-lists.js',
           'bower_components/angular-animate/angular-animate.js',
           'app/angularApp.js',
+          'app/**/*Service.js',
+          'app/**/*Factory.js',
+          'app/routes.js',
+          'app/**/*Controller.js',
+          'app/**/*.html',
           'tests/**/*.js'
       ],
 
