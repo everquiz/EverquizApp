@@ -5,9 +5,9 @@
         .module('everquizApp')
         .controller('RunQuizzesController', RunQuizzesController);
 
-    RunQuizzesController.$inject = ['quizzes', 'quizService', 'categoryService', '$scope', 'historyService'];
+    RunQuizzesController.$inject = ['quizzes', 'quizFactory', 'categoryService', '$scope', 'historyService'];
 
-    function RunQuizzesController(quizzes, quizService, categoryService, $scope, historyService) {
+    function RunQuizzesController(quizzes, quizFactory, categoryService, $scope, historyService) {
         var vm = this;
         vm.selectedCategory = -1;
         vm.selectedComplexity = -1;
@@ -15,11 +15,11 @@
         vm.quizzes = quizzes;
         vm.updateQuizzes = updateQuizzes;
         vm.historyService = historyService;
-        vm.difficulties = quizService.getDifficulties();
+        vm.difficulties = quizFactory.getDifficulties();
         if (vm.difficulties[0]._id != -1) {
             vm.difficulties.unshift({_id: -1, title: 'All difficulties'});
         }
-        vm.getComplexity = quizService.getComplexity;
+        vm.getComplexity = quizFactory.getComplexity;
         vm.statuses = [
             {_id: -1, title: 'All statuses'},
             {_id: 0, title: 'Passed'},
@@ -48,7 +48,7 @@
         vm.numPerPage = $scope.numPerPage = 15;
         $scope.currentPage = $scope.currentPage = 1;
         vm.numPages = numPages;
-        quizService.getQuizzes().then(function (res) {
+        quizFactory.getQuizzes().then(function (res) {
             vm.filteredQuizzes = res.slice(0, vm.numPerPage);
         });
 
@@ -65,7 +65,7 @@
                 complexity = vm.selectedComplexity;
             }
             query = '&category=' + category + '&complexity=' + complexity;
-            quizService.getQuizzesByQuery(query).then(function (data) {
+            quizFactory.getQuizzesByQuery(query).then(function (data) {
                 vm.quizzes = data;
                 var quizzesByStatus = [];
                 

@@ -29,14 +29,14 @@
 
         function registerObserverCallback(callback){
             observerCallbacks.push(callback);
-        };
+        }
 
         //call this when you know 'foo' has been changed
         function notifyObservers(){
             angular.forEach(observerCallbacks, function(callback){
                 callback();
             });
-        };
+        }
 
 
         function getProfile() {
@@ -126,7 +126,7 @@
                 angular.forEach(result, function(response) {
                     lastActions.push(response.data);
                 });
-                lastActions = lastActions[0].concat(lastActions[1])
+                lastActions = lastActions[0].concat(lastActions[1]);
                 lastActions = lastActions.sortBy('-createdAt');
                 angular.forEach(lastActions, function(response) {
                     if (response.quiz) {
