@@ -5,13 +5,14 @@
         .module('everquizApp')
         .controller('ProfileController', ProfileController);
 
-    ProfileController.$inject = ['profileFactory', 'scrollFactory'];
+    ProfileController.$inject = ['profileFactory', 'scrollFactory', 'ngDialog'];
 
-    function ProfileController(profileFactory, scrollFactory) {
+    function ProfileController(profileFactory, scrollFactory, ngDialog) {
         var vm = this;
         vm.hideProfile = hideProfile;
         vm.goToElement = goToElement;
         vm.isVisible = profileFactory.isVisible;
+        vm.clickToOpen = clickToOpen;
 
         function profileInit() {
             vm.profile = profileFactory.getProfile();
@@ -27,6 +28,13 @@
         function goToElement (elemID) {
             scrollFactory.scroll(elemID);
         }
+
+        function clickToOpen() {
+            ngDialog.open({
+                template: "charts/chart.html",
+                controller: 'ChartController'
+            });
+        };
     }
 
 })();
