@@ -5,9 +5,9 @@
         .module('everquizApp')
         .controller('PassingQuizController', PassingQuizController);
 
-    PassingQuizController.$inject = ['quizService', 'scrollFactory', 'notesService'];
+    PassingQuizController.$inject = ['quizFactory', 'scrollFactory', 'notesService'];
 
-    function PassingQuizController(quizService, scrollFactory, notesService) {
+    function PassingQuizController(quizFactory, scrollFactory, notesService) {
 
         var vm = this,
             localQuiz = localStorage.getItem('quiz'),
@@ -20,10 +20,10 @@
         if (localQuiz) {
             vm.quiz = JSON.parse(localQuiz);
         } else {
-            quizService.get(quizService.activeQuiz).then(
+            quizFactory.get(quizFactory.activeQuiz).then(
                 function (data) {
                     vm.quiz = data;
-                    quizService.getQuestions(quizService.activeQuiz).then(
+                    quizFactory.getQuestions(quizFactory.activeQuiz).then(
                         function (data) {
                             vm.quiz.questions = data;
                         }
@@ -33,12 +33,12 @@
         }
 
         function checkResult() {
-            quizService.checkResult(vm.quiz);
-            quizService.activeQuiz = null;
-            quizService.margin = 0;
-            quizService.questionCount = 0;
-            quizService.startQuiz = false;
-            quizService.buttonText = 'START QUIZ!';
+            quizFactory.checkResult(vm.quiz);
+            quizFactory.activeQuiz = null;
+            quizFactory.margin = 0;
+            quizFactory.questionCount = 0;
+            quizFactory.startQuiz = false;
+            quizFactory.buttonText = 'START QUIZ!';
             localStorage.removeItem('quiz');
             localStorage.removeItem('slide');
             goToElement('result');
@@ -49,16 +49,16 @@
         }
 
         function nextQuestion() {
-            quizService.margin = quizService.margin - 1360;
-            quizService.questionCount = quizService.questionCount + 1;
-            quizService.startQuiz = true;
+            quizFactory.margin = quizFactory.margin - 1360;
+            quizFactory.questionCount = quizFactory.questionCount + 1;
+            quizFactory.startQuiz = true;
             isClicked = false;
-            quizService.buttonText = 'NEXT STEP';
+            quizFactory.buttonText = 'NEXT STEP';
             var slide = {
-                margin: quizService.margin,
-                questionCount: quizService.questionCount,
-                startQuiz: quizService.startQuiz,
-                buttonText: quizService.buttonText
+                margin: quizFactory.margin,
+                questionCount: quizFactory.questionCount,
+                startQuiz: quizFactory.startQuiz,
+                buttonText: quizFactory.buttonText
             };
             localStorage.setItem('quiz', JSON.stringify(vm.quiz));
             localStorage.setItem('slide', JSON.stringify(slide));
@@ -68,13 +68,13 @@
             isClicked = true;
             var note = {
                 title: vm.quiz.title,
-                text: vm.quiz.questions[quizService.questionCount - 1].text
+                text: vm.quiz.questions[quizFactory.questionCount - 1].text
             };
             notesService.addNote(note);
         }
 
         function isShown() {
-            if (quizService.questionCount > 0 && !isClicked) {
+            if (quizFactory.questionCount > 0 && !isClicked) {
                 return true;
             }
         }
