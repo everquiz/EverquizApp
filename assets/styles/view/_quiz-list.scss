@@ -12,7 +12,7 @@
 			width: 20%;
 			font-size: 3em;
 			font-weight: bold;
-			color: #2c2c2c;
+			color: $quiz-list-title;
 		}
 
 		&-selector {
@@ -24,7 +24,7 @@
 				height: 30px;
 				background: #2c2c2c;
 				margin-left: 5%;
-				color: #fff;
+				color: $white;
 				padding-left: 10px;
 				cursor: pointer;
 			}
@@ -37,14 +37,14 @@
 
 		&-table {
 			width: 1120px;
-			border-top: 1px solid #e0e2e2;
+			border-top: 1px solid $quizzes-table;
 			border-spacing: 0;
 			margin: 0 auto 34px;
 			
 			&-row {
 				&-heading {
 					&__title{
-						color: #bec1c2;
+						color: $quizzes-table-row-heading-title;
 						padding: 10px;
 						text-align: center;
 						cursor: default;
@@ -55,21 +55,21 @@
 					cursor: pointer;
 
 					&:nth-child(2n) {
-						background: #e8f1f2;
+						background:  $quizzes-table-row-background;
 					}
 
 					&:hover {
-						background: #d5e4e6;
+						background: $quizzes-table-row-background-hover;
 					}
 
 					&__title {
-						color: #373737;
+						color: $quizzes-table-row-title;
 						padding: 10px;
 						text-align: center;
 						transition: color 0.5s ease-in-out;
 
 						&:hover{
-							color: #fb3a3a;
+							color: $quizzes-table-row-title-hover;
 						}
 					}	
 				}
@@ -92,15 +92,15 @@
 				box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
 
 				&>.disabled>a {
-					color: #999;
+					color: $pagination;
 					background-color: transparent;
 					cursor: default;
 				}
 
 				&>.active>a {
-					color: #999;
+					color: $pagination;
 					cursor: default;
-					background-color: #f5f5f5;
+					background-color: $pagination-active-bg;
 				}
 
 				li {
@@ -111,7 +111,7 @@
 						padding: 4px 12px;
 						line-height: 20px;
 						text-decoration: none;
-						background-color: #fff;
+						background-color: $white;
 						border: 1px solid #ddd;
 						border-left-width: 0;
 						color: #08c;
