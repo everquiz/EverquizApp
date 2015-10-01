@@ -3,15 +3,15 @@
 
   angular
       .module('everquizApp')
-      .service('achievmentService', achievmentService);
+      .service('achievementService', achievementService);
 
-  achievmentService.$inject = ['$http', 'authFactory'];
+  achievementService.$inject = ['$http', 'authFactory'];
 
-  function achievmentService($http, authFactory) {
+  function achievementService($http, authFactory) {
     var self = this;
 
     function get(id) {
-        return $http.get('/api/v1/Achievments/' + id
+        return $http.get('/api/v1/Achievements/' + id
         //   , {
         //     headers: {Authorization: 'Bearer ' + authFactory.getToken()}
         // }
