@@ -16,7 +16,7 @@
 
         function profileInit() {
             vm.profile = profileFactory.getProfile();
-        };
+        }
 
         profileFactory.registerObserverCallback(profileInit);
         profileFactory.updateProfile();

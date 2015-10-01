@@ -28,8 +28,7 @@
                 <th class="quiz-list-selection-table-row-heading__title">Total passing</th>
             </tr>
             <tr class="quiz-list-selection-table-row-content" ng-repeat="quiz in RunQuizzesCtrl.quizzes"
-                ng-click="QuizzesContainerCtrl.quizService.activeQuiz = quiz._id;
-                QuizzesContainerCtrl.quizService.lastResult = null;"
+                ng-click="QuizzesContainerCtrl.quizFactory.activeQuiz = quiz._id; QuizzesContainerCtrl.quizFactory.setLastResult(null);"
                     ng-show="pageFilter($index)">
                 <td class="quiz-list-selection-table-row-content__title">{{quiz.category.title}}</td>
                 <td class="quiz-list-selection-table-row-content__title">{{quiz.title}}</td>

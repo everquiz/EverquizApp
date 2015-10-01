@@ -5,30 +5,13 @@
         .module('everquizApp')
         .service('quizService', quizService);
 
-    quizService.$inject = ['$http', 'authFactory', 'profileFactory', 'categoryService'];
+    quizService.$inject = ['$http', 'authFactory', 'categoryService'];
 
-    function quizService($http, authFactory, profileFactory, categoryService) {
+    function quizService($http, authFactory, categoryService) {
 
         var self = this;
-        self.lastResult = null;
         self.quizzes = [];
-        self.activeQuiz = null;
-
-        self.id = authFactory.currentUserId();
-        self.display = !!self.id;
-        self.isVisible = isVisible;
-        self.showQuizzes = showQuizzes;
-        self.hideQuizzes = hideQuizzes;
-        self.margin = 0;
-        self.questionCount = 0;
-        self.buttonText = 'START QUIZ!';
-        self.startQuiz = false; 
-
-        self.checkResult = checkResult;
         self.get = get;
-        self.getQuizzes = getQuizzes;
-        self.getQuizzesByQuery = getQuizzesByQuery;
-        self.getQuestions = getQuestions;
         self.getAll = getAll;
         self.create = create;
         self.unactive = unactive;
@@ -36,61 +19,12 @@
         self.update = update;
         self.getDifficulties = getDifficulties;
         self.getComplexity = getComplexity;
-
         self.difficulties = [
-            {_id: 0, title: 'Novice'},
-            {_id: 1, title: 'Advanced'},
-            {_id: 2, title: 'Expert'}
-        ];
+                {_id: 0, title: 'Novice'},
+                {_id: 1, title: 'Advanced'},
+                {_id: 2, title: 'Expert'}
+            ];
 
-        /**
-         * For user section
-         */
-
-        function getQuizzes() {
-            return $http.get('/api/v1/Quizzes?populate=category&status=1', {
-                headers: {Authorization: 'Bearer ' + authFactory.getToken()}
-            })
-                .then(function (res) {
-                    return res.data;
-                });
-        }
-
-        function getQuizzesByQuery(query) {
-            return $http.get('/api/v1/Quizzes?populate=category&status=1' + query, {
-                headers: {Authorization: 'Bearer ' + authFactory.getToken()}
-            })
-                .then(function (res) {
-                    return res.data;
-
-                });
-        }
-
-        function getQuestions(id) {
-            return $http.get('/api/v1/Questions?quiz=' + id + 
-                '&populate=answers' + 
-                '&select=answers.text,text,quiz', {
-                headers: {Authorization: 'Bearer ' + authFactory.getToken()}
-            })
-                .then(function (res) {
-                    return res.data;
-                });
-        }
-
-        function checkResult(result) {
-            return $http.put('/checkresult', result, {
-                headers: {Authorization: 'Bearer ' + authFactory.getToken()}
-            })
-                .then(function (res) {
-                    self.lastResult = Math.round(res.data.result * 100);
-                    profileFactory.updateProfile();
-                    return res.data;
-                })
-        }
-
-        /**
-         * For admin section
-         */
         function getAll() {
             $http.get('/api/v1/Quizzes?populate=category&select=category._id,category.title', {
                 headers: {Authorization: 'Bearer ' + authFactory.getToken()}
@@ -152,18 +86,6 @@
                     return self.difficulties[i].title;
                 }
             }
-        }
-
-        function isVisible () {
-            return self.display;
-        }
-
-        function showQuizzes() {
-            self.display = true;
-        }
-
-        function hideQuizzes() {
-            self.display = false;
         }
     }
 })();

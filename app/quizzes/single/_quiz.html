@@ -4,19 +4,19 @@
 	</div>
 	<div class="quiz-block">
 		<div class="quiz-block__intro" >
-            <div class="quiz-block__intro_slide" ng-style="{'margin-left': QuizzesContainerCtrl.quizService.margin + 'px'}">
+            <div class="quiz-block__intro_slide" ng-style="{'margin-left': QuizzesContainerCtrl.quizFactory.margin + 'px'}">
                 About this quiz
             </div>
         </div>
 		<div class="quiz-block-question" ng-repeat="question in PassingQuizCtrl.quiz.questions" >
 
-		<div class="quiz-block-question__title" ng-style="{'margin-left': QuizzesContainerCtrl.quizService.margin + 'px'}">
+		<div class="quiz-block-question__title" ng-style="{'margin-left': QuizzesContainerCtrl.quizFactory.margin + 'px'}">
             <pre class="quiz-block-question__text">{{question.text}}</pre>
         </div>
 
 
 		</div>
-		<div class="quiz-block-answer" ng-style="{'margin-left': QuizzesContainerCtrl.quizService.margin + 'px'}" >
+		<div class="quiz-block-answer" ng-style="{'margin-left': QuizzesContainerCtrl.quizFactory.margin + 'px'}" >
 			<div class="quiz-block-answer__intro">
                 {{PassingQuizCtrl.quiz.description}}
             </div>
@@ -32,19 +32,20 @@
 				</ul>
 			</form>
 		</div>
-        <button class="quiz-block__save-to-note" ng-click="PassingQuizCtrl.saveToNote(QuizzesContainerCtrl.quizService.questionCount)">Save to new note</button>
-		<button class="quiz-block__submit"
-				ng-show="QuizzesContainerCtrl.quizService.questionCount != PassingQuizCtrl.quiz.questions.length"
-        ng-click="PassingQuizCtrl.nextQuestion()">
-        {{QuizzesContainerCtrl.quizService.buttonText}}
+        <button class="quiz-block__save-to-note" ng-show="PassingQuizCtrl.isShown()" ng-click="PassingQuizCtrl.saveToNote()">
+            Save to new note
+        </button>
+		<button class="quiz-block__submit" ng-click="PassingQuizCtrl.nextQuestion()"
+				ng-show="QuizzesContainerCtrl.quizFactory.questionCount != PassingQuizCtrl.quiz.questions.length">
+            {{QuizzesContainerCtrl.quizFactory.buttonText}}
 		</button>
 		<input class="quiz-block__submit" type="submit"  value="SHOW RESULT"
 			   ng-click="PassingQuizCtrl.checkResult();"
-			   ng-hide="QuizzesContainerCtrl.quizService.questionCount != PassingQuizCtrl.quiz.questions.length;">
+			   ng-hide="QuizzesContainerCtrl.quizFactory.questionCount != PassingQuizCtrl.quiz.questions.length;">
 	</div>
-	<div class="quiz-counter" ng-show="QuizzesContainerCtrl.quizService.startQuiz">
+	<div class="quiz-counter" ng-show="QuizzesContainerCtrl.quizFactory.startQuiz">
 		<span class="quiz-counter-indicator">
-			<span class="quiz-counter-indicator__current">{{QuizzesContainerCtrl.quizService.questionCount}}</span
+			<span class="quiz-counter-indicator__current">{{QuizzesContainerCtrl.quizFactory.questionCount}}</span
 			><span class="quiz-counter-indicator__separator">/</span
 			><span class="quiz-counter-indicator__total">{{PassingQuizCtrl.quiz.questions.length}}</span>
 		</span>

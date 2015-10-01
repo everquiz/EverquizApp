@@ -53,9 +53,9 @@
                                 templateUrl: 'quizzes/list/_list.html',
                                 controller: 'RunQuizzesController as RunQuizzesCtrl',
                                 resolve: {
-                                    quizzes: ['quizService',
-                                        function (quizService) {
-                                            return quizService.getQuizzes();
+                                    quizzes: ['quizFactory',
+                                        function (quizFactory) {
+                                            return quizFactory.getQuizzes();
                                         }]
                                 }
                             },
