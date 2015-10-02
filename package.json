@@ -14,7 +14,7 @@
     "postinstall": "bower install",
     "prestart": "npm install",
     "test": "node node_modules/karma/bin/karma start karma.conf.js",
-    "start": "node .server/bin/www",
+    "start": "node server/bin/www",
     "watch": "gulp"
   },
   "author": "EPAM labs team",
