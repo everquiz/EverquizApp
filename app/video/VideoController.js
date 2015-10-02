@@ -27,8 +27,7 @@
         function hideVideo() {
             if (vm.videoOpened) {
                 vm.videoOpened = false;
-                document.body.style.overflow = "auto";
-                //video.scrollIntoView();
+                document.body.style.overflow = "";
                 $scope.$apply();
             }
         }

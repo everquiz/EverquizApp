@@ -1,6 +1,8 @@
-<h1>Statistics chart</h1>
+<div class="chart-header">
+	<span class="chart-header__title">Statistics chart</span>
+</div>
 
-<select class="quiz-list-header-selector-item"
+<select class="chart-selector-item"
         ng-model="ChartCtrl.case" ng-options="case.event as case.name for case in ChartCtrl.cases"
         ng-change="ChartCtrl.updateChart()">
 </select>
