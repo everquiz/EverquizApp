@@ -69,8 +69,6 @@ describe("AchievementService", function() {
         expect(achievements).to.have.length(1);
         expect(achievements).to.deep.include.members([
             {title: 'Welcome',description: 'Welcome to our awesome service!'}]);
-
-
     });
 
     it('should get achievement from the server', function () {
