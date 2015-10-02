@@ -5,9 +5,9 @@
       .module('everquizApp')
       .controller('CategoriesController', CategoriesController);
 
-  CategoriesController.$inject = ['$scope', 'categories', 'categoryService'];
+  CategoriesController.$inject = ['categories', 'categoryService', 'ngDialog'];
 
-  function CategoriesController($scope, categories, categoryService) {
+  function CategoriesController(categories, categoryService, ngDialog) {
     var vm = this;
     vm.categories = categories;
     vm.addCategory = addCategory;
@@ -15,7 +15,15 @@
     vm.removeCategory = removeCategory;
     vm.formTitle = 'Add new category';
     vm.resetTitle = resetTitle;
+    vm.clickToOpen = clickToOpen;
 
+    function clickToOpen() {
+      ngDialog.open({
+        template: "admin/categories/_categoryModal.html",
+        controller: 'CategoriesController',
+        controllerAs: 'CategoriesCtrl'
+      });
+    };
 
     function addCategory() {
       if ((!vm.category.title || vm.category.title === '')
@@ -44,7 +52,7 @@
         vm.formTitle = 'Add new category';
       };
     };
-    
+
     function resetTitle () {
       vm.category = {};
       vm.formTitle = 'Add new category';

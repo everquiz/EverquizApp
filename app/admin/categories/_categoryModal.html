@@ -1,0 +1,14 @@
+<form ng-submit="CategoriesCtrl.addCategory()" style="margin: 30px auto 0;" class="form-container">
+    <div class="form-title"><h2>{{CategoriesCtrl.formTitle}}</h2></div>
+
+    <div class="form-title">Title</div>
+    <input class="form-field" type="text" placeholder="Title" ng-model="CategoriesCtrl.category.title" ng-model-options="{ updateOn: 'submit' }"><br/>
+
+    <div class="form-title">Description</div>
+    <textarea class="form-field" ng-model="CategoriesCtrl.category.description" ng-model-options="{ updateOn: 'submit' }" placeholder="Description"></textarea><br/>
+
+    <div class="submit-container">
+        <input class="submit-button" type="reset" value="Cancel" ng-click='CategoriesCtrl.resetTitle()' />
+        <input class="submit-button" type="submit" value="Submit" />
+    </div>
+</form>
