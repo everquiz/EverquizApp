@@ -18,13 +18,17 @@
 
         function showVideo(event) {
             vm.videoOpened = true;
+            setTimeout(function () {
+                document.body.style.overflow = "hidden";
+            }, 150);
             event.stopPropagation();
         }
 
         function hideVideo() {
             if (vm.videoOpened) {
                 vm.videoOpened = false;
-                video.scrollIntoView();
+                document.body.style.overflow = "auto";
+                //video.scrollIntoView();
                 $scope.$apply();
             }
         }
