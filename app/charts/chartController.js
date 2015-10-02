@@ -10,8 +10,7 @@
     function ChartController(chartService) {
 
         var vm = this;
-        vm.updateChart = updateChart
-        vm.dates = moment().range("2012-11-05", "2013-01-25")
+        vm.updateChart = updateChart;
         vm.cases = chartService.cases;
         vm.case = chartService.average_day
         vm.chartParams = {
