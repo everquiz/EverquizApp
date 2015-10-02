@@ -126,6 +126,8 @@ $notes-main-header-text: #2c2c2c;
 
 $notes-main-block-background: #fff;
 $notes-main-block-text: #5b5a5a;
+$notes-main-block-gradient-from: #fff;
+$notes-main-block-gradient-to: transparent;
 $notes-main-block-separator: #f0eede;
 $notes-main-block-category-text: #b9bdbe;
 
@@ -136,7 +138,8 @@ $notes-button-color-hover: #2c2c2c;
 /* Notes-list */
 $notes-list-border: transparent;
 $notes-list-border-on-drag: #acacac;
-$notes-list-background-on-drag: rgba( 255, 255, 255, 0.6); 
+$notes-list-background: rgba( 255, 255, 255, 0.6);
+$notes-list-background-on-drag: rgba( 0, 0, 0, 0.3); 
 $notes-list-placeholder-background: transparent;
 
 $notes-list-item-background: #fff;
