@@ -4,4 +4,4 @@ angular.module('everquizApp',
         'ui.bootstrap',
         'dndLists',
         'ngDialog',
-        'chart.js']);
+        'chart.js',]);

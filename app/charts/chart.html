@@ -1,11 +1,14 @@
 <h1>Statistics chart</h1>
 
-<!--<select name="category" id="category" class="quiz-list-header-selector-item"-->
-        <!--ng-model="" ng-options=""-->
-        <!--ng-change="">-->
-<!--</select>-->
-<canvas id="line" class="chart chart-line" chart-data="ChartCtrl.data"
-        chart-labels="ChartCtrl.labels" chart-legend="true" chart-series="ChartCtrl.series"
+<select class="quiz-list-header-selector-item"
+        ng-model="ChartCtrl.case" ng-options="case.event as case.name for case in ChartCtrl.cases"
+        ng-change="ChartCtrl.updateChart()">
+</select>
+
+<input type="text" date-range-picker ng-model="ChartCtrl.dates"/>
+
+<canvas id="line" class="chart chart-line" chart-data="ChartCtrl.chartParams.data"
+        chart-labels="ChartCtrl.chartParams.labels" chart-legend="true" chart-series="ChartCtrl.chartParams.series"
         chart-click="ChartCtrl.onClick"
-        chart-colours="ChartCtrl.colours">
+        chart-colours="ChartCtrl.chartParams.colours">
 </canvas>
