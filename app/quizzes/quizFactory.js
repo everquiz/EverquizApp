@@ -10,7 +10,6 @@
     function quizFactory($http, authFactory, profileFactory) {
 
         var display = !!authFactory.currentUserId();
-        var lastResult = null;
         var difficulties = [
             {_id: 0, title: 'Novice'},
             {_id: 1, title: 'Advanced'},
@@ -22,8 +21,6 @@
             showQuizzes: showQuizzes,
             hideQuizzes: hideQuizzes,
             activeQuiz: null,
-            setLastResult: setLastResult,
-            getLastResult: getLastResult,
             getDifficulties: getDifficulties,
             getComplexity: getComplexity,
             getQuizzes: getQuizzes,
@@ -33,22 +30,10 @@
             startQuiz: false,
             margin: 0,
             get: get,
-            getQuestions: getQuestions,
-            checkResult: checkResult
+            getQuestions: getQuestion
         };
 
         return factory;
-
-        function checkResult(result) {
-            return $http.put('/checkresult', result, {
-                headers: {Authorization: 'Bearer ' + authFactory.getToken()}
-            })
-                .then(function (res) {
-                    lastResult = Math.round(res.data.result * 100);
-                    profileFactory.updateProfile();
-                    return res.data;
-                })
-        }
 
         function getDifficulties() {
             return difficulties;
@@ -99,14 +84,6 @@
                 .then(function (res) {
                     return res.data;
                 });
-        }
-
-        function getLastResult() {
-            return lastResult;
-        }
-
-        function setLastResult(result) {
-            lastResult = result;
         }
 
         function isVisible() {

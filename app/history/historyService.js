@@ -1,5 +1,5 @@
 (function () {
-    'use strict'
+    'use strict';
 
     angular
         .module('everquizApp')
@@ -43,8 +43,8 @@
             var count = 0;
             var progressionList = [];
             for (var i = 0; i < vm.history.length; i++) {
-                    sum += vm.history[i].result;
-                    count++;
+                sum += vm.history[i].result;
+                count++;
                 progressionList[i] = sum / count ? Math.round((sum / count) * 100) : 0;
             }
 

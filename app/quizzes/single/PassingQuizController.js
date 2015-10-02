@@ -5,9 +5,9 @@
         .module('everquizApp')
         .controller('PassingQuizController', PassingQuizController);
 
-    PassingQuizController.$inject = ['quizFactory', 'scrollFactory', 'notesService'];
+    PassingQuizController.$inject = ['quizFactory', 'resultFactory', 'scrollFactory', 'notesService'];
 
-    function PassingQuizController(quizFactory, scrollFactory, notesService) {
+    function PassingQuizController(quizFactory, resultFactory, scrollFactory, notesService) {
 
         var vm = this,
             localQuiz = localStorage.getItem('quiz'),
@@ -33,7 +33,7 @@
         }
 
         function checkResult() {
-            quizFactory.checkResult(vm.quiz);
+            resultFactory.checkResult(vm.quiz);
             quizFactory.activeQuiz = null;
             quizFactory.margin = 0;
             quizFactory.questionCount = 0;

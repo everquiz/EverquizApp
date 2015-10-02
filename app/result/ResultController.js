@@ -5,12 +5,12 @@
         .module('everquizApp')
         .controller('ResultController', ResultController);
 
-    ResultController.$inject = ['quizFactory', 'scrollFactory', 'randomPhraseFactory'];
+    ResultController.$inject = ['resultFactory', 'scrollFactory', 'randomPhraseFactory'];
 
-    function ResultController (quizFactory, scrollFactory, randomPhraseFactory) {
+    function ResultController (resultFactory, scrollFactory, randomPhraseFactory) {
 
         var vm = this;
-        vm.quizFactory = quizFactory;
+        vm.resultFactory = resultFactory;
         vm.goToElement = goToElement;
         vm.getRandomPhrase = getRandomPhrase;
 
