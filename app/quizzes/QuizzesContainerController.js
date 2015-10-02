@@ -5,14 +5,15 @@
         .module('everquizApp')
         .controller('QuizzesContainerController', QuizzesContainerController);
 
-    QuizzesContainerController.$inject = ['quizFactory'];
+    QuizzesContainerController.$inject = ['quizFactory', 'resultFactory'];
 
-    function QuizzesContainerController (quizFactory) {
+    function QuizzesContainerController (quizFactory, resultFactory) {
 
         var vm = this,
             localQuiz = localStorage.getItem('quiz');
         vm.backToAllQuizzes = backToAllQuizzes;
         vm.quizFactory = quizFactory;
+        vm.resultFactory = resultFactory;
         vm.isVisible = quizFactory.isVisible;
         if (localQuiz) {
             vm.quizFactory.activeQuiz = JSON.parse(localQuiz)._id;

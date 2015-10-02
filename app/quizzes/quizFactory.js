@@ -5,9 +5,9 @@
         .module('everquizApp')
         .factory('quizFactory', quizFactory);
 
-    quizFactory.$inject = ['$http', 'authFactory', 'profileFactory'];
+    quizFactory.$inject = ['$http', 'authFactory'];
 
-    function quizFactory($http, authFactory, profileFactory) {
+    function quizFactory($http, authFactory) {
 
         var display = !!authFactory.currentUserId();
         var difficulties = [
@@ -30,7 +30,7 @@
             startQuiz: false,
             margin: 0,
             get: get,
-            getQuestions: getQuestion
+            getQuestions: getQuestions
         };
 
         return factory;
@@ -76,9 +76,7 @@
         }
 
         function getQuestions(id) {
-            return $http.get('/api/v1/Questions?quiz=' + id +
-                '&populate=answers' +
-                '&select=answers.text,text,quiz', {
+            return $http.get('/api/v1/Questions?quiz=' + id + '&populate=answers' + '&select=answers.text,text,quiz', {
                 headers: {Authorization: 'Bearer ' + authFactory.getToken()}
             })
                 .then(function (res) {
