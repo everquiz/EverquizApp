@@ -151,16 +151,16 @@
 		margin: 50px 80px;
 
 		&__show-all {
-			background: $notes-button-color;
+			background: $notes-main-button-color;
 			font-weight: bold;
-			color: $notes-button-text;
+			color: $notes-main-button-text;
 			border: none;
 			padding: 10px 20px;
 			cursor: pointer;
 			transition: background 0.5s ease-in-out;
 
 			&:hover {
-				background: $notes-button-color-hover;
+				background: $notes-main-button-color-hover;
 			}
 		}
 	}

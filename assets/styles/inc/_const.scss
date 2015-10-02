@@ -74,6 +74,11 @@ $profile-additional-quiz-background: #e8f1f2;
 $profile-additional-note-background: #f4f3e7;
 $profile-additional-recomendation-background: #f4f3e7;
 
+/* Chart */
+$chart-header-text: #2c2c2c;
+$chart-selector-background: #2c2c2c;
+$chart-selector-text: #fff;
+
 /* About */
 $about-vertical-text: #fff;
 
@@ -98,6 +103,7 @@ $video-action-background-hover: #fd2828;
 $video-close-button-color: #fff;
 
 /* Quiz-list */
+$quiz-list-selector-background: #2c2c2c;
 $quiz-list-selector-text: #fff;
 $quiz-list-title: #2c2c2c;
 $quiz-list-table: #e0e2e2;
@@ -131,9 +137,9 @@ $notes-main-block-gradient-to: transparent;
 $notes-main-block-separator: #f0eede;
 $notes-main-block-category-text: #b9bdbe;
 
-$notes-button-text: #fff;
-$notes-button-color: #fd2828;
-$notes-button-color-hover: #2c2c2c;
+$notes-main-button-text: #fff;
+$notes-main-button-color: #fd2828;
+$notes-main-button-color-hover: #2c2c2c;
 
 /* Notes-list */
 $notes-list-border: transparent;

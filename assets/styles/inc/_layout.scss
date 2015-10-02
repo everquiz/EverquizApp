@@ -16,6 +16,10 @@ body {
     margin: 0;
     font-family: $proxima;
     min-width: 1280px;
+
+    &::-webkit-scrollbar {
+      display: none;
+    }
 }
 
 .about-view-wrapper {

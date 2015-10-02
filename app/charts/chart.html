@@ -1,9 +1,16 @@
-<h1>Statistics chart</h1>
+<div class="chart-header">
+	<span class="chart-header__title">Statistics chart</span>
+</div>
 
-<select class="quiz-list-header-selector-item"
+<select class="chart-selector-item"
         ng-model="ChartCtrl.case" ng-options="case.event as case.name for case in ChartCtrl.cases"
         ng-change="ChartCtrl.updateChart()">
 </select>
+
+<p>Start date</p>
+<input ng-model="ChartCtrl.Date.startDate" type="date" lang="en" ng-change="ChartCtrl.updateChart()">
+<p>End date</p>
+<input ng-model="ChartCtrl.Date.endDate" type="date" lang="en" ng-change="ChartCtrl.updateChart()">
 
 <canvas id="line" class="chart chart-line" chart-data="ChartCtrl.chartParams.data"
         chart-labels="ChartCtrl.chartParams.labels" chart-legend="true" chart-series="ChartCtrl.chartParams.series"
