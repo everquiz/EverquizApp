@@ -1,0 +1,24 @@
+.chart {
+	&-header {
+		padding: 10px;
+		text-align: center;
+
+		&__title{
+			color: $chart-header-text;
+			font-size: 2em;
+			font-weight: bold;
+		}
+	}	
+
+	&-selector {
+		&-item {
+			width: 60%;
+			border: none;
+			height: 30px;
+			margin-left: 24px;
+			background: $chart-selector-background;
+			color: $chart-selector-text;
+			cursor: pointer;
+		}
+	}	
+}
