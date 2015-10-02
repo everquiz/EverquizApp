@@ -12,6 +12,7 @@
     self.get = get;
     self.getAll = getAll;
     self.create = create;
+    self.remove = remove;
 
     function get(id) {
         return $http.get('/api/v1/Achievements/' + id)
@@ -27,8 +28,12 @@
         });
     }
 
-    function create (achievment) {
-      return $http.post('/api/v1/Achievements', achievment);
+    function create (achievement) {
+      return $http.post('/api/v1/Achievements', achievement);
+    }
+
+    function remove (achievement) {
+      return $http.delete('/api/v1/Achievements/' + achievement._id, achievement);
     }
   }
 })();

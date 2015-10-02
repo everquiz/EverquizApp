@@ -23,6 +23,7 @@ var gulp = require('gulp'),
 gulp.task('scripts', ['template'], function() {
     return gulp.src([
             'app/**/*.js',
+            '!app/**/*Spec.js',
             'assets/scripts/**/*.js'])
         .pipe(plumber())
         .pipe(sourcemaps.init())
