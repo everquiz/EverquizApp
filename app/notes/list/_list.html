@@ -1,6 +1,10 @@
 <div class="notes-list">
     <div class="notes-list-wrapper">
         <ul class="notes-list-container" dnd-list="NotesListCtrl.notes" ng-class="{'on-drag':NotesListCtrl.onDragStyle}">
+            <div class="notes-list-container-item" ng-show="!NotesListCtrl.notes.length">
+                <span class="notes-list-container-item__title">
+                    Empty list
+                </span></div>
             <li class="notes-list-container-item" ng-repeat="note in NotesListCtrl.notes" ng-show="pageFilter($index)"
                 dnd-draggable="note"
                 dnd-moved="NotesListCtrl.onMove($index)"
