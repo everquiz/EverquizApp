@@ -10,6 +10,7 @@
     function NotesListController(notesService) {
 
         var vm = this;
+        vm.notes = notesService.notes;
         vm.notesNumber = 0;
         vm.editMenuActive = false;
         vm.createMenuActive = false;
@@ -27,7 +28,6 @@
         vm.updateNote = notesService.updateNote;
         vm.setLimit = notesService.setLimit;
         vm.limit = 15;
-        vm.notes = [];
         vm.switchToMain = notesService.switchToMain;
         vm.toggleFavourite = toggleFavourite;
 
@@ -35,11 +35,6 @@
             note.favourite = !note.favourite;
             vm.updateNote(note);
         }
-
-        notesService.getNotesByRating().then(function(res) {
-            vm.notes = res;
-            vm.notesNumber = vm.notes.length;
-        });
 
         //Drag-and-drop
         vm.deletedList = [];

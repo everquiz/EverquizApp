@@ -4,7 +4,8 @@
 	</div>
 	
 	<div class="notes-wrapper">
-		<div class="notes-block" ng-class="{'is-empty': note.empty}" ng-repeat="note in NotesMainCtrl.notes  | limitTo:NotesMainCtrl.limit">
+		<div class="notes-block"
+			 ng-repeat="note in NotesMainCtrl.notesSrv.notes  | limitTo:NotesMainCtrl.notesSrv.emptyNotesNum">
 			<div class="notes-block__name">
 				{{note.title}}
 			</div>
@@ -21,6 +22,9 @@
 						  ng-click="NotesMainCtrl.deleteNote(note)"></span>
 				</div>
 			</div>
+		</div>
+		<div class="notes-block is-empty"
+			 ng-repeat="i in NotesMainCtrl.getRange(NotesMainCtrl.notesSrv.realNotesNum) track by $index">
 			<div class="notes-block-empty">
 				<span class="notes-block-empty__icon"></span>
 			</div>

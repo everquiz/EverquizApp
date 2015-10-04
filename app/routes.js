@@ -69,7 +69,13 @@
                             },
                             'notes@home': {
                                 templateUrl: 'notes/_notes.html',
-                                controller: 'NotesContainerController as NotesContainerCtrl'
+                                controller: 'NotesContainerController as NotesContainerCtrl',
+                                resolve: {
+                                    initNotes: ['notesService',
+                                        function (notesService) {
+                                            return notesService.getNotes();
+                                        }]
+                                }
                             },
                             'notesList@home': {
                                 templateUrl: 'notes/list/_list.html',

@@ -9,106 +9,147 @@
 
   function notesService($http, profileFactory, authFactory) {
 
-    var notes = [];
-    var isLoaded = false;
-    var id = authFactory.currentUserId();
+    //Public
+    var self = this;
+
+    self.notes = [];
+    self.emptyNotesNum = null;
+    self.realNotesNum = null;
+
+    self.addNote = addNote;
+    self.getNotes = getNotes;
+    self.deleteNote = deleteNote;
+    self.updateNote = updateNote;
+    self.hideNotes = hideNotes;
+    self.showNotes = showNotes;
+    self.isVisible = isVisible;
+    self.isMain = isMain;
+    self.isList = isList;
+    self.switchToMain = switchToMain;
+    self.switchToList = switchToList;
+    self.sortNotes = sortNotes;
+    self.registerObserverCallback = registerObserverCallback;
+    self.notifyObservers = notifyObservers;
+
+    //Private
+    var id = null;
     var display = false;
-    if (id) display = true;
+    if (isAllowed()) display = true;
     var mainDisplay = true;
     var listDisplay = false;
+    var observerCallbacks = [];
 
-    this.addNote = function(note) {
-      id = authFactory.currentUserId();
-      note.user = id;
-      if (id)
-      $http.post('/api/v1/Notes/', note).then(function(res) {
-        notes.push(res.data);
-        profileFactory.updateProfile();
-      });
-    };
 
-    this.getNotesByFavourite = function() {
-      //if (isLoaded) return notes;
-      var id = authFactory.currentUserId();
-      if (id) {
-        return $http.get('/api/v1/Notes?user=' + id + '&sort=-favourite').then(function (res) {
-          notes = res.data;
-          //isLoaded = true;
-          return notes;
-        });
-        }
-      //}
+    //Observer
+    function registerObserverCallback(callback){
+      observerCallbacks.push(callback);
     }
 
-    this.getNotesByRating = function() {
-      //if (isLoaded) return notes;
-      var id = authFactory.currentUserId();
-      if (id) {
-        return $http.get('/api/v1/Notes?user=' + id + '&sort=rating').then(function (res) {
-          notes = res.data;
-          //isLoaded = true;
-          return notes;
+    function notifyObservers(){
+      angular.forEach(observerCallbacks, function(callback){
+        callback();
+      });
+    }
+
+    //Implementation
+    function addNote(note) {
+      if (isAllowed()) {
+        note.user = id;
+        $http.post('/api/v1/Notes/', note).then(function (res) {
+          self.notes.push(res.data);
+          profileFactory.updateProfile();
+          setLimit();
         });
       }
-      //}
+    };
+
+    function getNotes() {
+      if (isAllowed()) {
+        mainDisplay = true;
+        listDisplay = false;
+        return $http.get('/api/v1/Notes?user=' + id + '&sort=-favourite').then(function (res) {
+          self.notes = res.data;
+          setLimit();
+          return self.notes;
+        });
+        }
     }
 
-    this.updateNote = function(note) {
-      $http.put('/api/v1/Notes/' + note._id, note).then(function (res) {
-            notes.forEach(function(item, i, notes){
-              if (item._id === note._id) {
-                notes[i] = note;
-                return;
-              }
-            })
-          }
-      )
+    function sortNotes(option) {
+
     }
 
-    this.deleteNote = function(note) {
+    function updateNote(note) {
+      if (isAllowed()) {
+        $http.put('/api/v1/Notes/' + note._id, note).then(function (res) {
+          self.notes.forEach(function (item, i, notes) {
+            if (item._id === note._id) {
+              notes[i] = note;
+              return;
+            }
+          })
+        })
+      }
+    }
+
+    function deleteNote(note) {
       $http.delete('/api/v1/Notes/' + note._id).then(function (res) {
-            notes.forEach(function(item, i, notes){
+            self.notes.forEach(function(item, i, notes){
               if (item._id === note._id) {
                 notes.splice(i, 1);
                 return;
               }
             })
-          }
-      )
+        setLimit();
+      })
     }
 
-    this.hideNotes = function () {
+    function hideNotes() {
       display = false;
     };
 
-    this.showNotes = function () {
+    function showNotes() {
       display = true;
     };
 
-    this.isVisible = function () {
+    function isVisible() {
       return display;
     }
 
-    //this.setLimit = function(newLimit) {
-    //  limit = newLimit;
-    //}
-
-    this.isMain = function() {
+    function isMain() {
       return mainDisplay;
     }
 
-    this.isList = function() {
+    function isList() {
       return listDisplay;
     }
 
-    this.switchToList = function() {
+    function switchToList() {
       listDisplay = true;
       mainDisplay = false;
+      notifyObservers();
     }
 
-    this.switchToMain = function() {
+    function switchToMain() {
       listDisplay = false;
       mainDisplay = true;
+      notifyObservers();
+    }
+
+    function isAllowed() {
+      id = authFactory.currentUserId();
+      return id ? true : false;
+    }
+
+    function setLimit() {
+      if (self.notes.length < 8) {
+        self.emptyNotesNum = self.notes.length;
+        self.realNotesNum = 8 - self.notes.length;
+      }
+      else {
+        self.emptyNotesNum = 8;
+        self.realNotesNum = 0;
+      }
     }
 
   }
