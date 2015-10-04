@@ -8,15 +8,17 @@
     chartService.$inject = ['historyService'];
 
     function chartService(historyService) {
-        this.quiz_day = quiz_day;
-        this.quiz_succesful_day = quiz_succesful_day;
-        this.average_day = average_day;
+        
+        var self = this;
+        self.quiz_day = quiz_day;
+        self.quiz_succesful_day = quiz_succesful_day;
+        self.average_day = average_day;
 
-        this.initDate = initDate;
-        this.startDate = new Date();
-        this.endDate = new Date();
+        self.initDate = initDate;
+        self.startDate = new Date();
+        self.endDate = new Date();
 
-        this.cases = [
+        self.cases = [
             {
                 name: "Average result progression",
                 event: average_day
@@ -34,12 +36,13 @@
         function average_day(date_start, date_end) {
             var labels = [];
             var data = [[]];
+            var filteredIndex = 0;
             data[0] = historyService.getAverageResultProgression();
             for (var i = 0; i < historyService.history.length; ++i) {
                 var date = new Date(historyService.history[i].createdAt);
                 if (date >= date_start && date <= date_end) {
-                    var dateStr = date.getFullYear().toString() + '/' + (date.getMonth() + 1).toString() + '/' + date.getDay().toString();
-                    labels[i] = dateStr;
+                    var dateStr = dateToString(date);
+                    labels[filteredIndex++] = dateStr;
                 }
             }
 
@@ -53,14 +56,14 @@
 
         function quiz_day(date_start, date_end) {
             var initDate = new Date(historyService.history[0].createdAt);
-            var initDateStr = initDate.getFullYear().toString() + '/' + (initDate.getMonth() + 1).toString() + '/' + initDate.getDay().toString();
+            var initDateStr = dateToString(initDate);
             var labels = [initDateStr];
             var data = [[1]];
             var dataCounter = 0;
             for (var i = 1; i < historyService.history.length; ++i) {
                 var date = new Date(historyService.history[i].createdAt);
                 if (date >= date_start && date <= date_end) {
-                var dateStr = date.getFullYear().toString() + '/' + (date.getMonth() + 1).toString() + '/' + date.getDay().toString();
+                var dateStr = dateToString(date);
                 if (dateStr === labels[dataCounter]) data[0][dataCounter]++;
                 else {
                     dataCounter++;
@@ -80,7 +83,7 @@
 
         function quiz_succesful_day(date_start, date_end) {
             var initDate = new Date(historyService.history[0].createdAt);
-            var initDateStr = initDate.getFullYear().toString() + '/' + (initDate.getMonth() + 1).toString() + '/' + initDate.getDay().toString();
+            var initDateStr = dateToString(initDate);
             var labels = [initDateStr];
             var data = [[1]];
             var dataCounter = 0;
@@ -88,7 +91,7 @@
                 if (historyService.history.result > 0.6) {
                     var date = new Date(historyService.history[i].createdAt);
                     if (date >= date_start && date <= date_end) {
-                    var dateStr = date.getFullYear().toString() + '/' + (date.getMonth() + 1).toString() + '/' + date.getDay().toString();
+                    var dateStr = dateToString();
                     if (dateStr === labels[dataCounter]) {
                         data[0][dataCounter]++;
                     }
@@ -116,15 +119,18 @@
         }
 
         function initDate() {
-            console.log(historyService.history);
-            for (var i = historyService.history.length - 1; i > historyService.history.length - 7; --i) {
+            for (var i = historyService.history.length - 1; i >= historyService.history.length - 7; --i) {
                 if (historyService.history[i] === undefined) break;
-                else this.startDate = new Date(historyService.history[i].createdAt);
+                else self.startDate = new Date(historyService.history[i].createdAt);
             }
             return {
-                startDate: this.startDate,
-                endDate: this.endDate
+                startDate: self.startDate,
+                endDate: self.endDate
             }
+        }
+
+        function dateToString(date) {
+            return date.getFullYear().toString() + '/' + (date.getMonth() + 1).toString() + '/' + date.getDate().toString();
         }
     }
 

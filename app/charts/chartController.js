@@ -13,8 +13,8 @@
         vm.updateChart = updateChart;
         vm.cases = chartService.cases;
         vm.case = chartService.average_day;
-        vm.chartParams = vm.case();
         vm.Date = chartService.initDate();
+        vm.chartParams = vm.case(vm.Date.startDate, vm.Date.endDate);
 
 
         function updateChart() {

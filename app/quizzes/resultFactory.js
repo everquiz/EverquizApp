@@ -5,9 +5,9 @@
         .module('everquizApp')
         .factory('resultFactory', resultFactory);
 
-    resultFactory.$inject = ['$http', 'authFactory', 'profileFactory'];
+    resultFactory.$inject = ['$http', 'authFactory', 'profileFactory', 'historyService'];
 
-    function resultFactory($http, authFactory, profileFactory){
+    function resultFactory($http, authFactory, profileFactory, historyService){
         var lastResult = null;
 
         var factory = {
@@ -25,6 +25,7 @@
                 .then(function (res) {
                     lastResult = Math.round(res.data.result * 100);
                     profileFactory.updateProfile();
+                    historyService.getHistory();
                     return res.data;
                 })
         }
