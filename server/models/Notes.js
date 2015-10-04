@@ -4,7 +4,7 @@ var UserModel = require('./Users');
 var NoteSchema = new mongoose.Schema({
     title: String,
     text: String,
-    tag: [ {type: String, default: 'Common'} ],
+    tag: {type: String, default: 'Common'},
     favourite: {type: Boolean, default: false},
     rating: {type: Number, default: 0},
     createdAt: {type: Date},

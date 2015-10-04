@@ -13,7 +13,7 @@
 				{{note.text}}
 			</div>
 			<div class="notes-block-info">
-				<span class="notes-block-info__category">Note info</span>
+				<span class="notes-block-info__category">{{note.tag}}</span>
 				<div class="notes-block-info-controls">
 					<span class="notes-block-info-controls__favourite"
 							ng-click="NotesMainCtrl.toggleFavourite(note)"
@@ -24,7 +24,8 @@
 			</div>
 		</div>
 		<div class="notes-block is-empty"
-			 ng-repeat="i in NotesMainCtrl.getRange(NotesMainCtrl.notesSrv.realNotesNum) track by $index">
+			 ng-repeat="i in NotesMainCtrl.getRange(NotesMainCtrl.notesSrv.realNotesNum) track by $index"
+				ng-click="NotesMainCtrl.switchToList()">
 			<div class="notes-block-empty">
 				<span class="notes-block-empty__icon"></span>
 			</div>

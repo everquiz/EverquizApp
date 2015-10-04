@@ -41,26 +41,21 @@
                     //Implementation
                     function goToFirstPage() {
                         scope.activePage = 0;
-                        console.log(scope.activePage);
                     };
 
                     function goToLastPage() {
                         scope.activePage = scope.numPages - 1;
-                        console.log(scope.activePage);
                     };
 
                     function goToNextPage() {
                         if (scope.activePage < scope.numPages - 1) scope.activePage++;
-                        console.log(scope.activePage);
                     };
 
                     function goToPreviousPage() {
                         if (scope.activePage > 0) scope.activePage--;
-                        console.log(scope.activePage);
                     };
                     function goToPage(num) {
                         scope.activePage = num;
-                        console.log(scope.activePage);
                     };
 
                     function pageFilter(index) {

@@ -19,7 +19,7 @@
                 </span>
 
                 <span class="notes-list-container-item__category">
-                    Javascript
+                    {{note.tag}}
                 </span>
 
                 <div class="notes-list-container-item-controls">
@@ -51,25 +51,6 @@
         </div>
 
         <eq-pagination view-list="NotesListCtrl.notes" limit="NotesListCtrl.limit"></eq-pagination>
-        <!--<div class="notes-list-pagination">-->
-            <!--<ul class="notes-list-pagination-buttonset">-->
-                <!--<li class="notes-list-pagination-buttonset-item" ng-click="NotesListCtrl.goToFirstPage()">-->
-                    <!--<span class="notes-list-pagination-buttonset-item__title is-first">First</span>-->
-                <!--</li>-->
-                <!--<li class="notes-list-pagination-buttonset-item" ng-click="NotesListCtrl.previousPage()">-->
-                    <!--<span class="notes-list-pagination-buttonset-item__title">&laquo;</span>-->
-                <!--</li>-->
-                <!--<li class="notes-list-pagination-buttonset-item" ng-click="NotesListCtrl.goToPage(page)" ng-repeat="page in NotesListCtrl.pageList" ng-class="{'is-active': NotesListCtrl.page === page}">-->
-                    <!--<span class="notes-list-pagination-buttonset-item__title">{{page + 1}}</span>-->
-                <!--</li>-->
-                <!--<li class="notes-list-pagination-buttonset-item" ng-click="NotesListCtrl.nextPage()">-->
-                    <!--<span class="notes-list-pagination-buttonset-item__title">&raquo;</span>-->
-                <!--</li>-->
-                <!--<li class="notes-list-pagination-buttonset-item" ng-click="NotesListCtrl.goToLastPage()">-->
-                    <!--<span class="notes-list-pagination-buttonset-item__title is-last">Last</span>-->
-                <!--</li>-->
-            <!--</ul>-->
-        <!--</div>-->
 
         <div class="notes-list-form">
             <form class="notes-list-form-create" name="note-create" ng-show="NotesListCtrl.createMenuActive" ng-submit="NotesListCtrl.addNote(NotesListCtrl.newNote)">
@@ -78,6 +59,11 @@
                     <label class="notes-list-form-create-content__title">
                         Add title*
                         <input class="notes-list-form-create-content__input" type="text" ng-model="NotesListCtrl.newNote.title" placeholder="Title" required>
+                    </label>
+
+                    <label class="notes-list-form-create-content__title">
+                        Add tag
+                        <input class="notes-list-form-create-content__input" type="text" ng-model="NotesListCtrl.newNote.tag" placeholder="Tag">
                     </label>
 
                     <label class="notes-list-form-create-content__text">
@@ -105,6 +91,11 @@
                     <label class="notes-list-form-edit-content__title">
                         Edit title*
                         <input class="notes-list-form-edit-content__input" type="text" ng-model="NotesListCtrl.editNote.title" placeholder="Title" required>
+                    </label>
+
+                    <label class="notes-list-form-create-content__title">
+                        Edit tag
+                        <input class="notes-list-form-create-content__input" type="text" ng-model="NotesListCtrl.editNote.tag" placeholder="Tag">
                     </label>
 
                     <label  class="notes-list-form-edit-content__text">

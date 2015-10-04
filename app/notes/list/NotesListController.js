@@ -9,11 +9,20 @@
 
     function NotesListController(notesService) {
 
+        //Model properties
         var vm = this;
         vm.notes = notesService.notes;
-        vm.notesNumber = 0;
         vm.editMenuActive = false;
         vm.createMenuActive = false;
+        vm.newNote = {};
+        vm.editNote = {};
+        vm.limit = 15;
+
+        vm.deletedList = [];
+        vm.onDragStyle = false;
+
+        //Model functions
+        //***View managing
         vm.hideCreate = hideCreate;
         vm.showCreate = showCreate;
         vm.toggleCreate = toggleCreate;
@@ -21,37 +30,29 @@
         vm.showEdit = showEdit;
         vm.toggleEdit = toggleEdit;
         vm.editInit = editInit;
-        vm.newNote = {};
-        vm.editNote = {};
+        //***Notes managing
         vm.addNote = addNote;
         vm.onNoteClick = deleteNote;
-        vm.updateNote = notesService.updateNote;
-        vm.setLimit = notesService.setLimit;
-        vm.limit = 15;
+        vm.updateNote = updateNote;
         vm.switchToMain = notesService.switchToMain;
         vm.toggleFavourite = toggleFavourite;
-
-        function toggleFavourite(note) {
-            note.favourite = !note.favourite;
-            vm.updateNote(note);
-        }
-
-        //Drag-and-drop
-        vm.deletedList = [];
+        //***Drag-and-drop
         vm.onMove = onMove;
-        vm.onDragStyle = false;
         vm.onDeletedMove = onDeletedMove;
         vm.RecycleCleanUp = RecycleCleanUp;
         vm.toggleDragStyle = toggleDragStyle;
 
+
+        //Implementation
+        //***Drag-and-drop
         function toggleDragStyle() {
             vm.onDragStyle = !vm.onDragStyle;
             return vm.onDragStyle;
         }
 
         function onMove(index) {
-            //var noteDelta = Math.sign(index - note.rating);
             vm.notes.splice(index, 1);
+
         }
 
         function onDeletedMove(index) {
@@ -65,25 +66,29 @@
             vm.deletedList = [];
         }
 
+        //***Notes managing
         function addNote(note) {
             note.rating = vm.notesNumber;
             notesService.addNote(note);
-            vm.notesNumber++;
             vm.newNote = {};
+        }
+
+        function updateNote(note) {
+            notesService.updateNote(note);
+            vm.editNote = {};
         }
 
         function deleteNote(note) {
             notesService.deleteNote(note);
-            vm.notesNumber--;
         }
 
-        function editInit(note) {
-            vm.editNote.title = note.title;
-            vm.editNote.text = note.text;
-            vm.editNote._id = note._id;
-            vm.showEdit();
+        function toggleFavourite(note) {
+            note.favourite = !note.favourite;
+            vm.updateNote(note);
         }
 
+        //***View managing
+        //******Create form view
         function toggleCreate() {
             vm.createMenuActive = !vm.createMenuActive;
         }
@@ -97,6 +102,13 @@
             vm.hideEdit();
         }
 
+        //******Edit form view
+        function editInit(note) {
+            vm.editNote = note;
+            vm.hideCreate();
+            vm.showEdit();
+        }
+
         function toggleEdit() {
             vm.editMenuActive = !vm.editMenuActive;
         }
@@ -107,7 +119,6 @@
 
         function showEdit() {
             vm.editMenuActive = true;
-            vm.hideCreate();
         }
 
     }
