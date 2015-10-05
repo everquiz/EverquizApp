@@ -18,11 +18,17 @@
     vm.clickToOpen = clickToOpen;
 
     function clickToOpen() {
-      ngDialog.open({
-        template: "admin/categories/_categoryModal.html",
-        controller: 'CategoriesController',
-        controllerAs: 'CategoriesCtrl'
-      });
+      var modal = document.getElementById('modal');
+      console.log('modal', modal);
+      if (modal.style.opacity == 0) {
+        console.log('opacity 0')
+        modal.style.display = 'block';
+        modal.style.opacity = 1;
+      } else {
+        console.log('opacity 1')
+        modal.style.opacity = 0;
+        modal.style.display = 'none';
+      }
     };
 
     function addCategory() {
@@ -36,6 +42,7 @@
       else {
         categoryService.update(vm.category);
       }
+      vm.clickToOpen();
       vm.category = {};
       vm.formTitle = 'Add new category';
     };
