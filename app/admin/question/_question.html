@@ -7,6 +7,8 @@
 <form class="search">
   <h3>Search answer</h3>
   <input type="text" class="search-input" ng-model="QuizzesCtrl.search" placeholder="Search"/>
+    <button class="admin-button-container"
+            ng-click="QuestionCtrl.modalToggle()"}>New answer</button>
 </form>
 
 <div class="quiz-list-selection height-auto">
@@ -18,7 +20,9 @@
             <th class="quiz-list-selection-table-row-heading__title">Correct</th>
             <th class="quiz-list-selection-table-row-heading__title">Actions</th>
         </tr>
-        <tr class="quiz-list-selection-table-row-content" ng-repeat="answer in QuestionCtrl.question.answers | filter : QuestionCtrl.search">
+        <tr class="quiz-list-selection-table-row-content"
+            ng-repeat="answer in QuestionCtrl.question.answers | filter : QuestionCtrl.search"
+                ng-show="pageFilter($index)">
             <td class="quiz-list-selection-table-row-content__title">{{answer.text}}</td>
             <td class="quiz-list-selection-table-row-content__title">{{answer._id}}</td>
             <td class="quiz-list-selection-table-row-content__title">{{answer.createAt}}</td>
@@ -26,10 +30,9 @@
             <td class="quiz-list-selection-table-row-content__title"><i class="fa fa-trash-o" ng-click='QuestionCtrl.removeAnswer(answer)'></i><i class="fa fa-wrench" ng-click='QuestionCtrl.editAnswer(answer)'></i></td>
         </tr>
     </table>
-    <button ng-click="QuestionCtrl.modalToggle()"}>New answer</button>
 </div>
 
-
+<eq-pagination limit="10" view-list="QuestionCtrl.question.answers"></eq-pagination>
 
 <div class="modal-background is-hidden" id="modal">
   <div class="center-block absolute-center modal big">
