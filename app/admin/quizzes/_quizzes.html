@@ -32,7 +32,7 @@
             <td class="quiz-list-selection-table-row-content__title"><i class="fa fa-trash-o" ng-click='QuizzesCtrl.deactivateQuiz(quiz)'></i>  <i class="fa fa-play" ng-click='QuizzesCtrl.activateQuiz(quiz)'></i>  <i class="fa fa-wrench" ng-click='QuizzesCtrl.editQuiz(quiz)'></i></td>
         </tr>
     </table>
-    <button ng-click="QuizzesCtrl.clickToOpen()"}>New quiz</button>
+    <button ng-click="QuizzesCtrl.modalToggle()"}>New quiz</button>
 </div>
 
 <div class="modal-background is-hidden" id="modal">

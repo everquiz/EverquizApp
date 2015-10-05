@@ -69,6 +69,7 @@
         };
       });
       vm.formTitle = 'Edit quiz';
+      vm.modalToggle();
     };
 
     function addQuiz() {
@@ -89,6 +90,7 @@
     };
 
     function resetTitle () {
+      vm.modalToggle();
       vm.quiz = {};
       vm.formTitle = 'Add new quiz';
     }
