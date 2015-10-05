@@ -5,6 +5,8 @@
 <form class="search">
   <h3>Search quiz</h3>
   <input type="text" class="search-input" ng-model="QuizzesCtrl.search" placeholder="Search"/>
+    <button class="admin-button-container"
+            ng-click="QuizzesCtrl.modalToggle()"}>New quiz</button>
 </form>
 
 <div class="quiz-list-selection height-auto">
@@ -32,8 +34,9 @@
             <td class="quiz-list-selection-table-row-content__title"><i class="fa fa-trash-o" ng-click='QuizzesCtrl.deactivateQuiz(quiz)'></i>  <i class="fa fa-play" ng-click='QuizzesCtrl.activateQuiz(quiz)'></i>  <i class="fa fa-wrench" ng-click='QuizzesCtrl.editQuiz(quiz)'></i></td>
         </tr>
     </table>
-    <button ng-click="QuizzesCtrl.modalToggle()"}>New quiz</button>
 </div>
+
+<eq-pagination limit="10" view-list="QuizzesCtrl.quizzes"></eq-pagination>
 
 <div class="modal-background is-hidden" id="modal">
   <div class="center-block absolute-center modal big">

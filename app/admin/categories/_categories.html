@@ -5,6 +5,8 @@
 <form class="search">
   <h3>Search category</h3>
   <input type="text" class="search-input" ng-model="CategoriesCtrl.search" placeholder="Search"/>
+    <button class="admin-button-container"
+            ng-click="CategoriesCtrl.modalToggle()"}>New category</button>
 </form>
 
 <div class="quiz-list-selection height-auto">
@@ -14,14 +16,17 @@
             <th class="quiz-list-selection-table-row-heading__title">Description</th>
             <th class="quiz-list-selection-table-row-heading__title">Actions</th>
         </tr>
-        <tr class="quiz-list-selection-table-row-content" ng-repeat="category in CategoriesCtrl.categories | filter : CategoriesCtrl.search">
+        <tr class="quiz-list-selection-table-row-content"
+            ng-repeat="category in CategoriesCtrl.categories | filter : CategoriesCtrl.search"
+            ng-show="pageFilter($index)">
             <td class="quiz-list-selection-table-row-content__title">{{category.title}}</td>
             <td class="quiz-list-selection-table-row-content__title">{{category.description}}</td>
             <td class="quiz-list-selection-table-row-content__title"><i class="fa fa-trash-o" ng-click='CategoriesCtrl.removeCategory(category)'></i>  <i class="fa fa-wrench" ng-click='CategoriesCtrl.editCategory(category);'></i></td>
         </tr>
     </table>
-    <button ng-click="CategoriesCtrl.clickToOpen()"}>New category</button>
 </div>
+
+<eq-pagination limit="10" view-list="CategoriesCtrl.categories"></eq-pagination>
 
 <div class="modal-background is-hidden" id="modal">
   <div class="center-block absolute-center modal big">
