@@ -19,21 +19,17 @@
 }
 
 .center-block { 
-  background: $modal-bg-color; 
+  // background: $modal-bg-color; 
+  background: transparent;
   color: #FFF; 
   padding: 20px;
 }
 
 .modal { 
-  border: solid 5px $modal-color;
-  box-shadow: 0 0 20px rgba(0,0,0,0.25);
+  // border: solid 5px $modal-color;
+  border: none;
+  // box-shadow: 0 0 20px rgba(0,0,0,0.25);
   font-size: 1.2em;
-  img {
-    width: 100px;
-    position: absolute;
-    right: 0;
-    top: 0;
-  }  
 }
 .modal-background { 
   opacity: 1; 
@@ -45,6 +41,7 @@
   background: rgba(0, 0, 0, .35); 
   background: fade(#000,85%); 
   z-index: 3; 
+  overflow: hidden;
 }
 .is-hidden { 
   opacity: 0; 

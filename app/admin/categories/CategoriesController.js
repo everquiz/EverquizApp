@@ -15,11 +15,10 @@
     vm.removeCategory = removeCategory;
     vm.formTitle = 'Add new category';
     vm.resetTitle = resetTitle;
-    vm.clickToOpen = clickToOpen;
+    vm.modalToggle = modalToggle;
 
-    function clickToOpen() {
+    function modalToggle() {
       var modal = document.getElementById('modal');
-      console.log('modal', modal);
       if (modal.style.opacity == 0) {
         console.log('opacity 0')
         modal.style.display = 'block';
@@ -42,7 +41,7 @@
       else {
         categoryService.update(vm.category);
       }
-      vm.clickToOpen();
+      vm.modalToggle();
       vm.category = {};
       vm.formTitle = 'Add new category';
     };
@@ -50,6 +49,7 @@
     function editCategory(category) {
       vm.category = category;
       vm.formTitle = 'Edit category';
+      vm.modalToggle();
     };
 
     function removeCategory(category) {
