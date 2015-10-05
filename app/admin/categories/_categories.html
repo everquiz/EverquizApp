@@ -4,7 +4,7 @@
 
 <form class="search">
   <h3>Search category</h3>
-  <input type="text" class="search-input" ng-model="QuizzesCtrl.search" placeholder="Search"/>
+  <input type="text" class="search-input" ng-model="CategoriesCtrl.search" placeholder="Search"/>
 </form>
 
 <div class="quiz-list-selection height-auto">
@@ -14,7 +14,7 @@
             <th class="quiz-list-selection-table-row-heading__title">Description</th>
             <th class="quiz-list-selection-table-row-heading__title">Actions</th>
         </tr>
-        <tr class="quiz-list-selection-table-row-content" ng-repeat="category in CategoriesCtrl.categories | filter : QuizzesCtrl.search">
+        <tr class="quiz-list-selection-table-row-content" ng-repeat="category in CategoriesCtrl.categories | filter : CategoriesCtrl.search">
             <td class="quiz-list-selection-table-row-content__title">{{category.title}}</td>
             <td class="quiz-list-selection-table-row-content__title">{{category.description}}</td>
             <td class="quiz-list-selection-table-row-content__title"><i class="fa fa-trash-o" ng-click='CategoriesCtrl.removeCategory(category)'></i>  <i class="fa fa-wrench" ng-click='CategoriesCtrl.editCategory(category);'></i></td>
