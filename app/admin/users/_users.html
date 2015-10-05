@@ -21,7 +21,7 @@
             <th class="quiz-list-selection-table-row-heading__title">Total quizzes passed</th>
             <th class="quiz-list-selection-table-row-heading__title">Actions</th>
         </tr>
-        <tr class="quiz-list-selection-table-row-content" ng-repeat="user in UsersCtrl.users | filter : UsersCtrl.search"
+        <tr class="quiz-list-selection-table-row-content" ng-repeat="user in UsersCtrl.users | filter : QuizzesCtrl.search"
             ng-show="pageFilter($index)">
             <td class="quiz-list-selection-table-row-content__title">{{$index}}</td>
             <td class="quiz-list-selection-table-row-content__title">{{user._id}}</td>
