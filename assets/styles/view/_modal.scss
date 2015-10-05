@@ -19,21 +19,18 @@
 }
 
 .center-block { 
-  background: $modal-bg-color; 
+  // background: $modal-bg-color; 
+  background: transparent;
   color: #FFF; 
   padding: 20px;
 }
 
 .modal { 
-  border: solid 5px $modal-color;
-  box-shadow: 0 0 20px rgba(0,0,0,0.25);
+  // border: solid 5px $modal-color;
+  border: none;
+  // box-shadow: 0 0 20px rgba(0,0,0,0.25);
+  overflow-y: hidden;
   font-size: 1.2em;
-  img {
-    width: 100px;
-    position: absolute;
-    right: 0;
-    top: 0;
-  }  
 }
 .modal-background { 
   opacity: 1; 
