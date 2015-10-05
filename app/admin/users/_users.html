@@ -5,9 +5,10 @@
 <form class="search">
   <h3>Search user</h3>
   <input type="text" class="search-input" ng-model="QuizzesCtrl.search" placeholder="Search"/>
+    <button class="admin-button-container"
+            ng-click="UsersCtrl.modalToggle()"}>New user</button>
 </form>
-
-<div class="quiz-list-selection height-auto">
+<div class="quiz-list-selection">
     <table class="quiz-list-selection-table">
         <tr class="quiz-list-selection-table-row-heading">
             <th class="quiz-list-selection-table-row-heading__title">Index</th>
@@ -20,7 +21,8 @@
             <th class="quiz-list-selection-table-row-heading__title">Total quizzes passed</th>
             <th class="quiz-list-selection-table-row-heading__title">Actions</th>
         </tr>
-        <tr class="quiz-list-selection-table-row-content" ng-repeat="user in UsersCtrl.users | filter : UsersCtrl.search">
+        <tr class="quiz-list-selection-table-row-content" ng-repeat="user in UsersCtrl.users | filter : UsersCtrl.search"
+            ng-show="pageFilter($index)">
             <td class="quiz-list-selection-table-row-content__title">{{$index}}</td>
             <td class="quiz-list-selection-table-row-content__title">{{user._id}}</td>
             <td class="quiz-list-selection-table-row-content__title">{{user.name}}</td>
@@ -34,21 +36,27 @@
     </table>
 </div>
 
-<form ng-submit="UsersCtrl.addUser()" style="margin: 30px auto 0;" class="form-container">
-  <div class="form-title"><h2>{{UsersCtrl.formTitle}}</h2></div>
+<eq-pagination limit="10" view-list="UsersCtrl.users"></eq-pagination>
 
-  <div class="form-title">Name:</div>
-  <input class="form-field" type="text" placeholder="Name" ng-model="UsersCtrl.user.name" ng-model-options="{ updateOn: 'submit' }"><br/>
+<div class="modal-background is-hidden" id="modal">
+    <div class="center-block absolute-center modal big">
+        <form ng-submit="UsersCtrl.addUser()" style="margin: 30px auto 0;" class="form-container">
+            <div class="form-title"><h2>{{UsersCtrl.formTitle}}</h2></div>
+
+            <div class="form-title">Name:</div>
+            <input class="form-field" type="text" placeholder="Name" ng-model="UsersCtrl.user.name" ng-model-options="{ updateOn: 'submit' }"><br/>
 
 
-  <div class="form-title">Email</div>
-  <input class="form-field" type="text" placeholder="Email" ng-model="UsersCtrl.user.email" ng-model-options="{ updateOn: 'submit' }" ng-disabled="UsersCtrl.user.emailDis"><br/>
+            <div class="form-title">Email</div>
+            <input class="form-field" type="text" placeholder="Email" ng-model="UsersCtrl.user.email" ng-model-options="{ updateOn: 'submit' }" ng-disabled="UsersCtrl.user.emailDis"><br/>
 
-  <div class="form-title">Password</div>
-  <input class="form-field" type="text" placeholder="Password" ng-model="UsersCtrl.user.password" ng-model-options="{ updateOn: 'submit' }"><br/>
+            <div class="form-title">Password</div>
+            <input class="form-field" type="text" placeholder="Password" ng-model="UsersCtrl.user.password" ng-model-options="{ updateOn: 'submit' }"><br/>
 
-  <div class="submit-container">
-    <input class="submit-button" type="reset" value="Cancel" ng-click='UsersCtrl.resetTitle()' />
-    <input class="submit-button" type="submit" value="Submit" />
-  </div>
-</form>
+            <div class="submit-container">
+                <input class="submit-button" type="reset" value="Cancel" ng-click='UsersCtrl.resetTitle()' />
+                <input class="submit-button" type="submit" value="Submit" ng-click="UsersCtrl.modalToggle()"/>
+            </div>
+        </form>
+    </div>
+</div>

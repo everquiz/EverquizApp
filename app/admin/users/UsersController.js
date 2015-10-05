@@ -15,7 +15,21 @@
     vm.editUser = editUser;
     vm.formTitle = 'Add new user';
     vm.resetTitle = resetTitle;
+    vm.modalToggle = modalToggle;
 
+    function modalToggle() {
+      var modal = document.getElementById('modal');
+      console.log('modal', modal);
+      if (modal.style.opacity == 0) {
+        console.log('opacity 0')
+        modal.style.display = 'block';
+        modal.style.opacity = 1;
+      } else {
+        console.log('opacity 1')
+        modal.style.opacity = 0;
+        modal.style.display = 'none';
+      }
+    };
 
     function addUser() {
       if((!vm.user.name || vm.user.name === '')
@@ -41,6 +55,7 @@
       vm.user = {};
       vm.formTitle = 'Add new user';
       vm.user.emailDis = false;
+      vm.modalToggle();
     }
   }
 
