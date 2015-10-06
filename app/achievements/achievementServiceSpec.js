@@ -128,7 +128,6 @@ describe("AchievementService", function() {
                 description: 'Congratulation on passing your first quiz!'
             };
         $httpBackend.whenPUT(regex.test(url)).respond(function (method,url,data) {
-            console.log('whenPUT', method,url,data);
             achievements.forEach(function(element, index) {
                 if(element._id === +url.match(regex)[1]) {
                     achievements[index] = data;

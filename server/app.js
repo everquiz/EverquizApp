@@ -8,7 +8,8 @@ var express = require('express'),
     cookieParser = require('cookie-parser'),
     jwt = require('express-jwt'),
     auth = jwt({secret: 'SECRET', userProperty: 'payload'}),
-    favicon = require('express-favicon');
+    favicon = require('express-favicon'),
+    fs = require('fs');
 
 
 /*
@@ -25,7 +26,14 @@ var QuestionModel = require('./models/Questions');
 var AnswerModel = require('./models/Answers');
 var AchievementModel = require('./models/Achievements');
 
-
+// store an img in binary in mongo
+// var imgPath = 'assets/images/achievements/welcome.jpg';
+// var achievement = new AchievementModel;
+// achievement.title = 'Welcome';
+// achievement.description = 'Welcome to our awesome service!';
+// achievement.picture.data = fs.readFileSync(imgPath);
+// achievement.picture.contentType = 'image/png';
+// achievement.save();
 
 require('./config/passport');
 

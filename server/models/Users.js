@@ -12,7 +12,8 @@ var UserSchema = new mongoose.Schema({
   status: {type: String, default: 'active' },
   history: [ { type: mongoose.Schema.Types.ObjectId, ref: 'History'  } ],
   createAt: { type: Date, default: new Date },
-  roles: { type: [String], default: "user" }
+  roles: { type: [String], default: "user" },
+  achievements: [ { type: mongoose.Schema.Types.ObjectId, ref: 'Achievement'  } ]
 });
 
 UserSchema.methods.setPassword = function(password){
