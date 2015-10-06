@@ -8,8 +8,6 @@
     quizFactory.$inject = ['$http', 'authFactory'];
 
     function quizFactory($http, authFactory) {
-
-        var display = !!authFactory.currentUserId();
         var difficulties = [
             {_id: 0, title: 'Novice'},
             {_id: 1, title: 'Advanced'},
@@ -17,9 +15,6 @@
         ];
 
         var factory = {
-            isVisible: isVisible,
-            showQuizzes: showQuizzes,
-            hideQuizzes: hideQuizzes,
             activeQuiz: null,
             getDifficulties: getDifficulties,
             getComplexity: getComplexity,
@@ -82,18 +77,6 @@
                 .then(function (res) {
                     return res.data;
                 });
-        }
-
-        function isVisible() {
-            return display;
-        }
-
-        function showQuizzes() {
-            display = true;
-        }
-
-        function hideQuizzes() {
-            display = false;
         }
     }
 })();

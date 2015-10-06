@@ -5,9 +5,9 @@
         .module('everquizApp')
         .controller('PassingQuizController', PassingQuizController);
 
-    PassingQuizController.$inject = ['quizFactory', 'resultFactory', 'scrollFactory', 'notesService'];
+    PassingQuizController.$inject = ['quizFactory', 'resultFactory', 'scrollFactory', 'notesService', 'authFactory'];
 
-    function PassingQuizController(quizFactory, resultFactory, scrollFactory, notesService) {
+    function PassingQuizController(quizFactory, resultFactory, scrollFactory, notesService, authFactory) {
 
         var vm = this,
             localQuiz = localStorage.getItem('quiz'),
@@ -16,6 +16,7 @@
         vm.nextQuestion = nextQuestion;
         vm.saveToNote = saveToNote;
         vm.isShown = isShown;
+        vm.isLoggedIn = authFactory.isLoggedIn;
 
         if (localQuiz) {
             vm.quiz = JSON.parse(localQuiz);

@@ -1,4 +1,2 @@
-<div ng-if="QuizzesContainerCtrl.isVisible()">
-    <div ui-view="list" ng-if="!QuizzesContainerCtrl.quizFactory.activeQuiz"></div>
-    <div ui-view="quiz" ng-if="QuizzesContainerCtrl.quizFactory.activeQuiz"></div>
-</div>
+<div ui-view="list" ng-if="!QuizzesContainerCtrl.quizFactory.activeQuiz"></div>
+<div ui-view="quiz" ng-if="QuizzesContainerCtrl.quizFactory.activeQuiz"></div>

@@ -8,13 +8,10 @@
                 About this quiz
             </div>
         </div>
-		<div class="quiz-block-question" ng-repeat="question in PassingQuizCtrl.quiz.questions" >
-
-		<div class="quiz-block-question__title" ng-style="{'margin-left': QuizzesContainerCtrl.quizFactory.margin + 'px'}">
-            <pre class="quiz-block-question__text">{{question.text}}</pre>
-        </div>
-
-
+		<div class="quiz-block-question" ng-repeat="question in PassingQuizCtrl.quiz.questions" ng-if="QuizzesContainerCtrl.isVisible();">
+			<div class="quiz-block-question__title" ng-style="{'margin-left': QuizzesContainerCtrl.quizFactory.margin + 'px'}">
+				<pre class="quiz-block-question__text">{{question.text}}</pre>
+			</div>
 		</div>
 		<div class="quiz-block-answer" ng-style="{'margin-left': QuizzesContainerCtrl.quizFactory.margin + 'px'}" >
 			<div class="quiz-block-answer__intro">
@@ -36,7 +33,7 @@
             Save to new note
         </button>
 		<button class="quiz-block__submit" ng-click="PassingQuizCtrl.nextQuestion()"
-				ng-show="QuizzesContainerCtrl.quizFactory.questionCount != PassingQuizCtrl.quiz.questions.length">
+				ng-if="QuizzesContainerCtrl.quizFactory.questionCount != PassingQuizCtrl.quiz.questions.length; PassingQuizCtrl.isLoggedIn();">
             {{QuizzesContainerCtrl.quizFactory.buttonText}}
 		</button>
 		<input class="quiz-block__submit" type="submit"  value="SHOW RESULT"

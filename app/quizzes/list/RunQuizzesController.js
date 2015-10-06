@@ -5,14 +5,13 @@
         .module('everquizApp')
         .controller('RunQuizzesController', RunQuizzesController);
 
-    RunQuizzesController.$inject = ['quizzes', 'quizFactory', 'categoryService', '$scope', 'historyService'];
+    RunQuizzesController.$inject = ['quizFactory', 'categoryService', '$scope', 'historyService'];
 
-    function RunQuizzesController(quizzes, quizFactory, categoryService, $scope, historyService) {
+    function RunQuizzesController(quizFactory, categoryService, $scope, historyService) {
         var vm = this;
         vm.selectedCategory = -1;
         vm.selectedComplexity = -1;
         vm.selectedStatus = -1;
-        vm.quizzes = quizzes;
         vm.updateQuizzes = updateQuizzes;
         vm.historyService = historyService;
         vm.difficulties = quizFactory.getDifficulties();
@@ -27,17 +26,23 @@
         ];
         vm.updateFilteredQuizzes = updateFilteredQuizzes;
 
-        categoryService.getCategories().then(function (data) {
-            vm.categories = data;
-            vm.categories.unshift({_id: -1, title: 'All categories'})
-        });
+        quizFactory.getQuizzes()
+            .then(function (data) {
+                vm.quizzes = data;
+            });
+
+        categoryService.getCategories()
+            .then(function (data) {
+                vm.categories = data;
+                vm.categories.unshift({_id: -1, title: 'All categories'})
+            });
 
         historyService.getHistory()
-            .then(function (history) {
+            .then(function (data) {
                 vm.statistics = {
-                    getAverageResult : historyService.getAverageResult,
-                    getBestResult : historyService.getBestResult,
-                    getTotalPassing : historyService.getTotalPassing
+                    getAverageResult: historyService.getAverageResult,
+                    getBestResult: historyService.getBestResult,
+                    getTotalPassing: historyService.getTotalPassing
                 }
             });
 
@@ -48,9 +53,10 @@
         vm.numPerPage = $scope.numPerPage = 15;
         $scope.currentPage = $scope.currentPage = 1;
         vm.numPages = numPages;
-        quizFactory.getQuizzes().then(function (res) {
-            vm.filteredQuizzes = res.slice(0, vm.numPerPage);
-        });
+        quizFactory.getQuizzes()
+            .then(function (res) {
+                vm.filteredQuizzes = res.slice(0, vm.numPerPage);
+            });
 
         function updateQuizzes() {
             var category, complexity, status, query;
@@ -65,26 +71,27 @@
                 complexity = vm.selectedComplexity;
             }
             query = '&category=' + category + '&complexity=' + complexity;
-            quizFactory.getQuizzesByQuery(query).then(function (data) {
-                vm.quizzes = data;
-                var quizzesByStatus = [];
-                
-                if (vm.selectedStatus != -1) {
-                    for (var i = vm.quizzes.length - 1; i >= 0; i--) {
-                        if (historyService.getBestResult(vm.quizzes[i]) >= 0.7) {
-                            quizzesByStatus.push(vm.quizzes[i]);
+            quizFactory.getQuizzesByQuery(query)
+                .then(function (data) {
+                    vm.quizzes = data;
+                    var quizzesByStatus = [];
+
+                    if (vm.selectedStatus != -1) {
+                        for (var i = vm.quizzes.length - 1; i >= 0; i--) {
+                            if (historyService.getBestResult(vm.quizzes[i]) >= 0.7) {
+                                quizzesByStatus.push(vm.quizzes[i]);
+                            }
+                        }
+                        if (!vm.selectedStatus) {
+                            vm.quizzes = vm.quizzes.diffInvers(quizzesByStatus);
+
+                        } else {
+                            vm.quizzes = vm.quizzes.diff(quizzesByStatus);
                         }
                     }
-                    if (!vm.selectedStatus) {
-                        vm.quizzes = vm.quizzes.diffInvers( quizzesByStatus ); 
+                    vm.updateFilteredQuizzes();
 
-                    } else {
-                        vm.quizzes = vm.quizzes.diff( quizzesByStatus ); 
-                    }
-                }
-                vm.updateFilteredQuizzes();
-
-            });
+                });
         }
 
 

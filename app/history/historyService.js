@@ -17,12 +17,11 @@
 
         function getHistory() {
             var id = authFactory.currentUserId();
-            if (id) {
-                return $http.get('/api/v1/Histories?user=' + id).then(function (res) {
+            return $http.get('/api/v1/Histories?user=' + id)
+                .then(function (res) {
                     vm.history = res.data;
                     return vm.history;
                 });
-            }
         }
 
         function getAverageResult(quiz) {

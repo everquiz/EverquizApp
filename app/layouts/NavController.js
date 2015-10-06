@@ -5,9 +5,9 @@
         .module('everquizApp')
         .controller('NavController', NavController);
 
-    NavController.$inject = ['authFactory', 'profileFactory', 'notesService', 'quizFactory', '$state', 'scrollFactory'];
+    NavController.$inject = ['authFactory', 'profileFactory', 'notesService', '$state', 'scrollFactory'];
 
-    function NavController(authFactory, profileFactory, notesService, quizFactory, $state, scrollFactory) {
+    function NavController(authFactory, profileFactory, notesService, $state, scrollFactory) {
 
         var vm = this;
         vm.isLoggedIn = authFactory.isLoggedIn;
@@ -16,7 +16,6 @@
         vm.showProfile = showProfile;
         vm.hideProfile = hideProfile;
         vm.showNotes = showNotes;
-        vm.showQuizzes = showQuizzes;
         vm.isProfileVisible = profileFactory.isVisible;
         vm.toggleProfile = toggleProfile;
         vm.goHome = goHome;
@@ -24,13 +23,11 @@
 
         if (vm.isLoggedIn()) {
             vm.showNotes();
-            vm.showQuizzes();
         }
 
         function logOut() {
             profileFactory.hideProfile();
             notesService.hideNotes();
-            quizFactory.hideQuizzes();
             authFactory.logOut();
             $state.go($state.current, {}, {reload: true});
         }
@@ -49,10 +46,6 @@
 
         function showNotes() {
             notesService.showNotes();
-        }
-
-        function showQuizzes(){
-            quizFactory.showQuizzes();
         }
 
         function goHome() {
