@@ -203,26 +203,55 @@
 }
 
 .chart {
+
 	&-header {
 		padding: 10px;
 		text-align: center;
 
 		&__title{
 			color: $chart-header-text;
-			font-size: 2em;
 			font-weight: bold;
+      font-family: proxima nova;
+      font-size: 18px;
+      text-transform: uppercase;
 		}
 	}	
-
+  &-filter {
+    width: 40%;
+    margin-left: 30%;
+    &-begin {
+      display: inline-block;
+      font-family: proxima nova;
+      font-size: 18px;
+      text-transform: uppercase;
+      text-align: center;
+      &__title {
+        margin-bottom: 0;
+      }
+    }
+    &-finish {
+      display: inline-block;
+      font-family: proxima nova;
+      font-size: 18px;
+      text-transform: uppercase;
+      text-align: center;
+      padding-left: 4%;
+      &__title {
+        margin-bottom: 0;
+      }
+    }
+  }
 	&-selector {
 		&-item {
-			width: 60%;
+			width: 40%;
 			border: none;
 			height: 30px;
-			margin-left: 24px;
+			margin-left: 30%;
 			background: $chart-selector-background;
 			color: $chart-selector-text;
 			cursor: pointer;
 		}
 	}	
 }
+
+
