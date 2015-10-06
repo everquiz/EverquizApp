@@ -5,19 +5,17 @@
         .module('everquizApp')
         .controller('ProfileController', ProfileController);
 
-    ProfileController.$inject = ['profileFactory', 'scrollFactory', 'ngDialog', 'achievementService'];
+    ProfileController.$inject = ['profileFactory', 'scrollFactory', 'ngDialog'];
 
-    function ProfileController(profileFactory, scrollFactory, ngDialog, achievementService) {
+    function ProfileController(profileFactory, scrollFactory, ngDialog) {
         var vm = this;
         vm.hideProfile = hideProfile;
         vm.goToElement = goToElement;
         vm.isVisible = profileFactory.isVisible;
         vm.clickToOpen = clickToOpen;
-        vm.achievementService = achievementService;
 
         function profileInit() {
             vm.profile = profileFactory.getProfile();
-            vm.achievementService.get('561450e8208fa4d013bfd00a');
         }
 
         profileFactory.registerObserverCallback(profileInit);
