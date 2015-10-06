@@ -23,7 +23,7 @@
     }
 
     function getAll() {
-      return $http.get('/api/v1/Achievements?select=title,description')
+      return $http.get('/api/v1/Achievements?select=title,description,picture')
         .then(function (res) {
           return res.data;
         });
