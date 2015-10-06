@@ -7,11 +7,16 @@
         ng-change="ChartCtrl.updateChart()">
 </select>
 
-<p>Start date</p>
-<input ng-model="ChartCtrl.Date.startDate" type="date" lang="en" ng-change="ChartCtrl.updateChart()">
-<p>End date</p>
-<input ng-model="ChartCtrl.Date.endDate" type="date" lang="en" ng-change="ChartCtrl.updateChart()">
-
+<div class="chart-filter">
+<div class="chart-filter-begin">
+	<p class="chart-filter-begin__title">Start date</p>
+	<input ng-model="ChartCtrl.Date.startDate" type="date" lang="en" ng-change="ChartCtrl.updateChart()">
+</div>
+<div class="chart-filter-finish">
+	<p class="chart-filter-finish__title">End date</p>
+	<input ng-model="ChartCtrl.Date.endDate" type="date" lang="en" ng-change="ChartCtrl.updateChart()">
+</div>
+</div>
 <canvas id="line" class="chart chart-line" chart-data="ChartCtrl.chartParams.data"
         chart-labels="ChartCtrl.chartParams.labels" chart-legend="true" chart-series="ChartCtrl.chartParams.series"
         chart-click="ChartCtrl.onClick"
