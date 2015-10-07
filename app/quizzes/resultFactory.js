@@ -24,6 +24,10 @@
             })
                 .then(function (res) {
                     lastResult = Math.round(res.data.result * 100);
+                    profileFactory.addAchievement('5614d7cd60a7a12614a331b6');
+                    if (lastResult === 100) {
+                        profileFactory.addAchievement('5614d7cd60a7a12614a331b5');
+                    }
                     profileFactory.updateProfile();
                     historyService.getHistory();
                     return res.data;

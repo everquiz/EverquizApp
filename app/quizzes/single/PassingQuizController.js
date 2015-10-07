@@ -35,6 +35,7 @@
 
         function checkResult() {
             resultFactory.checkResult(vm.quiz);
+            
             quizFactory.activeQuiz = null;
             quizFactory.margin = 0;
             quizFactory.questionCount = 0;

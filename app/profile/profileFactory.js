@@ -21,7 +21,7 @@
             hideProfile: hideProfile,
             toggleProfile: toggleProfile,
             isVisible: isVisible,
-            noteAchievement: noteAchievement
+            addAchievement: addAchievement
         };
 
         return factory;
@@ -148,11 +148,11 @@
             });
         }
 
-        function noteAchievement () {
-            achievementService.get('5614d7cd60a7a12614a331b7');
+        function addAchievement (achievementId) {
+            achievementService.get(achievementId);
             for (var i = profile.achievements.length - 1; i >= 0; i--) {
-                if (profile.achievements[i]._id === '5614d7cd60a7a12614a331b7') {
-                    alertify.error("You already have this achievement");
+                if (profile.achievements[i]._id === achievementId) {
+                    // alertify.error("You already have this achievement");
                     return;
                 }
             }
@@ -160,7 +160,7 @@
             if (id) {
                 $http.get('/api/v1/Users/' + id).then(function (res) {
                     var user = res.data;
-                    user.achievements.push('5614d7cd60a7a12614a331b7');
+                    user.achievements.push(achievementId);
                     $http.post('/api/v1/Users/' + id, user).then(function (res) {
                         alertify.success("You received new achievement");
                         updateProfile();
