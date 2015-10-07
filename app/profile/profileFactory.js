@@ -40,7 +40,6 @@
 
 
         function getProfile() {
-            
             return profile;
         }
 
@@ -164,6 +163,7 @@
                     user.achievements.push('5614d7cd60a7a12614a331b7');
                     $http.post('/api/v1/Users/' + id, user).then(function (res) {
                         alertify.success("You received new achievement");
+                        updateProfile();
                     })
                 });
             }

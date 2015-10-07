@@ -66,9 +66,6 @@ router.put('/checkresult', auth, function (req, res, next) {
     questionPromise.then(function (questions) {
         quiz.questions = questions;
         var result = checkResult(quiz, results);
-        res.send({
-            result: result
-        });
 
         var history = new History();
         history.quiz = quiz._id;
@@ -78,6 +75,10 @@ router.put('/checkresult', auth, function (req, res, next) {
             if (err) {
                 return next(err);
             }
+            console.log(result);
+            res.send({
+                result: result
+            });
         });
     });
 });
