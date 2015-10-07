@@ -54,10 +54,7 @@
     },
     "alertify.js": {
       "main": [
-<<<<<<< HEAD
-=======
         "./dist/js/alertify.js",
->>>>>>> a0c75ca4159acc73a38e37357a3721a454827704
         "./dist/js/ngAlertify.js"
       ]
     },
