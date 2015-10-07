@@ -40,7 +40,6 @@
 
 
         function getProfile() {
-            
             return profile;
         }
 

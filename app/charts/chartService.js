@@ -7,7 +7,7 @@
 
     chartService.$inject = ['historyService'];
 
-    function chartService(alertify, historyService) {
+    function chartService(historyService) {
         
         var self = this;
         self.quiz_day = quiz_day;
