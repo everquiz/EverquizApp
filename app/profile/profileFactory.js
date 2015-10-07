@@ -12,7 +12,6 @@
         var display = false;
         var observerCallbacks = [];
 
-
         var factory = {
             registerObserverCallback: registerObserverCallback,
             notifyObservers: notifyObservers,
@@ -21,7 +20,8 @@
             showProfile: showProfile,
             hideProfile: hideProfile,
             toggleProfile: toggleProfile,
-            isVisible: isVisible
+            isVisible: isVisible,
+            noteAchievement: noteAchievement
         };
 
         return factory;
@@ -40,6 +40,7 @@
 
 
         function getProfile() {
+            
             return profile;
         }
 
@@ -146,6 +147,13 @@
                 });
                 return resultLastActions.splice(0, 3);
             });
+        }
+
+        function noteAchievement (notes, isAchieved) {
+            if ((notes.length === 1) || (profile.achievements)) {
+                console.log('profile', profile);
+                console.log('need to add achievment');
+            };
         }
     }
 })();
