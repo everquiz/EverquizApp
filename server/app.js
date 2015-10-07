@@ -26,14 +26,48 @@ var QuestionModel = require('./models/Questions');
 var AnswerModel = require('./models/Answers');
 var AchievementModel = require('./models/Achievements');
 
-// store an img in binary in mongo
-// var imgPath = 'assets/images/achievements/welcome.jpg';
-// var achievement = new AchievementModel;
-// achievement.title = 'Welcome';
-// achievement.description = 'Welcome to our awesome service!';
-// achievement.picture.data = fs.readFileSync(imgPath);
-// achievement.picture.contentType = 'image/png';
-// achievement.save();
+// var achievements = [
+//     {
+//         title: 'Welcome',
+//         description: 'Welcome to our awesome service!',
+//         picture: {
+//             data: fs.readFileSync('assets/images/achievements/welcome.jpg'),
+//             contentType: 'image/png'
+//         }
+//     },
+//     {
+//         title: 'First Note',
+//         description: 'You have created your first note!',
+//         picture: {
+//             data: fs.readFileSync('assets/images/achievements/firstNote.jpg'),
+//             contentType: 'image/png'
+//         }
+//     },
+//     {
+//         title: 'First Quiz',
+//         description: 'Congratulation on passing your first quiz!',
+//         picture: {
+//             data: fs.readFileSync('assets/images/achievements/firstQuiz.jpg'),
+//             contentType: 'image/png'
+//         }
+//     },
+//     {
+//         title: 'Finished Quiz',
+//         description: 'It\'s awesome! You have completly finished quiz!',
+//         picture: {
+//             data: fs.readFileSync('assets/images/achievements/completedQuiz.jpg'),
+//             contentType: 'image/png'
+//         }
+//     }
+// ];
+
+// for (var i = achievements.length - 1; i >= 0; i--) {
+//     var achievement = new AchievementModel;
+//     achievement.title = achievements[i].title;
+//     achievement.description = achievements[i].description;
+//     achievement.picture = achievements[i].picture;
+//     achievement.save();
+// };
 
 require('./config/passport');
 
