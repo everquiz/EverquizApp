@@ -5,9 +5,9 @@
         .module('everquizApp')
         .factory('profileFactory', profileFactory);
 
-    profileFactory.$inject = ['$http', 'authFactory', '$q', 'achievementService'];
+    profileFactory.$inject = ['$http', 'authFactory', '$q', 'achievementService', 'ngAlertify'];
 
-    function profileFactory($http, authFactory, $q, achievementService) {
+    function profileFactory($http, authFactory, $q, achievementService, ngAlertify) {
         var profile = {};
         var display = false;
         var observerCallbacks = [];
@@ -153,7 +153,7 @@
             achievementService.get('5614d7cd60a7a12614a331b7');
             for (var i = profile.achievements.length - 1; i >= 0; i--) {
                 if (profile.achievements[i]._id === '5614d7cd60a7a12614a331b7') {
-                    console.log('already achieved!');
+                    // alertify.error("You already have this achievement");
                     return;
                 }
             }
