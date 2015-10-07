@@ -8,7 +8,7 @@
                 About this quiz
             </div>
         </div>
-		<div class="quiz-block-question" ng-repeat="question in PassingQuizCtrl.quiz.questions" ng-if="QuizzesContainerCtrl.isVisible();">
+		<div class="quiz-block-question" ng-repeat="question in PassingQuizCtrl.quiz.questions">
 			<div class="quiz-block-question__title" ng-style="{'margin-left': QuizzesContainerCtrl.quizFactory.margin + 'px'}">
 				<pre class="quiz-block-question__text">{{question.text}}</pre>
 			</div>

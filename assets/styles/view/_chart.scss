@@ -217,11 +217,11 @@
 		}
 	}	
   &-filter {
-    width: 40%;
-    margin-left: 30%;
+    width: 50%;
+    margin-left: 25%;
     &-begin {
       display: inline-block;
-      font-family: proxima nova;
+      font-family: Proxima nova;
       font-size: 18px;
       text-transform: uppercase;
       text-align: center;
@@ -231,11 +231,11 @@
     }
     &-finish {
       display: inline-block;
-      font-family: proxima nova;
+      font-family: Proxima nova;
       font-size: 18px;
       text-transform: uppercase;
       text-align: center;
-      padding-left: 4%;
+      float: right;
       &__title {
         margin-bottom: 0;
       }
