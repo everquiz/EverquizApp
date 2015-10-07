@@ -3,11 +3,11 @@
 
     angular
         .module('everquizApp')
-        .service('chartService', chartService);
+        .service(chartService);
 
     chartService.$inject = ['historyService'];
 
-    function chartService(historyService) {
+    function chartService(alertify, historyService) {
         
         var self = this;
         self.quiz_day = quiz_day;

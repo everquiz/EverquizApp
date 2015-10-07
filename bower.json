@@ -24,7 +24,7 @@
     "angular-ui-router": "~0.2.15",
     "ngDialog": "git://github.com/likeastore/ngDialog.git",
     "normalize-css": "normalize.css#~3.0.3",
-    "alertifyjs": "~1.0.2"
+    "alertify.js": "alertifyjs#1.0.1"
   },
   "overrides": {
     "angular": {
@@ -52,9 +52,10 @@
         "./angular-drag-and-drop-lists.min.js"
       ]
     },
-    "alertifyjs": {
+    "alertify.js": {
       "main": [
-        "./src/js/ngAlertify.js"
+        "./dist/js/alertify.js",
+        "./dist/js/ngAlertify.js"
       ]
     },
     "normalize.css": {
