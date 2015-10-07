@@ -52,6 +52,11 @@
         "./angular-drag-and-drop-lists.min.js"
       ]
     },
+    "alertifyjs": {
+      "main": [
+        "./src/js/ngAlertify.js"
+      ]
+    },
     "normalize.css": {
       "main": [
         "normalize.css"
