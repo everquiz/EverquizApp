@@ -1,7 +1,10 @@
 angular.module('everquizApp',
-    ['ui.router',
+    [
+        'ui.router',
         'templates',
         'ui.bootstrap',
         'dndLists',
         'ngDialog',
-        'chart.js',]);
+        'chart.js',
+        'ngAlertify'
+    ]);

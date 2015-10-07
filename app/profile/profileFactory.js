@@ -153,6 +153,7 @@
             achievementService.get('5614d7cd60a7a12614a331b7');
             for (var i = profile.achievements.length - 1; i >= 0; i--) {
                 if (profile.achievements[i]._id === '5614d7cd60a7a12614a331b7') {
+                    console.log('already achieved!');
                     return;
                 }
             }
@@ -162,7 +163,7 @@
                     var user = res.data;
                     user.achievements.push('5614d7cd60a7a12614a331b7');
                     $http.post('/api/v1/Users/' + id, user).then(function (res) {
-                        alert('new achievement');
+                        // alertify.success("You received new achievement");
                     })
                 });
             }
