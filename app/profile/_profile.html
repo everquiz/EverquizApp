@@ -50,15 +50,13 @@
             </div>
         </div>
         <div class="profile-additional-recommendations">
-            <header class="profile-additional-recommendations__title">RECOMMENDATIONS</header>
+            <header class="profile-additional-recommendations__title">ACHIEVEMENTS</header>
             <div class="profile-additional-recommendations-content">
                 <ul class="profile-additional-recommendations-content-list">
-                    <li class="profile-additional-recommendations-content-list-item">
-                        <span class="profile-additional-recommendations-content-list-item__title">
-                            <img data-ng-src="data:image/png;base64,{{ProfileCtrl.achievements[0].picture.data}}"/>
-                        </span>
+                    <li class="profile-additional-recommendations-content-list-item" ng-repeat="achievement in ProfileCtrl.achievements">
+                        <img ng-src="data:image/png;base64,{{achievement.picture.data}}"/>
                     </li>
-                    <li class="profile-additional-recommendations-content-list-item is-action">
+<!--                     <li class="profile-additional-recommendations-content-list-item is-action">
                         <span class="profile-additional-recommendations-content-list-item__date">
                             21/09/15
                         </span>
@@ -70,7 +68,7 @@
                         <span class="profile-additional-recommendations-content-list-item__title">
                             Try next level difficulty on HTML category
                         </span>
-                    </li>
+                    </li> -->
                 </ul>
             </div>
         </div>
