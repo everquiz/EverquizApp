@@ -53,7 +53,7 @@
             <header class="profile-additional-recommendations__title">ACHIEVEMENTS</header>
             <div class="profile-additional-recommendations-content">
                 <ul class="profile-additional-recommendations-content-list">
-                    <li class="profile-additional-recommendations-content-list-item" ng-repeat="achievement in ProfileCtrl.achievements">
+                    <li class="profile-additional-recommendations-content-list-item" ng-repeat="achievement in ProfileCtrl.profile.achievements">
                         <img ng-src="data:image/png;base64,{{achievement.picture.data}}"/>
                     </li>
 <!--                     <li class="profile-additional-recommendations-content-list-item is-action">

@@ -23,7 +23,8 @@
     "angular-mocks": "~1.4.7",
     "angular-ui-router": "~0.2.15",
     "ngDialog": "git://github.com/likeastore/ngDialog.git",
-    "normalize-css": "normalize.css#~3.0.3"
+    "normalize-css": "normalize.css#~3.0.3",
+    "alertifyjs": "~1.0.2"
   },
   "overrides": {
     "angular": {
