@@ -48,8 +48,31 @@ router.post('/login', function (req, res, next) {
     })(req, res, next);
 });
 
+//Google auth
+
+router.get('/auth/google', passport.authenticate('google', { scope : ['https://www.googleapis.com/auth/plus.login', 'https://www.googleapis.com/auth/userinfo.email'] }));
+
+router.get('/auth/google/callback',
+    passport.authenticate('google', {failureRedirect : '/'}),
+    function(req, res){
+        if (req.user) {
+            var token = {token: req.user.generateJWT()};
+        } else {
+            res.status(401).json(info);
+        }
+        console.log('TOKENED', token);
+        res.redirect('/#/token/' + token.token);
+    });
+
+router.get('/loginGoogle', function (req, res, next) {
+    console.log('USER', req.query.token);
+    res.json(req.query.token);
+});
+
+
 /* GET home page. */
 router.get('/', function (req, res, next) {
+    console.log(req.user);
     res.render('index');
 });
 

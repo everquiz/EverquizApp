@@ -12,6 +12,7 @@
         var vm = this;
         vm.user = {};
         vm.logIn = logIn;
+        vm.logInGoogle = authFactory.logInGoogle;
         vm.isAdmin = isAdmin;
         vm.register = register;
 
@@ -22,6 +23,7 @@
                 $state.go('home');
             });
         }
+
 
         function logIn() {
             authFactory.logIn(vm.user).error(function (error) {
