@@ -54,7 +54,12 @@
             <div class="profile-additional-achievements-content">
                 <ul class="profile-additional-achievements-content-list">
                     <li class="profile-additional-achievements-content-list-item" ng-repeat="achievement in ProfileCtrl.profile.achievements">
-                        <span class="profile-additional-achievements-content-list-item__image is-first-note" title="{{achievement.description}}">
+                        <span   class="profile-additional-achievements-content-list-item__image"
+                                ng-class="{'is-first-note': achievement.description === 'You have created your first note!',
+                                           'is-first-quiz': achievement.description === 'Congratulation on passing your first quiz!',
+                                           'is-completed-quiz': achievement.description === 'It\'s awesome! You have completly finished quiz!',
+                                           'is-welcome': achievement.description === 'Welcome to our awesome service!'}"
+                                title="{{achievement.description}}">
                         </span>
                     </li>
                 </ul>

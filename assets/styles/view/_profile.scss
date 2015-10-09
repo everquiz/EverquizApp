@@ -165,16 +165,17 @@
             }
 
             &-content {
+                overflow: hidden;
                 margin-top: 36px;
+                background: $profile-additional-achievements-background;
 
                 &-list {
-                    margin: 0;
-                    padding: 10px 10px  0 0;
+                    margin: 10px 5px;
+                    padding: 0;
                     list-style: none;
-                    background: $profile-additional-achievements-background;
 
                     &-item {
-                        padding:0 0 10px 10px;
+                        margin: 0 5px;
                         display: inline-block;
 
                         &__image {
@@ -190,7 +191,7 @@
                                 @extend .icon-firstQuiz;
                             }
 
-                            &.is-complete-quiz {        
+                            &.is-completed-quiz {        
                                 @extend .icon-completedQuiz;
                             }
 
