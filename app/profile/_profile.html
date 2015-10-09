@@ -49,26 +49,14 @@
                 </ul>
             </div>
         </div>
-        <div class="profile-additional-recommendations">
-            <header class="profile-additional-recommendations__title">ACHIEVEMENTS</header>
-            <div class="profile-additional-recommendations-content">
-                <ul class="profile-additional-recommendations-content-list">
-                    <li class="profile-additional-recommendations-content-list-item" ng-repeat="achievement in ProfileCtrl.profile.achievements">
-                        <img ng-src="data:image/png;base64,{{achievement.picture.data}}" title="{{achievement.description}}"/>
-                    </li>
-<!--                     <li class="profile-additional-recommendations-content-list-item is-action">
-                        <span class="profile-additional-recommendations-content-list-item__date">
-                            21/09/15
-                        </span>
-                        <span class="profile-additional-recommendations-content-list-item__title">
-                            You passed "HTML Basics" quiz by 73%
+        <div class="profile-additional-achievements">
+            <header class="profile-additional-achievements__title">ACHIEVEMENTS</header>
+            <div class="profile-additional-achievements-content">
+                <ul class="profile-additional-achievements-content-list">
+                    <li class="profile-additional-achievements-content-list-item" ng-repeat="achievement in ProfileCtrl.profile.achievements">
+                        <span class="profile-additional-achievements-content-list-item__image is-first-note" title="{{achievement.description}}">
                         </span>
                     </li>
-                    <li class="profile-additional-recommendations-content-list-item">
-                        <span class="profile-additional-recommendations-content-list-item__title">
-                            Try next level difficulty on HTML category
-                        </span>
-                    </li> -->
                 </ul>
             </div>
         </div>

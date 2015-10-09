@@ -154,7 +154,7 @@
             }
         }
 
-        &-recommendations {
+        &-achievements {
             float: right;
             width: 520px;
 
@@ -169,32 +169,49 @@
 
                 &-list {
                     margin: 0;
-                    padding: 0;
+                    padding: 10px 10px  0 0;
                     list-style: none;
+                    background: $profile-additional-achievements-background;
 
                     &-item {
-                        line-height: 58px;
-                        margin-top: 3px;
-                        font-size: 20px;
-                        font-weight: bold;
-                        padding: 0 15px;
-                        white-space: nowrap;
-                        overflow: hidden;
-                        text-overflow: ellipsis;
-                        background: $profile-additional-recomendation-background;
+                        padding:0 0 10px 10px;
                         display: inline-block;
-                        padding-top: 20px;
 
-                        &__date {
-                            letter-spacing: 1px;
-                            color: $profile-additional-date-text;
-                        }
+                        &__image {
+                            position: relative;
+                            vertical-align: middle;
+                            display: inline-block;
 
-                        &__title {
-                            color: $profile-additional-text;
+                            &.is-first-note {        
+                                @extend .icon-firstNote;
+                            }
+
+                            &.is-first-quiz {        
+                                @extend .icon-firstQuiz;
+                            }
+
+                            &.is-complete-quiz {        
+                                @extend .icon-completedQuiz;
+                            }
+
+                            &.is-welcome {        
+                                @extend .icon-welcome;
+                            }
+
+                            &:hover:after {
+                                content: '';
+                                position: absolute;
+                                width: 100%;
+                                height: 100%;
+                                top: 0;
+                                left: 0;
+                                right: 0;
+                                z-index: 10;
+                                background: rgba(255, 255, 255, 0.3);
+                            }
                         }
                     }
-                }
+                }    
             }
         }
     }

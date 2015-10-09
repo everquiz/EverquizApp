@@ -29,8 +29,7 @@ bower_components
 .idea/
 
 #image Thumbs.db
-assets/images/Thumbs.db
-assets/images/icons/Thumbs.db
+assets/**/*.db
 
 #concated .scss
 assets/styles/application.scss
