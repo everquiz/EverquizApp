@@ -28,7 +28,11 @@ node_modules
 bower_components
 .idea/
 
+#image Thumbs.db
 
+
+#sprite
+assets/images/sprite.png
 
 #concated .scss
 assets/styles/application.scss
