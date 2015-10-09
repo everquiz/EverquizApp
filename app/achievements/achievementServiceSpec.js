@@ -32,7 +32,7 @@ describe("AchievementService", function() {
 
     it('should get achievements from the server', function () {
         
-        $httpBackend.whenGET(url + '?select=title,description').respond({
+        $httpBackend.whenGET(url + '?select=title,description,picture').respond({
             data: achievements
         });
         var achievementsAll = [];
