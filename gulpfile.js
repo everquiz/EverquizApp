@@ -48,7 +48,7 @@ gulp.task('sprite', function() {
     var spriteData = gulp.src([
             'assets/images/icons/*.png',
             'assets/images/achievements/*.jpg',
-            '!assets/images/icons/Thumbs.db'])
+            '!assets/images/icons/*.db'])
         .pipe(spritesmith({
             imgName: 'sprite.png',
             cssName: '_sprite.css',
@@ -62,7 +62,7 @@ gulp.task('sprite', function() {
 gulp.task('images', function() {
     return gulp.src([
             'assets/images/*',
-            '!assets/images/**/Thumbs.db',
+            '!assets/images/**/*.db',
             '!assets/images/icons/',
             '!assets/images/achievements/'])
         .pipe(imagemin())
