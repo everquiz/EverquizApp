@@ -103,4 +103,16 @@
 		    }
 		}
 	}
+	&-social {
+		text-align: center;
+
+		&-google {
+		@extend .icon-google_plus_sign;
+		margin: 0 auto;
+		cursor: pointer;
+			&:hover {
+				@extend .icon-google_plus_sign_hover;
+			}
+		}
+	}
 }	
