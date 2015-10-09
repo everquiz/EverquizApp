@@ -8,10 +8,13 @@ var UserSchema = new mongoose.Schema({
   name: { type:String, default: "User_Default" },
   email: {type: String, unique: true },
   google: {
-      id: String,
-      email: String,
-      name: String
+      id: String
     },
+  vkontakte: {
+    id: String,
+    profileUrl: String
+  },
+  photo: {type: String},
   hash: String,
   salt: String,
   status: {type: String, default: 'active' },
