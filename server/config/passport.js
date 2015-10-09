@@ -3,6 +3,7 @@ var LocalStrategy = require('passport-local').Strategy;
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
 var VKontakteStrategy = require('passport-vkontakte').Strategy;
 var OpenIDStrategy = require('passport-openid').Strategy;
+var GitlabStrategy = require('passport-gitlab').Strategy;
 var mongoose = require('mongoose');
 var User = mongoose.model('User');
 var configAuth = require('./auth');
@@ -26,6 +27,46 @@ passport.use(new LocalStrategy({
   }
 ));
 
+//GitLab strategy
+passport.use(new GitlabStrategy({
+    clientID: configAuth.epamAuth.clientID,
+    clientSecret: configAuth.epamAuth.clientSecret,
+    gitlabURL : configAuth.epamAuth.gitlabURL,
+    callbackURL: configAuth.epamAuth.callbackURL
+  },
+  function(token, tokenSecret, profile, done) {
+    process.nextTick(function() {
+
+            // try to find the user based on their google id
+            User.findOne({ 'epam.id' : profile.id }, function(err, user) {
+                console.log(profile);
+                if (err)
+                    return done(err);
+
+                if (user) {
+
+                    // if a user is found, log them in
+                    return done(null, user);
+                } else {
+                    // if the user isnt in our database, create a new user
+                    var newUser = new User();
+
+                    // set all of the relevant information
+                    newUser.google.id    = profile.id;
+                    newUser.name = profile.displayName;
+                    newUser.email = profile.emails[0].value;
+
+                    // save the user
+                    // newUser.save(function(err) {
+                    //     if (err)
+                    //         throw err;
+                    //     return done(null, newUser);
+                    // });
+                }
+            });
+        });
+  }
+));
 
 //Google strategy
 passport.use(new GoogleStrategy({

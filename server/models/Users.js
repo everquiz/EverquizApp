@@ -15,6 +15,9 @@ var UserSchema = new mongoose.Schema({
     profileUrl: String
   },
   photo: {type: String},
+  epam: {
+    id: String
+  },
   hash: String,
   salt: String,
   status: {type: String, default: 'active' },

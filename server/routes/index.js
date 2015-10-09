@@ -83,6 +83,16 @@ router.get('/auth/vkontakte/callback',
         res.redirect('/#/token/' + token.token);
     });
 
+router.get('/auth/epam',
+  passport.authenticate('gitlab', { scope: [ 'user:email' ] }));
+
+router.get('/auth/epam/callback', 
+  passport.authenticate('gitlab', { failureRedirect: '/login' }),
+  function(req, res) {
+    // Successful authentication, redirect home.
+    res.redirect('/');
+  });
+
 /* GET home page. */
 router.get('/', function (req, res, next) {
     res.render('index');
