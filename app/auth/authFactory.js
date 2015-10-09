@@ -25,6 +25,7 @@
         //*****************************************************
         return auth;
 
+
         function saveToken(token) {
             $window.localStorage['everquizApp-token'] = token;
         }

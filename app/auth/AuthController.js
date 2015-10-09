@@ -5,13 +5,14 @@
         .module('everquizApp')
         .controller('AuthController', AuthController);
 
-    AuthController.$inject = ['$state', '$window', 'authFactory'];
+    AuthController.$inject = ['$state', '$window', 'authFactory', 'profileFactory'];
 
-    function AuthController($state, $window, authFactory) {
+    function AuthController($state, $window, authFactory, profileFactory) {
 
         var vm = this;
         vm.user = {};
         vm.logIn = logIn;
+        vm.logInGoogle = authFactory.logInGoogle;
         vm.isAdmin = isAdmin;
         vm.register = register;
 
@@ -19,9 +20,11 @@
             authFactory.register(vm.user).error(function (error) {
                 vm.error = error;
             }).then(function () {
+                profileFactory.addAchievement('5614d7cd60a7a12614a331b8');
                 $state.go('home');
             });
         }
+
 
         function logIn() {
             authFactory.logIn(vm.user).error(function (error) {
