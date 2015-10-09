@@ -53,26 +53,38 @@ router.post('/login', function (req, res, next) {
 router.get('/auth/google', passport.authenticate('google', { scope : ['https://www.googleapis.com/auth/plus.login', 'https://www.googleapis.com/auth/userinfo.email'] }));
 
 router.get('/auth/google/callback',
-    passport.authenticate('google', {failureRedirect : '/'}),
+    passport.authenticate('google', {failureRedirect : '/#/login'}),
     function(req, res){
         if (req.user) {
             var token = {token: req.user.generateJWT()};
         } else {
             res.status(401).json(info);
         }
-        console.log('TOKENED', token);
+        console.log('TOKENED', req.user);
         res.redirect('/#/token/' + token.token);
     });
 
-router.get('/loginGoogle', function (req, res, next) {
-    console.log('USER', req.query.token);
-    res.json(req.query.token);
-});
+router.get('/auth/vkontakte',
+    passport.authenticate('vkontakte'),
+    function(req, res){
+        // The request will be redirected to vk.com for authentication, so
+        // this function will not be called.
+    });
 
+router.get('/auth/vkontakte/callback',
+    passport.authenticate('vkontakte', { failureRedirect: '/#/login' }),
+    function(req, res) {
+        if (req.user) {
+            var token = {token: req.user.generateJWT()};
+        } else {
+            res.status(401).json(info);
+        }
+        console.log('TOKENED', req.user);
+        res.redirect('/#/token/' + token.token);
+    });
 
 /* GET home page. */
 router.get('/', function (req, res, next) {
-    console.log(req.user);
     res.render('index');
 });
 

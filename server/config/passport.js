@@ -1,6 +1,7 @@
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
 var GoogleStrategy = require('passport-google-oauth').OAuth2Strategy;
+var VKontakteStrategy = require('passport-vkontakte').Strategy;
 var OpenIDStrategy = require('passport-openid').Strategy;
 var mongoose = require('mongoose');
 var User = mongoose.model('User');
@@ -55,11 +56,8 @@ passport.use(new GoogleStrategy({
 
                     // set all of the relevant information
                     newUser.google.id    = profile.id;
-                    newUser.google.token = token;
-                    newUser.google.name  = profile.displayName;
                     newUser.name = profile.displayName;
                     newUser.email = profile.emails[0].value;
-                    newUser.google.email = profile.emails[0].value; // pull the first email
 
                     // save the user
                     newUser.save(function(err) {
@@ -72,6 +70,45 @@ passport.use(new GoogleStrategy({
         });
 
     }));
+
+passport.use(new VKontakteStrategy({
+
+        clientID        : configAuth.vkAuth.clientID,
+        clientSecret    : configAuth.vkAuth.clientSecret,
+        callbackURL     : configAuth.vkAuth.callbackURL,
+    },
+    function(accessToken, refreshToken, profile, done) {
+        process.nextTick(function() {
+
+            // try to find the user based on their google id
+            User.findOne({ 'vkontakte.id' : profile.id }, function(err, user) {
+                if (err)
+                    return done(err);
+
+                if (user) {
+
+                    // if a user is found, log them in
+                    return done(null, user);
+                } else {
+                    // if the user isnt in our database, create a new user
+                    var newUser = new User();
+                    console.log(profile);
+                    // set all of the relevant information
+                    newUser.vkontakte.id    = profile.id;
+                    newUser.photo = profile.photos[0].value;
+                    newUser.name = profile.displayName;
+                    newUser.profileUrl = profile.profileUrl;
+
+                    newUser.save(function(err) {
+                        if (err)
+                            throw err;
+                        return done(null, newUser);
+                    });
+                }
+            });
+        });
+    }
+));
 
 passport.serializeUser(function(user, done) {
   done(null, user.id);
