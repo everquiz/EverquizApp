@@ -27,13 +27,7 @@
         }
 
         function backToAllQuizzes () {
-            vm.quizFactory.margin = 0; 
-            vm.quizFactory.questionCount = 0; 
-            vm.quizFactory.startQuiz = false; 
-            vm.quizFactory.buttonText = 'START QUIZ!';
-            vm.quizFactory.activeQuiz = null;
-            localStorage.removeItem('quiz');
-            localStorage.removeItem('slide');
+            vm.quizFactory.resetSlider();
         }
     }
 

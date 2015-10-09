@@ -6,6 +6,12 @@ module.exports = {
         'callbackURL'   : 'http://localhost:3000/auth/facebook/callback'
     },
 
+    'vkAuth' : {
+        'clientID'      : '5099697', // your App ID
+        'clientSecret'  : 'wvIh5Zk1kvZK2ho1bafC', // your App Secret
+        'callbackURL'   : 'http://localhost:3000/auth/vkontakte/callback'
+    },
+
     'twitterAuth' : {
         'consumerKey'       : 'your-consumer-key-here',
         'consumerSecret'    : 'your-client-secret-here',

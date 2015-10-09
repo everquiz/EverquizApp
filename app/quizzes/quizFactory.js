@@ -15,17 +15,18 @@
         ];
 
         var factory = {
-            activeQuiz: null,
             getDifficulties: getDifficulties,
             getComplexity: getComplexity,
             getQuizzes: getQuizzes,
             getQuizzesByQuery: getQuizzesByQuery,
+            get: get,
+            getQuestions: getQuestions,
+            activeQuiz: null,
             questionCount: 0,
             buttonText: 'START QUIZ!',
             startQuiz: false,
             margin: 0,
-            get: get,
-            getQuestions: getQuestions
+            resetSlider: resetSlider
         };
 
         return factory;
@@ -77,6 +78,16 @@
                 .then(function (res) {
                     return res.data;
                 });
+        }
+
+        function resetSlider() {
+            factory.activeQuiz = null;
+            factory.questionCount = 0;
+            factory.buttonText = 'START QUIZ!';
+            factory.startQuiz = false;
+            factory.margin = 0;
+            localStorage.removeItem('quiz');
+            localStorage.removeItem('slide');
         }
     }
 })();

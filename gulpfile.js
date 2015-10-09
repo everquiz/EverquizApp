@@ -47,6 +47,7 @@ gulp.task('vendor-js', function() {
 gulp.task('sprite', function() {
     var spriteData = gulp.src([
             'assets/images/icons/*.png',
+            'assets/images/achievements/*.jpg',
             '!assets/images/icons/*.db'])
         .pipe(spritesmith({
             imgName: 'sprite.png',
@@ -61,8 +62,9 @@ gulp.task('sprite', function() {
 gulp.task('images', function() {
     return gulp.src([
             'assets/images/*',
-            '!assets/images/*.db',
-            '!assets/images/icons/'])
+            '!assets/images/**/*.db',
+            '!assets/images/icons/',
+            '!assets/images/achievements/'])
         .pipe(imagemin())
         .pipe(gulp.dest('public/i'));
 });
