@@ -105,11 +105,12 @@
 	}
 	&-social {
 		text-align: center;
+		font-weight: bold;
 
 		&-google {
 		display: inline-block;
 		@extend .icon-google_plus_sign;
-		margin: 0 auto;
+		margin: 0 10px;
 		
 			&:hover {
 				@extend .icon-google_plus_sign_hover;
@@ -118,7 +119,7 @@
 		&-vk {
 		display: inline-block;
 		@extend .icon-vk_sign;
-		margin: 0 auto;
+		margin: 0 10px;
 		
 			&:hover {
 				@extend .icon-vk_sign_hover;
