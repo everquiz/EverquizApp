@@ -84,13 +84,18 @@ router.get('/auth/vkontakte/callback',
     });
 
 router.get('/auth/epam',
-  passport.authenticate('gitlab', { scope: [ 'user:email' ] }));
+  passport.authenticate('gitlab'));
 
 router.get('/auth/epam/callback', 
-  passport.authenticate('gitlab', { failureRedirect: '/login' }),
+  passport.authenticate('gitlab', { failureRedirect: '/' }),
   function(req, res) {
-    // Successful authentication, redirect home.
-    res.redirect('/');
+    if (req.user) {
+            var token = {token: req.user.generateJWT()};
+        } else {
+            res.status(401).json(info);
+        }
+        console.log('TOKENED', req.user);
+        res.redirect('/#/token/' + token.token);
   });
 
 /* GET home page. */
