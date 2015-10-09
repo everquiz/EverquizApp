@@ -32,7 +32,7 @@
             color: $quiz-single-text-color;
             font-weight: bold;
             padding: 120px 0 0 80px;
-
+            
             &_slide {
                transition: margin 0.5s cubic-bezier(1, 0, 0, 1);
             }
@@ -60,6 +60,7 @@
                 font-family: $roboto;
                 color: $quiz-single-text-color;
                 font-weight: bold;
+
             }
         }
             
@@ -80,8 +81,9 @@
                 padding-right: 55pc; // VN
                 font-size: 20px;
                 font-family: $roboto;
-                padding-bottom: 10px;
+                padding-top: 50px;
                 color: $quiz-single-answers-text;
+                text-align: justify;
             }
     
             &-form {
@@ -92,12 +94,13 @@
                     list-style-type: none;
 
                     &-item {
-                        font-size: 20px;
+                        font-size: 14px;
                         font-family: $roboto;
                         padding-bottom: 10px;
                         color: $quiz-single-answers-text;
                         list-style-type: none;
-                            
+                        text-align: justify;
+                        
                         &__title {
                             cursor: pointer;
                             
