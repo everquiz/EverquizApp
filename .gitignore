@@ -31,6 +31,9 @@ bower_components
 #image Thumbs.db
 assets/**/*.db
 
+#sprite
+assets/images/sprite.png
+
 #concated .scss
 assets/styles/application.scss
 
