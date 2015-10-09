@@ -84,6 +84,15 @@
                             }
                         }
                     })
+                    .state('tokenReciever', {
+                        url: '/token/:token',
+                        controller: ['authFactory', '$state', '$stateParams',
+                            function(authFactory, $state, $stateParams){
+                            console.log($stateParams.token);
+                                authFactory.saveToken($stateParams.token);
+                            $state.go('home');
+                        }]
+                    })
                     .state('admin', {
                         url: '/admin',
                         templateUrl: 'admin/index.html',

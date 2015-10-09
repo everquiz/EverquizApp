@@ -5,13 +5,12 @@
         .module('everquizApp')
         .factory('profileFactory', profileFactory);
 
-    profileFactory.$inject = ['$http', 'authFactory', '$q'];
+    profileFactory.$inject = ['$http', 'authFactory', '$q', 'achievementService', 'alertify'];
 
-    function profileFactory($http, authFactory, $q) {
+    function profileFactory($http, authFactory, $q, achievementService, alertify) {
         var profile = {};
         var display = false;
         var observerCallbacks = [];
-
 
         var factory = {
             registerObserverCallback: registerObserverCallback,
@@ -21,7 +20,8 @@
             showProfile: showProfile,
             hideProfile: hideProfile,
             toggleProfile: toggleProfile,
-            isVisible: isVisible
+            isVisible: isVisible,
+            addAchievement: addAchievement
         };
 
         return factory;
@@ -46,7 +46,7 @@
         function updateProfile() {
             var id = authFactory.currentUserId();
             if (id) {
-                return $http.get('/api/v1/Users/' + id + '?populate=history').then(function (res) {
+                return $http.get('/api/v1/Users/' + id + '?populate=history,achievements').then(function (res) {
                     profile = res.data;
 
                     var result = getQuizStatistic(profile.history);
@@ -146,6 +146,27 @@
                 });
                 return resultLastActions.splice(0, 3);
             });
+        }
+
+        function addAchievement (achievementId) {
+            achievementService.get(achievementId);
+            for (var i = profile.achievements.length - 1; i >= 0; i--) {
+                if (profile.achievements[i]._id === achievementId) {
+                    // alertify.error("You already have this achievement");
+                    return;
+                }
+            }
+            var id = authFactory.currentUserId();
+            if (id) {
+                $http.get('/api/v1/Users/' + id).then(function (res) {
+                    var user = res.data;
+                    user.achievements.push(achievementId);
+                    $http.post('/api/v1/Users/' + id, user).then(function (res) {
+                        alertify.success("You received new achievement");
+                        updateProfile();
+                    })
+                });
+            }
         }
     }
 })();

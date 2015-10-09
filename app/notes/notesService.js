@@ -57,6 +57,7 @@
         note.user = id;
         $http.post('/api/v1/Notes/', note).then(function (res) {
           self.notes.push(res.data);
+          profileFactory.addAchievement('5614d7cd60a7a12614a331b7');
           profileFactory.updateProfile();
           setLimit();
         });

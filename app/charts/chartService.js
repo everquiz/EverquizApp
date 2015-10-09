@@ -3,7 +3,7 @@
 
     angular
         .module('everquizApp')
-        .service('chartService', chartService);
+        .service('chartService',chartService);
 
     chartService.$inject = ['historyService'];
 
