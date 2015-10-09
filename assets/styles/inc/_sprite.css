@@ -11,181 +11,211 @@ Icon classes can be used entirely standalone. They are named after their origina
 */
 .icon-completedQuiz {
   background-image: url(../i/sprite.png);
-  background-position: -128px 0px;
+  background-position: -171px -64px;
   width: 64px;
   height: 64px;
 }
 .icon-firstNote {
   background-image: url(../i/sprite.png);
-  background-position: -64px -64px;
+  background-position: -171px 0px;
   width: 64px;
   height: 64px;
 }
 .icon-firstQuiz {
   background-image: url(../i/sprite.png);
-  background-position: 0px -64px;
+  background-position: -64px -64px;
   width: 64px;
   height: 64px;
 }
 .icon-welcome {
   background-image: url(../i/sprite.png);
-  background-position: -64px 0px;
+  background-position: -235px 0px;
   width: 64px;
   height: 64px;
 }
 .icon-chart {
   background-image: url(../i/sprite.png);
-  background-position: 0px 0px;
+  background-position: 0px -64px;
   width: 64px;
   height: 64px;
 }
 .icon-chart_hover {
   background-image: url(../i/sprite.png);
-  background-position: -64px -128px;
+  background-position: -235px -128px;
   width: 64px;
   height: 64px;
 }
 .icon-checkbox_checked {
   background-image: url(../i/sprite.png);
-  background-position: -192px -82px;
+  background-position: -192px -128px;
   width: 29px;
   height: 29px;
 }
 .icon-checkbox_not_checked {
   background-image: url(../i/sprite.png);
-  background-position: -221px -82px;
+  background-position: -192px -157px;
   width: 29px;
   height: 29px;
 }
 .icon-delete {
   background-image: url(../i/sprite.png);
-  background-position: -176px -128px;
+  background-position: -72px -256px;
   width: 16px;
   height: 16px;
 }
 .icon-delete_hover {
   background-image: url(../i/sprite.png);
-  background-position: -240px -111px;
+  background-position: -56px -256px;
   width: 16px;
   height: 16px;
 }
 .icon-edit {
   background-image: url(../i/sprite.png);
-  background-position: -128px -176px;
+  background-position: -40px -256px;
   width: 16px;
   height: 16px;
 }
 .icon-edit_hover {
   background-image: url(../i/sprite.png);
-  background-position: -240px -135px;
+  background-position: -88px -256px;
   width: 16px;
   height: 16px;
 }
+.icon-epam_sign {
+  background-image: url(../i/sprite.png);
+  background-position: 0px 0px;
+  width: 171px;
+  height: 64px;
+}
 .icon-facebook {
   background-image: url(../i/sprite.png);
-  background-position: -192px -111px;
+  background-position: -176px -217px;
   width: 24px;
   height: 24px;
 }
 .icon-facebook_hover {
   background-image: url(../i/sprite.png);
-  background-position: -216px -159px;
+  background-position: -200px -217px;
   width: 24px;
   height: 24px;
 }
 .icon-favourite_false {
   background-image: url(../i/sprite.png);
-  background-position: -168px -152px;
+  background-position: -104px -256px;
   width: 16px;
   height: 16px;
 }
 .icon-favourite_hover {
   background-image: url(../i/sprite.png);
-  background-position: -152px -152px;
+  background-position: -24px -256px;
   width: 16px;
   height: 16px;
 }
 .icon-favourite_true {
   background-image: url(../i/sprite.png);
-  background-position: -240px -159px;
+  background-position: -120px -256px;
   width: 16px;
   height: 16px;
 }
+.icon-google_plus_sign {
+  background-image: url(../i/sprite.png);
+  background-position: -64px -192px;
+  width: 64px;
+  height: 64px;
+}
+.icon-google_plus_sign_hover {
+  background-image: url(../i/sprite.png);
+  background-position: 0px -192px;
+  width: 64px;
+  height: 64px;
+}
 .icon-googleplus {
   background-image: url(../i/sprite.png);
-  background-position: -128px -128px;
+  background-position: -152px -217px;
   width: 24px;
   height: 24px;
 }
 .icon-googleplus_hover {
   background-image: url(../i/sprite.png);
-  background-position: -128px -152px;
+  background-position: -128px -217px;
   width: 24px;
   height: 24px;
 }
 .icon-linkedin {
   background-image: url(../i/sprite.png);
-  background-position: -216px -135px;
+  background-position: -248px -217px;
   width: 24px;
   height: 24px;
 }
 .icon-linkedin_hover {
   background-image: url(../i/sprite.png);
-  background-position: -192px -135px;
+  background-position: -272px -217px;
   width: 24px;
   height: 24px;
 }
 .icon-logo {
   background-image: url(../i/sprite.png);
-  background-position: -192px 0px;
+  background-position: -128px -192px;
   width: 70px;
   height: 25px;
 }
 .icon-logo_hover {
   background-image: url(../i/sprite.png);
-  background-position: -192px -25px;
+  background-position: -198px -192px;
   width: 70px;
   height: 25px;
 }
 .icon-new-note {
   background-image: url(../i/sprite.png);
-  background-position: 0px -128px;
+  background-position: -235px -64px;
   width: 64px;
   height: 64px;
 }
 .icon-new-note_hover {
   background-image: url(../i/sprite.png);
-  background-position: -128px -64px;
+  background-position: -128px -128px;
   width: 64px;
   height: 64px;
 }
 .icon-trash-clean {
   background-image: url(../i/sprite.png);
-  background-position: -152px -128px;
+  background-position: -268px -192px;
   width: 24px;
   height: 24px;
 }
 .icon-trash {
   background-image: url(../i/sprite.png);
-  background-position: -224px -50px;
+  background-position: -128px -64px;
   width: 32px;
   height: 32px;
 }
 .icon-trash_hover {
   background-image: url(../i/sprite.png);
-  background-position: -192px -50px;
+  background-position: -128px -96px;
   width: 32px;
   height: 32px;
 }
 .icon-twitter {
   background-image: url(../i/sprite.png);
-  background-position: -216px -111px;
+  background-position: 0px -256px;
   width: 24px;
   height: 24px;
 }
 .icon-twitter_hover {
   background-image: url(../i/sprite.png);
-  background-position: -192px -159px;
+  background-position: -224px -217px;
   width: 24px;
   height: 24px;
+}
+.icon-vk_sign {
+  background-image: url(../i/sprite.png);
+  background-position: -64px -128px;
+  width: 64px;
+  height: 64px;
+}
+.icon-vk_sign_hover {
+  background-image: url(../i/sprite.png);
+  background-position: 0px -128px;
+  width: 64px;
+  height: 64px;
 }
