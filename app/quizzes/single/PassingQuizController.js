@@ -35,13 +35,7 @@
 
         function checkResult() {
             resultFactory.checkResult(vm.quiz);
-            quizFactory.activeQuiz = null;
-            quizFactory.margin = 0;
-            quizFactory.questionCount = 0;
-            quizFactory.startQuiz = false;
-            quizFactory.buttonText = 'START QUIZ!';
-            localStorage.removeItem('quiz');
-            localStorage.removeItem('slide');
+            quizFactory.resetSlider();
             goToElement('result');
         }
 
