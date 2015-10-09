@@ -29,7 +29,10 @@ bower_components
 .idea/
 
 #image Thumbs.db
-assets/**/*.db
+
+
+#sprite
+assets/images/sprite.png
 
 #concated .scss
 assets/styles/application.scss

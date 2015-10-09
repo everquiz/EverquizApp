@@ -41,151 +41,175 @@ Icon classes can be used entirely standalone. They are named after their origina
 }
 .icon-chart_hover {
   background-image: url(../i/sprite.png);
-  background-position: -64px -128px;
+  background-position: -192px 0px;
   width: 64px;
   height: 64px;
 }
 .icon-checkbox_checked {
   background-image: url(../i/sprite.png);
-  background-position: -192px -82px;
+  background-position: -64px -217px;
   width: 29px;
   height: 29px;
 }
 .icon-checkbox_not_checked {
   background-image: url(../i/sprite.png);
-  background-position: -221px -82px;
+  background-position: -93px -217px;
   width: 29px;
   height: 29px;
 }
 .icon-delete {
   background-image: url(../i/sprite.png);
-  background-position: -176px -128px;
+  background-position: -256px -32px;
   width: 16px;
   height: 16px;
 }
 .icon-delete_hover {
   background-image: url(../i/sprite.png);
-  background-position: -240px -111px;
+  background-position: -256px -16px;
   width: 16px;
   height: 16px;
 }
 .icon-edit {
   background-image: url(../i/sprite.png);
-  background-position: -128px -176px;
+  background-position: -256px 0px;
   width: 16px;
   height: 16px;
 }
 .icon-edit_hover {
   background-image: url(../i/sprite.png);
-  background-position: -240px -135px;
+  background-position: -256px -48px;
   width: 16px;
   height: 16px;
 }
 .icon-facebook {
   background-image: url(../i/sprite.png);
-  background-position: -192px -111px;
+  background-position: -212px -192px;
   width: 24px;
   height: 24px;
 }
 .icon-facebook_hover {
   background-image: url(../i/sprite.png);
-  background-position: -216px -159px;
+  background-position: -170px -217px;
   width: 24px;
   height: 24px;
 }
 .icon-favourite_false {
   background-image: url(../i/sprite.png);
-  background-position: -168px -152px;
+  background-position: -256px -64px;
   width: 16px;
   height: 16px;
 }
 .icon-favourite_hover {
   background-image: url(../i/sprite.png);
-  background-position: -152px -152px;
+  background-position: -236px -192px;
   width: 16px;
   height: 16px;
 }
 .icon-favourite_true {
   background-image: url(../i/sprite.png);
-  background-position: -240px -159px;
+  background-position: -256px -80px;
   width: 16px;
   height: 16px;
 }
+.icon-google_plus_sign {
+  background-image: url(../i/sprite.png);
+  background-position: -192px -128px;
+  width: 64px;
+  height: 64px;
+}
+.icon-google_plus_sign_hover {
+  background-image: url(../i/sprite.png);
+  background-position: -192px -64px;
+  width: 64px;
+  height: 64px;
+}
 .icon-googleplus {
   background-image: url(../i/sprite.png);
-  background-position: -128px -128px;
+  background-position: -188px -192px;
   width: 24px;
   height: 24px;
 }
 .icon-googleplus_hover {
   background-image: url(../i/sprite.png);
-  background-position: -128px -152px;
+  background-position: -122px -217px;
   width: 24px;
   height: 24px;
 }
 .icon-linkedin {
   background-image: url(../i/sprite.png);
-  background-position: -216px -135px;
+  background-position: -164px -192px;
   width: 24px;
   height: 24px;
 }
 .icon-linkedin_hover {
   background-image: url(../i/sprite.png);
-  background-position: -192px -135px;
+  background-position: -194px -217px;
   width: 24px;
   height: 24px;
 }
 .icon-logo {
   background-image: url(../i/sprite.png);
-  background-position: -192px 0px;
+  background-position: 0px -192px;
   width: 70px;
   height: 25px;
 }
 .icon-logo_hover {
   background-image: url(../i/sprite.png);
-  background-position: -192px -25px;
+  background-position: -70px -192px;
   width: 70px;
   height: 25px;
 }
 .icon-new-note {
   background-image: url(../i/sprite.png);
-  background-position: 0px -128px;
+  background-position: -128px -128px;
   width: 64px;
   height: 64px;
 }
 .icon-new-note_hover {
   background-image: url(../i/sprite.png);
-  background-position: -128px -64px;
+  background-position: -64px -128px;
   width: 64px;
   height: 64px;
 }
 .icon-trash-clean {
   background-image: url(../i/sprite.png);
-  background-position: -152px -128px;
+  background-position: -140px -192px;
   width: 24px;
   height: 24px;
 }
 .icon-trash {
   background-image: url(../i/sprite.png);
-  background-position: -224px -50px;
+  background-position: 0px -217px;
   width: 32px;
   height: 32px;
 }
 .icon-trash_hover {
   background-image: url(../i/sprite.png);
-  background-position: -192px -50px;
+  background-position: -32px -217px;
   width: 32px;
   height: 32px;
 }
 .icon-twitter {
   background-image: url(../i/sprite.png);
-  background-position: -216px -111px;
+  background-position: -218px -217px;
   width: 24px;
   height: 24px;
 }
 .icon-twitter_hover {
   background-image: url(../i/sprite.png);
-  background-position: -192px -159px;
+  background-position: -146px -217px;
   width: 24px;
   height: 24px;
+}
+.icon-vk_sign {
+  background-image: url(../i/sprite.png);
+  background-position: 0px -128px;
+  width: 64px;
+  height: 64px;
+}
+.icon-vk_sign_hover {
+  background-image: url(../i/sprite.png);
+  background-position: -128px -64px;
+  width: 64px;
+  height: 64px;
 }
