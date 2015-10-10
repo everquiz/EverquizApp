@@ -83,20 +83,26 @@ router.get('/auth/vkontakte/callback',
         res.redirect('/#/token/' + token.token);
     });
 
-router.get('/auth/epam',
-  passport.authenticate('gitlab'));
+router.get('/auth/gitlab',
+    passport.authenticate('gitlab'),
+    function (req, res) {
+        // The request will be redirected to vk.com for authentication, so
+        // this function will not be called.
+    });
 
-router.get('/auth/epam/callback', 
-  passport.authenticate('gitlab', { failureRedirect: '/' }),
-  function(req, res) {
-    if (req.user) {
-            var token = {token: req.user.generateJWT()};
-        } else {
-            res.status(401).json(info);
-        }
-        console.log('TOKENED', req.user);
-        res.redirect('/#/token/' + token.token);
-  });
+router.get('/auth/gitlab/callback', 
+    passport.authenticate('gitlab', { failureRedirect: '/#/login' }),
+    function(req, res) {
+        console.log('req.user', req.user)
+        // if (req.user) {
+        //         var token = {token: req.user.generateJWT()};
+        //     } else {
+        //         res.status(401).json(info);
+        //     }
+        //     console.log('TOKENED', req.user);
+        //     res.redirect('/#/token/' + token.token);
+    });
+
 
 /* GET home page. */
 router.get('/', function (req, res, next) {

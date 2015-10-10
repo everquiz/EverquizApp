@@ -36,7 +36,7 @@ passport.use(new GitlabStrategy({
   },
   function(token, tokenSecret, profile, done) {
     process.nextTick(function() {
-
+            console.log('gitlab strategy');
             // try to find the user based on their google id
             User.findOne({ 'epam.id' : profile.id }, function(err, user) {
                 console.log(profile);
