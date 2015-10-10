@@ -125,5 +125,14 @@
 				@extend .icon-vk_sign_hover;
 			}
 		}
+		&-epam {
+		
+		@extend .icon-epam_sign;
+		margin: 5px 115px;
+		
+			&:hover {
+				@extend .icon-epam_sign;
+			}
+		}
 	}
 }	
