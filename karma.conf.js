@@ -24,6 +24,8 @@ module.exports = function(config) {
           'bower_components/ngDialog/js/ngDialog.js',
           'bower_components/Chart.js/Chart.js',
           'bower_components/angular-chart.js/angular-chart.js',
+          'bower_components/alertify.js/dist/js/alertify.js',
+          'bower_components/alertify.js/dist/js/ngAlertify.js',
           'app/angularApp.js',
           'app/**/*Service.js',
           'app/**/*Factory.js',
