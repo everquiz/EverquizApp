@@ -166,3 +166,14 @@ body {
 .center {
   text-align: center;
 }
+
+/* Preloader */
+.preloader {
+    background: url(../i/preloader.gif) center center no-repeat rgb(0,0,0);
+    opacity: .5;
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
