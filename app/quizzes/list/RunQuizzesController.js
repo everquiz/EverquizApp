@@ -5,9 +5,9 @@
         .module('everquizApp')
         .controller('RunQuizzesController', RunQuizzesController);
 
-    RunQuizzesController.$inject = ['quizFactory', 'categoryService', '$scope', 'historyService'];
+    RunQuizzesController.$inject = ['quizFactory', 'categoryService', '$scope', 'historyService', 'authFactory'];
 
-    function RunQuizzesController(quizFactory, categoryService, $scope, historyService) {
+    function RunQuizzesController(quizFactory, categoryService, $scope, historyService, authFactory) {
         var vm = this;
         vm.selectedCategory = -1;
         vm.selectedComplexity = -1;
@@ -37,15 +37,16 @@
                 vm.categories = data;
                 vm.categories.unshift({_id: -1, title: 'All categories'})
             });
-
-        historyService.getHistory()
-            .then(function (data) {
-                vm.statistics = {
-                    getAverageResult: historyService.getAverageResult,
-                    getBestResult: historyService.getBestResult,
-                    getTotalPassing: historyService.getTotalPassing
-                }
-            });
+        if(authFactory.isLoggedIn()) {
+            historyService.getHistory()
+                .then(function (data) {
+                    vm.statistics = {
+                        getAverageResult: historyService.getAverageResult,
+                        getBestResult: historyService.getBestResult,
+                        getTotalPassing: historyService.getTotalPassing
+                    }
+                });
+        }
         vm.dataLoaded = false;
 
 

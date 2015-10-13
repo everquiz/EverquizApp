@@ -21,8 +21,6 @@
                 .then(function (res) {
                     self.history = res.data;
                     return self.history;
-                }, function (err) {
-                    return self.history;
                 });
         }
 

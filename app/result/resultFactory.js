@@ -28,9 +28,11 @@
                     if (lastResult === 100) {
                         profileFactory.addAchievement('5614d7cd60a7a12614a331b5');
                     }
-                    profileFactory.updateProfile();
-                    historyService.getHistory();
-                    return res.data;
+                    if (authFactory.isLoggedIn()) {
+                        profileFactory.updateProfile();
+                        historyService.getHistory();
+                    }
+                    return lastResult;
                 })
         }
 
