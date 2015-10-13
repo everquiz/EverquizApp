@@ -17,6 +17,8 @@
         vm.saveToNote = saveToNote;
         vm.isShown = isShown;
         vm.isLoggedIn = authFactory.isLoggedIn;
+        vm.dataLoaded = false;
+
 
         if (localQuiz) {
             vm.quiz = JSON.parse(localQuiz);
@@ -27,6 +29,7 @@
                     quizFactory.getQuestions(quizFactory.activeQuiz)
                         .then(function (data) {
                             vm.quiz.questions = data;
+                            vm.dataLoaded = true;
                         }
                     )
                 }

@@ -30,7 +30,8 @@
             notesService.hideNotes();
             authFactory.logOut();
             quizFactory.resetSlider();
-            $state.go($state.current, {}, {reload: true});
+            console.log($state.current);
+            $state.go('home', {}, {reload: true});
         }
 
         function showProfile() {

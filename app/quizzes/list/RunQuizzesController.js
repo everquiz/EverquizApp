@@ -46,6 +46,8 @@
                     getTotalPassing: historyService.getTotalPassing
                 }
             });
+        vm.dataLoaded = false;
+
 
         /**
          * Paginations variables
@@ -57,6 +59,7 @@
         quizFactory.getQuizzes()
             .then(function (res) {
                 vm.filteredQuizzes = res.slice(0, vm.numPerPage);
+                vm.dataLoaded = true;
             });
 
         function updateQuizzes() {
@@ -72,6 +75,7 @@
                 complexity = vm.selectedComplexity;
             }
             query = '&category=' + category + '&complexity=' + complexity;
+            vm.dataLoaded = false;
             quizFactory.getQuizzesByQuery(query)
                 .then(function (data) {
                     vm.quizzes = data;
@@ -112,6 +116,8 @@
             var begin = (($scope.currentPage - 1) * vm.numPerPage),
                 end = begin + vm.numPerPage;
             vm.filteredQuizzes = vm.quizzes.slice(begin, end);
+            vm.dataLoaded = true;
+
         }
     }
 })();
