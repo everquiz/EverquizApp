@@ -29,6 +29,7 @@
         quizFactory.getQuizzes()
             .then(function (data) {
                 vm.quizzes = data;
+                return vm.quizzes;
             });
 
         categoryService.getCategories()
@@ -108,8 +109,8 @@
          * Handler for pagination
          */
         function updateFilteredQuizzes() {
-            var begin = (($scope.currentPage - 1) * vm.numPerPage)
-                , end = begin + vm.numPerPage;
+            var begin = (($scope.currentPage - 1) * vm.numPerPage),
+                end = begin + vm.numPerPage;
             vm.filteredQuizzes = vm.quizzes.slice(begin, end);
         }
     }

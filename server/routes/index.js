@@ -120,7 +120,6 @@ router.put('/checkresult', auth, function (req, res, next) {
             if (err) {
                 return next(err);
             }
-            console.log(result);
             res.send({
                 result: result
             });
