@@ -10,7 +10,6 @@ describe('ResultFactory', function () {
         inject(function (_resultFactory_, _$httpBackend_) {
             resultFactory = _resultFactory_;
             $httpBackend = _$httpBackend_;
-
             $httpBackend.whenPUT('/checkresult')
                 .respond({
                     result: 0.7
