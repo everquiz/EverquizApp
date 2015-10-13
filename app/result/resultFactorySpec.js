@@ -276,14 +276,14 @@ describe('ResultFactory', function () {
     );
 
     it('should check and return calculated result', function () {
-        $httpBackend.whenPUT('/checkresult').respond({
-            data: 0
-        });
-
         var result;
-        //resultFactory.checkResult(quiz);
+        $httpBackend.whenPUT('/checkresult').respond(function (method, url, data) {
+                result = data;
+                return true;
+            });
+        resultFactory.checkResult(quiz);
 
-        $http.put('/checkresult');
+        // $http.put('/checkresult');
         expect(result).to.be.empty;
         //expect(result).to.be.instanceof(Array);
         //expect(result).to.have.length(0);
