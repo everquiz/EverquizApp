@@ -56,12 +56,12 @@ passport.use(new GitlabStrategy({
                     newUser.name = profile.displayName;
                     newUser.email = profile.emails[0].value;
 
-                    // save the user
-                    // newUser.save(function(err) {
-                    //     if (err)
-                    //         throw err;
-                    //     return done(null, newUser);
-                    // });
+                    
+                    newUser.save(function(err) {
+                        if (err)
+                            throw err;
+                        return done(null, newUser);
+                    });
                 }
             });
         });
