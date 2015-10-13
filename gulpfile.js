@@ -59,7 +59,7 @@ gulp.task('sprite', function() {
     spriteData.css.pipe(gulp.dest('assets/styles/inc'));
 });
 
-gulp.task('images', function() {
+gulp.task('images',['sprite'], function() {
     return gulp.src([
             'assets/images/*',
             '!assets/images/**/*.db',
@@ -105,7 +105,7 @@ gulp.task('vendors', ['vendor-css', 'vendor-js'], function () {
 
 //****************************************************************
 // watching scss/js/html files
-gulp.task('watch', ['sprite', 'images', 'vendors', 'scripts', 'styles', 'server'], function() {
+gulp.task('watch', ['images', 'vendors', 'scripts', 'styles', 'server'], function() {
     gulp.watch('assets/styles/**/*.css', ['styles']);
     gulp.watch('assets/styles/**/*.scss', ['styles']);
     gulp.watch([
