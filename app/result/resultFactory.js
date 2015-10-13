@@ -1,4 +1,4 @@
-(function(){
+(function () {
     'use strict';
 
     angular
@@ -7,7 +7,7 @@
 
     resultFactory.$inject = ['$http', 'authFactory', 'profileFactory', 'historyService'];
 
-    function resultFactory($http, authFactory, profileFactory, historyService){
+    function resultFactory($http, authFactory, profileFactory, historyService) {
         var lastResult = null;
 
         var factory = {

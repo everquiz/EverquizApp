@@ -30,5 +30,4 @@
             vm.quizFactory.resetSlider();
         }
     }
-
 })();

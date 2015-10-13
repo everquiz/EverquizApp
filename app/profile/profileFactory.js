@@ -27,13 +27,13 @@
         return factory;
 
 
-        function registerObserverCallback(callback){
+        function registerObserverCallback(callback) {
             observerCallbacks.push(callback);
         }
 
         //call this when you know 'foo' has been changed
-        function notifyObservers(){
-            angular.forEach(observerCallbacks, function(callback){
+        function notifyObservers() {
+            angular.forEach(observerCallbacks, function (callback) {
                 callback();
             });
         }
@@ -52,9 +52,10 @@
                     var result = getQuizStatistic(profile.history);
                     profile.averageResult = result.averageResult;
                     profile.quizCompleted = result.quizCompleted;
-                    getLastActions().then(function (res) {
-                        profile.lastActions = res;
-                    });
+                    getLastActions()
+                        .then(function (res) {
+                            profile.lastActions = res;
+                        });
                     notifyObservers();
                     return profile;
                 });
@@ -115,57 +116,61 @@
             }
         }
 
-        function getLastActions () {
+        function getLastActions() {
             return $q.all([
                 getLastThreeNotes(),
                 getLastThreeHistory()
-                ])
-            .then(function(result) {
-                var lastActions = [],
-                    resultLastActions = [];
-                angular.forEach(result, function(response) {
-                    lastActions.push(response.data);
+            ])
+                .then(function (result) {
+                    var lastActions = [],
+                        resultLastActions = [];
+                    angular.forEach(result, function (response) {
+                        lastActions.push(response.data);
+                    });
+                    lastActions = lastActions[0].concat(lastActions[1]);
+                    lastActions = lastActions.sortBy('-createdAt');
+                    angular.forEach(lastActions, function (response) {
+                        if (response.quiz) {
+                            resultLastActions.push({
+                                createdAt: response.createdAt,
+                                title: response.quiz.title,
+                                result: Math.round(response.result * 100),
+                                type: 'quiz'
+                            });
+                        } else if (response.title) {
+                            resultLastActions.push({
+                                createdAt: response.createdAt,
+                                title: response.title,
+                                type: 'note'
+                            });
+                        }
+                    });
+                    return resultLastActions.splice(0, 3);
                 });
-                lastActions = lastActions[0].concat(lastActions[1]);
-                lastActions = lastActions.sortBy('-createdAt');
-                angular.forEach(lastActions, function(response) {
-                    if (response.quiz) {
-                        resultLastActions.push({
-                            createdAt: response.createdAt, 
-                            title: response.quiz.title,
-                            result: Math.round(response.result * 100),
-                            type: 'quiz'
-                        });
-                    } else if (response.title) {
-                        resultLastActions.push({
-                            createdAt: response.createdAt, 
-                            title: response.title,
-                            type: 'note'
-                        });
-                    }
-                });
-                return resultLastActions.splice(0, 3);
-            });
         }
 
-        function addAchievement (achievementId) {
+        function addAchievement(achievementId) {
             achievementService.get(achievementId);
-            for (var i = profile.achievements.length - 1; i >= 0; i--) {
-                if (profile.achievements[i]._id === achievementId) {
-                    // alertify.error("You already have this achievement");
-                    return;
+            if (profile.achievements) {
+                for (var i = profile.achievements.length - 1; i >= 0; i--) {
+                    if (profile.achievements[i]._id === achievementId) {
+                        // alertify.error("You already have this achievement");
+                        return;
+                    }
                 }
             }
             var id = authFactory.currentUserId();
             if (id) {
-                $http.get('/api/v1/Users/' + id).then(function (res) {
-                    var user = res.data;
-                    user.achievements.push(achievementId);
-                    $http.post('/api/v1/Users/' + id, user).then(function (res) {
-                        alertify.success("You received new achievement");
-                        updateProfile();
-                    })
-                });
+                $http.get('/api/v1/Users/' + id)
+                    .then(function (res) {
+                        var user = res.data;
+                        user.achievements.push(achievementId);
+                        $http.post('/api/v1/Users/' + id, user)
+                            .then(function (res) {
+                                alertify.success("You received new achievement");
+                                updateProfile();
+                            })
+                    });
             }
         }
     }

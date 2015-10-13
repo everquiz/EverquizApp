@@ -94,13 +94,13 @@ router.get('/auth/gitlab/callback',
     passport.authenticate('gitlab', { failureRedirect: '/#/login' }),
     function(req, res) {
         console.log('req.user', req.user)
-        // if (req.user) {
-        //         var token = {token: req.user.generateJWT()};
-        //     } else {
-        //         res.status(401).json(info);
-        //     }
-        //     console.log('TOKENED', req.user);
-        //     res.redirect('/#/token/' + token.token);
+        if (req.user) {
+                var token = {token: req.user.generateJWT()};
+            } else {
+                res.status(401).json(info);
+            }
+            console.log('TOKENED', req.user);
+            res.redirect('/#/token/' + token.token);
     });
 
 
@@ -131,7 +131,6 @@ router.put('/checkresult', auth, function (req, res, next) {
             if (err) {
                 return next(err);
             }
-            console.log(result);
             res.send({
                 result: result
             });
