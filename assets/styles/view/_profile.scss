@@ -1,7 +1,7 @@
 .profile {
     width: 100%;
     min-width: 1280px;
-    height: 640px;
+    padding-bottom: 36px;
     position: fixed;
     left: 0;
     right: 0;
@@ -15,7 +15,7 @@
         position: relative;
         width: 1120px;
         height: 200px;
-        margin: 56px auto 0;
+        margin: 36px auto 0;
         background-color: $profile-info-background;
         
         &-photo {
@@ -103,7 +103,7 @@
     &-additional {
         width: 1120px;
         margin: 0 auto;
-        padding-top: 64px;
+        padding-top: 42px;
 
         &-actions {
             float: left;
