@@ -5,9 +5,9 @@
         .module('everquizApp')
         .factory('quizFactory', quizFactory);
 
-    quizFactory.$inject = ['$http', 'authFactory'];
+    quizFactory.$inject = ['$http', 'authFactory', '$window'];
 
-    function quizFactory($http, authFactory) {
+    function quizFactory($http, authFactory, $window) {
         var difficulties = [
             {_id: 0, title: 'Novice'},
             {_id: 1, title: 'Advanced'},
@@ -58,7 +58,6 @@
             })
                 .then(function (res) {
                     return res.data;
-
                 });
         }
 
@@ -86,8 +85,8 @@
             factory.buttonText = 'START QUIZ!';
             factory.startQuiz = false;
             factory.margin = 0;
-            localStorage.removeItem('quiz');
-            localStorage.removeItem('slide');
+            $window.localStorage.removeItem('quiz');
+            $window.localStorage.removeItem('slide');
         }
     }
 })();
