@@ -18,7 +18,7 @@ router.post('/register', function (req, res, next) {
     }
 
     User.find({email: req.body.email}).then(function (userCheck) {
-        
+
         if (userCheck === []) return res.status(400).json({message: 'E-mail already taken'});
 
         var user = new User();
