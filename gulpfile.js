@@ -51,7 +51,7 @@ gulp.task('sprite', function() {
             '!assets/images/icons/*.db'])
         .pipe(spritesmith({
             imgName: 'sprite.png',
-            imgPath: '../i',
+            imgPath: '../i/sprite.png',
             cssName: '_sprite.css',
         }));
 
