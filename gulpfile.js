@@ -1,5 +1,7 @@
 var gulp = require('gulp'),
     mainBowerFiles = require('main-bower-files'),
+    spritesmith = require('gulp.spritesmith'),
+    imagemin = require ('gulp-imagemin'),
     minifyCss = require('gulp-minify-css'),
     concat = require('gulp-concat'),
     uglify = require('gulp-uglify'),
@@ -14,8 +16,6 @@ var gulp = require('gulp'),
     jshint = require('gulp-jshint'),
     templateCache = require('gulp-angular-templatecache'),
     spawn = require('child_process').spawn,
-    spritesmith = require('gulp.spritesmith'),
-    imagemin = require ('gulp-imagemin'),
     node;
 
 //****************************************************************
@@ -89,7 +89,7 @@ gulp.task('vendor-css', ['normalize', 'font'], function(){
 });
 
 //Custom styles
-gulp.task('styles', function() {
+gulp.task('styles', ['images', 'sprite'], function() {
     return gulp.src('assets/styles/main.scss')
         .pipe(sass().on('error', sass.logError))
         .pipe(concat('application.min.css'))
