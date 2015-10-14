@@ -5,9 +5,9 @@
         .module('everquizApp')
         .controller('RunQuizzesController', RunQuizzesController);
 
-    RunQuizzesController.$inject = ['quizFactory', 'categoryService', '$scope', 'historyService'];
+    RunQuizzesController.$inject = ['quizFactory', 'categoryService', '$scope', 'historyService', 'authFactory'];
 
-    function RunQuizzesController(quizFactory, categoryService, $scope, historyService) {
+    function RunQuizzesController(quizFactory, categoryService, $scope, historyService, authFactory) {
         var vm = this;
         vm.selectedCategory = -1;
         vm.selectedComplexity = -1;
@@ -29,6 +29,7 @@
         quizFactory.getQuizzes()
             .then(function (data) {
                 vm.quizzes = data;
+                return vm.quizzes;
             });
 
         categoryService.getCategories()
@@ -36,15 +37,18 @@
                 vm.categories = data;
                 vm.categories.unshift({_id: -1, title: 'All categories'})
             });
+        if(authFactory.isLoggedIn()) {
+            historyService.getHistory()
+                .then(function (data) {
+                    vm.statistics = {
+                        getAverageResult: historyService.getAverageResult,
+                        getBestResult: historyService.getBestResult,
+                        getTotalPassing: historyService.getTotalPassing
+                    }
+                });
+        }
+        vm.dataLoaded = false;
 
-        historyService.getHistory()
-            .then(function (data) {
-                vm.statistics = {
-                    getAverageResult: historyService.getAverageResult,
-                    getBestResult: historyService.getBestResult,
-                    getTotalPassing: historyService.getTotalPassing
-                }
-            });
 
         /**
          * Paginations variables
@@ -56,6 +60,7 @@
         quizFactory.getQuizzes()
             .then(function (res) {
                 vm.filteredQuizzes = res.slice(0, vm.numPerPage);
+                vm.dataLoaded = true;
             });
 
         function updateQuizzes() {
@@ -71,6 +76,7 @@
                 complexity = vm.selectedComplexity;
             }
             query = '&category=' + category + '&complexity=' + complexity;
+            vm.dataLoaded = false;
             quizFactory.getQuizzesByQuery(query)
                 .then(function (data) {
                     vm.quizzes = data;
@@ -108,9 +114,11 @@
          * Handler for pagination
          */
         function updateFilteredQuizzes() {
-            var begin = (($scope.currentPage - 1) * vm.numPerPage)
-                , end = begin + vm.numPerPage;
+            var begin = (($scope.currentPage - 1) * vm.numPerPage),
+                end = begin + vm.numPerPage;
             vm.filteredQuizzes = vm.quizzes.slice(begin, end);
+            vm.dataLoaded = true;
+
         }
     }
 })();

@@ -8,28 +8,28 @@
     historyService.$inject = ['$http', 'authFactory'];
 
     function historyService($http, authFactory) {
-        var vm = this;
-        vm.getHistory = getHistory;
-        vm.getAverageResult = getAverageResult;
-        vm.getBestResult = getBestResult;
-        vm.getTotalPassing = getTotalPassing;
-        vm.getAverageResultProgression = getAverageResultProgression;
+        var self = this;
+        self.getHistory = getHistory;
+        self.getAverageResult = getAverageResult;
+        self.getBestResult = getBestResult;
+        self.getTotalPassing = getTotalPassing;
+        self.getAverageResultProgression = getAverageResultProgression;
 
         function getHistory() {
             var id = authFactory.currentUserId();
             return $http.get('/api/v1/Histories?user=' + id)
                 .then(function (res) {
-                    vm.history = res.data;
-                    return vm.history;
+                    self.history = res.data;
+                    return self.history;
                 });
         }
 
         function getAverageResult(quiz) {
             var sum = 0;
             var count = 0;
-            for (var i = 0; i < vm.history.length; i++) {
-                if (vm.history[i].quiz === quiz._id) {
-                    sum += vm.history[i].result;
+            for (var i = 0; i < self.history.length; i++) {
+                if (self.history[i].quiz === quiz._id) {
+                    sum += self.history[i].result;
                     count++;
                 }
             }
@@ -41,8 +41,8 @@
             var sum = 0;
             var count = 0;
             var progressionList = [];
-            for (var i = 0; i < vm.history.length; i++) {
-                sum += vm.history[i].result;
+            for (var i = 0; i < self.history.length; i++) {
+                sum += self.history[i].result;
                 count++;
                 progressionList[i] = sum / count ? Math.round((sum / count) * 100) : 0;
             }
@@ -52,10 +52,10 @@
 
         function getBestResult(quiz) {
             var max = 0;
-            for (var i = 0; i < vm.history.length; i++) {
-                if (vm.history[i].quiz === quiz._id) {
-                    if (max < vm.history[i].result) {
-                        max = vm.history[i].result;
+            for (var i = 0; i < self.history.length; i++) {
+                if (self.history[i].quiz === quiz._id) {
+                    if (max < self.history[i].result) {
+                        max = self.history[i].result;
                     }
                 }
             }
@@ -65,8 +65,8 @@
 
         function getTotalPassing(quiz) {
             var count = 0;
-            for (var i = 0; i < vm.history.length; i++) {
-                if (vm.history[i].quiz === quiz._id) {
+            for (var i = 0; i < self.history.length; i++) {
+                if (self.history[i].quiz === quiz._id) {
                     count++;
                 }
             }

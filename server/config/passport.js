@@ -36,7 +36,7 @@ passport.use(new GitlabStrategy({
   },
   function(token, tokenSecret, profile, done) {
     process.nextTick(function() {
-
+            console.log('gitlab strategy');
             // try to find the user based on their google id
             User.findOne({ 'epam.id' : profile.id }, function(err, user) {
                 console.log(profile);
@@ -56,12 +56,12 @@ passport.use(new GitlabStrategy({
                     newUser.name = profile.displayName;
                     newUser.email = profile.emails[0].value;
 
-                    // save the user
-                    // newUser.save(function(err) {
-                    //     if (err)
-                    //         throw err;
-                    //     return done(null, newUser);
-                    // });
+                    
+                    newUser.save(function(err) {
+                        if (err)
+                            throw err;
+                        return done(null, newUser);
+                    });
                 }
             });
         });

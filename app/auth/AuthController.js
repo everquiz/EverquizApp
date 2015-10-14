@@ -15,20 +15,29 @@
         vm.logInGoogle = authFactory.logInGoogle;
         vm.isAdmin = isAdmin;
         vm.register = register;
+        vm.dataLoaded = true;
+
 
         function register() {
+            vm.dataLoaded = false;
             authFactory.register(vm.user).error(function (error) {
                 vm.error = error;
+                vm.dataLoaded = true;
             }).then(function () {
                 profileFactory.addAchievement('5614d7cd60a7a12614a331b8');
+                vm.dataLoaded = true;
+
                 $state.go('home');
+                vm.dataLoaded = true;
             });
         }
 
 
         function logIn() {
+            vm.dataLoaded = false;
             authFactory.logIn(vm.user).error(function (error) {
                 vm.error = error;
+                vm.dataLoaded = true;
             }).then(function () {
                 var payload = JSON.parse($window.atob(authFactory.getToken().split('.')[1]));
                 if (payload.roles[0] === 'admin') {
@@ -36,6 +45,7 @@
                 } else if (payload.roles[0] === 'user') {
                     $state.go('home');
                 }
+                vm.dataLoaded = true;
             });
         }
 
