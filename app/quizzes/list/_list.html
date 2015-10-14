@@ -11,7 +11,7 @@
                     ng-model="RunQuizzesCtrl.selectedComplexity" ng-options="o._id as o.title for o in RunQuizzesCtrl.difficulties"
                     ng-change="RunQuizzesCtrl.updateQuizzes()">
             </select>
-            <select name="status" id="status" class="quiz-list-header-selector-item" ng-model="RunQuizzesCtrl.selectedStatus"
+            <select ng-show="RunQuizzesCtrl.statusShow()" name="status" id="status" class="quiz-list-header-selector-item" ng-model="RunQuizzesCtrl.selectedStatus"
                     ng-options="o._id as o.title for o in RunQuizzesCtrl.statuses" ng-change="RunQuizzesCtrl.updateQuizzes()">
             </select>
         </form>
@@ -25,7 +25,8 @@
                 <th class="quiz-list-selection-table-row-heading__title">Difficulty</th>
                 <th class="quiz-list-selection-table-row-heading__title">Avrg</th>
                 <th class="quiz-list-selection-table-row-heading__title">Best</th>
-                <th class="quiz-list-selection-table-row-heading__title">Total passing</th>
+                <th ng-show="RunQuizzesCtrl.statusShow()"
+                    class="quiz-list-selection-table-row-heading__title">Total passing</th>
             </tr>
             <tr class="quiz-list-selection-table-row-content" ng-repeat="quiz in RunQuizzesCtrl.quizzes"
                 ng-click="QuizzesContainerCtrl.quizFactory.activeQuiz = quiz._id; QuizzesContainerCtrl.resultFactory.setLastResult(null);"
@@ -35,7 +36,8 @@
                 <td class="quiz-list-selection-table-row-content__title">{{RunQuizzesCtrl.getComplexity(quiz.complexity)}}</td>
                 <td class="quiz-list-selection-table-row-content__title">{{RunQuizzesCtrl.statistics.getAverageResult(quiz)}} %</td>
                 <td class="quiz-list-selection-table-row-content__title">{{RunQuizzesCtrl.statistics.getBestResult(quiz)}} %</td>
-                <td class="quiz-list-selection-table-row-content__title">{{RunQuizzesCtrl.statistics.getTotalPassing(quiz)}}</td>
+                <td ng-show="RunQuizzesCtrl.statusShow()" c
+                    lass="quiz-list-selection-table-row-content__title">{{RunQuizzesCtrl.statistics.getTotalPassing(quiz)}}</td>
             </tr>
         </table>
 
