@@ -9,6 +9,7 @@
 
     function RunQuizzesController(quizFactory, categoryService, $scope, historyService, authFactory) {
         var vm = this;
+        vm.statusShow = quizFactory.statusShow;
         vm.selectedCategory = -1;
         vm.selectedComplexity = -1;
         vm.selectedStatus = -1;
