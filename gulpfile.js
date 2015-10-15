@@ -55,7 +55,7 @@ gulp.task('sprite', function() {
             cssName: '_sprite.css',
         }));
 
-    spriteData.img.pipe(gulp.dest('assets/images'));
+    spriteData.img.pipe(gulp.dest('public/i'));
     spriteData.css.pipe(gulp.dest('assets/styles/inc'));
 });
 
@@ -89,7 +89,7 @@ gulp.task('vendor-css', ['normalize', 'font'], function(){
 });
 
 //Custom styles
-gulp.task('styles', ['images', 'sprite'], function() {
+gulp.task('styles', ['sprite', 'images' ], function() {
     return gulp.src('assets/styles/main.scss')
         .pipe(sass().on('error', sass.logError))
         .pipe(concat('application.min.css'))
