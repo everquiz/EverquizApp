@@ -38,6 +38,7 @@
         vm.toggleFavourite = toggleFavourite;
         //***Drag-and-drop
         vm.onMove = onMove;
+        vm.onDrop = onDrop;
         vm.onDeletedMove = onDeletedMove;
         vm.RecycleCleanUp = RecycleCleanUp;
         vm.toggleDragStyle = toggleDragStyle;
@@ -52,7 +53,11 @@
 
         function onMove(index) {
             vm.notes.splice(index, 1);
+            //console.log(index);
+        }
 
+        function onDrop(event, index, item, external, type) {
+            console.log(index);
         }
 
         function onDeletedMove(index) {
