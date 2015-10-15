@@ -32,6 +32,7 @@
 
                     //Watchers
                     scope.$watch('viewList',function(value){
+                        if (!value) return;
                         scope.numPages = (value.length / scope.limit) >> 0;
                         if (value.length % scope.limit !== 0) scope.numPages++;
                         scope.pageList.length = scope.numPages;

@@ -28,8 +28,7 @@
     self.switchToMain = switchToMain;
     self.switchToList = switchToList;
     self.sortNotes = sortNotes;
-    self.registerObserverCallback = registerObserverCallback;
-    self.notifyObservers = notifyObservers;
+
 
     //Private
     var id = null;
@@ -37,19 +36,7 @@
     if (isAllowed()) display = true;
     var mainDisplay = true;
     var listDisplay = false;
-    var observerCallbacks = [];
 
-
-    //Observer
-    function registerObserverCallback(callback){
-      observerCallbacks.push(callback);
-    }
-
-    function notifyObservers(){
-      angular.forEach(observerCallbacks, function(callback){
-        callback();
-      });
-    }
 
     //Implementation
     function addNote(note) {
