@@ -6,8 +6,7 @@ describe('ResultFactory', function () {
     // Set up the module
     beforeEach(module('everquizApp'));
 
-    beforeEach(function () {
-        inject(function (_resultFactory_, _$httpBackend_) {
+    beforeEach(inject(function (_resultFactory_, _$httpBackend_) {
             resultFactory = _resultFactory_;
             $httpBackend = _$httpBackend_;
             $httpBackend.whenPUT('/checkresult')
@@ -19,7 +18,7 @@ describe('ResultFactory', function () {
                     status: 200
                 });
         })
-    });
+    );
 
     it('should return result between 0 and 100', function () {
         var result;
