@@ -18,13 +18,13 @@
 		&-selector {
 			overflow: hidden;
 			padding-left: 5%;
-			margin-top: 5px;
+			margin-top: 10px;
 			text-align: center;
 
 			&-item {
 				width: 25%;
 				border: none;
-				height: 38px;
+				height: 33px;
 				background: $quiz-list-selector-background;
 				margin-right: 8%;
 				color: $quiz-list-selector-text;
