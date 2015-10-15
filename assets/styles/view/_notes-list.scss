@@ -199,6 +199,11 @@
 				}
 			}
 
+			& .dndDragging {
+				transform: rotate(3deg);
+				box-shadow: none;
+			}
+
 			& .dndPlaceholder {
 			    height: 35px;
 			    margin-top: 4px;
