@@ -20,28 +20,28 @@
     <div class="quiz-list-selection">
         <table class="quiz-list-selection-table">
             <tr class="quiz-list-selection-table-row-heading">
-                <th class="quiz-list-selection-table-row-heading__title">Category</th>
-                <th class="quiz-list-selection-table-row-heading__title">Name</th>
-                <th class="quiz-list-selection-table-row-heading__title">Difficulty</th>
+                <th class="quiz-list-selection-table-row-heading__category">Category</th>
+                <th class="quiz-list-selection-table-row-heading__name">Name</th>
+                <th class="quiz-list-selection-table-row-heading__difficulty">Difficulty</th>
                 <th ng-show="RunQuizzesCtrl.statusShow()"
-                    class="quiz-list-selection-table-row-heading__title">Avrg</th>
+                    class="quiz-list-selection-table-row-heading__avarage">Avarage</th>
                 <th ng-show="RunQuizzesCtrl.statusShow()"
-                    class="quiz-list-selection-table-row-heading__title">Best</th>
+                    class="quiz-list-selection-table-row-heading__best">Best</th>
                 <th ng-show="RunQuizzesCtrl.statusShow()"
-                    class="quiz-list-selection-table-row-heading__title">Total passing</th>
+                    class="quiz-list-selection-table-row-heading__total">Total passing</th>
             </tr>
             <tr class="quiz-list-selection-table-row-content" ng-repeat="quiz in RunQuizzesCtrl.quizzes"
                 ng-click="QuizzesContainerCtrl.quizFactory.activeQuiz = quiz._id; QuizzesContainerCtrl.resultFactory.setLastResult(null);"
                     ng-show="pageFilter($index)">
-                <td class="quiz-list-selection-table-row-content__title">{{quiz.category.title}}</td>
-                <td class="quiz-list-selection-table-row-content__title">{{quiz.title}}</td>
-                <td class="quiz-list-selection-table-row-content__title">{{RunQuizzesCtrl.getComplexity(quiz.complexity)}}</td>
+                <td class="quiz-list-selection-table-row-content__category">{{quiz.category.title}}</td>
+                <td class="quiz-list-selection-table-row-content__name">{{quiz.title}}</td>
+                <td class="quiz-list-selection-table-row-content__difficulty">{{RunQuizzesCtrl.getComplexity(quiz.complexity)}}</td>
                 <td ng-show="RunQuizzesCtrl.statusShow()"
-                    class="quiz-list-selection-table-row-content__title">{{RunQuizzesCtrl.statistics.getAverageResult(quiz)}} %</td>
+                    class="quiz-list-selection-table-row-content__avarage">{{RunQuizzesCtrl.statistics.getAverageResult(quiz)}} %</td>
                 <td ng-show="RunQuizzesCtrl.statusShow()"
-                    class="quiz-list-selection-table-row-content__title">{{RunQuizzesCtrl.statistics.getBestResult(quiz)}} %</td>
+                    class="quiz-list-selection-table-row-content__best">{{RunQuizzesCtrl.statistics.getBestResult(quiz)}} %</td>
                 <td ng-show="RunQuizzesCtrl.statusShow()"
-                    class="quiz-list-selection-table-row-content__title">{{RunQuizzesCtrl.statistics.getTotalPassing(quiz)}}</td>
+                    class="quiz-list-selection-table-row-content__total">{{RunQuizzesCtrl.statistics.getTotalPassing(quiz)}}</td>
             </tr>
         </table>
 
