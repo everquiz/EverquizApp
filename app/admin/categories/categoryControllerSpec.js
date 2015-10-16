@@ -1,39 +1,72 @@
 (function () {
     'use strict';
 
-    var categoryService, $httpBackend, ctrl, categoryToCreate;
+    var categoryService, $httpBackend, ctrl, categoryToCreate, categoriesInit, categoryServiceMock, spyCreate;
     categoryToCreate = {"_id": "2","title": "SCSS","description": "SCSS"};
 
     // Set up the module
     beforeEach(module('everquizApp'));
 
     describe('CategoryController', function () {
-        var categoriesInit = [{"_id": "1","title": "CSS","description": "CSS"}];
+        
+        categoriesInit = [{"_id": "1","title": "CSS","description": "CSS"}];
 
-        beforeEach(inject(function (_categoryService_, _$httpBackend_, $controller) {
-                categoryService = _categoryService_;
+        beforeEach(function () {
+            categoryServiceMock = {
+                    create: sinon.stub(),
+                    update: sinon.stub(),
+                    remove: sinon.stub()
+                };
+        });
+        
+
+        // beforeEach(module('everquizApp', function ($provide) {
+        //         $provide.value('categoryService', categoryServiceMock);
+        //     }));
+
+        beforeEach(inject(function (_$httpBackend_, $controller) {
+                // categoryService = _categoryService_;
                 $httpBackend = _$httpBackend_;
-                ctrl = $controller('CategoriesController', {categories: categoriesInit});
+                ctrl = $controller('CategoriesController', {categories: categoriesInit, categoryService: categoryServiceMock});
+                ctrl.modalToggle = function () {return true;};
+                ctrl.removeCategory = function(category) {categoryServiceMock.remove(category)}
             }));
 
         it('should get all categories on load', function () {
             expect(ctrl.categories).to.be.categoriesInit;
         });
 
-        // TODO Should check if categoryService.create or update is called
-        it('should add category', function () {
-            var spy;
-            ctrl.modalToggle = function () {};
-            categoryToCreate = {"_id": "2","title": "SCSS","description": "SCSS"};
-            ctrl.category = categoryToCreate;
-            ctrl.addCategory();
-            // spy = sinon.spy(categoryService, 'create');
-            // spy.should.have.been.called.once;
-            expect(ctrl.category).to.be.empty;
-        });
+        describe('add/update category', function () {
+            it('should not add or edit category', function () {
+                categoryToCreate = {"title": "SCSS"};
+                ctrl.category = categoryToCreate;
+                ctrl.addCategory();
+                expect(categoryServiceMock.create.called).to.be.false;
+                expect(categoryServiceMock.update.called).to.be.false;
+                expect(ctrl.category).not.to.be.empty;
+            });
+
+            it('should add category', function () {
+                categoryToCreate = {"title": "SCSS","description": "SCSS"};
+                ctrl.category = categoryToCreate;
+                ctrl.addCategory();
+                expect(categoryServiceMock.create.called).to.be.true;
+                expect(categoryServiceMock.update.called).to.be.false;
+                expect(ctrl.category).to.be.empty;
+            });
+
+            it('should update category', function () {
+                categoryToCreate = {"_id": 1,"title": "SCSS","description": "SCSS"};
+                ctrl.category = categoryToCreate;
+                ctrl.addCategory();
+                expect(categoryServiceMock.create.called).to.be.false;
+                expect(categoryServiceMock.update.called).to.be.true;
+                expect(ctrl.category).to.be.empty;
+            });
+        })
+        
 
         it('should edit category', function () {
-            ctrl.modalToggle = function () {};
             expect(ctrl.category).to.be.empty;
             ctrl.editCategory(categoryToCreate);
             expect(ctrl.category).to.be.equal(categoryToCreate);
@@ -41,13 +74,12 @@
 
         // TODO Should check if categoryService.remove is called
         it('should remove category', function () {
-            ctrl.modalToggle = function () {};
-            ctrl.removeCategory(categoryToCreate);
+            ctrl.removeCategory(categoriesInit[0]);
+            expect(categoryServiceMock.remove.calledWith(categoriesInit[0])).to.be.true;
             expect(ctrl.category).to.be.empty;
         });
 
         it('should reset title for category form', function () {
-            ctrl.modalToggle = function () {};
             ctrl.resetTitle();
             expect(ctrl.category).to.be.empty;
             expect(ctrl.formTitle).to.be.equal('Add new category');
