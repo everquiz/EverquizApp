@@ -1,7 +1,7 @@
 .notes-list {
 	position: relative;
 	width: 1280px;
-	height: 880px;
+	min-height: 400px;
 	margin: 0 auto;
 
 	&-wrapper {
@@ -11,10 +11,10 @@
 
 	&-container {
 		width: 790px;
-		height: 590px;
+		max-height: 590px;
 		float: left;
 		padding: 0;
-		margin: 95px 0 25px;
+		margin: 65px 0 25px;
 		border: 5px dashed $notes-list-border;
 		background: $notes-list-background;
 		border-radius: 5px;
@@ -133,7 +133,7 @@
 	&-trash {
 		width: 300px;
 		height: 600px;
-		margin: 60px 0 25px;
+		margin: 30px 0 25px;
 		position: relative;
 		float: right;
 
@@ -221,7 +221,6 @@
 	}
 
 	&-form {
-		position: absolute;
 		width: 300px;
 		top: 30%;
 		left: 0;
@@ -392,13 +391,11 @@
 	}
 
 	&-pagination {
-		position: absolute;
-		left: 0;
-		right: 0;
-		bottom: 80px;
 		height: 20px;
+		clear: both;
 		text-align: center;
-		margin: 30px 80px;
+		margin: 0 auto;
+		padding-bottom: 30px;
 
 		&-buttonset {
 		    display: inline-block;
@@ -442,12 +439,9 @@
 	}
 
 	&-button {
-		position: absolute;
-		left: 0;
-		right: 0;
-		bottom: 0;
 		text-align: center;
-		margin: 0 80px 50px;
+		margin: 0 80px;
+		padding-bottom: 50px;
 
 		&__new-note {
 			background: $notes-list-button-color;

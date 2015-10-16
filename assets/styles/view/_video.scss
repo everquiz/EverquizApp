@@ -1,11 +1,11 @@
 .video {
 	width: 1280px;
-	height: 880px;
+	min-height: 600px;
 	margin: 0 auto;
 	position: relative;
 
 	&-content {
-		padding-top: 300px;
+		padding: 300px 0;
 
 		&__start {
 			display: block;

@@ -1,11 +1,11 @@
 .notes {
 	position: relative;
 	width: 1280px;
-	height: 880px;
+	min-height: 400px;
 	margin: 0 auto;
 
 	&-header{
-		padding: 100px 80px 50px;
+		padding: 50px 80px 20px;
 
 		&__title {
 			color: $notes-main-header-text;
@@ -16,6 +16,7 @@
 
 	&-wrapper {
 		width: 1154px;
+		overflow: hidden;
 		margin: 0 auto;
 	}
 
@@ -143,12 +144,9 @@
 
 	&-button {
 		clear: left;
-		position: absolute;
-		left: 0;
-		right: 0;
-		bottom: 0;
 		text-align: center;
-		margin: 50px 80px;
+		margin: 0 80px;
+		padding-bottom: 50px;
 
 		&__show-all {
 			background: $notes-main-button-color;
