@@ -21,7 +21,7 @@
             var timer = 0;
             if (stopY > startY) {
                 for (var i = startY; i < stopY; i += step) {
-                    setTimeout("wisndow.scrollTo(0, " + leapY + ")", timer * speed);
+                    setTimeout("window.scrollTo(0, " + leapY + ")", timer * speed);
                     leapY += step;
                     if (leapY > stopY) leapY = stopY;
                     timer++;
