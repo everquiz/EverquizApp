@@ -72,7 +72,7 @@
             expect(ctrl.category).to.be.equal(categoryToCreate);
         });
 
-        // TODO Should check if categoryService.remove is called
+        // TODO Check confirm?
         it('should remove category', function () {
             ctrl.removeCategory(categoriesInit[0]);
             expect(categoryServiceMock.remove.calledWith(categoriesInit[0])).to.be.true;
