@@ -1,15 +1,26 @@
 <div class="notes-list">
     <div class="notes-list-wrapper">
-        <ul class="notes-list-container" dnd-list="NotesListCtrl.notes" ng-class="{'on-drag':NotesListCtrl.onDragStyle}">
-            <div class="notes-list-container-item" ng-show="!NotesListCtrl.notes.length">
+        <ul class="notes-list-container"
+            ng-show="!NotesListCtrl.notes.length"
+            dnd-list="NotesListCtrl.notes">
+            <li class="notes-list-container-item">
                 <span class="notes-list-container-item__title">
-                    Empty list
-                </span></div>
-            <li class="notes-list-container-item" ng-repeat="note in NotesListCtrl.notes" ng-show="pageFilter($index)"
+                    THERE ARE NO NOTES...YET!
+                </span>
+            </li>
+        </ul>
+        <ul class="notes-list-container"
+            ng-show="NotesListCtrl.notes.length"
+            dnd-list="NotesListCtrl.notes"
+            ng-class="{'on-drag':NotesListCtrl.onDragStyle}">
+            <li class="notes-list-container-item"
+                ng-repeat="note in NotesListCtrl.notes"
+                ng-show="pageFilter($index)"
                 dnd-draggable="note"
                 dnd-moved="NotesListCtrl.onMove($index)"
                 dnd-dragstart="NotesListCtrl.toggleDragStyle()"
-                dnd-dragend="NotesListCtrl.toggleDragStyle()">
+                dnd-dragend="NotesListCtrl.toggleDragStyle()"
+                dnd-effect-allowed="move">
                 <span class="notes-list-container-item__title">
                     {{note.title}}
                 </span>

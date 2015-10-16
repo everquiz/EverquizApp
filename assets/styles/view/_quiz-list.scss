@@ -16,16 +16,21 @@
 		}
 
 		&-selector {
-			margin-top: 9px;
+			overflow: hidden;
+			padding-left: 5%;
+			margin-top: 10px;
+			text-align: center;
 
 			&-item {
-				width: 20%;
+				width: 25%;
 				border: none;
-				height: 30px;
+				height: 33px;
 				background: $quiz-list-selector-background;
-				margin-left: 5%;
+				margin-right: 8%;
 				color: $quiz-list-selector-text;
 				padding-left: 10px;
+				font-size: 18px;
+				font-weight: bold;
 				cursor: pointer;
 			}
 		}
@@ -43,7 +48,48 @@
 			
 			&-row {
 				&-heading {
-					&__title{
+					&__category {
+						width: 15%;
+						color: $quiz-list-table-row-heading-title;
+						padding: 10px;
+						text-align: center;
+						cursor: default;
+					}
+
+					&__name {
+						width: 25%;
+						color: $quiz-list-table-row-heading-title;
+						padding: 10px;
+						text-align: center;
+						cursor: default;
+					}
+
+					&__difficulty {
+						width: 15%;
+						color: $quiz-list-table-row-heading-title;
+						padding: 10px;
+						text-align: center;
+						cursor: default;
+					}
+
+					&__avarage {
+						width: 15%;
+						color: $quiz-list-table-row-heading-title;
+						padding: 10px;
+						text-align: center;
+						cursor: default;
+					}
+
+					&__best {
+						width: 15%;
+						color: $quiz-list-table-row-heading-title;
+						padding: 10px;
+						text-align: center;
+						cursor: default;
+					}
+
+					&__total{
+						width: 15%;
 						color: $quiz-list-table-row-heading-title;
 						padding: 10px;
 						text-align: center;
@@ -61,8 +107,69 @@
 					&:hover {
 						background: $quiz-list-table-row-background-hover;
 					}
+					
+					&__category {
+						width: 15%;
+						color: $quiz-list-table-row-title;
+						padding: 10px;
+						text-align: center;
+						transition: color 0.5s ease-in-out;
 
-					&__title {
+						&:hover{
+							color: $quiz-list-table-row-title-hover;
+						}
+					}
+
+					&__name {
+						width: 25%;
+						color: $quiz-list-table-row-title;
+						padding: 10px;
+						text-align: center;
+						transition: color 0.5s ease-in-out;
+
+						&:hover{
+							color: $quiz-list-table-row-title-hover;
+						}
+					}
+
+					&__difficulty {
+						width: 15%;
+						color: $quiz-list-table-row-title;
+						padding: 10px;
+						text-align: center;
+						transition: color 0.5s ease-in-out;
+
+						&:hover{
+							color: $quiz-list-table-row-title-hover;
+						}
+					}
+
+					&__avarage {
+						width: 15%;
+						color: $quiz-list-table-row-title;
+						padding: 10px;
+						text-align: center;
+						transition: color 0.5s ease-in-out;
+
+						&:hover{
+							color: $quiz-list-table-row-title-hover;
+						}
+					}
+
+					&__best {
+						width: 15%;
+						color: $quiz-list-table-row-title;
+						padding: 10px;
+						text-align: center;
+						transition: color 0.5s ease-in-out;
+
+						&:hover{
+							color: $quiz-list-table-row-title-hover;
+						}
+					}
+
+					&__total{
+						width: 15%;
 						color: $quiz-list-table-row-title;
 						padding: 10px;
 						text-align: center;

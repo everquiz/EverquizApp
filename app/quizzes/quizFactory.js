@@ -15,6 +15,7 @@
         ];
 
         var factory = {
+            statusShow: statusShow,
             getDifficulties: getDifficulties,
             getComplexity: getComplexity,
             getQuizzes: getQuizzes,
@@ -32,6 +33,11 @@
         };
 
         return factory;
+
+        function statusShow() {
+            var id = authFactory.currentUserId();
+            return id ? true : false;
+        }
 
         function getDifficulties() {
             return difficulties;

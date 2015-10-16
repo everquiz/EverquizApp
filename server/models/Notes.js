@@ -13,12 +13,13 @@ var NoteSchema = new mongoose.Schema({
 });
 
 NoteSchema.pre('save', function(next){
-  now = new Date();
-  this.editedAt = now;
-  if ( !this.createdAt ) {
-    this.createdAt = now;
-  }
-  next();
+    var now = new Date();
+    this.editedAt = now;
+    this.rating = now.getTime();
+    if ( !this.createdAt ) {
+      this.createdAt = now;
+    }
+    next();
 });
 
 module.exports = mongoose.model('Note', NoteSchema);

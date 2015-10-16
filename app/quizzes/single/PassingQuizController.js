@@ -22,6 +22,7 @@
 
         if (localQuiz) {
             vm.quiz = JSON.parse(localQuiz);
+            vm.dataLoaded = true;
         } else {
             quizFactory.get(quizFactory.activeQuiz)
                 .then(function (data) {

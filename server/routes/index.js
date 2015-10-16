@@ -17,17 +17,23 @@ router.post('/register', function (req, res, next) {
         return res.status(400).json({message: 'Please fill out all fields'});
     }
 
-    var user = new User();
+    User.find({email: req.body.email}).then(function (userCheck) {
 
-    user.name = req.body.name;
-    user.email = req.body.email;
-    user.setPassword(req.body.password);
+        if (userCheck === []) return res.status(400).json({message: 'E-mail already taken'});
 
-    user.save(function (err) {
-        if (err) {
-            return next(err);
-        }
-        return res.json({token: user.generateJWT()})
+        var user = new User();
+
+        user.name = req.body.name;
+        user.email = req.body.email;
+        user.setPassword(req.body.password);
+
+        user.save(function (err) {
+            if (err) {
+                return next(err);
+            }
+            return res.json({token: user.generateJWT()})
+        });
+
     });
 });
 

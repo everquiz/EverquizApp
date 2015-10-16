@@ -5,7 +5,9 @@
 	
 	<div class="notes-wrapper">
 		<div class="notes-block"
-			 ng-repeat="note in NotesMainCtrl.notesSrv.notes  | limitTo:NotesMainCtrl.notesSrv.emptyNotesNum">
+			 ng-repeat="note in NotesMainCtrl.notesSrv.notes  |
+			 orderBy:'-favourite' |
+			 limitTo:NotesMainCtrl.notesSrv.emptyNotesNum">
 			<div class="notes-block__name">
 				{{note.title}}
 			</div>

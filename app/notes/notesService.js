@@ -27,34 +27,19 @@
     self.isList = isList;
     self.switchToMain = switchToMain;
     self.switchToList = switchToList;
-    self.sortNotes = sortNotes;
-    self.registerObserverCallback = registerObserverCallback;
-    self.notifyObservers = notifyObservers;
+
 
     //Private
-    var id = null;
     var display = false;
-    if (isAllowed()) display = true;
+    if (authFactory.isLoggedIn()) display = true;
     var mainDisplay = true;
     var listDisplay = false;
-    var observerCallbacks = [];
 
-
-    //Observer
-    function registerObserverCallback(callback){
-      observerCallbacks.push(callback);
-    }
-
-    function notifyObservers(){
-      angular.forEach(observerCallbacks, function(callback){
-        callback();
-      });
-    }
 
     //Implementation
     function addNote(note) {
-      if (isAllowed()) {
-        note.user = id;
+      note.user = authFactory.currentUserId();
+      if (note.user) {
         $http.post('/api/v1/Notes/', note).then(function (res) {
           self.notes.push(res.data);
           profileFactory.addAchievement('5614d7cd60a7a12614a331b7');
@@ -65,10 +50,11 @@
     };
 
     function getNotes() {
-      if (isAllowed()) {
+      var id = authFactory.currentUserId();
+      if (id) {
         mainDisplay = true;
         listDisplay = false;
-        return $http.get('/api/v1/Notes?user=' + id + '&sort=-favourite').then(function (res) {
+        return $http.get('/api/v1/Notes?user=' + id).then(function (res) {
           self.notes = res.data;
           setLimit();
           return self.notes;
@@ -76,12 +62,8 @@
         }
     }
 
-    function sortNotes(option) {
-
-    }
-
     function updateNote(note) {
-      if (isAllowed()) {
+      if (authFactory.isLoggedIn()) {
         $http.put('/api/v1/Notes/' + note._id, note).then(function (res) {
           self.notes.forEach(function (item, i, notes) {
             if (item._id === note._id) {
@@ -128,18 +110,11 @@
     function switchToList() {
       listDisplay = true;
       mainDisplay = false;
-      notifyObservers();
     }
 
     function switchToMain() {
       listDisplay = false;
       mainDisplay = true;
-      notifyObservers();
-    }
-
-    function isAllowed() {
-      id = authFactory.currentUserId();
-      return id ? true : false;
     }
 
     function setLimit() {
