@@ -42,7 +42,9 @@ module.exports = function(config) {
       // preprocess matching files before serving them to the browser
       // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
       preprocessors: {
-        'app/**/*.html': ['ng-html2js']
+        'app/**/*.html': ['ng-html2js'],
+        'app/**/*.js': 'coverage',
+        '!app/**/*Spec.js': 'coverage'
       },
 
       ngHtml2JsPreprocessor: {
@@ -54,12 +56,17 @@ module.exports = function(config) {
       // test results reporter to use
       // possible values: 'dots', 'progress'
       // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-      reporters: ['progress', 'html'],
-
+      reporters: ['progress', 'html', 'coverage'],
 
       // the default configuration 
       htmlReporter: {
         outputFile: 'tests/units.html'
+      },
+
+      // the default configuration for coverage
+      coverageReporter: {
+        type : 'html',
+        dir : 'tests/'
       },
 
       // enable / disable colors in the output (reporters and logs)
@@ -90,7 +97,8 @@ module.exports = function(config) {
           'karma-chai',
           'karma-sinon',
           'karma-htmlfile-reporter',
-          'karma-ng-html2js-preprocessor'
+          'karma-ng-html2js-preprocessor',
+          'karma-coverage'
       ]
   })
   };

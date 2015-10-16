@@ -46,6 +46,7 @@ public/
 
 # Karma html report
 tests/units.html
+tests
 
 #mac os files
 assets/images/.DS_Store

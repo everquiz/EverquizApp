@@ -73,6 +73,7 @@
     "main-bower-files": "^2.9.0",
     "mocha": "^2.3.3",
     "phantomjs": "^1.9.18",
-    "sinon": "^1.17.1"
+    "sinon": "^1.17.1",
+    "karma-coverage": "~0.5.2"
   }
 }
