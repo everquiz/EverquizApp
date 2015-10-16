@@ -18,6 +18,13 @@ describe('QuizFactory', function () {
         }
     ];
 
+    var slide = {
+        margin: -2720,
+        questionCount: 2,
+        startQuiz: true,
+        buttonText: "NEXT STEP"
+    };
+
     // Set up the module
     beforeEach(module('everquizApp'));
 
@@ -82,6 +89,13 @@ describe('QuizFactory', function () {
 
         expect(questions).to.be.instanceOf(Array);
     });
+
+    it('should get complexity string from difficulty number', function () {
+        var complexity = quizFactory.getComplexity(0);
+
+        expect(complexity).to.be.equal('Novice');
+    });
+
     describe('resetSlider function', function () {
         it('should remove quiz and slide from local storage', function () {
             quizFactory.resetSlider();
@@ -103,6 +117,24 @@ describe('QuizFactory', function () {
             expect(quizFactory.buttonText).to.be.equal('START QUIZ!');
             expect(quizFactory.startQuiz).to.be.false;
             expect(quizFactory.margin).to.be.equal(0);
+        });
+
+        it('should set questionCount, buttonText, startQuiz, margin from localStorage', function () {
+            quizFactory.setSlider(slide);
+
+            expect(quizFactory.questionCount).to.be.equal(2);
+            expect(quizFactory.buttonText).to.be.equal("NEXT STEP");
+            expect(quizFactory.startQuiz).to.be.true;
+            expect(quizFactory.margin).to.be.equal(-2720);
+        });
+
+        it('should set questionCount, buttonText, startQuiz, margin', function () {
+            quizFactory.slide();
+
+            expect(quizFactory.questionCount).to.be.equal(1);
+            expect(quizFactory.buttonText).to.be.equal("NEXT STEP");
+            expect(quizFactory.startQuiz).to.be.true;
+            expect(quizFactory.margin).to.be.equal(-1360);
         });
     });
 });

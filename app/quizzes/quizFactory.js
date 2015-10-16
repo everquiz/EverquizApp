@@ -27,7 +27,9 @@
             buttonText: 'START QUIZ!',
             startQuiz: false,
             margin: 0,
-            resetSlider: resetSlider
+            resetSlider: resetSlider,
+            setSlider: setSlider,
+            slide: slide
         };
 
         return factory;
@@ -93,6 +95,20 @@
             factory.margin = 0;
             $window.localStorage.removeItem('quiz');
             $window.localStorage.removeItem('slide');
+        }
+
+        function setSlider(slide) {
+            factory.questionCount = slide.questionCount;
+            factory.buttonText = slide.buttonText;
+            factory.startQuiz = slide.startQuiz;
+            factory.margin = slide.margin;
+        }
+
+        function slide() {
+            factory.questionCount = factory.questionCount + 1;
+            factory.buttonText = 'NEXT STEP';
+            factory.startQuiz = true;
+            factory.margin = factory.margin - 1360;
         }
     }
 })();
