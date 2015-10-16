@@ -10,7 +10,7 @@ module.exports = function(config) {
 
       // frameworks to use
       // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-      frameworks: ['mocha', 'chai', 'sinon'],
+      frameworks: ['mocha', 'chai', 'sinon-chai'],
 
 
       // list of files / patterns to load in the browser
@@ -43,8 +43,7 @@ module.exports = function(config) {
       // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
       preprocessors: {
         'app/**/*.html': ['ng-html2js'],
-        'app/**/*.js': 'coverage',
-        '!app/**/*Spec.js': 'coverage'
+        'app/**/!(*Spec).js': ['coverage']
       },
 
       ngHtml2JsPreprocessor: {
@@ -58,7 +57,7 @@ module.exports = function(config) {
       // available reporters: https://npmjs.org/browse/keyword/karma-reporter
       reporters: ['progress', 'html', 'coverage'],
 
-      // the default configuration 
+      // the default configuration
       htmlReporter: {
         outputFile: 'tests/units.html'
       },
@@ -95,7 +94,7 @@ module.exports = function(config) {
           'karma-phantomjs-launcher',
           'karma-mocha',
           'karma-chai',
-          'karma-sinon',
+          'karma-sinon-chai',
           'karma-htmlfile-reporter',
           'karma-ng-html2js-preprocessor',
           'karma-coverage'

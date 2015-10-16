@@ -1,19 +1,16 @@
-'use strict';
-
 describe('PassingQuizController', function () {
     var PassingQuizCtrl;
 
+    var resultFactory;
+    var scrollFactory;
+
     // Set up the module
     beforeEach(module('everquizApp', function ($provide) {
-        $provide.value('resultFactory', {
-            checkResult: function () {
-                return true;
-            }
+        $provide.value('resultFactory', resultFactory = {
+            checkResult: sinon.stub()
         });
-        $provide.value('scrollFactory', {
-            scroll: function () {
-                return true;
-            }
+        $provide.value('scrollFactory', scrollFactory = {
+            scroll: sinon.stub()
         });
     }));
 
@@ -25,6 +22,7 @@ describe('PassingQuizController', function () {
     describe('checking result', function () {
         it('should use resultFactory function to send data', function () {
             PassingQuizCtrl.checkResult();
+            resultFactory.checkResult.should.have.been.calledWith(PassingQuizCtrl.quiz);
         });
     });
 })
