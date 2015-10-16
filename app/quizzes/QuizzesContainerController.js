@@ -1,33 +1,25 @@
-(function() {
+(function () {
     'use strict';
 
     angular
         .module('everquizApp')
         .controller('QuizzesContainerController', QuizzesContainerController);
 
-    QuizzesContainerController.$inject = ['quizFactory', 'resultFactory'];
+    QuizzesContainerController.$inject = ['quizFactory', 'resultFactory', '$window'];
 
-    function QuizzesContainerController (quizFactory, resultFactory) {
+    function QuizzesContainerController(quizFactory, resultFactory, $window) {
 
-        var vm = this,
-            localQuiz = localStorage.getItem('quiz');
-        vm.backToAllQuizzes = backToAllQuizzes;
+        var vm = this;
+        var localQuiz = $window.localStorage.getItem('quiz');
+        vm.backToAllQuizzes = quizFactory.resetSlider;
         vm.quizFactory = quizFactory;
         vm.resultFactory = resultFactory;
-        vm.isVisible = quizFactory.isVisible;
         if (localQuiz) {
-            vm.quizFactory.activeQuiz = JSON.parse(localQuiz)._id;
-            var slide = JSON.parse(localStorage.getItem('slide'));
-            if(slide){
-                vm.quizFactory.margin = slide.margin; 
-                vm.quizFactory.questionCount = slide.questionCount; 
-                vm.quizFactory.startQuiz = slide.startQuiz; 
-                vm.quizFactory.buttonText = slide.buttonText;
+            quizFactory.activeQuiz = JSON.parse(localQuiz)._id;
+            var slide = JSON.parse($window.localStorage.getItem('slide'));
+            if (slide) {
+                quizFactory.setSlider(slide);
             }
-        }
-
-        function backToAllQuizzes () {
-            vm.quizFactory.resetSlider();
         }
     }
 })();

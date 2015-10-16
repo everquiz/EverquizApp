@@ -47,11 +47,8 @@
         }
 
         function nextQuestion() {
-            quizFactory.margin = quizFactory.margin - 1360;
-            quizFactory.questionCount = quizFactory.questionCount + 1;
-            quizFactory.startQuiz = true;
+            quizFactory.slide();
             isClicked = false;
-            quizFactory.buttonText = 'NEXT STEP';
             var slide = {
                 margin: quizFactory.margin,
                 questionCount: quizFactory.questionCount,
