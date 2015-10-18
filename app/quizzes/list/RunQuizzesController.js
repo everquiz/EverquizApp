@@ -58,16 +58,12 @@
                 .then(function (data) {
                     vm.quizzes = data;
                     if (vm.selectedStatus != -1) {
-                        var quizzesByStatus = [];
-                        for (var i = vm.quizzes.length - 1; i >= 0; i--) {
-                            if (vm.history.getBestResult(vm.quizzes[i]) >= 0.7) {
-                                quizzesByStatus.push(vm.quizzes[i]);
+                        vm.quizzes = [];
+                        for (var i = 0; i < data.length; i++) {
+                            if (!vm.selectedStatus && vm.history.getBestResult(data[i]) >= 70 ||
+                                vm.selectedStatus && vm.history.getBestResult(data[i]) < 70) {
+                                vm.quizzes.push(data[i]);
                             }
-                        }
-                        if (!vm.selectedStatus) {
-                            vm.quizzes = vm.quizzes.diffInvers(quizzesByStatus);
-                        } else {
-                            vm.quizzes = vm.quizzes.diff(quizzesByStatus);
                         }
                     }
                     vm.dataLoaded = true;
