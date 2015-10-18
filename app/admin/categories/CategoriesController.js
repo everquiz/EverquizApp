@@ -20,11 +20,9 @@
     function modalToggle() {
       var modal = document.getElementById('modal');
       if (modal.style.opacity == 0) {
-        console.log('opacity 0')
         modal.style.display = 'block';
         modal.style.opacity = 1;
       } else {
-        console.log('opacity 1')
         modal.style.opacity = 0;
         modal.style.display = 'none';
       }
