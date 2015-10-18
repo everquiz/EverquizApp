@@ -5,16 +5,15 @@
         .module('everquizApp')
         .controller('RunQuizzesController', RunQuizzesController);
 
-    RunQuizzesController.$inject = ['quizFactory', 'categoryService', '$scope', 'historyService', 'authFactory'];
+    RunQuizzesController.$inject = ['quizFactory', 'categoryService', 'historyService', 'authFactory'];
 
-    function RunQuizzesController(quizFactory, categoryService, $scope, historyService, authFactory) {
+    function RunQuizzesController(quizFactory, categoryService, historyService, authFactory) {
         var vm = this;
         vm.statusShow = quizFactory.statusShow;
         vm.selectedCategory = -1;
         vm.selectedComplexity = -1;
         vm.selectedStatus = -1;
         vm.updateQuizzes = updateQuizzes;
-        vm.historyService = historyService;
         vm.difficulties = quizFactory.getDifficulties();
         if (vm.difficulties[0]._id != -1) {
             vm.difficulties.unshift({_id: -1, title: 'All difficulties'});
@@ -43,40 +42,30 @@
                     vm.categories.unshift({_id: -1, title: 'All categories'})
                 });
 
-            historyService.updateHistory()
-                .then(function (data) {
-                    vm.history = data;
-                });
+            if (authFactory.currentUserId()) {
+                historyService.updateHistory()
+                    .then(function (data) {
+                        vm.history = data;
+                    });
+            }
         }
 
         function updateQuizzes() {
-            var category, complexity, status, query;
-            if (vm.selectedCategory === -1) {
-                category = '!=-11111111111111111111111';
-            } else {
-                category = vm.selectedCategory;
-            }
-            if (vm.selectedComplexity === -1) {
-                complexity = '!=-1'
-            } else {
-                complexity = vm.selectedComplexity;
-            }
-            query = '&category=' + category + '&complexity=' + complexity;
+            var category = (vm.selectedCategory === -1) ? '' : '&category=' + vm.selectedCategory;
+            var complexity = (vm.selectedComplexity === -1) ? '' : '&complexity=' + vm.selectedComplexity;
             vm.dataLoaded = false;
-            quizFactory.getQuizzesByQuery(query)
+            quizFactory.getQuizzesByQuery(category + complexity)
                 .then(function (data) {
                     vm.quizzes = data;
-                    var quizzesByStatus = [];
-
                     if (vm.selectedStatus != -1) {
+                        var quizzesByStatus = [];
                         for (var i = vm.quizzes.length - 1; i >= 0; i--) {
-                            if (historyService.getBestResult(vm.quizzes[i]) >= 0.7) {
+                            if (vm.history.getBestResult(vm.quizzes[i]) >= 0.7) {
                                 quizzesByStatus.push(vm.quizzes[i]);
                             }
                         }
                         if (!vm.selectedStatus) {
                             vm.quizzes = vm.quizzes.diffInvers(quizzesByStatus);
-
                         } else {
                             vm.quizzes = vm.quizzes.diff(quizzesByStatus);
                         }
