@@ -1,48 +1,49 @@
 (function () {
     'use strict';
-
-    var categoryService, $httpBackend, ctrl, categoryToCreate, categoriesInit, categoryServiceMock, spyCreate;
-    categoryToCreate = {"_id": "2","title": "SCSS","description": "SCSS"};
-
-    // Set up the module
-    beforeEach(module('everquizApp'));
-
     describe('CategoryController', function () {
         
+        var categoryService, $httpBackend, $window, ctrl, categoryToCreate, categoriesInit, categoryServiceMock, spyCreate;
+        categoryToCreate = {"_id": "2","title": "SCSS","description": "SCSS"};
+        categoryServiceMock = {
+                create: sinon.stub(),
+                update: sinon.stub(),
+                remove: sinon.stub()
+            };
         categoriesInit = [{"_id": "1","title": "CSS","description": "CSS"}];
-
-        beforeEach(function () {
-            categoryServiceMock = {
-                    create: sinon.stub(),
-                    update: sinon.stub(),
-                    remove: sinon.stub()
-                };
-        });
         
-
-        // beforeEach(module('everquizApp', function ($provide) {
-        //         $provide.value('categoryService', categoryServiceMock);
-        //     }));
-
-        beforeEach(inject(function (_$httpBackend_, $controller) {
-                // categoryService = _categoryService_;
-                $httpBackend = _$httpBackend_;
-                ctrl = $controller('CategoriesController', {categories: categoriesInit, categoryService: categoryServiceMock});
-                ctrl.modalToggle = function () {return true;};
-                ctrl.removeCategory = function(category) {categoryServiceMock.remove(category)}
+        // Set up the module
+        beforeEach(module('everquizApp', function ($provide) {
+                $provide.value('categoryService', categoryServiceMock);
             }));
+
+        beforeEach(inject(function (_$httpBackend_, $controller, _categoryService_, _$window_) {
+                
+                categoryService = _categoryService_;
+                $httpBackend = _$httpBackend_;
+                $window = _$window_;
+                
+                ctrl = $controller('CategoriesController', {categories: categoriesInit, categoryService: categoryService});
+                sinon.stub($window, 'confirm', function () {return true;});
+            }));
+        afterEach(function () {
+                $window.confirm.restore();
+            });
 
         it('should get all categories on load', function () {
             expect(ctrl.categories).to.be.categoriesInit;
         });
 
         describe('add/update category', function () {
+            beforeEach(function () {
+                    categoryService.create.reset();
+                    categoryService.update.reset();
+                });
             it('should not add or edit category', function () {
-                categoryToCreate = {"title": "SCSS"};
+                categoryToCreate = {"description": "SCSS"};
                 ctrl.category = categoryToCreate;
                 ctrl.addCategory();
-                expect(categoryServiceMock.create.called).to.be.false;
-                expect(categoryServiceMock.update.called).to.be.false;
+                expect(categoryService.create).not.to.have.been.called;
+                expect(categoryService.update).not.to.have.been.called;
                 expect(ctrl.category).not.to.be.empty;
             });
 
@@ -50,20 +51,19 @@
                 categoryToCreate = {"title": "SCSS","description": "SCSS"};
                 ctrl.category = categoryToCreate;
                 ctrl.addCategory();
-                expect(categoryServiceMock.create.called).to.be.true;
-                expect(categoryServiceMock.update.called).to.be.false;
+                expect(categoryService.create).to.have.been.called;
+                expect(categoryService.update).not.to.have.been.called;
                 expect(ctrl.category).to.be.empty;
             });
-
             it('should update category', function () {
                 categoryToCreate = {"_id": 1,"title": "SCSS","description": "SCSS"};
                 ctrl.category = categoryToCreate;
                 ctrl.addCategory();
-                expect(categoryServiceMock.create.called).to.be.false;
-                expect(categoryServiceMock.update.called).to.be.true;
+                expect(categoryService.create).not.to.have.been.called;
+                expect(categoryService.update).to.have.been.called;
                 expect(ctrl.category).to.be.empty;
             });
-        })
+        });
         
 
         it('should edit category', function () {
@@ -75,11 +75,12 @@
         // TODO Check confirm?
         it('should remove category', function () {
             ctrl.removeCategory(categoriesInit[0]);
-            expect(categoryServiceMock.remove.calledWith(categoriesInit[0])).to.be.true;
+            expect(categoryServiceMock.remove).to.have.been.calledWith(categoriesInit[0]);
             expect(ctrl.category).to.be.empty;
         });
 
         it('should reset title for category form', function () {
+
             ctrl.resetTitle();
             expect(ctrl.category).to.be.empty;
             expect(ctrl.formTitle).to.be.equal('Add new category');
