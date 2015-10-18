@@ -15,6 +15,7 @@
         vm.selectedStatus = -1;
         vm.updateQuizzes = updateQuizzes;
         vm.historyService = historyService;
+        vm.history = historyService.getHistory();
         vm.difficulties = quizFactory.getDifficulties();
         if (vm.difficulties[0]._id != -1) {
             vm.difficulties.unshift({_id: -1, title: 'All difficulties'});
@@ -26,35 +27,27 @@
             {_id: 1, title: 'non-Passed'}
         ];
 
-        quizFactory.getQuizzes()
-            .then(function (data) {
-                vm.quizzes = data;
-                return vm.quizzes;
-            });
-
-        categoryService.getCategories()
-            .then(function (data) {
-                vm.categories = data;
-                vm.categories.unshift({_id: -1, title: 'All categories'})
-            });
-        if(authFactory.isLoggedIn()) {
-            historyService.getHistory()
-                .then(function (data) {
-                    vm.statistics = {
-                        getAverageResult: historyService.getAverageResult,
-                        getBestResult: historyService.getBestResult,
-                        getTotalPassing: historyService.getTotalPassing
-                    }
-                });
-        }
         vm.dataLoaded = false;
 
+        activate();
 
-        quizFactory.getQuizzes()
-            .then(function (res) {
-                vm.filteredQuizzes = res.slice(0, vm.numPerPage);
-                vm.dataLoaded = true;
-            });
+        function activate() {
+            quizFactory.getQuizzes()
+                .then(function (data) {
+                    vm.quizzes = data;
+                    vm.filteredQuizzes = data.slice(0, vm.numPerPage);
+                    vm.dataLoaded = true;
+                    return vm.quizzes;
+                });
+
+            categoryService.getCategories()
+                .then(function (data) {
+                    vm.categories = data;
+                    vm.categories.unshift({_id: -1, title: 'All categories'})
+                });
+
+            historyService.updateHistory();
+        }
 
         function updateQuizzes() {
             var category, complexity, status, query;

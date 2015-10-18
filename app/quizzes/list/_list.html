@@ -37,11 +37,11 @@
                 <td class="quiz-list-selection-table-row-content__name">{{quiz.title}}</td>
                 <td class="quiz-list-selection-table-row-content__difficulty">{{RunQuizzesCtrl.getComplexity(quiz.complexity)}}</td>
                 <td ng-show="RunQuizzesCtrl.statusShow()"
-                    class="quiz-list-selection-table-row-content__avarage">{{RunQuizzesCtrl.statistics.getAverageResult(quiz)}} %</td>
+                    class="quiz-list-selection-table-row-content__avarage">{{RunQuizzesCtrl.history.getAverageResult(quiz)}} %</td>
                 <td ng-show="RunQuizzesCtrl.statusShow()"
-                    class="quiz-list-selection-table-row-content__best">{{RunQuizzesCtrl.statistics.getBestResult(quiz)}} %</td>
+                    class="quiz-list-selection-table-row-content__best">{{RunQuizzesCtrl.history.getBestResult(quiz)}} %</td>
                 <td ng-show="RunQuizzesCtrl.statusShow()"
-                    class="quiz-list-selection-table-row-content__total">{{RunQuizzesCtrl.statistics.getTotalPassing(quiz)}}</td>
+                    class="quiz-list-selection-table-row-content__total">{{RunQuizzesCtrl.history.getTotalPassing(quiz)}}</td>
             </tr>
         </table>
 
