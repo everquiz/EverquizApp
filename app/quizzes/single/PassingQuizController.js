@@ -5,12 +5,12 @@
         .module('everquizApp')
         .controller('PassingQuizController', PassingQuizController);
 
-    PassingQuizController.$inject = ['quizFactory', 'resultFactory', 'scrollFactory', 'notesService', 'authFactory'];
+    PassingQuizController.$inject = ['quizFactory', 'resultFactory', 'scrollFactory', 'notesService', 'authFactory', '$window'];
 
-    function PassingQuizController(quizFactory, resultFactory, scrollFactory, notesService, authFactory) {
+    function PassingQuizController(quizFactory, resultFactory, scrollFactory, notesService, authFactory, $window) {
 
         var vm = this,
-            localQuiz = localStorage.getItem('quiz'),
+            localQuiz = $window.localStorage.getItem('quiz'),
             isClicked = false;
         vm.checkResult = checkResult;
         vm.nextQuestion = nextQuestion;
@@ -19,32 +19,31 @@
         vm.isLoggedIn = authFactory.isLoggedIn;
         vm.dataLoaded = false;
 
+        activate();
 
-        if (localQuiz) {
-            vm.quiz = JSON.parse(localQuiz);
-            vm.dataLoaded = true;
-        } else {
-            quizFactory.get(quizFactory.activeQuiz)
-                .then(function (data) {
-                    vm.quiz = data;
-                    quizFactory.getQuestions(quizFactory.activeQuiz)
-                        .then(function (data) {
-                            vm.quiz.questions = data;
-                            vm.dataLoaded = true;
-                        }
-                    )
-                }
-            );
+        function activate() {
+            if (localQuiz) {
+                vm.quiz = JSON.parse(localQuiz);
+                vm.dataLoaded = true;
+            } else {
+                quizFactory.get(quizFactory.activeQuiz)
+                    .then(function (data) {
+                        vm.quiz = data;
+                        quizFactory.getQuestions(quizFactory.activeQuiz)
+                            .then(function (data) {
+                                vm.quiz.questions = data;
+                                vm.dataLoaded = true;
+                            }
+                        )
+                    }
+                );
+            }
         }
 
         function checkResult() {
             resultFactory.checkResult(vm.quiz);
             quizFactory.resetSlider();
-            goToElement('result');
-        }
-
-        function goToElement(elemID) {
-            scrollFactory.scroll(elemID);
+            scrollFactory.scroll('result');
         }
 
         function nextQuestion() {
@@ -56,8 +55,8 @@
                 startQuiz: quizFactory.startQuiz,
                 buttonText: quizFactory.buttonText
             };
-            localStorage.setItem('quiz', JSON.stringify(vm.quiz));
-            localStorage.setItem('slide', JSON.stringify(slide));
+            $window.localStorage.setItem('quiz', JSON.stringify(vm.quiz));
+            $window.localStorage.setItem('slide', JSON.stringify(slide));
         }
 
         function saveToNote() {
