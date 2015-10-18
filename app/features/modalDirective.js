@@ -19,6 +19,7 @@
                         } else {
                             if(element[0].type === 'submit' ) {
                                 if (!scope.form.$valid) {
+                                    console.log('valid')
                                     var formElements = scope.form.$error.required;
                                     if(formElements.some(ifArrayContainUndefined)) {
                                         return;

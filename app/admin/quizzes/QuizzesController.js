@@ -5,10 +5,10 @@
       .module('everquizApp')
       .controller('QuizzesController', QuizzesController);
 
-  QuizzesController.$inject = ['$scope', 'quizzes', 'quizService', 'categoryService'];
+  QuizzesController.$inject = ['quizzes', 'quizService', 'categoryService'];
 
-  function QuizzesController($scope, quizzes, quizService, categoryService) {
-    // $scope.quizzes = quizService.quizzes;
+  function QuizzesController(quizzes, quizService, categoryService) {
+    // quizzes = quizService.quizzes;
 
     var vm = this;
     vm.formTitle = 'Add new quiz';
@@ -31,20 +31,6 @@
       title: 'Active'
     }];
     vm.resetTitle = resetTitle;
-    vm.modalToggle = modalToggle;
-
-    function modalToggle() {
-      var modal = document.getElementById('modal');
-      if (modal.style.opacity == 0) {
-        console.log('opacity 0')
-        modal.style.display = 'block';
-        modal.style.opacity = 1;
-      } else {
-        console.log('opacity 1')
-        modal.style.opacity = 0;
-        modal.style.display = 'none';
-      }
-    };
 
     function activateQuiz(quiz) {
       quizService.active(quiz);
@@ -69,7 +55,6 @@
         };
       });
       vm.formTitle = 'Edit quiz';
-      vm.modalToggle();
     };
 
     function addQuiz() {
@@ -84,13 +69,11 @@
       else {
         quizService.update(vm.quiz);
       }
-      vm.modalToggle();
       vm.quiz = {};
       vm.formTitle = 'Add new quiz';
     };
 
     function resetTitle () {
-      vm.modalToggle();
       vm.quiz = {};
       vm.formTitle = 'Add new quiz';
     }

@@ -1,8 +1,8 @@
-(function () {
+;(function () {
     'use strict';
-    describe('CategoryController', function () {
+    describe('CategoriesController', function () {
         
-        var categoryService, $httpBackend, $window, ctrl, categoryToCreate, categoriesInit, categoryServiceMock, spyCreate;
+        var categoryService, $httpBackend, $window, ctrl, categoryToCreate, categoriesInit, categoryServiceMock;
         categoryToCreate = {"_id": "2","title": "SCSS","description": "SCSS"};
         categoryServiceMock = {
                 create: sinon.stub(),
@@ -64,7 +64,6 @@
                 expect(ctrl.category).to.be.empty;
             });
         });
-        
 
         it('should edit category', function () {
             expect(ctrl.category).to.be.empty;
@@ -72,7 +71,6 @@
             expect(ctrl.category).to.be.equal(categoryToCreate);
         });
 
-        // TODO Check confirm?
         it('should remove category', function () {
             ctrl.removeCategory(categoriesInit[0]);
             expect(categoryServiceMock.remove).to.have.been.calledWith(categoriesInit[0]);
@@ -80,7 +78,6 @@
         });
 
         it('should reset title for category form', function () {
-
             ctrl.resetTitle();
             expect(ctrl.category).to.be.empty;
             expect(ctrl.formTitle).to.be.equal('Add new category');
