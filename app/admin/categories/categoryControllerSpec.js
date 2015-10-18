@@ -2,7 +2,7 @@
     'use strict';
     describe('CategoryController', function () {
         
-        var categoryService, $httpBackend, ctrl, categoryToCreate, categoriesInit, categoryServiceMock, spyCreate;
+        var categoryService, $httpBackend, $window, ctrl, categoryToCreate, categoriesInit, categoryServiceMock, spyCreate;
         categoryToCreate = {"_id": "2","title": "SCSS","description": "SCSS"};
         categoryServiceMock = {
                 create: sinon.stub(),
@@ -16,15 +16,18 @@
                 $provide.value('categoryService', categoryServiceMock);
             }));
 
-        beforeEach(inject(function (_$httpBackend_, $controller, _categoryService_) {
+        beforeEach(inject(function (_$httpBackend_, $controller, _categoryService_, _$window_) {
                 
                 categoryService = _categoryService_;
                 $httpBackend = _$httpBackend_;
+                $window = _$window_;
                 
                 ctrl = $controller('CategoriesController', {categories: categoriesInit, categoryService: categoryService});
-                ctrl.modalToggle = function () {return true;};
-                ctrl.removeCategory = function(category) {categoryServiceMock.remove(category)}
+                sinon.stub($window, 'confirm', function () {return true;});
             }));
+        afterEach(function () {
+                $window.confirm.restore();
+            });
 
         it('should get all categories on load', function () {
             expect(ctrl.categories).to.be.categoriesInit;
@@ -36,7 +39,7 @@
                     categoryService.update.reset();
                 });
             it('should not add or edit category', function () {
-                categoryToCreate = {"title": "SCSS"};
+                categoryToCreate = {"description": "SCSS"};
                 ctrl.category = categoryToCreate;
                 ctrl.addCategory();
                 expect(categoryService.create).not.to.have.been.called;
@@ -77,6 +80,7 @@
         });
 
         it('should reset title for category form', function () {
+
             ctrl.resetTitle();
             expect(ctrl.category).to.be.empty;
             expect(ctrl.formTitle).to.be.equal('Add new category');

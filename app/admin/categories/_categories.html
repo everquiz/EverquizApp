@@ -5,8 +5,7 @@
 <form class="search">
   <h3>Search category</h3>
   <input type="text" class="search-input" ng-model="CategoriesCtrl.search" placeholder="Search"/>
-    <button class="admin-button-container"
-            ng-click="CategoriesCtrl.modalToggle()"}>New category</button>
+    <button eq-modal class="admin-button-container"}>New category</button>
 </form>
 
 <div class="quiz-list-selection height-auto">
@@ -21,7 +20,7 @@
             ng-show="pageFilter($index)">
             <td class="quiz-list-selection-table-row-content__title">{{category.title}}</td>
             <td class="quiz-list-selection-table-row-content__title">{{category.description}}</td>
-            <td class="quiz-list-selection-table-row-content__title"><i class="fa fa-trash-o" ng-click='CategoriesCtrl.removeCategory(category)'></i>  <i class="fa fa-wrench" ng-click='CategoriesCtrl.editCategory(category);'></i></td>
+            <td class="quiz-list-selection-table-row-content__title"><i class="fa fa-trash-o" ng-click='CategoriesCtrl.removeCategory(category)'></i>  <i eq-modal class="fa fa-wrench" ng-click='CategoriesCtrl.editCategory(category);'></i></td>
         </tr>
     </table>
 </div>
@@ -30,7 +29,7 @@
 
 <div class="modal-background is-hidden" id="modal">
   <div class="center-block absolute-center modal big">
-    <form ng-submit="CategoriesCtrl.addCategory()" style="margin: 30px auto 0;" class="form-container">
+    <form ng-submit="CategoriesCtrl.addCategory()" style="margin: 30px auto 0;" class="form-container" name="form">
         <div class="form-title"><h2>{{CategoriesCtrl.formTitle}}</h2></div>
 
         <div class="form-title">Title</div>
@@ -40,8 +39,8 @@
         <textarea class="form-field" ng-model="CategoriesCtrl.category.description" ng-model-options="{ updateOn: 'submit' }" placeholder="Description"></textarea><br/>
 
         <div class="submit-container">
-            <input class="submit-button" type="reset" value="Cancel" ng-click='CategoriesCtrl.resetTitle();CategoriesCtrl.clickToOpen();' />
-            <input class="submit-button" type="submit" value="Submit" />
+            <input eq-modal class="submit-button" type="reset" value="Cancel" ng-click='CategoriesCtrl.resetTitle();' />
+            <input eq-modal class="submit-button" type="submit" value="Submit" />
         </div>
     </form>
   </div>
