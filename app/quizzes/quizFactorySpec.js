@@ -1,5 +1,3 @@
-'use strict';
-
 describe('QuizFactory', function () {
     var quizFactory, $httpBackend, $window;
 
@@ -43,6 +41,14 @@ describe('QuizFactory', function () {
                 .respond(respondQuizzes[0].questions);
         })
     );
+
+    it('should return true or false depending on user logged in or not', function () {
+        expect(quizFactory.statusShow()).to.be.false;
+    });
+
+    it('should return array of difficulties', function () {
+        expect(quizFactory.getDifficulties()).to.be.instanceOf(Array);
+    });
 
     it('should get quizzes', function () {
         var quizzes;
