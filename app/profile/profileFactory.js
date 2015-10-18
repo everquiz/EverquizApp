@@ -46,19 +46,19 @@
         function updateProfile() {
             var id = authFactory.currentUserId();
             if (id) {
-                return $http.get('/api/v1/Users/' + id + '?populate=history,achievements').then(function (res) {
-                    profile = res.data;
-
-                    var result = getQuizStatistic(profile.history);
-                    profile.averageResult = result.averageResult;
-                    profile.quizCompleted = result.quizCompleted;
-                    getLastActions()
-                        .then(function (res) {
-                            profile.lastActions = res;
-                        });
-                    notifyObservers();
-                    return profile;
-                });
+                return $http.get('/api/v1/Users/' + id + '?populate=history,achievements')
+                    .then(function (res) {
+                        profile = res.data;
+                        var result = getQuizStatistic(profile.history);
+                        profile.averageResult = result.averageResult;
+                        profile.quizCompleted = result.quizCompleted;
+                        getLastActions()
+                            .then(function (res) {
+                                profile.lastActions = res;
+                            });
+                        notifyObservers();
+                        return profile;
+                    });
             }
         }
 

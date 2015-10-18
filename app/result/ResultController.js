@@ -12,11 +12,7 @@
         var vm = this;
         vm.resultFactory = resultFactory;
         vm.goToElement = goToElement;
-        vm.getRandomPhrase = getRandomPhrase;
-
-        function getRandomPhrase() {
-            return randomPhraseFactory.randomPhrase();
-        }
+        vm.randomPhrase = randomPhraseFactory.randomPhrase();
 
         function goToElement (elemID) {
             scrollFactory.scroll(elemID);

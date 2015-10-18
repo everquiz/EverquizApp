@@ -28,10 +28,8 @@
                     if (lastResult === 100) {
                         profileFactory.addAchievement('5614d7cd60a7a12614a331b5');
                     }
-                    if (authFactory.isLoggedIn()) {
-                        profileFactory.updateProfile();
-                        historyService.getHistory();
-                    }
+                    profileFactory.updateProfile();
+                    historyService.updateHistory();
                     return lastResult;
                 })
         }

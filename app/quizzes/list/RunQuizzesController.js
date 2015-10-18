@@ -26,35 +26,28 @@
             {_id: 1, title: 'non-Passed'}
         ];
 
-        quizFactory.getQuizzes()
-            .then(function (data) {
-                vm.quizzes = data;
-                return vm.quizzes;
-            });
-
-        categoryService.getCategories()
-            .then(function (data) {
-                vm.categories = data;
-                vm.categories.unshift({_id: -1, title: 'All categories'})
-            });
-        if(authFactory.isLoggedIn()) {
-            historyService.getHistory()
-                .then(function (data) {
-                    vm.statistics = {
-                        getAverageResult: historyService.getAverageResult,
-                        getBestResult: historyService.getBestResult,
-                        getTotalPassing: historyService.getTotalPassing
-                    }
-                });
-        }
         vm.dataLoaded = false;
 
+        activate();
 
-        quizFactory.getQuizzes()
-            .then(function (res) {
-                vm.filteredQuizzes = res.slice(0, vm.numPerPage);
-                vm.dataLoaded = true;
-            });
+        function activate() {
+            quizFactory.getQuizzes()
+                .then(function (data) {
+                    vm.quizzes = data;
+                    vm.dataLoaded = true;
+                });
+
+            categoryService.getCategories()
+                .then(function (data) {
+                    vm.categories = data;
+                    vm.categories.unshift({_id: -1, title: 'All categories'})
+                });
+
+            historyService.updateHistory()
+                .then(function (data) {
+                    vm.history = data;
+                });
+        }
 
         function updateQuizzes() {
             var category, complexity, status, query;

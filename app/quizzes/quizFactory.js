@@ -35,8 +35,7 @@
         return factory;
 
         function statusShow() {
-            var id = authFactory.currentUserId();
-            return id ? true : false;
+            return !!authFactory.currentUserId();
         }
 
         function getDifficulties() {
