@@ -15,7 +15,6 @@
         vm.selectedStatus = -1;
         vm.updateQuizzes = updateQuizzes;
         vm.historyService = historyService;
-        vm.history = historyService.getHistory();
         vm.difficulties = quizFactory.getDifficulties();
         if (vm.difficulties[0]._id != -1) {
             vm.difficulties.unshift({_id: -1, title: 'All difficulties'});
@@ -35,9 +34,7 @@
             quizFactory.getQuizzes()
                 .then(function (data) {
                     vm.quizzes = data;
-                    vm.filteredQuizzes = data.slice(0, vm.numPerPage);
                     vm.dataLoaded = true;
-                    return vm.quizzes;
                 });
 
             categoryService.getCategories()
@@ -46,7 +43,10 @@
                     vm.categories.unshift({_id: -1, title: 'All categories'})
                 });
 
-            historyService.updateHistory();
+            historyService.updateHistory()
+                .then(function (data) {
+                    vm.history = data;
+                });
         }
 
         function updateQuizzes() {

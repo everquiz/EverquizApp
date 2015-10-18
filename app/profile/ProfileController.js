@@ -37,7 +37,7 @@
                 controllerAs: 'ChartCtrl'
 
             });
-        };
+        }
     }
 
 })();
