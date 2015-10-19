@@ -44,7 +44,7 @@
       <div class="form-title"><h2>{{QuizCtrl.formTitle}}</h2></div>
 
       <div class="form-title">Text</div>
-      <textarea class="form-field" ng-model="QuizCtrl.question.text" ng-model-options="{ updateOn: 'submit' }" placeholder="Text"></textarea><br/>
+      <textarea class="form-field" ng-model="QuizCtrl.question.text" ng-model-options="{ updateOn: 'submit' }" placeholder="Text" required></textarea><br/>
 
       <div class="submit-container">
         <input eq-modal class="submit-button" type="reset" value="Cancel" ng-click='QuizCtrl.resetTitle()' />
