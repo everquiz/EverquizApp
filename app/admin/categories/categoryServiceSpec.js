@@ -36,11 +36,10 @@
         it('should create category', function () {
             var categoryToCreate;
             categoryToCreate = {_id: 2, title: 'RUBY', description: 'RUBY'};
-            $httpBackend.whenPOST('/api/v1/Categories').respond(function (method, url, data) {
-                    categories.push(angular.fromJson(data));
-                    return 200;
-                });
-            categoryService.create(categoryToCreate);
+            $httpBackend.whenPOST('/api/v1/Categories').respond(categoryToCreate);
+            categoryService.create(categoryToCreate).then(function (res) {
+                categories.push(res.data);
+            });
             $httpBackend.flush();
             expect(categoryToCreate).to.deep.equal(categories[categories.length-1]);
             expect(categories.length).to.be.equal(2);
@@ -49,11 +48,10 @@
         it('should delete category', function () {
             var categoryToDelete;
             categoryToDelete = {"_id": "1","title": "CSS","description": "CSS"};
-            $httpBackend.whenDELETE('/api/v1/Categories/1').respond(function (method, url, data) {
-                    categories.splice(0,1);
-                    return 200;
-                });
-            categoryService.remove(categoryToDelete);
+            $httpBackend.whenDELETE('/api/v1/Categories/1').respond(categoryToDelete);
+            categoryService.remove(categoryToDelete).then(function (res) {
+                categories.splice(0,1);
+            });
             $httpBackend.flush();
             expect(categories.length).to.be.equal(0);
             expect(categories).not.to.contain(categoryToDelete);
