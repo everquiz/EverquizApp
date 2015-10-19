@@ -23,7 +23,7 @@
 
 			&-item {
 				width: 25%;
-				border: none;
+				border: 1px solid $quiz-list-selector-border;
 				height: 33px;
 				background: $quiz-list-selector-background;
 				margin-right: 8%;
