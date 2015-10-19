@@ -5,9 +5,9 @@
         .module('everquizApp')
         .controller('QuizController', QuizController);
 
-    QuizController.$inject = ['quiz', 'questionService'];
+    QuizController.$inject = ['quiz', 'questionService', '$window'];
 
-    function QuizController(quiz, questionService) {
+    function QuizController(quiz, questionService, $window) {
         var vm = this;
         vm.quiz = quiz;
         vm.questions = quiz.questions;
@@ -37,7 +37,7 @@
         }
 
         function removeQuestion(question) {
-            if (confirm('Do you want to delete this question?')) {
+            if ($window.confirm('Do you want to delete this question?')) {
                 questionService.remove(question, quiz);
                 vm.question = "";
                 vm.formTitle = 'Add new question';

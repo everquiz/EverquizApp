@@ -2,7 +2,13 @@
     'use strict';
     describe('CategoriesController', function () {
         
-        var categoryService, $httpBackend, $window, ctrl, categoryToCreate, categoriesInit, categoryServiceMock;
+        var categoryService, 
+            $httpBackend, 
+            $window, 
+            ctrl, 
+            categoryToCreate,
+            categoriesInit, 
+            categoryServiceMock;
         categoryToCreate = {"_id": "2","title": "SCSS","description": "SCSS"};
         categoryServiceMock = {
                 create: sinon.stub(),
@@ -73,7 +79,7 @@
 
         it('should remove category', function () {
             ctrl.removeCategory(categoriesInit[0]);
-            expect(categoryServiceMock.remove).to.have.been.calledWith(categoriesInit[0]);
+            expect(categoryService.remove).to.have.been.calledWith(categoriesInit[0]);
             expect(ctrl.category).to.be.empty;
         });
 
