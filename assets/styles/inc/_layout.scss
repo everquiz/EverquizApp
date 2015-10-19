@@ -66,17 +66,16 @@ body {
 
 /* Admin panel */
 .form-container {
-   border: 1px solid #f2e3d2;
-   background: #c9b7a2;
-   background: linear-gradient(top, #f2e3d2, #c9b7a2);
-   border-radius: 8px;
-   box-shadow: rgba(0,0,0,0.9) 0 1px 2px, inset rgba(255,255,255,0.4) 0 0 0;
-   font-family: 'Helvetica Neue',Helvetica,sans-serif;
+   border: 3px solid black;
+   background: white;
+   border-radius: 1px;
+   font-family: $proxima;
    text-decoration: none;
    vertical-align: middle;
    min-width:300px;
-   padding:20px;
-   width:300px;
+   padding:15px;
+   width:600px;
+   margin: 0 auto;
 }
 
 .search {
@@ -93,14 +92,10 @@ body {
 }
 
 .form-field {
-   border: 1px solid #c9b7a2;
-   background: #e4d5c3;
-   border-radius: 4px;
-   color: #1c1916;
-   box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(0,0,0,0.7) 0 0 0;
+   border: 1px solid black;
    padding:8px;
-   margin-bottom:20px;
-   width:280px;
+   margin:10px auto;
+   width:580px;
 }
 
 .form-field:focus {
@@ -108,7 +103,7 @@ body {
    color: #725129;
 }
 .form-container h2 {
-   text-shadow: #fdf2e4 0 1px 0;
+   text-shadow: black 0 1px 0;
    font-size:18px;
    margin: 0 0 10px 0;
    font-weight:bold;
@@ -117,45 +112,33 @@ body {
 
 .form-title {
    margin-bottom:10px;
-   color: #725129;
-   text-shadow: #fdf2e4 0 1px 0;
+   color: black;
+   text-shadow: black 0 1px 0;
 }
 
 .submit-container {
    margin:8px 0;
-   text-align:right;
+   text-align:center;
 }
 
 .submit-button {
-   border: 1px solid #447314;
-   background: #6aa436;
-   background: linear-gradient(top, #8dc059, #6aa436);
-   border-radius: 4px;
-   box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 1px 0;
-   text-shadow: #addc7e 0 1px 0;
-   color: #76c225;
-   font-family: helvetica, serif;
+   background: #fb3a3a;
+   color: white;
+   font-family: $proxima;
    padding: 8.5px 18px;
    font-size: 14px;
    text-decoration: none;
    vertical-align: middle;
+   border: none;
+   cursor: pointer;
+   transition: background 0.5s ease-in-out;
+
+                &:hover {
+                    background-color: $quiz-single-button-hover;
+                }
 }
 
-.submit-button:hover {
-   border: 1px solid #447314;
-   text-shadow: #31540c 0 1px 0;
-   background: #6aa436;
-   background: linear-gradient(top, #8dc059, #6aa436);
-   color: #fff;
-}
 
-.submit-button:active {
-   text-shadow: #31540c 0 1px 0;
-   border: 1px solid #447314;
-   background: #8dc059;
-   background: linear-gradient(top, #6aa436, #8dc059);
-   color: #fff;
-}
 
 /* Fix for admin quizzes */
 .height-auto {
@@ -199,4 +182,8 @@ body {
       margin: auto; 
       z-index: 101;   
     }
+}
+
+.center-block.absolute-center.modal.big {
+  height: 100%;
 }
