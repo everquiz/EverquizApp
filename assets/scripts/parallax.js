@@ -38,10 +38,10 @@
         var resultScrollTop = window.scrollY - resultScrollOffset;
         var scrolledPercent = Math.round(resultScrollTop / 0.88) / 100;
 
-        var bulletClosePosition = 30 + scrolledPercent * 6 + '%';
-        var revolversPosition = 35 + scrolledPercent  * 2 + '%';
-        var bulletFarPosition = 50 - scrolledPercent * 3 + '%';
-        var logoPosition = 110 - scrolledPercent * 2 + '%';
+        var bulletClosePosition = 150 - scrolledPercent * 9 + '%';
+        var revolversPosition = 70 - scrolledPercent  * 3 + '%';
+        var bulletFarPosition = 10 + scrolledPercent * 2 + '%';
+        var logoPosition = 120 - scrolledPercent * 3 + '%';
 
         var resultBackgroundPosition = '50% ' + logoPosition + ', 90% ' + bulletFarPosition + ', 50% ' + revolversPosition + ', 0% ' + bulletClosePosition;
 

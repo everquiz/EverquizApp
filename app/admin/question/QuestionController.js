@@ -5,9 +5,9 @@
       .module('everquizApp')
       .controller('QuestionController', QuestionController);
 
-  QuestionController.$inject = ['question', 'answerService'];
+  QuestionController.$inject = ['question', 'answerService', '$window'];
   
-  function QuestionController(question,   answerService) {
+  function QuestionController(question,   answerService, $window) {
     // vm.answers = question.answers;
     // vm.question = question;
     var vm = this;
@@ -18,20 +18,6 @@
     vm.removeAnswer = removeAnswer;
     vm.formTitle = 'Add new answer';
     vm.resetTitle = resetTitle;
-    vm.modalToggle = modalToggle;
-
-    function modalToggle() {
-      var modal = document.getElementById('modal');
-      if (modal.style.opacity == 0) {
-        console.log('opacity 0')
-        modal.style.display = 'block';
-        modal.style.opacity = 1;
-      } else {
-        console.log('opacity 1')
-        modal.style.opacity = 0;
-        modal.style.display = 'none';
-      }
-    }
 
     function addAnswer() {
       if (vm.answer.correct == undefined) {
@@ -45,19 +31,17 @@
       else {
         answerService.update(vm.answer);
       }
-      vm.modalToggle();
       vm.answer = '';
       vm.formTitle = 'Add new answer';
     }
 
     function editAnswer(answer) {
-      vm.modalToggle();
       vm.answer = answer;
       vm.formTitle = 'Edit answer';
     }
 
     function removeAnswer(answer) {
-      if (confirm('Do you want to delete this answer?')) {
+      if ($window.confirm('Do you want to delete this answer?')) {
         answerService.remove(answer, question);
         vm.answer = '';
         vm.formTitle = 'Add new answer';
@@ -66,7 +50,6 @@
     function resetTitle () {
       vm.answer = {};
       vm.formTitle = 'Add new answer';
-      vm.modalToggle();
     }
   }
   
