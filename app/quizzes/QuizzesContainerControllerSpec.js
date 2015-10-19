@@ -4,11 +4,11 @@ describe('QuizzesContainerController', function () {
     // Set up the module
     beforeEach(module('everquizApp'));
 
-    beforeEach(inject(function ($controller, $window) {
-            quizFactory = {
-                setSlider: sinon.stub()
-            };
-            QuizzesContainerCtrl = $controller('QuizzesContainerController', {quizFactory: quizFactory});
+    beforeEach(inject(function ($controller, $window, _quizFactory_) {
+            quizFactory = _quizFactory_;
+            quizFactory.setSlider = sinon.stub();
+
+            QuizzesContainerCtrl = $controller('QuizzesContainerController');
 
             $window.localStorage.setItem('quiz', JSON.stringify({_id: 1}));
             $window.localStorage.setItem('slide', JSON.stringify({_id: 2}));

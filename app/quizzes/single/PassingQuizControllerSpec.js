@@ -1,5 +1,5 @@
 describe('PassingQuizController', function () {
-    var PassingQuizCtrl, scrollFactory, resultFactory, quizFactory, $window;
+    var PassingQuizCtrl, scrollFactory, resultFactory, quizFactory, notesService, $window;
 
     var quizFromFactory = {
         _id: 1,
@@ -18,19 +18,10 @@ describe('PassingQuizController', function () {
     }];
 
     // Set up the module
-    beforeEach(module('everquizApp', function ($provide) {
-        $provide.value('resultFactory', resultFactory = {
-            checkResult: sinon.stub()
-        });
-        $provide.value('scrollFactory', scrollFactory = {
-            scroll: sinon.stub()
-        });
-        $provide.value('notesService', notesService = {
-            addNote: sinon.stub()
-        });
-    }));
+    beforeEach(module('everquizApp'));
 
-    it('should set quiz and dataLoaded from localStorage during controller activation', inject(function ($controller, $window) {
+    it('should set quiz and dataLoaded from localStorage during controller activation', inject(function ($controller, _$window_) {
+            $window = _$window_;
             var quizFromLocalStorage = {
                 _id: 2,
                 questions: [3, 2, 1]
@@ -45,24 +36,31 @@ describe('PassingQuizController', function () {
 
     describe('controller logic', function () {
 
-        beforeEach(inject(function ($controller, $q, $rootScope, _$window_) {
+        beforeEach(inject(function ($controller, _resultFactory_, _scrollFactory_, _notesService_, _quizFactory_, $q, $rootScope, _$window_) {
                 $window = _$window_;
-                quizFactory = {
-                    get: function () {
-                        var deferred = $q.defer();
-                        deferred.resolve(quizFromFactory);
-                        return deferred.promise;
-                    },
-                    getQuestions: function () {
-                        var deferred = $q.defer();
-                        deferred.resolve(questions);
-                        return deferred.promise;
-                    },
-                    resetSlider: sinon.stub(),
-                    slide: sinon.stub(),
-                    questionCount: 1
-                };
-                PassingQuizCtrl = $controller('PassingQuizController', {quizFactory: quizFactory});
+                resultFactory = _resultFactory_;
+                scrollFactory = _scrollFactory_;
+                notesService = _notesService_;
+                quizFactory = _quizFactory_;
+
+                resultFactory.checkResult = sinon.stub();
+                scrollFactory.scroll = sinon.stub();
+                notesService.addNote = sinon.stub();
+
+                var deferredQuiz = $q.defer();
+                deferredQuiz.resolve(quizFromFactory);
+                var deferredQuestions = $q.defer();
+                deferredQuestions.resolve(questions);
+
+                quizFactory.get = sinon.stub();
+                quizFactory.get.returns(deferredQuiz.promise);
+                quizFactory.getQuestions = sinon.stub();
+                quizFactory.getQuestions.returns(deferredQuestions.promise);
+                quizFactory.resetSlider = sinon.stub();
+                quizFactory.slide = sinon.stub();
+                quizFactory.questionCount = 1;
+
+                PassingQuizCtrl = $controller('PassingQuizController');
                 $rootScope.$apply();
             })
         );

@@ -1,5 +1,11 @@
 describe('RunQuizzesController', function () {
-    var RunQuizzesCtrl, quizFactory, categoryService;
+    var RunQuizzesCtrl, quizFactory, categoryService, authFactory, historyService;
+
+    var difficulties = [
+        {_id: 0, title: 'Novice'},
+        {_id: 1, title: 'Advanced'},
+        {_id: 2, title: 'Expert'}
+    ];
 
     var quizzes = [{
         _id: 1,
@@ -24,55 +30,36 @@ describe('RunQuizzesController', function () {
     // Set up the module
     beforeEach(module('everquizApp'));
 
-    beforeEach(inject(function ($controller, $q, $rootScope) {
-            quizFactory = {
-                getDifficulties: function () {
-                    return [
-                        {_id: 0, title: 'Novice'},
-                        {_id: 1, title: 'Advanced'},
-                        {_id: 2, title: 'Expert'}
-                    ]
-                },
-                getQuizzes: function () {
-                    var deferred = $q.defer();
-                    deferred.resolve(quizzes);
-                    return deferred.promise;
-                },
-                getQuizzesByQuery: function () {
-                    var deferred = $q.defer();
-                    deferred.resolve(quizzes);
-                    return deferred.promise;
-                }
-            };
+    beforeEach(inject(function ($controller, $q, $rootScope, _authFactory_, _categoryService_, _historyService_, _quizFactory_) {
+            var deferredCategories, deferredQuizzes, deferredHistory;
+            quizFactory = _quizFactory_;
+            categoryService = _categoryService_;
+            authFactory = _authFactory_;
+            historyService = _historyService_;
+            deferredCategories = $q.defer();
+            deferredCategories.resolve(categories);
+            deferredQuizzes = $q.defer();
+            deferredQuizzes.resolve(quizzes);
+            deferredHistory = $q.defer();
+            deferredHistory.resolve(history);
 
-            categoryService = {
-                getCategories: function () {
-                    var deferred = $q.defer();
-                    deferred.resolve(categories);
-                    return deferred.promise;
-                }
-            };
+            authFactory.currentUserId = sinon.stub();
+            authFactory.currentUserId.returns(1);
 
-            historyService = {
-                updateHistory: function () {
-                    var deferred = $q.defer();
-                    deferred.resolve(history);
-                    return deferred.promise;
-                }
-            };
+            categoryService.getCategories = sinon.stub();
+            categoryService.getCategories.returns(deferredCategories.promise);
 
-            authFactory = {
-                currentUserId: function () {
-                    return 1;
-                }
-            };
+            historyService.updateHistory = sinon.stub();
+            historyService.updateHistory.returns(deferredHistory.promise);
 
-            RunQuizzesCtrl = $controller('RunQuizzesController', {
-                quizFactory: quizFactory,
-                categoryService: categoryService,
-                historyService: historyService,
-                authFactory: authFactory
-            });
+            quizFactory.getDifficulties = sinon.stub();
+            quizFactory.getDifficulties.returns(difficulties);
+            quizFactory.getQuizzes = sinon.stub();
+            quizFactory.getQuizzes.returns(deferredQuizzes.promise);
+            quizFactory.getQuizzesByQuery = sinon.stub();
+            quizFactory.getQuizzesByQuery.returns(deferredQuizzes.promise);
+
+            RunQuizzesCtrl = $controller('RunQuizzesController');
             $rootScope.$apply();
         })
     );
