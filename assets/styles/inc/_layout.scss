@@ -24,7 +24,7 @@ body {
 
 .about-view-wrapper {
 	width: 100%;
-	background: url(../i/about-snoopy.png) no-repeat 0% 100%, url(../i/about-bill.png) no-repeat 100% 100%, linear-gradient(to bottom, $about-gradien-from, $about-gradien-to);
+	background: url(../i/about-snoop.png) no-repeat 0% 100%, url(../i/about-steave.png) no-repeat 100% 100%, linear-gradient(to bottom, $about-gradien-from, $about-gradien-to);
 }
 
 .admin-button-container {
@@ -41,8 +41,8 @@ body {
 
 .video-view-wrapper {
 	width: 100%;
-	background: url(../i/video-snoop.jpg) no-repeat 50% 50%;
-  background-size: cover;
+	background: url(../i/video-linus.png) no-repeat 55% 50%, radial-gradient(at center, #d9dad9, #727a7f);
+  background-size: contain;
 }
 
 .quizzes-view-wrapper {
