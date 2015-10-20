@@ -141,10 +141,31 @@ describe('Note Service', function() {
             });
             return [404, 'Not found', {}];
         })
-        notesService.updateNote(noteToUpdate);
+        notesService.updateNote(noteToUpdate).then();
 
         $httpBackend.flush();
         expect(response[1]).not.deep.equal(note);
         expect(angular.fromJson(response[1])).deep.equal(noteToUpdate);
     })
+
+    it('should be main view', function() {
+        notesService.switchToMain();
+        expect(notesService.isMain()).to.be.true;
+        expect(notesService.isList()).to.be.false;
+    });
+    it('should be list view', function() {
+        notesService.switchToList();
+        expect(notesService.isList()).to.be.true;
+        expect(notesService.isMain()).to.be.false;
+    });
+
+    it('notes should be visible', function() {
+        notesService.showNotes();
+        expect(notesService.isVisible()).to.be.true;
+    });
+
+    it('notes should be hidden', function() {
+        notesService.hideNotes();
+        expect(notesService.isVisible()).to.be.false;
+    });
 })
