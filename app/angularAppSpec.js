@@ -1,4 +1,4 @@
-describe("Testing Modules", function() {
+describe("Everquiz Modules dependencies", function() {
     describe("everquizApp Module", function() {
 
         var module;

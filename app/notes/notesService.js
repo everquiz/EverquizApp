@@ -40,7 +40,7 @@
     function addNote(note) {
       note.user = authFactory.currentUserId();
       if (note.user) {
-        $http.post('/api/v1/Notes/', note).then(function (res) {
+        return $http.post('/api/v1/Notes/', note).then(function (res) {
           self.notes.push(res.data);
           profileFactory.addAchievement('5614d7cd60a7a12614a331b7');
           profileFactory.updateProfile();
@@ -64,7 +64,7 @@
 
     function updateNote(note) {
       if (authFactory.isLoggedIn()) {
-        $http.put('/api/v1/Notes/' + note._id, note).then(function (res) {
+        return $http.put('/api/v1/Notes/' + note._id, note).then(function (res) {
           self.notes.forEach(function (item, i, notes) {
             if (item._id === note._id) {
               notes[i] = note;
@@ -76,7 +76,7 @@
     }
 
     function deleteNote(note) {
-      $http.delete('/api/v1/Notes/' + note._id).then(function (res) {
+      return $http.delete('/api/v1/Notes/' + note._id).then(function (res) {
             self.notes.forEach(function(item, i, notes){
               if (item._id === note._id) {
                 notes.splice(i, 1);
