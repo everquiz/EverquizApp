@@ -45,7 +45,7 @@ describe('Note Service', function() {
                 _id: 2,
                 title: 'Note 2',
                 text: 'Text 2',
-                tag: 'Tag 3',
+                tag: 'Tag 2',
                 user: 1
             },
             {
@@ -70,6 +70,7 @@ describe('Note Service', function() {
 
             $httpBackend.flush();
 
+            expect(notesService.notes).not.to.be.empty;
             expect(notes).not.to.be.empty;
             expect(notes).to.be.instanceof(Array);
             expect(notes).to.have.length(1);
@@ -97,55 +98,34 @@ describe('Note Service', function() {
     });
 
     it('should delete note', function() {
-        var note = {
-            _id: 2,
-            title: 'Note 2',
-            text: 'Text 2',
-            tag: 'Tag 3',
-            user: 1
-        };
-        $httpBackend.when('DELETE', '/api/v1/Notes/2').respond(function (method,url,data) {
-            response.forEach(function(element, index) {
-                if(element._id === 2) {
-                    response.splice(index, 1);
-                    note = element;
-                    return [200, element, {}];
-                }
-            });
-            return [404, 'Not found', {}];
-        });
+        notesService.notes = response;
+        var note = {_id: 2, title: 'Note 2', text: 'Text 2', tag: 'Tag 2', user: 1};
 
+        $httpBackend.when('DELETE', '/api/v1/Notes/2').respond(note);
         notesService.deleteNote(note);
 
         $httpBackend.flush();
 
-        expect(response).not.to.be.empty;
-        expect(response).to.have.length(2);
-        expect(response).to.deep.include.members([
+        expect(notesService.notes).not.to.be.empty;
+        expect(notesService.notes).to.have.length(2);
+        expect(notesService.notes).to.deep.include.members([
             {_id: 1, title: 'Note 1', text: 'Text 1', tag: 'Tag 1', user: 1},
             {_id: 3, title: 'Note 3', text: 'Text 3', tag: 'Tag 3', user: 1}]);
-        expect(note).deep.equal({_id: 2, title: 'Note 2', text: 'Text 2', tag: 'Tag 3', user: 1});
+        expect(note).deep.equal({_id: 2, title: 'Note 2', text: 'Text 2', tag: 'Tag 2', user: 1});
     });
 
     it('should edit note', function() {
-        var note;
-        var noteToUpdate = {_id: 2, title: 'Note 2', text: 'Text 2', tag: 'Tag 3', user: 1};
+        notesService.notes = response;
+        var note = {_id: 2, title: 'Note 2', text: 'Text 2', tag: 'Tag 2', user: 1};
+        var noteToUpdate = {_id: 2, title: 'Note new', text: 'Text new', tag: 'Tag new', user: 1};
 
-        $httpBackend.when('PUT', '/api/v1/Notes/2').respond(function (method,url,data) {
-            response.forEach(function(element, index) {
-                if(element._id === 2) {
-                    response[index] = data;
-                    note = element;
-                    return [200, element, {}];
-                }
-            });
-            return [404, 'Not found', {}];
-        })
-        notesService.updateNote(noteToUpdate).then();
+        $httpBackend.when('PUT', '/api/v1/Notes/2').respond(noteToUpdate);
+
+        notesService.updateNote(noteToUpdate);
 
         $httpBackend.flush();
-        expect(response[1]).not.deep.equal(note);
-        expect(angular.fromJson(response[1])).deep.equal(noteToUpdate);
+        expect(notesService.notes[1]).not.deep.equal(note);
+        expect(angular.fromJson(notesService.notes[1])).deep.equal(noteToUpdate);
     })
 
     it('should be main view', function() {

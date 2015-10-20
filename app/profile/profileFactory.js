@@ -31,7 +31,6 @@
             observerCallbacks.push(callback);
         }
 
-        //call this when you know 'foo' has been changed
         function notifyObservers() {
             angular.forEach(observerCallbacks, function (callback) {
                 callback();
