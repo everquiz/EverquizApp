@@ -26,6 +26,7 @@
         ];
 
         vm.dataLoaded = false;
+        vm.categories = [{_id: -1, title: 'All categories'}];
 
         activate();
 
@@ -36,10 +37,10 @@
                     vm.dataLoaded = true;
                 });
 
+
             categoryService.getCategories()
                 .then(function (data) {
-                    vm.categories = data;
-                    vm.categories.unshift({_id: -1, title: 'All categories'})
+                    vm.categories = vm.categories.concat(data);
                 });
 
             if (authFactory.currentUserId()) {
@@ -56,16 +57,10 @@
             vm.dataLoaded = false;
             quizFactory.getQuizzesByQuery(category + complexity)
                 .then(function (data) {
-                    vm.quizzes = data;
-                    if (vm.selectedStatus != -1) {
-                        vm.quizzes = [];
-                        for (var i = 0; i < data.length; i++) {
-                            if (!vm.selectedStatus && vm.history.getBestResult(data[i]) >= 70 ||
-                                vm.selectedStatus && vm.history.getBestResult(data[i]) < 70) {
-                                vm.quizzes.push(data[i]);
-                            }
-                        }
-                    }
+                    vm.quizzes = vm.selectedStatus == -1 ? data : data.filter(function (item) {
+                        return !vm.selectedStatus && vm.history.getBestResult(item) >= 70 ||
+                            vm.selectedStatus && vm.history.getBestResult(item) < 70;
+                    });
                     vm.dataLoaded = true;
                 });
         }

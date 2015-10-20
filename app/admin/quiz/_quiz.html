@@ -7,8 +7,7 @@
 <form class="search">
   <h3>Search question</h3>
     <input type="text" class="search-input" ng-model="QuizCtrl.search" placeholder="Search"/>
-    <button class="admin-button-container"
-            ng-click="QuizCtrl.modalToggle()"}>New question
+    <button eq-modal class="admin-button-container">New question
     </button>
 </form>
 
@@ -30,7 +29,7 @@
             <td class="quiz-list-selection-table-row-content__title" ui-sref="admin.question({ id: question._id})">{{question.text | limitTo:20 }}{{question.text.length > 20 ? '...' : ''}}</td>
             <td class="quiz-list-selection-table-row-content__title">{{question.createAt | date:'dd/MM/yyyy'}}</td>
             <td class="quiz-list-selection-table-row-content__title">{{question.answers.length}}</td>
-            <td class="quiz-list-selection-table-row-content__title"><i class="fa fa-trash-o"  ng-click='QuizCtrl.removeQuestion(question)'></i><i class="fa fa-wrench" ng-click='QuizCtrl.editQuestion(question)'></i></td>
+            <td class="quiz-list-selection-table-row-content__title"><i class="fa fa-trash-o"  ng-click='QuizCtrl.removeQuestion(question)'></i><i eq-modal class="fa fa-wrench" ng-click='QuizCtrl.editQuestion(question)'></i></td>
         </tr>
     </table>
 </div>
@@ -41,15 +40,15 @@
 <div class="modal-background is-hidden" id="modal">
   <div class="center-block absolute-center modal big">
 
-    <form ng-submit="QuizCtrl.addQuestion()" style="margin: 30px auto 0;" class="form-container">
+    <form ng-submit="QuizCtrl.addQuestion()" style="margin: 30px auto 0;" class="form-container" name="form">
       <div class="form-title"><h2>{{QuizCtrl.formTitle}}</h2></div>
 
       <div class="form-title">Text</div>
-      <textarea class="form-field" ng-model="QuizCtrl.question.text" ng-model-options="{ updateOn: 'submit' }" placeholder="Text"></textarea><br/>
+      <textarea class="form-field" ng-model="QuizCtrl.question.text" ng-model-options="{ updateOn: 'submit' }" placeholder="Text" required></textarea><br/>
 
       <div class="submit-container">
-        <input class="submit-button" type="reset" value="Cancel" ng-click='QuizCtrl.resetTitle()' />
-        <input class="submit-button" type="submit" value="Submit" />
+        <input eq-modal class="submit-button" type="reset" value="Cancel" ng-click='QuizCtrl.resetTitle()' />
+        <input eq-modal class="submit-button" type="submit" value="Submit" />
       </div>
     </form>
   </div>

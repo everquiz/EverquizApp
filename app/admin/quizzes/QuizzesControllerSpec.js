@@ -68,7 +68,8 @@
             });
 
         it('should get all quizzes on load', function () {
-            expect(ctrl.quizzes).to.be.quizzesInit;
+            expect(ctrl.quizzes).to.be.deep.equal(quizzesInit);
+
         });
 
         describe('add/update quiz', function () {

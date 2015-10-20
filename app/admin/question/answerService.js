@@ -1,5 +1,5 @@
-(function() {
-  'use strict'
+;(function() {
+  'use strict';
 
   angular
       .module('everquizApp')
@@ -29,23 +29,10 @@
     };
 
     this.update = function (answer) {
-      // return $http.get('/api/v1/Answers/' + answer._id).success(function(data) {
-      //   var answerUpdate = data;
-      //   answerUpdate.text = answer.text;
-      //   answerUpdate.editedAt = new Date;
-      //   answerUpdate.correct = answer.correct;
-      //   return $http.put('/api/v1/Answers/' + answerUpdate._id, answerUpdate)
-      //   .success(function(data) {
-      //     // ToDo need to update _answers array
-      //   });
-      // });
       return $http.put('/api/v1/Answers/' + answer._id, answer)
     };
 
     this.remove = function (answer, question) {
-      // if (question._id !== answer.question) {
-      //   return false;
-      // };
       return $http.delete('/api/v1/Answers/' + answer._id, answer , {
             headers: {Authorization: 'Bearer ' + authFactory.getToken()}
           }).then(function (res) {
