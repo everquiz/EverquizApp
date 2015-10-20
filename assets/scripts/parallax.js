@@ -7,7 +7,10 @@
   };
 
   function scrollOffsetForElemById(elemId) {
-  	return document.getElementById(elemId).offsetTop - window.innerHeight || 0;
+    if (!document.getElementById(elemId)) {
+      return;
+    }
+  	return (document.getElementById(elemId).offsetTop - window.innerHeight) || 0;
   };
 
   function parallax() {
