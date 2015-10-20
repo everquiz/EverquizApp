@@ -7,7 +7,10 @@
   };
 
   function scrollOffsetForElemById(elemId) {
-  	return document.getElementById(elemId).offsetTop - window.innerHeight || 0;
+    if (!document.getElementById(elemId)) {
+      return;
+    }
+  	return (document.getElementById(elemId).offsetTop - window.innerHeight) || 0;
   };
 
   function parallax() {
@@ -39,7 +42,7 @@
         var scrolledPercent = Math.round(resultScrollTop / 0.88) / 100;
 
         var bulletClosePosition = 150 - scrolledPercent * 9 + '%';
-        var revolversPosition = 70 - scrolledPercent  * 3 + '%';
+        var revolversPosition = 80 - scrolledPercent  * 3 + '%';
         var bulletFarPosition = 10 + scrolledPercent * 2 + '%';
         var logoPosition = 120 - scrolledPercent * 3 + '%';
 
