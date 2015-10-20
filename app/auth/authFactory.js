@@ -1,4 +1,4 @@
-(function () {
+;(function () {
     'use strict';
 
     angular
@@ -13,9 +13,8 @@
             saveToken: saveToken,
             getToken: getToken,
             isLoggedIn: isLoggedIn,
-            checkRole: checkRole,
             isAdmin: isAdmin,
-            isUser: isUser,
+            // isUser: isUser, //TODO Delete?
             currentUser: currentUser,
             currentUserId: currentUserId,
             register: register,
@@ -44,14 +43,6 @@
             }
         }
 
-        function checkRole() {
-            return $http.get('/status', {
-                headers: {Authorization: 'Bearer ' + auth.getToken()}
-            }).success(function (data) {
-                return (data === 'admin');
-            });
-        }
-
         function isAdmin() {
             if (auth.isLoggedIn()) {
                 var token = auth.getToken();
@@ -60,22 +51,24 @@
             }
         }
 
-        function isUser() {
-            var token = auth.getToken();
-            if (token) {
-                var payload = JSON.parse($window.atob(token.split('.')[1]));
+        // TODO Delete? Nowhere used
+        // function isUser() {
+        //     var token = auth.getToken();
+        //     if (token) {
+        //         var payload = JSON.parse($window.atob(token.split('.')[1]));
 
-                $http.get('/status', {
-                    headers: {Authorization: 'Bearer ' + auth.getToken()}
-                }).success(function (data) {
-                    if (data === 'user') {
-                        return true;
-                    }
-                })
-            } else {
-                return false;
-            }
-        }
+
+        //         $http.get('/status', {
+        //             headers: {Authorization: 'Bearer ' + auth.getToken()}
+        //         }).success(function (data) {
+        //             if (data === 'user') {
+        //                 return true;
+        //             }
+        //         })
+        //     } else {
+        //         return false;
+        //     }
+        // }
 
         function currentUser() {
             if (auth.isLoggedIn()) {
