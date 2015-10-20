@@ -2,7 +2,7 @@
     'use strict';
 
     describe('UserService', function () {
-        describe.only('UserService logic', function () {
+        describe('UserService logic', function () {
             var userService,
                 $httpBackend,
                 users;
