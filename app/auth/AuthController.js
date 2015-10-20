@@ -13,21 +13,23 @@
         vm.user = {};
         vm.logIn = logIn;
         vm.logInGoogle = authFactory.logInGoogle;
-        vm.isAdmin = isAdmin;
         vm.register = register;
         vm.dataLoaded = true;
 
 
         function register() {
             vm.dataLoaded = false;
-            authFactory.register(vm.user).error(function (error) {
-                vm.error = error;
-                vm.dataLoaded = true;
-            }).then(function () {
+            console.log('register ctrl');
+
+            authFactory.register(vm.user).then(function () {
+                console.log('register ctrl then');
                 profileFactory.addAchievement('5614d7cd60a7a12614a331b8');
                 vm.dataLoaded = true;
 
                 $state.go('home');
+                vm.dataLoaded = true;
+            }, function (error) {
+                vm.error = error;
                 vm.dataLoaded = true;
             });
         }
@@ -47,11 +49,6 @@
                 }
                 vm.dataLoaded = true;
             });
-        }
-
-        function isAdmin() {
-            alert('no access');
-            return false;
         }
     }
 
