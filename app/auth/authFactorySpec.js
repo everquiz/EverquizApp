@@ -3,7 +3,7 @@
 
     describe('AuthFactory', function () {
 
-        describe.only('AuthFactory logic', function () {
+        describe('AuthFactory logic', function () {
 
             var $httpBackend,
                 $window,
