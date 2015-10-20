@@ -19,10 +19,7 @@
 
         function register() {
             vm.dataLoaded = false;
-            console.log('register ctrl');
-
             authFactory.register(vm.user).then(function () {
-                console.log('register ctrl then');
                 profileFactory.addAchievement('5614d7cd60a7a12614a331b8');
                 vm.dataLoaded = true;
 
@@ -37,16 +34,16 @@
 
         function logIn() {
             vm.dataLoaded = false;
-            authFactory.logIn(vm.user).error(function (error) {
-                vm.error = error;
-                vm.dataLoaded = true;
-            }).then(function () {
+            authFactory.logIn(vm.user).then(function () {
                 var payload = JSON.parse($window.atob(authFactory.getToken().split('.')[1]));
                 if (payload.roles[0] === 'admin') {
                     $state.go('admin.quizzes');
                 } else if (payload.roles[0] === 'user') {
                     $state.go('home');
                 }
+                vm.dataLoaded = true;
+            }, function (error) {
+                vm.error = error;
                 vm.dataLoaded = true;
             });
         }
