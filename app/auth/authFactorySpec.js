@@ -2,11 +2,11 @@
     'use strict';
 
     describe('AuthFactory', function () {
+        var $window;
 
         describe('AuthFactory logic', function () {
 
             var $httpBackend,
-                $window,
                 authFactory,
                 token;
 
@@ -19,6 +19,11 @@
                 $window = _$window_;
                 token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJfaWQiOiI1NWY5ODA1MzNlOTc1YzRhMWJmZGNlYzgiLCJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsInJvbGVzIjpbImFkbWluIl0sImV4cCI6MTQ0OTM2MTU4NSwiaWF0IjoxNDQ0MTczOTg1fQ.YFXdF2Sntu8wT6JL7i8Jp8yovZyVHoCWtpNPSlBsCdk';
             }));
+
+            after(function () {
+                $window.localStorage.clear();
+            });
+
 
             describe('token and if logged', function () {
                 it('should save token', function () {
@@ -40,22 +45,24 @@
                 });
             })
 
-            it('should be admin', function () {
-                expect(authFactory.isAdmin()).to.be.true;
-            });
+            describe('roles', function () {
+                it('should be admin', function () {
+                    expect(authFactory.isAdmin()).to.be.true;
+                });
 
-            it('should get email from token', function () {
-                expect(authFactory.currentUser()).to.be.equal('admin@admin.com');
-            });
+                it('should get email from token', function () {
+                    expect(authFactory.currentUser()).to.be.equal('admin@admin.com');
+                });
 
-            it('should get id from token', function () {
-                expect(authFactory.currentUserId()).to.be.equal('55f980533e975c4a1bfdcec8');
-            });
+                it('should get id from token', function () {
+                    expect(authFactory.currentUserId()).to.be.equal('55f980533e975c4a1bfdcec8');
+                });
 
-            it('should log out', function () {
-                authFactory.logOut();
-                expect($window.localStorage['everquizApp-token']).to.be.empty;
-            });
+                it('should log out', function () {
+                    authFactory.logOut();
+                    expect($window.localStorage['everquizApp-token']).to.be.empty;
+                });
+            })
 
             describe('login/reg logic', function () {
                 var user;
@@ -84,6 +91,6 @@
             })
 
         })
-
+        
     })
 })(); 
