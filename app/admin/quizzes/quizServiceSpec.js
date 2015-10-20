@@ -21,13 +21,13 @@
                 quizService = _quizService_;
                 $httpBackend = _$httpBackend_;
                 quizzes = [{
-                    "_id": "1",
-                    "title": "Basics",
-                    "description": "CSS",
-                    "category": 1,
-                    "questions": ["1,2,3"],
-                    "complexity": 0,
-                    "status": 1
+                    _id: 1,
+                    title: "Basics",
+                    description: "CSS",
+                    category: 1,
+                    questions: [1,2,3],
+                    complexity: 0,
+                    status: 1
                 }];
             }));
 
@@ -67,13 +67,13 @@
         it('should update quiz', function () {
             var quizToUpdate;
             quizToUpdate = {
-                    "_id": "1",
-                    "title": "Expert",
-                    "description": "Ruby",
-                    "category": "2",
-                    "questions": ["1,2,3,5"],
-                    "complexity": 1,
-                    "status": 1
+                    _id: 1,
+                    title: "Expert",
+                    description: "Ruby",
+                    category: 2,
+                    questions: [1,2,3,5],
+                    complexity: 1,
+                    status: 1
                 };
             $httpBackend.whenPUT('/api/v1/Quizzes/1').respond(function (method, url, data) {
                     quizzes[0] = angular.fromJson(data);
@@ -87,13 +87,13 @@
         it('should unactive quiz', function () {
             var quizToUnactive;
             quizToUnactive = {
-                    "_id": "1",
-                    "title": "Basics",
-                    "description": "CSS",
-                    "category": "1",
-                    "questions": ["1,2,3"],
-                    "complexity": 0,
-                    "status": 0
+                    _id: 1,
+                    title: "Basics",
+                    description: "CSS",
+                    category: 1,
+                    questions: [1,2,3],
+                    complexity: 0,
+                    status: 0
                 };
             $httpBackend.whenPUT('/api/v1/Quizzes/1').respond(function (method, url, data) {
                     quizzes[0] = angular.fromJson(data);
@@ -108,13 +108,13 @@
         it('should active quiz', function () {
             var quizToActive;
             quizToActive = {
-                    "_id": "1",
-                    "title": "Basics",
-                    "description": "CSS",
-                    "category": "1",
-                    "questions": ["1,2,3"],
-                    "complexity": 0,
-                    "status": 1
+                    _id: 1,
+                    title: "Basics",
+                    description: "CSS",
+                    category: 1,
+                    questions: [1,2,3],
+                    complexity: 0,
+                    status: 1
                 };
             $httpBackend.whenPUT('/api/v1/Quizzes/1').respond(function (method, url, data) {
                     quizzes[0] = angular.fromJson(data);
