@@ -1,4 +1,4 @@
-escribe('NotesListController', function () {
+describe('NotesListController', function () {
     var NotesListCtrl;
     var notesService;
 
