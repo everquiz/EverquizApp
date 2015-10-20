@@ -14,7 +14,6 @@
             getToken: getToken,
             isLoggedIn: isLoggedIn,
             isAdmin: isAdmin,
-            // isUser: isUser, //TODO Delete?
             currentUser: currentUser,
             currentUserId: currentUserId,
             register: register,
@@ -50,25 +49,6 @@
                 return (payload.roles[0] === 'admin');
             }
         }
-
-        // TODO Delete? Nowhere used
-        // function isUser() {
-        //     var token = auth.getToken();
-        //     if (token) {
-        //         var payload = JSON.parse($window.atob(token.split('.')[1]));
-
-
-        //         $http.get('/status', {
-        //             headers: {Authorization: 'Bearer ' + auth.getToken()}
-        //         }).success(function (data) {
-        //             if (data === 'user') {
-        //                 return true;
-        //             }
-        //         })
-        //     } else {
-        //         return false;
-        //     }
-        // }
 
         function currentUser() {
             if (auth.isLoggedIn()) {
