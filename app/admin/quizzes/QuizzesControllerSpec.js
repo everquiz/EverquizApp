@@ -12,22 +12,22 @@
             quizzesInit;
 
         quizToCreate = {
-            "_id": "2",
-            "title": "Expert",
-            "description": "SCSS",
-            "category": 2,
-            "questions": ["1,2,5"],
-            "complexity": 1,
-            "status": 1
+            _id: 2,
+            title: "Expert",
+            description: "SCSS",
+            category: 2,
+            questions: ["1,2,5"],
+            complexity: 1,
+            status: 1
         };
         quizzesInit = [{
-            "_id": "1",
-            "title": "Basics",
-            "description": "CSS",
-            "category": 1,
-            "questions": ["1,2,3"],
-            "complexity": 0,
-            "status": 0
+            _id: 1,
+            title: "Basics",
+            description: "CSS",
+            category: 1,
+            questions: [1,2,3],
+            complexity: 0,
+            status: 0
         }];
         quizServiceMock = {
                 getDifficulties: sinon.stub(),
@@ -78,7 +78,7 @@
                     quizService.update.reset();
                 });
             it('should not add or edit quiz', function () {
-                ctrl.quiz = {"description": "SASS"};
+                ctrl.quiz = {description: "SASS"};
                 ctrl.addQuiz();
                 expect(quizService.create).not.to.have.been.called;
                 expect(quizService.update).not.to.have.been.called;

@@ -1,4 +1,4 @@
-(function() {
+;(function() {
   'use strict';
 
   angular
@@ -8,8 +8,6 @@
   QuizzesController.$inject = ['quizzes', 'quizService', 'categoryService'];
 
   function QuizzesController(quizzes, quizService, categoryService) {
-    // quizzes = quizService.quizzes;
-
     var vm = this;
     vm.formTitle = 'Add new quiz';
     vm.status = 0;

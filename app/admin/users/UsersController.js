@@ -5,12 +5,12 @@
         .module('everquizApp')
         .controller('UsersController', UsersController);
 
-    UsersController.$inject = ['userService', 'authFactory'];
+    UsersController.$inject = ['users', 'userService', 'authFactory'];
 
-    function UsersController(userService, authFactory) {
+    function UsersController(users, userService, authFactory) {
 
         var vm = this;
-        vm.users = userService.users;
+        vm.users = users;
         vm.addUser = addUser;
         vm.editUser = editUser;
         vm.formTitle = 'Add new user';

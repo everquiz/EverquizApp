@@ -148,7 +148,7 @@
                         templateUrl: 'admin/users/_users.html',
                         controller: 'UsersController as UsersCtrl',
                         resolve: {
-                            userPromise: ['userService',
+                            users: ['userService',
                                 function (userService) {
                                     return userService.getAll();
                                 }]
