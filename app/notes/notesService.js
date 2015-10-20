@@ -66,10 +66,7 @@
       if (authFactory.isLoggedIn()) {
         return $http.put('/api/v1/Notes/' + note._id, note).then(function (res) {
           self.notes.forEach(function (item, i, notes) {
-            if (item._id === note._id) {
-              notes[i] = note;
-              return;
-            }
+            if (item._id === note._id) {notes[i] = note; return;}
           })
         })
       }
