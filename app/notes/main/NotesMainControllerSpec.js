@@ -17,11 +17,11 @@ describe('NoteMainController', function () {
         expect(notesService.switchToList).not.to.be.undefined;
     });
 
-    it('should be able to switch to delete note', function () {
+    it('should be able to delete note', function () {
         expect(notesService.deleteNote).not.to.be.undefined;
     });
 
-    it('should be able to switch to update note', function () {
+    it('should be able to update note', function () {
         expect(notesService.updateNote).not.to.be.undefined;
     });
 
