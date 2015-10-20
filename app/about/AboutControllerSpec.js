@@ -3,7 +3,7 @@
 
     describe('AboutController', function() {
 
-        describe.only('AboutController logic', function() {
+        describe('AboutController logic', function() {
 
             var $httpBackend,
                 scrollFactory,
