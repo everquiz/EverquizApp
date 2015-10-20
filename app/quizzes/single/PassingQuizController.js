@@ -26,17 +26,15 @@
                 vm.quiz = JSON.parse(localQuiz);
                 vm.dataLoaded = true;
             } else {
-                quizFactory.get(quizFactory.activeQuiz)
+                return quizFactory.get(quizFactory.activeQuiz)
                     .then(function (data) {
                         vm.quiz = data;
-                        quizFactory.getQuestions(quizFactory.activeQuiz)
-                            .then(function (data) {
-                                vm.quiz.questions = data;
-                                vm.dataLoaded = true;
-                            }
-                        )
-                    }
-                );
+                        return quizFactory.getQuestions(quizFactory.activeQuiz);
+                    })
+                    .then(function (data) {
+                        vm.quiz.questions = data;
+                        vm.dataLoaded = true;
+                    });
             }
         }
 
