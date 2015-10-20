@@ -1,5 +1,3 @@
-'use strict';
-
 describe('ResultFactory', function () {
     var resultFactory, $httpBackend, profileFactory;
 

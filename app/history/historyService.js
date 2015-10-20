@@ -9,14 +9,10 @@
 
     function historyService($http, authFactory) {
         var self = this;
-        var history = {};
+        var history = [];
 
-        self.getHistory = getHistory;
         self.updateHistory = updateHistory;
-
-        function getHistory() {
-            return history;
-        }
+        self.getHistory = getHistory;
 
         function updateHistory() {
             var id = authFactory.currentUserId();
@@ -33,12 +29,16 @@
             }
         }
 
+        function getHistory() {
+            return history;
+        }
+
         function getAverageResult(quiz) {
             var sum = 0;
             var count = 0;
-            for (var i = 0; i < history.length; i++) {
-                if (history[i].quiz === quiz._id) {
-                    sum += history[i].result;
+            for (var i = 0; i < this.length; i++) {
+                if (this[i].quiz === quiz._id) {
+                    sum += this[i].result;
                     count++;
                 }
             }
@@ -49,8 +49,8 @@
             var sum = 0;
             var count = 0;
             var progressionList = [];
-            for (var i = 0; i < history.length; i++) {
-                sum += history[i].result;
+            for (var i = 0; i < this.length; i++) {
+                sum += this[i].result;
                 count++;
                 progressionList[i] = sum / count ? Math.round((sum / count) * 100) : 0;
             }
@@ -59,10 +59,10 @@
 
         function getBestResult(quiz) {
             var max = 0;
-            for (var i = 0; i < history.length; i++) {
-                if (history[i].quiz === quiz._id) {
-                    if (max < history[i].result) {
-                        max = history[i].result;
+            for (var i = 0; i < this.length; i++) {
+                if (this[i].quiz === quiz._id) {
+                    if (max < this[i].result) {
+                        max = this[i].result;
                     }
                 }
             }
@@ -71,8 +71,8 @@
 
         function getTotalPassing(quiz) {
             var count = 0;
-            for (var i = 0; i < history.length; i++) {
-                if (history[i].quiz === quiz._id) {
+            for (var i = 0; i < this.length; i++) {
+                if (this[i].quiz === quiz._id) {
                     count++;
                 }
             }
