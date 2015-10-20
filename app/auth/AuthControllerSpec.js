@@ -3,11 +3,14 @@
 
     describe('AuthController', function () {
 
-        describe('AuthController logic', function () {
+        describe.only('AuthController logic', function () {
             var authFactory,
+                profileFactory,
                 ctrl,
                 $rootScope,
-                $state;
+                $state,
+                $httpBackend,
+                $scope;
 
             // Set up the module
             beforeEach(module('everquizApp', function ($provide) {
@@ -20,7 +23,7 @@
                                 deferred.reject('error');
                             } else {
                                 console.log('success')
-                                deferred.resolve(200);
+                                deferred.resolve();
                             };
                             return deferred.promise;
                         }
@@ -32,11 +35,14 @@
                 })
             }));
 
-            beforeEach(inject(function ($controller, _authFactory_, _$rootScope_, _$state_) {
+            beforeEach(inject(function ($controller, _authFactory_, _$rootScope_, _$state_, _$httpBackend_, _profileFactory_) {
                 authFactory = _authFactory_;
-                $rootScope = _$rootScope_;
+                profileFactory = _profileFactory_;
+                $scope = _$rootScope_.$new();
                 $state = _$state_;
+                $httpBackend = _$httpBackend_;
                 ctrl = $controller('AuthController', {
+                    $scope: $scope,
                     authFactory: authFactory
                 });
                 sinon.stub($state, 'go');
@@ -45,22 +51,21 @@
 
             it('should registrate user', function () {
                 ctrl.user = {};
-                // ctrl.user.error = true;
                 expect(ctrl.dataLoaded).to.be.false;
                 ctrl.register();
-                $rootScope.$apply();
+                $scope.$digest();
                 expect(ctrl.dataLoaded).to.be.true;
                 expect(profileFactory.addAchievement).to.have.been.called;
+
             });
 
             it('should not registrate user', function () {
                 ctrl.user = {};
                 ctrl.user.error = true;
                 expect(ctrl.dataLoaded).to.be.false;
-                ctrl.register();
-                $rootScope.$apply();
+                $scope.$digest(ctrl.register());
                 expect(ctrl.dataLoaded).to.be.true;
-                expect(profileFactory.addAchievement).to.have.been.called;
+                expect(profileFactory.addAchievement).not.to.have.been.called;
             });
         })
 
