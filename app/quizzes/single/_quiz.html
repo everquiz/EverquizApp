@@ -29,16 +29,18 @@
 				</ul>
 			</form>
 		</div>
-        <button class="quiz-block__save-to-note" ng-show="PassingQuizCtrl.isShown()" ng-click="PassingQuizCtrl.saveToNote()">
-            Save to new note
-        </button>
-		<button class="quiz-block__submit" ng-click="PassingQuizCtrl.nextQuestion()"
-				ng-if="QuizzesContainerCtrl.quizFactory.questionCount != PassingQuizCtrl.quiz.questions.length; PassingQuizCtrl.isLoggedIn();">
-            {{QuizzesContainerCtrl.quizFactory.buttonText}}
-		</button>
-		<input class="quiz-block__submit" type="submit"  value="SHOW RESULT"
-			   ng-click="PassingQuizCtrl.checkResult();"
-			   ng-hide="QuizzesContainerCtrl.quizFactory.questionCount != PassingQuizCtrl.quiz.questions.length;">
+        <div class="quiz-block-buttons">
+	        <button class="quiz-block-buttons__save-to-note" ng-show="PassingQuizCtrl.isShown()" ng-click="PassingQuizCtrl.saveToNote()">
+	            Save to new note
+	        </button>
+			<button class="quiz-block-buttons__submit" ng-click="PassingQuizCtrl.nextQuestion()"
+					ng-if="QuizzesContainerCtrl.quizFactory.questionCount != PassingQuizCtrl.quiz.questions.length; PassingQuizCtrl.isLoggedIn();">
+	            {{QuizzesContainerCtrl.quizFactory.buttonText}}
+			</button>
+			<input class="quiz-block-buttons__submit" type="submit"  value="SHOW RESULT"
+				   ng-click="PassingQuizCtrl.checkResult();"
+				   ng-hide="QuizzesContainerCtrl.quizFactory.questionCount != PassingQuizCtrl.quiz.questions.length;">
+		</div>
 	</div>
 	<div class="quiz-counter" ng-show="QuizzesContainerCtrl.quizFactory.startQuiz">
 		<span class="quiz-counter-indicator">
