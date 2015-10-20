@@ -1,6 +1,6 @@
 .quiz {
     width: 1280px;
-    min-height: 700px;
+    min-height: 400px;
     margin: 0 auto;
     overflow: hidden;
     position: relative;
@@ -17,13 +17,15 @@
     }
 
     &-block {
-        height: 100%;
+        
         width: 40600px;
-        position: absolute;
+        position: relative;
+        
         display: inline-block;
         overflow: hidden;
 
         &__intro {
+            height: 400px;
             display: table-cell;
             width: 1280px;
             padding-right: 320px;
@@ -81,7 +83,7 @@
                 padding-right: 55pc; // VN
                 font-size: 20px;
                 font-family: $roboto;
-                padding-top: 50px;
+                padding-top: 80px;
                 color: $quiz-single-answers-text;
                 text-align: justify;
             }
@@ -120,48 +122,52 @@
                 }
             }
         }
-            
-        &__submit {
-            position: absolute;
-            left: 640px;
-            bottom: 40px;
-            background-color: $quiz-single-button;
-            color: $quiz-single-button-text;
-            font-family: $proxima;
-            font-weight: bold;
-            border: none;
-            width: 140px;
-            height: 42px;
-            font-size: 18px;
-            cursor: pointer;
-            transition: background 0.5s ease-in-out;
+        &-buttons {    
+            display: block;
+            margin-bottom: 50px;
+            position: relative;
+            height: 50px;
+            &__submit {
+                vertical-align: bottom;
+                position: absolute;
+                left: 640px;
+                background-color: $quiz-single-button;
+                color: $quiz-single-button-text;
+                font-family: $proxima;
+                font-weight: bold;
+                border: none;
+                width: 140px;
+                height: 42px;
+                font-size: 18px;
+                cursor: pointer;
+                transition: background 0.5s ease-in-out;
 
-                &:hover {
-                    background-color: $quiz-single-button-hover;
-                }
-        }
+                    &:hover {
+                        background-color: $quiz-single-button-hover;
+                    }
+            }
 
-        &__save-to-note {
+            &__save-to-note {
+                vertical-align: bottom;
+                position: absolute;
+                left: 485px;
+                background-color: $quiz-single-button;
+                color: $quiz-single-button-text;
+                font-family: $proxima;
+                font-weight: bold;
+                border: none;
+                width: 140px;
+                height: 42px;
+                font-size: 18px;
+                cursor: pointer;
+                text-transform: uppercase;
+                transition: background 0.5s ease-in-out;
 
-            position: absolute;
-            left: 485px;
-            bottom: 40px;
-            background-color: $quiz-single-button;
-            color: $quiz-single-button-text;
-            font-family: $proxima;
-            font-weight: bold;
-            border: none;
-            width: 140px;
-            height: 42px;
-            font-size: 18px;
-            cursor: pointer;
-            text-transform: uppercase;
-            transition: background 0.5s ease-in-out;
-
-                &:hover {
-                    background-color: $quiz-single-button-hover;
-                }
-        }
+                    &:hover {
+                        background-color: $quiz-single-button-hover;
+                    }
+            }
+        }    
     }
 
     &-counter {
@@ -171,7 +177,7 @@
         // height: 300px;
         width: auto; // VN
         height: auto; // VN
-        bottom: 40px; // VN
+        bottom: 50px; // VN
         right: 100px; // VN
         background-color: white;
         text-align: right;

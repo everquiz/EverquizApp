@@ -1,0 +1,82 @@
+.form-container {
+   border: 3px solid black;
+   background: white;
+   border-radius: 1px;
+   font-family: $proxima;
+   text-decoration: none;
+   vertical-align: middle;
+   min-width:300px;
+   padding:15px;
+   width:600px;
+   margin: 0 auto;
+}
+
+.search {
+  text-align: center;
+}
+
+.search-input {
+   width: 60%;
+   border: 1px solid #cacaca;
+   border-radius: 2px;
+   font-size: 20px;
+   padding: 5px;
+   margin-bottom: 10px;
+}
+
+.form-field {
+   border: 1px solid black;
+   padding:8px;
+   margin:10px auto;
+   width:580px;
+}
+
+.form-field:focus {
+   background: #fff;
+   color: #725129;
+}
+.form-container h2 {
+   text-shadow: black 0 1px 0;
+   font-size:18px;
+   margin: 0 0 10px 0;
+   font-weight:bold;
+   text-align:center;
+}
+
+.form-title {
+   margin-bottom:10px;
+   color: black;
+   text-shadow: black 0 1px 0;
+}
+
+.submit-container {
+   margin:8px 0;
+   text-align:center;
+}
+
+.submit-button {
+   background: #fb3a3a;
+   color: white;
+   font-family: $proxima;
+   padding: 8.5px 18px;
+   font-size: 14px;
+   text-decoration: none;
+   vertical-align: middle;
+   border: none;
+   cursor: pointer;
+   transition: background 0.5s ease-in-out;
+
+   &:hover {
+      background-color: $quiz-single-button-hover;
+   }
+}
+
+/* Fix for admin quizzes */
+.height-auto {
+  height: auto!important;
+}
+
+/* Misc */
+.center {
+  text-align: center;
+}
