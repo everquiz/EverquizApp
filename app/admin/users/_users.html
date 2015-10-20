@@ -5,8 +5,7 @@
 <form class="search">
   <h3>Search user</h3>
   <input type="text" class="search-input" ng-model="UsersCtrl.search" placeholder="Search"/>
-    <button class="admin-button-container"
-            ng-click="UsersCtrl.modalToggle()"}>New user</button>
+    <button eq-modal class="admin-button-container">New user</button>
 </form>
 <div class="quiz-list-selection">
     <table class="quiz-list-selection-table">
@@ -31,7 +30,7 @@
             <td class="quiz-list-selection-table-row-content__title">{{user.editedAt | date:'dd/MM/yyyy'}}</td>
             <td class="quiz-list-selection-table-row-content__title">{{user.notes.length}}</td>
             <td class="quiz-list-selection-table-row-content__title">{{user.history.length}}</td>
-            <td class="quiz-list-selection-table-row-content__title"><i class="fa fa-wrench" ng-click='UsersCtrl.editUser(user)'></i></td>
+            <td class="quiz-list-selection-table-row-content__title"><i eq-modal class="fa fa-wrench" ng-click='UsersCtrl.editUser(user)'></i></td>
         </tr>
     </table>
 </div>
@@ -40,22 +39,21 @@
 
 <div class="modal-background is-hidden" id="modal">
     <div class="center-block absolute-center modal big">
-        <form ng-submit="UsersCtrl.addUser()" style="margin: 30px auto 0;" class="form-container">
+        <form ng-submit="UsersCtrl.addUser()" style="margin: 30px auto 0;" class="form-container" name="form">
             <div class="form-title"><h2>{{UsersCtrl.formTitle}}</h2></div>
 
             <div class="form-title">Name:</div>
-            <input class="form-field" type="text" placeholder="Name" ng-model="UsersCtrl.user.name" ng-model-options="{ updateOn: 'submit' }"><br/>
-
+            <input class="form-field" type="text" placeholder="Name" ng-model="UsersCtrl.user.name" ng-model-options="{ updateOn: 'submit' }" required><br/>
 
             <div class="form-title">Email</div>
-            <input class="form-field" type="text" placeholder="Email" ng-model="UsersCtrl.user.email" ng-model-options="{ updateOn: 'submit' }" ng-disabled="UsersCtrl.user.emailDis"><br/>
+            <input class="form-field" type="text" placeholder="Email" ng-model="UsersCtrl.user.email" ng-model-options="{ updateOn: 'submit' }" ng-disabled="UsersCtrl.user.emailDis" required><br/>
 
             <div class="form-title">Password</div>
             <input class="form-field" type="text" placeholder="Password" ng-model="UsersCtrl.user.password" ng-model-options="{ updateOn: 'submit' }"><br/>
 
             <div class="submit-container">
-                <input class="submit-button" type="reset" value="Cancel" ng-click='UsersCtrl.resetTitle()' />
-                <input class="submit-button" type="submit" value="Submit" ng-click="UsersCtrl.modalToggle()"/>
+                <input eq-modal class="submit-button" type="reset" value="Cancel" ng-click='UsersCtrl.resetTitle()' />
+                <input eq-modal class="submit-button" type="submit" value="Submit"/>
             </div>
         </form>
     </div>
