@@ -1,141 +1,58 @@
 'use strict';
 
-describe("NotesService", function() {
-    var notesService, authFactory, $httpBackend, notes, url, regex;
+describe('Note Service', function() {
+    var notesService;
+    var $httpBackend;
 
-    // Set up the module
-    beforeEach(module('everquizApp', function ($provide) {
-        $provide.value('authFactory', {
-            currentUserId: function () {
-                return 1;
-            },
-                isLoggedIn: function () {
-                    return true;
-                }
-        }
-        )}));
+    var response = [
+        {
+            id: 1,
+            title: 'title 1',
+            text: 'text 1',
+            tag: 'tag 1',
+            user: 1
+        },
+        {
+            id: 2,
+            title: 'title 2',
+            text: 'text 2',
+            tag: 'tag 2',
+            user: 1
+        },
+        {
+            id: 3,
+            title: 'title 3',
+            text: 'text 3',
+            tag: 'tag 3',
+            user: 1
+        }];
 
-    beforeEach(inject(function (_notesService_, _authFactory_, _$httpBackend_) {
-        notesService = _notesService_;
-        $httpBackend = _$httpBackend_;
-        authFactory = _authFactory_;
-        notes = [
-            {
-                _id: 1,
-                title: 'Note 1',
-                text: 'Text 1',
-                tag: 'Tag 1',
-                user: 1
-            },
-            {
-                _id: 2,
-                title: 'Note 2',
-                text: 'Text 2',
-                tag: 'Tag 3',
-                user: 1
-            },
-            {
-                _id: 3,
-                title: 'Note 3',
-                text: 'Text 3',
-                tag: 'Tag 3',
-                user: 1
-            }
-        ];
-        url = '/api/v1/Notes';
-        regex = new RegExp(url + '/([0-9]+)');
-    }));
+    beforeEach(function () {
+        module('everquizApp');
 
-    it('should get notes from the server', function () {
+        inject(function ($injector) {
+            notesService = $injector.get('notesService');
 
-        $httpBackend.whenGET(url + '?user=1').respond({
-            data: notes
+            $httpBackend = $injector.get('$httpBackend');
+            $httpBackend.when('GET', '/api/v1/Notes?user=1').respond(response);
         });
-        var notesAll = [];
-        notesService.getNotes()
-            .then(function (res) {
-                notesAll = res.data;
-            });
-
-        expect(notesAll).to.be.empty;
-        expect(notesAll).to.be.instanceof(Array);
-        expect(notesAll).to.have.length(0);
-
-        $httpBackend.flush();
-
-        expect(notesAll).not.to.be.empty;
-        expect(notesAll).to.be.instanceof(Array);
-        expect(notesAll).to.have.length(3);
-        expect(notesAll).deep.equal(notes);
     });
 
-    it('should post notes to the server', function () {
-        var note = {title: 'Note new', text: 'Text new', tag: 'Tag new'};
-        $httpBackend.whenPOST(url + '/').respond(function (method, url, data) {
-            notes.push(angular.fromJson(data));
-            return true;
-        });
-        expect(notes).not.to.be.empty;
-        expect(notes).to.be.instanceof(Array);
-        expect(notes).to.have.length(3);
+    //afterEach(function () {
+    //    $httpBackend.flush();
+    //    $httpBackend.verifyNoOutstandingExpectation();
+    //    $httpBackend.verifyNoOutstandingRequest();
+    //});
 
-        notesService.addNote(note);
+    it('should add note', function() {
 
-        $httpBackend.flush();
-
-        expect(notes).not.to.be.empty;
-        expect(notes).to.have.length(4);
-        //expect(notes).to.deep.include.members([
-          //  {title: 'Note new', text: 'Text new', tag: 'Tag new'}]);
     });
 
-
-    it('should delete note from server', function () {
-        var note;
-        $httpBackend.whenDELETE(regex.test(url)).respond(function (method,url,data) {
-            notes.forEach(function(element, index) {
-                if(element._id === +url.match(regex)[1]) {
-                    notes.splice(index, 1);
-                    note = element;
-                    return [200, element, {}];
-                }
-            });
-            return [404, 'Not found', {}];
-        });
-        notesService.deleteNote(notes[1]);
-
-        $httpBackend.flush();
-
-        expect(notes).not.to.be.empty;
-        expect(notes).to.have.length(2);
-        //expect(notes).to.deep.include.members([
-        //    {_id: 1, title: 'Note 1', text: 'Text 1', tag: 'Tag 1'},
-        //    {_id: 3, title: 'Note 3', text: 'Text 3', tag: 'Tag 3'}]);
-        //expect(notes).deep.equal({_id: 2, title: 'Note 2', text: 'Text 2', tag: 'Tag 3'});
+    it('should get notes', function() {
+        $httpBackend.expectGET('/api/v1/Notes?user=1');
     });
 
-    it('should update note from server', function () {
-        var note,
-            noteToUpdate = {
-                _id: 2,
-                title: 'Note 2',
-                text: 'Text 2',
-                tag: 'Tag 3'
-            };
-        $httpBackend.whenPUT(regex.test(url)).respond(function (method,url,data) {
-            notes.forEach(function(element, index) {
-                if(element._id === +url.match(regex)[1]) {
-                    notes[index] = data;
-                    note = element;
-                    return [200, element, {}];
-                }
-            });
-            return [404, 'Not found', {}];
-        })
-        notesService.updateNote(noteToUpdate);
+    it('should delete note', function() {
 
-        $httpBackend.flush();
-        expect(notes[1]).not.deep.equal(note);
-        expect(angular.fromJson(notes[1])).deep.equal(noteToUpdate);
     });
-});
+})
