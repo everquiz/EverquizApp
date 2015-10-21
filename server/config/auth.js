@@ -10,13 +10,13 @@ module.exports = {
         'clientID'      : 'b42f011bad8e54abbe9fff4a4590c0aaecff6cd8fa4e6a848ae5c7838a7043df',
         'clientSecret'  : '3a667b248743d723c12afea1fc5c411e7258fb9305ecba8a80057e44776495fe',
         'gitlabURL'     : "https://git.epam.com",
-        'callbackURL'   : 'https://everquiz.herokuapp.com/auth/gitlab/callback'
+        'callbackURL'   : 'http://everquiz.herokuapp.com/auth/gitlab/callback'
     },
 
     'vkAuth' : {
         'clientID'      : '5099697', // your App ID
         'clientSecret'  : 'wvIh5Zk1kvZK2ho1bafC', // your App Secret
-        'callbackURL'   : 'https://everquiz.herokuapp.com/auth/vkontakte/callback'
+        'callbackURL'   : 'http://everquiz.herokuapp.com/auth/vkontakte/callback'
     },
 
     'twitterAuth' : {
