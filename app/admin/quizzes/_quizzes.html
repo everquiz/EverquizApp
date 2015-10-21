@@ -1,5 +1,5 @@
-<div class="quiz-list-header">
-    <div class="quiz-list-header__title">Quizzes</div>
+<div class="admin-header">
+    <div class="admin-header__title">Quizzes</div>
 </div>
 
 <form class="search">
@@ -8,29 +8,29 @@
     <button eq-modal class="admin-button-container"}>New quiz</button>
 </form>
 
-<div class="quiz-list-selection height-auto">
-    <table class="quiz-list-selection-table">
-        <tr class="quiz-list-selection-table-row-heading">
-            <th class="quiz-list-selection-table-row-heading__title">ID</th>
-            <th class="quiz-list-selection-table-row-heading__title">Category</th>
-            <th class="quiz-list-selection-table-row-heading__title">Name</th>
-            <th class="quiz-list-selection-table-row-heading__title">Description</th>
-            <th class="quiz-list-selection-table-row-heading__title">createAt</th>
-            <th class="quiz-list-selection-table-row-heading__title">Status</th>
-            <th class="quiz-list-selection-table-row-heading__title">Complexity</th>
-            <th class="quiz-list-selection-table-row-heading__title">Total questions</th>
-            <th class="quiz-list-selection-table-row-heading__title">Actions</th>
+<div class="admin-selection height-auto">
+    <table class="admin-selection-table">
+        <tr class="admin-selection-table-row-heading">
+            <th class="admin-selection-table-row-heading__title">ID</th>
+            <th class="admin-selection-table-row-heading__title">Category</th>
+            <th class="admin-selection-table-row-heading__title">Name</th>
+            <th class="admin-selection-table-row-heading__title">Description</th>
+            <th class="admin-selection-table-row-heading__title">createAt</th>
+            <th class="admin-selection-table-row-heading__title">Status</th>
+            <th class="admin-selection-table-row-heading__title">Complexity</th>
+            <th class="admin-selection-table-row-heading__title">Total questions</th>
+            <th class="admin-selection-table-row-heading__title">Actions</th>
         </tr>
-        <tr class="quiz-list-selection-table-row-content" ng-repeat="quiz in QuizzesCtrl.quizzes | filter : QuizzesCtrl.search">
-            <td class="quiz-list-selection-table-row-content__title">{{$index}}</td>
-            <td class="quiz-list-selection-table-row-content__title">{{quiz.category.title}}</td>
-            <td class="quiz-list-selection-table-row-content__title"  ui-sref="admin.quiz({ id: quiz._id})">{{quiz.title}}</td>
-            <td class="quiz-list-selection-table-row-content__title">{{quiz.description | limitTo:20 }}{{quiz.description.length > 20 ? '...' : ''}}</td>
-            <td class="quiz-list-selection-table-row-content__title">{{quiz.createAt | date:'dd/MM/yyyy'}}</td>
-            <td class="quiz-list-selection-table-row-content__title">{{QuizzesCtrl.getStatus(quiz.status)}}</td>
-            <td class="quiz-list-selection-table-row-content__title">{{QuizzesCtrl.getComplexity(quiz.complexity)}}</td>
-            <td class="quiz-list-selection-table-row-content__title">{{quiz.questions.length}}</td>
-            <td class="quiz-list-selection-table-row-content__title"><i class="fa fa-trash-o" ng-click='QuizzesCtrl.deactivateQuiz(quiz)'></i>  <i class="fa fa-play" ng-click='QuizzesCtrl.activateQuiz(quiz)'></i>  <i eq-modal class="fa fa-wrench" ng-click='QuizzesCtrl.editQuiz(quiz)'></i></td>
+        <tr class="admin-selection-table-row-content" ng-repeat="quiz in QuizzesCtrl.quizzes | filter : QuizzesCtrl.search">
+            <td class="admin-selection-table-row-content__title">{{$index}}</td>
+            <td class="admin-selection-table-row-content__title">{{quiz.category.title}}</td>
+            <td class="admin-selection-table-row-content__title"  ui-sref="admin.quiz({ id: quiz._id})">{{quiz.title}}</td>
+            <td class="admin-selection-table-row-content__title">{{quiz.description | limitTo:20 }}{{quiz.description.length > 20 ? '...' : ''}}</td>
+            <td class="admin-selection-table-row-content__title">{{quiz.createAt | date:'dd/MM/yyyy'}}</td>
+            <td class="admin-selection-table-row-content__title">{{QuizzesCtrl.getStatus(quiz.status)}}</td>
+            <td class="admin-selection-table-row-content__title">{{QuizzesCtrl.getComplexity(quiz.complexity)}}</td>
+            <td class="admin-selection-table-row-content__title">{{quiz.questions.length}}</td>
+            <td class="admin-selection-table-row-content__title"><i class="fa fa-trash-o" ng-click='QuizzesCtrl.deactivateQuiz(quiz)'></i>  <i class="fa fa-play" ng-click='QuizzesCtrl.activateQuiz(quiz)'></i>  <i eq-modal class="fa fa-wrench" ng-click='QuizzesCtrl.editQuiz(quiz)'></i></td>
         </tr>
     </table>
 </div>

@@ -1,5 +1,5 @@
-<div class="quiz-list-header">
-    <div class="quiz-list-header__title">Categories</div>
+<div class="admin-header">
+    <div class="admin-header__title">Categories</div>
 </div>
 
 <form class="search">
@@ -8,19 +8,19 @@
     <button eq-modal class="admin-button-container">New category</button>
 </form>
 
-<div class="quiz-list-selection height-auto">
-    <table class="quiz-list-selection-table">
-        <tr class="quiz-list-selection-table-row-heading">
-            <th class="quiz-list-selection-table-row-heading__title">Title</th>
-            <th class="quiz-list-selection-table-row-heading__title">Description</th>
-            <th class="quiz-list-selection-table-row-heading__title">Actions</th>
+<div class="admin-selection height-auto">
+    <table class="admin-selection-table">
+        <tr class="admin-selection-table-row-heading">
+            <th class="admin-selection-table-row-heading__title">Title</th>
+            <th class="admin-selection-table-row-heading__title">Description</th>
+            <th class="admin-selection-table-row-heading__title">Actions</th>
         </tr>
-        <tr class="quiz-list-selection-table-row-content"
+        <tr class="admin-selection-table-row-content"
             ng-repeat="category in CategoriesCtrl.categories | filter : CategoriesCtrl.search"
             ng-show="pageFilter($index)">
-            <td class="quiz-list-selection-table-row-content__title">{{category.title}}</td>
-            <td class="quiz-list-selection-table-row-content__title">{{category.description}}</td>
-            <td class="quiz-list-selection-table-row-content__title"><i class="fa fa-trash-o" ng-click='CategoriesCtrl.removeCategory(category)'></i>  <i eq-modal class="fa fa-wrench" ng-click='CategoriesCtrl.editCategory(category);'></i></td>
+            <td class="admin-selection-table-row-content__title">{{category.title}}</td>
+            <td class="admin-selection-table-row-content__title">{{category.description}}</td>
+            <td class="admin-selection-table-row-content__title"><i class="fa fa-trash-o" ng-click='CategoriesCtrl.removeCategory(category)'></i>  <i eq-modal class="fa fa-wrench" ng-click='CategoriesCtrl.editCategory(category);'></i></td>
         </tr>
     </table>
 </div>
