@@ -13,6 +13,7 @@
         vm.goToElement = goToElement;
         vm.isVisible = profileFactory.isVisible;
         vm.clickToOpen = clickToOpen;
+        vm.profileInit = profileInit;
 
         function profileInit() {
             vm.profile = profileFactory.getProfile();

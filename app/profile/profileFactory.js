@@ -13,6 +13,7 @@
         var observerCallbacks = [];
 
         var factory = {
+            profile: profile,
             registerObserverCallback: registerObserverCallback,
             notifyObservers: notifyObservers,
             getProfile: getProfile,
@@ -21,7 +22,11 @@
             hideProfile: hideProfile,
             toggleProfile: toggleProfile,
             isVisible: isVisible,
-            addAchievement: addAchievement
+            addAchievement: addAchievement,
+            getQuizStatistic: getQuizStatistic,
+            getLastThreeNotes: getLastThreeNotes,
+            getLastThreeHistory: getLastThreeHistory,
+            getLastActions: getLastActions
         };
 
         return factory;
@@ -47,6 +52,7 @@
             if (id) {
                 return $http.get('/api/v1/Users/' + id + '?populate=history,achievements')
                     .then(function (res) {
+                        console.log(res.data);
                         profile = res.data;
                         var result = getQuizStatistic(profile.history);
                         profile.averageResult = result.averageResult;
@@ -126,8 +132,12 @@
                     angular.forEach(result, function (response) {
                         lastActions.push(response.data);
                     });
-                    lastActions = lastActions[0].concat(lastActions[1]);
-                    lastActions = lastActions.sortBy('-createdAt');
+                        lastActions = lastActions[0].concat(lastActions[1]);
+                        lastActions = lastActions.sort(function(a, b) {
+                            var a_value = new Date(a.createdAt);
+                            var b_value = new Date(b.createdAt);
+                            return parseFloat(b_value.getTime()) - parseFloat(a_value.getTime());
+                        });
                     angular.forEach(lastActions, function (response) {
                         if (response.quiz) {
                             resultLastActions.push({

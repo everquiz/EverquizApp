@@ -48,7 +48,7 @@
                 // ctrl.user.error = true;
                 expect(ctrl.dataLoaded).to.be.false;
                 ctrl.register();
-                $rootScope.$apply();
+                //$rootScope.$apply();
                 expect(ctrl.dataLoaded).to.be.true;
                 expect(profileFactory.addAchievement).to.have.been.called;
             });

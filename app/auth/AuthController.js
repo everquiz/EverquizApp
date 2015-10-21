@@ -12,7 +12,6 @@
         var vm = this;
         vm.user = {};
         vm.logIn = logIn;
-        vm.logInGoogle = authFactory.logInGoogle;
         vm.register = register;
         vm.dataLoaded = true;
 
