@@ -84,6 +84,7 @@
                 expect(ctrl.dataLoaded).to.be.false;
                 token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJfaWQiOiI1NWY5ODA1MzNlOTc1YzRhMWJmZGNlYzgiLCJlbWFpbCI6ImFkbWluQGFkbWluLmNvbSIsInJvbGVzIjpbImFkbWluIl0sImV4cCI6MTQ0OTM2MTU4NSwiaWF0IjoxNDQ0MTczOTg1fQ.YFXdF2Sntu8wT6JL7i8Jp8yovZyVHoCWtpNPSlBsCdk';
                 $scope.$digest(ctrl.logIn());
+                expect($state.go).to.have.been.calledWith('admin.quizzes');
                 expect(ctrl.dataLoaded).to.be.true;
             });
 
@@ -92,6 +93,7 @@
                 expect(ctrl.dataLoaded).to.be.false;
                 token = 'eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJfaWQiOiI1NjI2NmM0OGYzZTliZDU4MTEzYTk1NjMiLCJlbWFpbCI6InZ2dnZAdnZ2diIsInJvbGVzIjpbInVzZXIiXSwiZXhwIjoxNDUwNTcwNjcwLCJpYXQiOjE0NDUzODMwNzB9.YuPX8GD_OPxmmqLdsyU8JOos4GMakVj0Z5kX2AsGtBc';
                 $scope.$digest(ctrl.logIn());
+                expect($state.go).to.have.been.calledWith('home');
                 expect(ctrl.dataLoaded).to.be.true;
             });
             it('should not login user', function () {
