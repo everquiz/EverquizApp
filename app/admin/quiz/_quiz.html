@@ -1,5 +1,5 @@
-<div class="quiz-list-header">
-    <div class="quiz-list-header__title">Questions</div>
+<div class="admin-header">
+    <div class="admin-header__title">Questions</div>
 </div>
 
 <h3 class="center ">{{QuizCtrl.quiz.title}}</h3>
@@ -11,25 +11,25 @@
     </button>
 </form>
 
-<div class="quiz-list-selection height-auto">
-    <table class="quiz-list-selection-table">
-        <tr class="quiz-list-selection-table-row-heading">
-            <th class="quiz-list-selection-table-row-heading__title">Index</th>
-            <th class="quiz-list-selection-table-row-heading__title">ID</th>
-            <th class="quiz-list-selection-table-row-heading__title">Text</th>
-            <th class="quiz-list-selection-table-row-heading__title">createAt</th>
-            <th class="quiz-list-selection-table-row-heading__title">Total Answers</th>
-            <th class="quiz-list-selection-table-row-heading__title">Actions</th>
+<div class="admin-selection height-auto">
+    <table class="admin-selection-table">
+        <tr class="admin-selection-table-row-heading">
+            <th class="admin-selection-table-row-heading__title">Index</th>
+            <th class="admin-selection-table-row-heading__title">ID</th>
+            <th class="admin-selection-table-row-heading__title">Text</th>
+            <th class="admin-selection-table-row-heading__title">createAt</th>
+            <th class="admin-selection-table-row-heading__title">Total Answers</th>
+            <th class="admin-selection-table-row-heading__title">Actions</th>
         </tr>
-        <tr class="quiz-list-selection-table-row-content"
+        <tr class="admin-selection-table-row-content"
             ng-repeat="question in QuizCtrl.quiz.questions | filter : QuizCtrl.search"
             ng-show="pageFilter($index)">
-            <td class="quiz-list-selection-table-row-content__title"  ui-sref="admin.question({ id: question._id})">{{$index}}</td>
-            <td class="quiz-list-selection-table-row-content__title"  ui-sref="admin.question({ id: question._id})">{{question._id}}</td>
-            <td class="quiz-list-selection-table-row-content__title" ui-sref="admin.question({ id: question._id})">{{question.text | limitTo:20 }}{{question.text.length > 20 ? '...' : ''}}</td>
-            <td class="quiz-list-selection-table-row-content__title">{{question.createAt | date:'dd/MM/yyyy'}}</td>
-            <td class="quiz-list-selection-table-row-content__title">{{question.answers.length}}</td>
-            <td class="quiz-list-selection-table-row-content__title"><i class="fa fa-trash-o"  ng-click='QuizCtrl.removeQuestion(question)'></i><i eq-modal class="fa fa-wrench" ng-click='QuizCtrl.editQuestion(question)'></i></td>
+            <td class="admin-selection-table-row-content__title"  ui-sref="admin.question({ id: question._id})">{{$index}}</td>
+            <td class="admin-selection-table-row-content__title"  ui-sref="admin.question({ id: question._id})">{{question._id}}</td>
+            <td class="admin-selection-table-row-content__title" ui-sref="admin.question({ id: question._id})">{{question.text | limitTo:20 }}{{question.text.length > 20 ? '...' : ''}}</td>
+            <td class="admin-selection-table-row-content__title">{{question.createAt | date:'dd/MM/yyyy'}}</td>
+            <td class="admin-selection-table-row-content__title">{{question.answers.length}}</td>
+            <td class="admin-selection-table-row-content__title"><i class="fa fa-trash-o"  ng-click='QuizCtrl.removeQuestion(question)'></i><i eq-modal class="fa fa-wrench" ng-click='QuizCtrl.editQuestion(question)'></i></td>
         </tr>
     </table>
 </div>
