@@ -38,6 +38,7 @@
             var labels = [];
             var data = [[]];
             var filteredIndex = 0;
+            history = historyService.getHistory();
             data[0] = history.getAverageResultProgression();
             for (var i = 0; i < history.length; ++i) {
                 var date = new Date(history[i].createdAt);
@@ -56,6 +57,7 @@
         }
 
         function quiz_day(date_start, date_end) {
+            history = historyService.getHistory();
             var initDate = new Date(history[0].createdAt);
             var initDateStr = dateToString(initDate);
             var labels = [initDateStr];
@@ -83,16 +85,17 @@
         }
 
         function quiz_succesful_day(date_start, date_end) {
+            history = historyService.getHistory();
             var initDate = new Date(history[0].createdAt);
             var initDateStr = dateToString(initDate);
             var labels = [initDateStr];
             var data = [[1]];
             var dataCounter = 0;
             for (var i = 1; i < history.length; ++i) {
-                if (history.result > 0.6) {
+                if (history[i].result > 0.6) {
                     var date = new Date(history[i].createdAt);
                     if (date >= date_start && date <= date_end) {
-                        var dateStr = dateToString();
+                        var dateStr = dateToString(date);
                         if (dateStr === labels[dataCounter]) {
                             data[0][dataCounter]++;
                         }
@@ -111,6 +114,7 @@
             //    labels = [];
             //    series = ["No succesful quizzes"];
             //}
+            console.log(data);
             return {
                 labels: labels,
                 series: series,

@@ -13,6 +13,7 @@
 
         self.updateHistory = updateHistory;
         self.getHistory = getHistory;
+        self.getAverageResultProgression = getAverageResultProgression;
 
         function updateHistory() {
             var id = authFactory.currentUserId();
