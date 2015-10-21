@@ -54,14 +54,19 @@
             }));
 
         beforeEach(inject(function (_$httpBackend_, $controller, _quizService_, _categoryService_, _$window_) {
-                
-                quizService = _quizService_;
-                categoryService = _categoryService_;
-                $httpBackend = _$httpBackend_;
-                $window = _$window_;
-                
-                ctrl = $controller('QuizzesController', {quizzes: quizzesInit, quizService: quizService, categoryService: categoryService});
-                sinon.stub($window, 'confirm', function () {return true;});
+
+            quizService = _quizService_;
+            categoryService = _categoryService_;
+            $httpBackend = _$httpBackend_;
+            $window = _$window_;
+            ctrl = $controller('QuizzesController', {
+                quizzes: quizzesInit,
+                quizService: quizService,
+                categoryService: categoryService
+            });
+            sinon.stub($window, 'confirm', function() {
+                return true;
+            });
             }));
         afterEach(function () {
                 $window.confirm.restore();

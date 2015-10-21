@@ -7,8 +7,8 @@ module.exports = {
     },
 
     'epamAuth' : {
-        'clientID'      : 'ee8c9c4fc634ec173ea82cc63a47dc91928e2f9d04405e979d21f986d8b4aefc',
-        'clientSecret'  : '2777a9c7e32b89153da98186967f9cb75cf789b9304737ec3761b18bc4373f1f',
+        'clientID'      : 'b42f011bad8e54abbe9fff4a4590c0aaecff6cd8fa4e6a848ae5c7838a7043df',
+        'clientSecret'  : '3a667b248743d723c12afea1fc5c411e7258fb9305ecba8a80057e44776495fe',
         'gitlabURL'     : "https://git.epam.com",
         'callbackURL'   : 'https://everquiz.herokuapp.com/auth/gitlab/callback'
     },
